@@ -1,0 +1,109 @@
+// ============================
+// login画面　（一部　新規登録と共通あり）
+// ============================
+
+.p-login{
+    &__error{
+        color: red;
+        font-size: 13px;
+    }
+    &__inputError{
+        color: red;
+        font-size: 13px;
+        margin: 0px auto;
+        display: block;
+        text-align: center;
+    }
+    // ============================
+    // カバーパーツ
+    // ============================
+    &__container{
+        max-width: 500px;
+        min-width: 350px;
+        margin: 60px auto;
+        padding: 30px;
+        box-sizing: border-box;
+        box-shadow: 0px 4px 8px 2px #b2b5be;
+        font-size: $font-size_xxs;
+        border-radius: 6px;
+        @include mq(){
+            width: 100%;
+            margin: 20px auto;
+            box-shadow: 0px 0px 0px 0px #b2b5be;
+        }
+    }
+    // ============================
+    // フォーム部分 入力エリア
+    // ============================
+    &__inner{
+        margin-bottom: 10px;
+        display: flex;
+        align-items: baseline;
+    }
+    &__form{
+        display: block;
+        width: 100%;
+        height: calc(1.5em + 0.75rem + 2px);
+        padding: 0.375rem 0.75rem;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #495057;
+        background-color: $white;
+        background-clip: padding-box;
+        border: 1px solid #ced4da;
+        border-radius: 0.25rem;
+        transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    }
+    &__input{
+        box-sizing: border-box;
+        justify-content: space-between;
+        margin: 5px auto;
+        padding: 5px;
+        @include mq(){
+            width: 100%;
+        }
+    }
+    // ============================
+    // フォーム部分 ログインエリア
+    // ============================
+    &__check{
+        margin: 5px auto;
+        width: fit-content;
+    }
+    &__form-check-input{
+        position: absolute;
+        margin-top: 0.3rem;
+        margin-left: -1.25rem;
+    }
+    &__form-check-label{
+        margin-bottom: 0;
+    }
+
+    &__text{
+        color: $color-black;
+        text-align: center;
+        @include mq(){
+            width: 100%;
+        }
+    }
+    &__forgot{
+        padding: 10px;
+        margin: 10px;
+        margin-top: 30px;
+        font-weight: bold;
+        color: #386cfa9c !important;
+        font-size: 13px;
+        &:hover{
+            cursor: pointer;
+        }
+    }
+}
+// ============================
+// css調整用
+// ============================
+.p-login-add-margin{
+    &__3{
+        margin-top: 40px;
+    }
+}

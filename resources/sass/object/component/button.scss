@@ -1,0 +1,118 @@
+// ============================
+// ボタン
+// ============================
+.p-btn{
+    margin: 10px auto 0px auto;
+    padding: 5px 35px;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px 0 #24262c;
+    box-sizing: border-box;
+    padding: 5px 30px;
+
+    // ============================
+    // アカウント一覧画面ボタン
+    // ============================
+    &__follow{
+        border-radius: 6px;
+        box-sizing: border-box;
+        padding: 5px 30px;
+        border: none;
+        //background-color: #8BC34A;
+        background-color: #C5CAE9;
+        box-shadow: 0 2px 4px 0 #b2b5be;
+        font-size: 14px;
+        &:focus {
+            outline:0;
+        }
+    }
+    &__autofollow{
+        border-radius: 6px;
+        box-sizing: border-box;
+        border: none;
+        font-size: 13px;
+        margin: 10px 0px 10px;
+        box-sizing: border-box;
+        &:focus {
+            outline:0;
+        }
+        @include mq(){
+            margin: 0px;
+        }
+    }
+    &__new{
+        color: $color_black;
+        background-color: $color_orange;
+        box-shadow: 0 2px 4px 0 #5a5b5e;
+        box-sizing: border-box;
+        padding: 10px 0;//5→10
+        border-radius: 6px;
+        width: 70%;
+        margin-left: auto;
+        margin-right: auto;
+        border: none;
+        &:hover{
+            cursor: pointer;
+        }
+    }
+    // ============================
+    // TOPページボタン
+    // ============================
+    &__tw-new{
+        color: $color_black;
+        background-color: #C5CAE9;
+        box-shadow: 0 2px 4px 0 #5a5b5e;
+        box-sizing: border-box;
+        padding: 10px 0;//5→10
+        border-radius: 6px;
+        width: 70%;
+        margin-left: auto;
+        margin-right: auto;
+        border: none;
+    }
+    &__login{
+        color: $color_black;
+        background-color: #C5CAE9;
+        box-shadow: 0 2px 4px 0 #5a5b5e;
+        box-sizing: border-box;
+        padding: 10px 0;//5→10
+        border-radius: 6px;
+        width: 70%;
+        margin-left: auto;
+        margin-right: auto;
+        border: none;
+        &:hover{
+            cursor: pointer;
+        }
+    }
+    &__newregister{
+        background-color: #C5CAE9;
+        color: $color_black;
+        box-shadow: 0 2px 4px 0 #5a5b5e;
+        box-sizing: border-box;
+        padding: 10px 0;//5→10
+        border-radius: 6px;
+        width: 70%;
+        margin-left: auto;
+        margin-right: auto;
+        border: none;
+    }
+    &__submit{
+        color: $color_black;
+        background-color: $color_orange;
+        box-shadow: 0 2px 4px 0 #5a5b5e;
+        box-sizing: border-box;
+        padding: 10px 0;
+        border-radius: 6px;
+        width: 70%;
+        margin-left: auto;
+        margin-right: auto;
+        border: none;
+        &:hover{
+            cursor: pointer;
+        }
+    }
+    &__margin{
+        margin-bottom: 10px ;
+    }
+
+}

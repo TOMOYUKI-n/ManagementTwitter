@@ -1,0 +1,57 @@
+// ============================
+// アラート/メッセージ関連
+// ============================
+
+.flash_message{
+    padding: 15px;
+    background-color: rgba(56, 108, 250, 0.61);
+    color: $white;
+    text-align: center;
+    display: block;
+}
+
+.error_message{
+    padding: 15px;
+    background-color: rgba(250, 56, 56, 0.61);
+    color: $color-black;
+    text-align: center;
+    display: block;
+    font-size: $font-size_min;
+}
+
+.isFollowedColor{
+    background-color: #386cfa9c;
+    color: $white;
+    border: none;
+    &:focus {
+        outline:0;
+    }
+}
+.pAccountActive{
+    background-color: #fcb901;
+    //background-color: #C5CAE9;
+}
+
+// ============================
+// misslogin, passreset 注意テキスト
+// ============================
+.c-alert{
+    &__caution1{
+        color: red !important;
+        line-height: 1.2;
+    }
+    &__caution2{
+        color: red !important;
+        line-height: 1.2;
+        margin-bottom: 20px;
+    }
+    &__caution3{
+        line-height: 1.2;
+        margin-top: 80px;
+    }
+    &__success{
+        color: #386cfa9c;
+        line-height: 1.2;
+        margin-bottom: 20px;
+    }
+}

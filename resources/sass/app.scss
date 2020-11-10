@@ -1,8 +1,26 @@
-// Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
+//foundation
+@import "foundation/reset";
+@import "foundation/_variables";
+@import "foundation/mixin";
+@import "foundation/base";
+//layout
+@import "layout/body";
+@import "layout/footer";
+@import "layout/header";
+@import "layout/main";
+//component
+@import "object/component/button";
+@import "object/component/card";
+@import "object/component/panel";
+//project
+@import "object/project/dashboard";
+@import "object/project/login";
+@import "object/project/table";
+@import "object/project/term";
+@import "object/project/policy";
+@import "object/project/password";
+@import "object/project/top";
+@import "object/project/verify";
 
-// Variables
-@import 'variables';
-
-// Bootstrap
-@import '~bootstrap/scss/bootstrap';
+//utility
+@import "object/utility/parts";
