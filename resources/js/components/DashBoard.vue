@@ -43,15 +43,15 @@
             <section class="p-dashboard">
                 <transition-group name="t-dashboard_panel" tag="div">
 
-                    <PanelFollow key="follow" v-show="tab===1"></PanelFollow>
+                    <panel-follow key="follow" v-show="tab===1" />
 
-                    <PanelUnfollow key="unfollow" v-show="tab===2"></PanelUnfollow>
+                    <panel-unfollow key="unfollow" v-show="tab===2" />
 
-                    <PanelLike key="like" v-show="tab===3"></PanelLike>
+                    <panel-like key="like" v-show="tab===3" />
 
-                    <PanelTweet key="tweet" v-show="tab===4"></PanelTweet>
+                    <panel-tweet key="tweet" v-show="tab===4" />
 
-                    <PanelFilter key="filter" v-show="tab===5"></PanelFilter>
+                    <panel-filter key="filter" v-show="tab===5" />
 
                 </transition-group>
             </section>
@@ -62,20 +62,8 @@
 
 <script>
     import {OK} from '../utility'
-    import PanelFollow from '../components/PanelFollow'
-    import PanelUnfollow from '../components/PanelUnfollow'
-    import PanelLike from '../components/PanelLike'
-    import PanelTweet from '../components/PanelTweet'
-    import PanelFilter from '../components/PanelFilter'
 
     export default {
-        components: {
-            PanelFollow,
-            PanelUnfollow,
-            PanelLike,
-            PanelTweet,
-            PanelFilter
-        },
         data() {
             return {
                 tab: 1,

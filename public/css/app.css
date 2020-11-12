@@ -691,6 +691,42 @@ footer {
   list-style: none;
 }
 
+.c-tab {
+  width: 100%;
+  margin-bottom: 15px;
+  box-sizing: border-box;
+}
+.c-tab__list {
+  display: flex;
+}
+.c-tab__item {
+  font-size: 16px;
+  color: #3335;
+  padding: 10px;
+  text-align: center;
+  box-sizing: border-box;
+  border-bottom: 3px solid #3335;
+  margin-right: 20px;
+}
+@media screen and (max-width: 960px) {
+  .c-tab__item {
+    font-size: 12px;
+    padding: 5px;
+    margin-right: 10px;
+    width: 20%;
+  }
+}
+.c-tab__item:hover {
+  cursor: pointer;
+}
+.c-tab__item:last-of-type {
+  margin-right: 0;
+}
+.c-tab__item--active {
+  color: #333;
+  border-bottom: 3px solid #333;
+}
+
 .p-login__error {
   color: red;
   font-size: 13px;

@@ -1911,6 +1911,223 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/AccountCard.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/AccountCard.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _utility__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utility */ "./resources/js/utility.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    item: {
+      type: Object,
+      required: true
+    },
+    index: {
+      type: Number,
+      required: true
+    }
+  },
+  data: function data() {
+    return {
+      del: 1,
+      screenName: "",
+      name: "",
+      thumbnail: ''
+    };
+  },
+  methods: {
+    /**
+     * TwitterUserのユーザーデータを1件取得する
+     */
+    fetchTwitterUser: function fetchTwitterUser() {
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return axios.get('/api/twitter/user/info/' + _this.item.id);
+
+              case 2:
+                response = _context.sent;
+
+                if (!(response.status !== _utility__WEBPACK_IMPORTED_MODULE_1__["OK"])) {
+                  _context.next = 6;
+                  break;
+                }
+
+                _this.$store.commit('error/setCode', response.status);
+
+                return _context.abrupt("return", false);
+
+              case 6:
+                _this.screenName = response.data.screen_name;
+                _this.name = response.data.name;
+                _this.thumbnail = response.data.thumbnail;
+
+              case 9:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
+    },
+
+    /**
+     * 使用するTwitterユーザーが選択された際に、セッションとstoreにTwitterUserIdを保存する
+     * その後ダッシュボードに遷移する
+     */
+    setTwitterId: function setTwitterId() {
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.next = 2;
+                return axios.post("/api/twitter/".concat(_this2.item.id));
+
+              case 2:
+                response = _context2.sent;
+
+                if (!(response.status !== _utility__WEBPACK_IMPORTED_MODULE_1__["OK"])) {
+                  _context2.next = 6;
+                  break;
+                }
+
+                _this2.$store.commit('error/setCode', response.status);
+
+                return _context2.abrupt("return", false);
+
+              case 6:
+                _context2.next = 8;
+                return _this2.$store.dispatch('auth/currentTwitterUser');
+
+              case 8:
+                if (_this2.apiStatus) {
+                  _this2.$router.push('/');
+                }
+
+                _this2.$router.push('/dashboard');
+
+              case 10:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
+    },
+
+    /**
+     * TwitterUserIdをstoreから削除する
+     * TwitterUserをDBから削除するAPIを実行する
+     * APIが正常に完了した場合、Twitterページemitを通知して、削除の描画を行う
+     */
+    deleteTwitterUser: function deleteTwitterUser() {
+      var _this3 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                _context3.next = 2;
+                return _this3.$store.dispatch('auth/twitterUserLogout');
+
+              case 2:
+                if (!_this3.apiStatus) {
+                  _context3.next = 9;
+                  break;
+                }
+
+                _context3.next = 5;
+                return axios["delete"]("/api/twitter/".concat(_this3.item.id));
+
+              case 5:
+                response = _context3.sent;
+
+                if (!(response.status !== _utility__WEBPACK_IMPORTED_MODULE_1__["OK"])) {
+                  _context3.next = 9;
+                  break;
+                }
+
+                _this3.$store.commit('error/setCode', response.status);
+
+                return _context3.abrupt("return", false);
+
+              case 9:
+                _this3.$emit('delUser', {
+                  index: _this3.index
+                });
+
+              case 10:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
+      }))();
+    }
+  },
+  computed: {
+    //storeを使ってAPIを実行する際に、APIのステータスを取得する
+    apiStatus: function apiStatus() {
+      return this.$store.state.auth.apiStatus;
+    }
+  },
+  created: function created() {
+    this.fetchTwitterUser();
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/DashBoard.vue?vue&type=script&lang=js&":
 /*!********************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/DashBoard.vue?vue&type=script&lang=js& ***!
@@ -1923,11 +2140,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _utility__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utility */ "./resources/js/utility.js");
-/* harmony import */ var _components_PanelFollow__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/PanelFollow */ "./resources/js/components/PanelFollow.vue");
-/* harmony import */ var _components_PanelUnfollow__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/PanelUnfollow */ "./resources/js/components/PanelUnfollow.vue");
-/* harmony import */ var _components_PanelLike__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/PanelLike */ "./resources/js/components/PanelLike.vue");
-/* harmony import */ var _components_PanelTweet__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/PanelTweet */ "./resources/js/components/PanelTweet.vue");
-/* harmony import */ var _components_PanelFilter__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components/PanelFilter */ "./resources/js/components/PanelFilter.vue");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -1997,19 +2209,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 
-
-
-
-
-
 /* harmony default export */ __webpack_exports__["default"] = ({
-  components: {
-    PanelFollow: _components_PanelFollow__WEBPACK_IMPORTED_MODULE_2__["default"],
-    PanelUnfollow: _components_PanelUnfollow__WEBPACK_IMPORTED_MODULE_3__["default"],
-    PanelLike: _components_PanelLike__WEBPACK_IMPORTED_MODULE_4__["default"],
-    PanelTweet: _components_PanelTweet__WEBPACK_IMPORTED_MODULE_5__["default"],
-    PanelFilter: _components_PanelFilter__WEBPACK_IMPORTED_MODULE_6__["default"]
-  },
   data: function data() {
     return {
       tab: 1,
@@ -2280,7 +2480,7 @@ __webpack_require__.r(__webpack_exports__);
         password: this.password
       };
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.post(url, params).then(function (response) {
-        location.href = "/news";
+        location.href = "/dashboard";
       })["catch"](function (error) {
         // エラー時のコメントをlaravelからキャッチする
         var responseErrors = error.response.data.errors;
@@ -4666,6 +4866,143 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/TwitterAccount.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/TwitterAccount.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _components_AccountCard_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/AccountCard.vue */ "./resources/js/components/AccountCard.vue");
+/* harmony import */ var _utility__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../utility */ "./resources/js/utility.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    AccountCard: _components_AccountCard_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+  },
+  data: function data() {
+    return {
+      users: [],
+      accountNum: 0
+    };
+  },
+  methods: {
+    /**
+     * ユーザーが登録しているTwitterUserのID一覧を取得する
+     */
+    fetchTwitterUsers: function fetchTwitterUsers() {
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return axios.get('/api/twitter/user/list');
+
+              case 2:
+                response = _context.sent;
+
+                if (!(response.status !== _utility__WEBPACK_IMPORTED_MODULE_2__["OK"])) {
+                  _context.next = 6;
+                  break;
+                }
+
+                _this.$store.commit('error/setCode', response.status);
+
+                return _context.abrupt("return", false);
+
+              case 6:
+                _this.users = response.data.twitter_accounts;
+                _this.accountNum = response.data.account_num;
+
+              case 8:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
+    },
+
+    /**
+     * TwitterCardのemitをトリガーにして
+     * TwitterUserのカードを配列から削除する
+     */
+    removeCard: function removeCard(emitObject) {
+      this.users.splice(emitObject.index, 1);
+    }
+  },
+  computed: {
+    //TwitterUserアカウントを追加するボタンの非表示フラグ
+    isMaximumAccount: function isMaximumAccount() {
+      return this.accountNum < 10;
+    }
+  },
+  //ページ作成時に実行
+  created: function created() {
+    var _this2 = this;
+
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              _context2.next = 2;
+              return _this2.fetchTwitterUsers();
+
+            case 2:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2);
+    }))();
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/process/browser.js":
 /*!*****************************************!*\
   !*** ./node_modules/process/browser.js ***!
@@ -5893,6 +6230,107 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/AccountCard.vue?vue&type=template&id=18a8df42&":
+/*!**************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/AccountCard.vue?vue&type=template&id=18a8df42& ***!
+  \**************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "li",
+    {
+      staticClass: "c-card p-twitter__card u-color__bg--white",
+      on: { click: _vm.setTwitterId }
+    },
+    [
+      _c("div", { staticClass: "p-twitter__profile" }, [
+        _c("figure", [
+          _c("img", {
+            staticClass: "p-twitter__img",
+            attrs: { src: _vm.thumbnail, alt: "" }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "p-twitter__ids" }, [
+          _c("p", { staticClass: "p-twitter__name" }, [
+            _vm._v(_vm._s(_vm.name))
+          ]),
+          _vm._v(" "),
+          _c("p", { staticClass: "p-twitter__id" }, [
+            _vm._v("@" + _vm._s(_vm.screenName))
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "p-twitter__action" },
+        [
+          _c("transition-group", { attrs: { name: "t-del", mode: "out-in" } }, [
+            _c("i", {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.del === 1,
+                  expression: "del===1"
+                }
+              ],
+              key: "box",
+              staticClass: "c-icon--gray p-twitter__icon fas fa-trash-alt",
+              on: {
+                click: function($event) {
+                  $event.stopPropagation()
+                  _vm.del = 2
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                directives: [
+                  {
+                    name: "show",
+                    rawName: "v-show",
+                    value: _vm.del === 2,
+                    expression: "del===2"
+                  }
+                ],
+                key: "del",
+                staticClass: "p-twitter_delete c-button c-button--danger",
+                on: {
+                  click: function($event) {
+                    $event.stopPropagation()
+                    return _vm.deleteTwitterUser($event)
+                  }
+                }
+              },
+              [_vm._v("削除\n            ")]
+            )
+          ])
+        ],
+        1
+      )
+    ]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/DashBoard.vue?vue&type=template&id=7b804a99&":
 /*!************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/DashBoard.vue?vue&type=template&id=7b804a99& ***!
@@ -6022,7 +6460,7 @@ var render = function() {
             "transition-group",
             { attrs: { name: "t-dashboard_panel", tag: "div" } },
             [
-              _c("PanelFollow", {
+              _c("panel-follow", {
                 directives: [
                   {
                     name: "show",
@@ -6034,7 +6472,7 @@ var render = function() {
                 key: "follow"
               }),
               _vm._v(" "),
-              _c("PanelUnfollow", {
+              _c("panel-unfollow", {
                 directives: [
                   {
                     name: "show",
@@ -6046,7 +6484,7 @@ var render = function() {
                 key: "unfollow"
               }),
               _vm._v(" "),
-              _c("PanelLike", {
+              _c("panel-like", {
                 directives: [
                   {
                     name: "show",
@@ -6058,7 +6496,7 @@ var render = function() {
                 key: "like"
               }),
               _vm._v(" "),
-              _c("PanelTweet", {
+              _c("panel-tweet", {
                 directives: [
                   {
                     name: "show",
@@ -6070,7 +6508,7 @@ var render = function() {
                 key: "tweet"
               }),
               _vm._v(" "),
-              _c("PanelFilter", {
+              _c("panel-filter", {
                 directives: [
                   {
                     name: "show",
@@ -8545,6 +8983,94 @@ var staticRenderFns = [
             ])
           ])
         ])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/TwitterAccount.vue?vue&type=template&id=6a481e65&":
+/*!*****************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/TwitterAccount.vue?vue&type=template&id=6a481e65& ***!
+  \*****************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "l-contents" }, [
+    _c("div", { staticClass: "p-contents__area--narrow" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          directives: [
+            {
+              name: "show",
+              rawName: "v-show",
+              value: _vm.isMaximumAccount,
+              expression: "isMaximumAccount"
+            }
+          ],
+          staticClass: "c-card p-twitter__card u-color__bg--white"
+        },
+        [_vm._m(1)]
+      ),
+      _vm._v(" "),
+      _c(
+        "ul",
+        { staticClass: "p-twitter" },
+        [
+          _c(
+            "transition-group",
+            { attrs: { name: "t-twitter_card" } },
+            _vm._l(_vm.users, function(user, index) {
+              return _c("AccountCard", {
+                key: user.id,
+                attrs: { item: user, index: index },
+                on: { delUser: _vm.removeCard }
+              })
+            }),
+            1
+          )
+        ],
+        1
+      )
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h2", { staticClass: "p-contents__head" }, [
+      _c("i", { staticClass: "c-icon--twitter fab fa-twitter" }),
+      _vm._v("利用するTwitterアカウントを選択する")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("a", { attrs: { href: "auth/twitter/oauth" } }, [
+      _c("p", { staticClass: "p-twitter__create" }, [
+        _c("i", {
+          staticClass:
+            "c-icon--twitter p-twitter__icon--create far fa-plus-square"
+        }),
+        _vm._v("Twitterアカウントの追加\n                ")
       ])
     ])
   }
@@ -20698,17 +21224,87 @@ __webpack_require__.r(__webpack_exports__);
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 Vue.component('footer-component', __webpack_require__(/*! ./components/FooterComponent.vue */ "./resources/js/components/FooterComponent.vue")["default"]);
 Vue.component('dash-board', __webpack_require__(/*! ./components/DashBoard.vue */ "./resources/js/components/DashBoard.vue")["default"]);
-Vue.component('Login', __webpack_require__(/*! ./components/Login.vue */ "./resources/js/components/Login.vue")["default"]);
-Vue.component('Header', __webpack_require__(/*! ./components/Header.vue */ "./resources/js/components/Header.vue")["default"]);
-Vue.component('PanelFilter', __webpack_require__(/*! ./components/PanelFilter.vue */ "./resources/js/components/PanelFilter.vue")["default"]);
-Vue.component('PanelFollow', __webpack_require__(/*! ./components/PanelFollow.vue */ "./resources/js/components/PanelFollow.vue")["default"]);
-Vue.component('PanelLike', __webpack_require__(/*! ./components/PanelLike.vue */ "./resources/js/components/PanelLike.vue")["default"]);
-Vue.component('PanelTweet', __webpack_require__(/*! ./components/PanelTweet.vue */ "./resources/js/components/PanelTweet.vue")["default"]);
-Vue.component('PanelUnfollow', __webpack_require__(/*! ./components/PanelUnfollow.vue */ "./resources/js/components/PanelUnfollow.vue")["default"]);
-Vue.component('PasswordReset', __webpack_require__(/*! ./components/PasswordReset.vue */ "./resources/js/components/PasswordReset.vue")["default"]);
+Vue.component('login', __webpack_require__(/*! ./components/Login.vue */ "./resources/js/components/Login.vue")["default"]);
+Vue.component('header', __webpack_require__(/*! ./components/Header.vue */ "./resources/js/components/Header.vue")["default"]);
+Vue.component('panel-filter', __webpack_require__(/*! ./components/PanelFilter.vue */ "./resources/js/components/PanelFilter.vue")["default"]);
+Vue.component('panel-follow', __webpack_require__(/*! ./components/PanelFollow.vue */ "./resources/js/components/PanelFollow.vue")["default"]);
+Vue.component('panel-like', __webpack_require__(/*! ./components/PanelLike.vue */ "./resources/js/components/PanelLike.vue")["default"]);
+Vue.component('panel-tweet', __webpack_require__(/*! ./components/PanelTweet.vue */ "./resources/js/components/PanelTweet.vue")["default"]);
+Vue.component('panel-unfollow', __webpack_require__(/*! ./components/PanelUnfollow.vue */ "./resources/js/components/PanelUnfollow.vue")["default"]);
+Vue.component('password-reset', __webpack_require__(/*! ./components/PasswordReset.vue */ "./resources/js/components/PasswordReset.vue")["default"]);
+Vue.component('twitter-account', __webpack_require__(/*! ./components/TwitterAccount.vue */ "./resources/js/components/TwitterAccount.vue")["default"]);
 var app = new Vue({
   el: '#app'
 });
+
+/***/ }),
+
+/***/ "./resources/js/components/AccountCard.vue":
+/*!*************************************************!*\
+  !*** ./resources/js/components/AccountCard.vue ***!
+  \*************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _AccountCard_vue_vue_type_template_id_18a8df42___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AccountCard.vue?vue&type=template&id=18a8df42& */ "./resources/js/components/AccountCard.vue?vue&type=template&id=18a8df42&");
+/* harmony import */ var _AccountCard_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AccountCard.vue?vue&type=script&lang=js& */ "./resources/js/components/AccountCard.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _AccountCard_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _AccountCard_vue_vue_type_template_id_18a8df42___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _AccountCard_vue_vue_type_template_id_18a8df42___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/AccountCard.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/AccountCard.vue?vue&type=script&lang=js&":
+/*!**************************************************************************!*\
+  !*** ./resources/js/components/AccountCard.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AccountCard_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./AccountCard.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/AccountCard.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AccountCard_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/AccountCard.vue?vue&type=template&id=18a8df42&":
+/*!********************************************************************************!*\
+  !*** ./resources/js/components/AccountCard.vue?vue&type=template&id=18a8df42& ***!
+  \********************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AccountCard_vue_vue_type_template_id_18a8df42___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./AccountCard.vue?vue&type=template&id=18a8df42& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/AccountCard.vue?vue&type=template&id=18a8df42&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AccountCard_vue_vue_type_template_id_18a8df42___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AccountCard_vue_vue_type_template_id_18a8df42___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
 
 /***/ }),
 
@@ -21381,6 +21977,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PasswordReset_vue_vue_type_template_id_66fc1d19___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PasswordReset_vue_vue_type_template_id_66fc1d19___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/TwitterAccount.vue":
+/*!****************************************************!*\
+  !*** ./resources/js/components/TwitterAccount.vue ***!
+  \****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _TwitterAccount_vue_vue_type_template_id_6a481e65___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TwitterAccount.vue?vue&type=template&id=6a481e65& */ "./resources/js/components/TwitterAccount.vue?vue&type=template&id=6a481e65&");
+/* harmony import */ var _TwitterAccount_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./TwitterAccount.vue?vue&type=script&lang=js& */ "./resources/js/components/TwitterAccount.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _TwitterAccount_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _TwitterAccount_vue_vue_type_template_id_6a481e65___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _TwitterAccount_vue_vue_type_template_id_6a481e65___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/TwitterAccount.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/TwitterAccount.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************!*\
+  !*** ./resources/js/components/TwitterAccount.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TwitterAccount_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./TwitterAccount.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/TwitterAccount.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TwitterAccount_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/TwitterAccount.vue?vue&type=template&id=6a481e65&":
+/*!***********************************************************************************!*\
+  !*** ./resources/js/components/TwitterAccount.vue?vue&type=template&id=6a481e65& ***!
+  \***********************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TwitterAccount_vue_vue_type_template_id_6a481e65___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./TwitterAccount.vue?vue&type=template&id=6a481e65& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/TwitterAccount.vue?vue&type=template&id=6a481e65&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TwitterAccount_vue_vue_type_template_id_6a481e65___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TwitterAccount_vue_vue_type_template_id_6a481e65___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
