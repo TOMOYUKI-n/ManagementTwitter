@@ -140,41 +140,41 @@
              * 登録した自動いいねデータ一覧を取得する
              */
             async fetchLikes() {
-                const response = await axios.get('/api/like')
-                if (response.status !== OK) {
-                    this.$store.commit('error/setCode', response.status)
-                    return false
-                }
-                this.likes = response.data
+                // const response = await axios.get('/api/like')
+                // if (response.status !== OK) {
+                //     this.$store.commit('error/setCode', response.status)
+                //     return false
+                // }
+                // this.likes = response.data
             },
             /**
              * フィルターワード一覧を取得する
              */
             async fetchFilters() {
-                const response = await axios.get('/api/filter')
-                if (response.status !== OK) {
-                    this.$store.commit('error/setCode', response.status)
-                    return false
-                }
+                // const response = await axios.get('/api/filter')
+                // if (response.status !== OK) {
+                //     this.$store.commit('error/setCode', response.status)
+                //     return false
+                // }
 
-                this.filters = response.data
+                // this.filters = response.data
             },
             /**
              * 新規自動いいねを追加する
              */
             async addLike() {
-                const response = await axios.post('/api/like', this.addForm)
-                if (response.status === UNPROCESSABLE_ENTRY) {
-                    this.errors = response.data.errors
-                    return false
-                }
-                this.addForm.filter_word_id = null
-                if (response.status !== CREATED) {
-                    this.$store.commit('error/setCode', response.status)
-                    return false
-                }
-                this.likes.push(response.data)
-                this.newModal = false
+                // const response = await axios.post('/api/like', this.addForm)
+                // if (response.status === UNPROCESSABLE_ENTRY) {
+                //     this.errors = response.data.errors
+                //     return false
+                // }
+                // this.addForm.filter_word_id = null
+                // if (response.status !== CREATED) {
+                //     this.$store.commit('error/setCode', response.status)
+                //     return false
+                // }
+                // this.likes.push(response.data)
+                // this.newModal = false
             },
 
             /**
@@ -192,24 +192,24 @@
              * 自動いいねデータを編集する
              */
             async editLike() {
-                const response = await axios.put(`/api/like/${this.editForm.id}`, this.editForm)
-                if (response.status !== OK) {
-                    this.$store.commit('error/setCode', response.status)
-                    return false
-                }
-                this.likes.splice(this.editIndex, 1, response.data)
-                this.resetEditForm()
+                // const response = await axios.put(`/api/like/${this.editForm.id}`, this.editForm)
+                // if (response.status !== OK) {
+                //     this.$store.commit('error/setCode', response.status)
+                //     return false
+                // }
+                // this.likes.splice(this.editIndex, 1, response.data)
+                // this.resetEditForm()
             },
             /**
              * 自動いいねを削除する
              */
             async removeLike(id, index) {
-                const response = await axios.delete(`/api/like/${id}`)
-                if (response.status !== OK) {
-                    this.$store.commit('error/setCode', response.status)
-                    return false
-                }
-                this.likes.splice(index, 1)
+                // const response = await axios.delete(`/api/like/${id}`)
+                // if (response.status !== OK) {
+                //     this.$store.commit('error/setCode', response.status)
+                //     return false
+                // }
+                // this.likes.splice(index, 1)
             },
 
             /**
@@ -226,44 +226,44 @@
              * 自動いいねサービスのステータスを取得する
              */
             async fetchServiceStatus() {
-                const response = await axios.get('/api/system/status')
-                if (response.status !== OK) {
-                    this.$store.commit('error/setCode', response.status)
-                    return false
-                }
+                // const response = await axios.get('/api/system/status')
+                // if (response.status !== OK) {
+                //     this.$store.commit('error/setCode', response.status)
+                //     return false
+                // }
 
-                this.serviceStatus = response.data.auto_like_status
-                this.serviceStatusLabel = response.data.status_labels.auto_like
+                // this.serviceStatus = response.data.auto_like_status
+                // this.serviceStatusLabel = response.data.status_labels.auto_like
             },
 
             /**
              * 自動いいねサービスを稼働状態にする
              */
             async runLikeService() {
-                const serviceType = 3
-                const data = {type: serviceType}
-                const response = await axios.post('/api/system/run', data)
-                if (response.status !== OK) {
-                    this.$store.commit('error/setCode', response.status)
-                    return false
-                }
-                this.serviceStatus = response.data.auto_like_status
-                this.serviceStatusLabel = response.data.status_labels.auto_like
+                // const serviceType = 3
+                // const data = {type: serviceType}
+                // const response = await axios.post('/api/system/run', data)
+                // if (response.status !== OK) {
+                //     this.$store.commit('error/setCode', response.status)
+                //     return false
+                // }
+                // this.serviceStatus = response.data.auto_like_status
+                // this.serviceStatusLabel = response.data.status_labels.auto_like
             },
 
             /**
              * 自動いいねサービスを停止状態にする
              */
             async stopLikeService() {
-                const serviceType = 3
-                const data = {type: serviceType}
-                const response = await axios.post('/api/system/stop', data)
-                if (response.status !== OK) {
-                    this.$store.commit('error/setCode', response.status)
-                    return false
-                }
-                this.serviceStatus = response.data.auto_like_status
-                this.serviceStatusLabel = response.data.status_labels.auto_like
+                // const serviceType = 3
+                // const data = {type: serviceType}
+                // const response = await axios.post('/api/system/stop', data)
+                // if (response.status !== OK) {
+                //     this.$store.commit('error/setCode', response.status)
+                //     return false
+                // }
+                // this.serviceStatus = response.data.auto_like_status
+                // this.serviceStatusLabel = response.data.status_labels.auto_like
             }
 
         },
@@ -277,15 +277,15 @@
              * フィルターワードの通知を受け取ったら
              * 自動いいねと、フィルターワードを再取得する
              */
-            dashChange: {
-                handler(val) {
-                    if (val === true) {
-                        this.fetchLikes()
-                        this.fetchFilters()
-                        this.$store.commit('dashboard/setNoticeToLike', null)
-                    }
-                }
-            },
+            // dashChange: {
+            //     handler(val) {
+            //         if (val === true) {
+            //             this.fetchLikes()
+            //             this.fetchFilters()
+            //             this.$store.commit('dashboard/setNoticeToLike', null)
+            //         }
+            //     }
+            // },
         }
     }
 </script>

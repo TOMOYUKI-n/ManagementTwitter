@@ -1,0 +1,50 @@
+// ============================
+// 新規ユーザー登録画面
+// ============================
+
+.p-regist{
+    &__caution{
+        font-size: 12px;
+        margin-left: 12px;
+        position: relative;
+        top: 10px;
+    }
+    &__form{
+        display: block;
+        width: 100%;
+        padding: 4px 12px;
+        font-size: 16px;
+        line-height: 1.6;
+        color: #495057;
+        border: 1px solid #ced4da;
+        border-radius: 4px;
+        transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        margin: 4px 12px;
+    }
+}
+// ============================
+// お問い合わせ画面
+// ============================
+
+.p-contact{
+    &__wrap{
+        margin-bottom: 10px;
+    }
+    &__title{
+        width: 100%;
+        padding: 0.375rem 0.75rem;
+    }
+    &__inner{
+        margin-bottom: 12px;
+    }
+    &__text{
+        padding: 8px;
+        border: 1px solid #999;
+        opacity: 0.8;
+        border-radius: 4px;
+    }
+    &__textarea{
+        max-height: 200px;
+        overflow-y: scroll;
+    }
+}

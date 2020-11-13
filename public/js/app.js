@@ -2128,6 +2128,37 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Board.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Board.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  popps: ['page'],
+  data: function data() {
+    return {
+      page: 1
+    };
+  },
+  methods: {},
+  mounted: function mounted() {
+    console.log(page);
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/DashBoard.vue?vue&type=script&lang=js&":
 /*!********************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/DashBoard.vue?vue&type=script&lang=js& ***!
@@ -2137,18 +2168,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _utility__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utility */ "./resources/js/utility.js");
-
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
-//
-//
-//
+/* harmony import */ var _utility__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utility */ "./resources/js/utility.js");
 //
 //
 //
@@ -2212,196 +2232,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      tab: 1,
-      twitterUser: [],
-      refreshFlg: null
+      page: 1,
+      followNum: 300,
+      followerNum: 400,
+      flgId: 1,
+      link: _utility__WEBPACK_IMPORTED_MODULE_0__["linkParam"]
     };
   },
   methods: {
-    /**
-     * 操作するTwitterUserのユーザー情報を取得する
-     * profileセクションで表示する
-     */
-    fetchTwitterUser: function fetchTwitterUser() {
-      var _this = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var id, response;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                id = _this.$store.state.auth.twitterId;
-                _context.next = 3;
-                return axios.get('/api/twitter/user/info/' + id);
-
-              case 3:
-                response = _context.sent;
-
-                if (!(response.status !== _utility__WEBPACK_IMPORTED_MODULE_1__["OK"])) {
-                  _context.next = 7;
-                  break;
-                }
-
-                _this.$store.commit('error/setCode', response.status);
-
-                return _context.abrupt("return", false);
-
-              case 7:
-                _this.twitterUser = response.data;
-
-              case 8:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee);
-      }))();
-    }
-  },
-  created: function created() {
-    var _this2 = this;
-
-    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
-        while (1) {
-          switch (_context2.prev = _context2.next) {
-            case 0:
-              _this2.fetchTwitterUser();
-
-            case 1:
-            case "end":
-              return _context2.stop();
-          }
-        }
-      }, _callee2);
-    }))();
-  }
-});
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Header.vue?vue&type=script&lang=js&":
-/*!*****************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Header.vue?vue&type=script&lang=js& ***!
-  \*****************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-/* harmony default export */ __webpack_exports__["default"] = ({
-  data: function data() {
-    return {
-      isMenuActive: false
-    };
-  },
-  computed: {
-    isLogin: function isLogin() {
-      return this.$store.getters['auth/check'];
-    },
-    username: function username() {
-      return this.$store.getters['auth/username'];
-    },
-    apiStatus: function apiStatus() {
-      return this.$store.state.auth.apiStatus;
-    }
-  },
-  methods: {
-    /**
-     * ユーザーログアウトしてログイン画面に遷移する
-     */
-    logout: function logout() {
-      var _this = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                _context.next = 2;
-                return _this.$store.dispatch('auth/logout');
-
-              case 2:
-                if (_this.apiStatus) {
-                  _this.$router.push('/');
-                }
-
-              case 3:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee);
-      }))();
-    },
-
-    /**
-     * storeからTwitterUserIdを削除して、
-     *TwitterUser選択画面に遷移する
-     */
-    changeTwitterUser: function changeTwitterUser() {
-      var _this2 = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
-          while (1) {
-            switch (_context2.prev = _context2.next) {
-              case 0:
-                _context2.next = 2;
-                return _this2.$store.dispatch('auth/twitterUserLogout');
-
-              case 2:
-                if (_this2.apiStatus) {
-                  _this2.$router.push('/twitter');
-                }
-
-              case 3:
-              case "end":
-                return _context2.stop();
-            }
-          }
-        }, _callee2);
-      }))();
+    change: function change(index) {
+      this.flgId = index + 1;
+      this.page = this.flgId;
     }
   }
 });
@@ -2419,7 +2260,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-//
 //
 //
 //
@@ -3110,34 +2950,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     /**
      * 登録したフォローターゲット一覧を取得する
      */
-    fetchFollowTargets: function fetchFollowTargets() {
-      var _this = this;
+    fetchFollowTargets: function fetchFollowTargets() {// const response = await axios.get('/api/follow')
+      // if (response.status !== OK) {
+      //     this.$store.commit('error/setCode', response.status)
+      //     return false
+      // }
+      // this.followTargets = response.data
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _context.next = 2;
-                return axios.get('/api/follow');
-
-              case 2:
-                response = _context.sent;
-
-                if (!(response.status !== _utility__WEBPACK_IMPORTED_MODULE_1__["OK"])) {
-                  _context.next = 6;
-                  break;
-                }
-
-                _this.$store.commit('error/setCode', response.status);
-
-                return _context.abrupt("return", false);
-
-              case 6:
-                _this.followTargets = response.data;
-
-              case 7:
               case "end":
                 return _context.stop();
             }
@@ -3149,34 +2973,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     /**
      * フィルターワード一覧を取得する
      */
-    fetchFilters: function fetchFilters() {
-      var _this2 = this;
+    fetchFilters: function fetchFilters() {// const response = await axios.get('/api/filter')
+      // if (response.status !== OK) {
+      //     this.$store.commit('error/setCode', response.status)
+      //     return false
+      // }
+      // this.filters = response.data
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-        var response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                _context2.next = 2;
-                return axios.get('/api/filter');
-
-              case 2:
-                response = _context2.sent;
-
-                if (!(response.status !== _utility__WEBPACK_IMPORTED_MODULE_1__["OK"])) {
-                  _context2.next = 6;
-                  break;
-                }
-
-                _this2.$store.commit('error/setCode', response.status);
-
-                return _context2.abrupt("return", false);
-
-              case 6:
-                _this2.filters = response.data;
-
-              case 7:
               case "end":
                 return _context2.stop();
             }
@@ -3188,49 +2996,25 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     /**
      * 新規フォローターゲットを追加する
      */
-    addFollowTarget: function addFollowTarget() {
-      var _this3 = this;
+    addFollowTarget: function addFollowTarget() {// this.clearErrors()
+      // const response = await axios.post('/api/follow', this.addForm)
+      // if (response.status === UNPROCESSABLE_ENTRY) {
+      //     this.addErrors = response.data.errors
+      //     return false
+      // }
+      // this.resetAddForm()
+      // if (response.status !== CREATED) {
+      //     this.$store.commit('error/setCode', response.status)
+      //     return false
+      // }
+      // this.followTargets.unshift(response.data)
+      // this.newModal = false
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
-        var response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
-                _this3.clearErrors();
-
-                _context3.next = 3;
-                return axios.post('/api/follow', _this3.addForm);
-
-              case 3:
-                response = _context3.sent;
-
-                if (!(response.status === _utility__WEBPACK_IMPORTED_MODULE_1__["UNPROCESSABLE_ENTRY"])) {
-                  _context3.next = 7;
-                  break;
-                }
-
-                _this3.addErrors = response.data.errors;
-                return _context3.abrupt("return", false);
-
-              case 7:
-                _this3.resetAddForm();
-
-                if (!(response.status !== _utility__WEBPACK_IMPORTED_MODULE_1__["CREATED"])) {
-                  _context3.next = 11;
-                  break;
-                }
-
-                _this3.$store.commit('error/setCode', response.status);
-
-                return _context3.abrupt("return", false);
-
-              case 11:
-                _this3.followTargets.unshift(response.data);
-
-                _this3.newModal = false;
-
-              case 13:
               case "end":
                 return _context3.stop();
             }
@@ -3243,58 +3027,34 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
      * 編集用のモーダルフォームを表示する
      * 表示の際にフォローターゲットのデータを入力しておく
      */
-    showEditModal: function showEditModal(followTarget, index) {
-      this.editModal = true;
-      this.editForm.id = followTarget.id;
-      this.editForm.target = followTarget.target;
-      this.editForm.filter_word_id = followTarget.filter_word_id;
-      this.editIndex = index;
+    showEditModal: function showEditModal(followTarget, index) {// this.editModal = true
+      // this.editForm.id = followTarget.id
+      // this.editForm.target = followTarget.target
+      // this.editForm.filter_word_id = followTarget.filter_word_id
+      // this.editIndex = index
     },
 
     /**
      * フォーローターゲットを編集する
      */
-    editFollowTarget: function editFollowTarget() {
-      var _this4 = this;
+    editFollowTarget: function editFollowTarget() {// this.clearErrors()
+      // const response = await axios.put(`/api/follow/${this.editForm.id}`, this.editForm)
+      // if (response.status === UNPROCESSABLE_ENTRY) {
+      //     this.editErrors = response.data.errors
+      //     return false
+      // }
+      // if (response.status !== OK) {
+      //     this.$store.commit('error/setCode', response.status)
+      //     return false
+      // }
+      // this.followTargets.splice(this.editIndex, 1, response.data)
+      // this.resetEditForm()
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
-        var response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
           while (1) {
             switch (_context4.prev = _context4.next) {
               case 0:
-                _this4.clearErrors();
-
-                _context4.next = 3;
-                return axios.put("/api/follow/".concat(_this4.editForm.id), _this4.editForm);
-
-              case 3:
-                response = _context4.sent;
-
-                if (!(response.status === _utility__WEBPACK_IMPORTED_MODULE_1__["UNPROCESSABLE_ENTRY"])) {
-                  _context4.next = 7;
-                  break;
-                }
-
-                _this4.editErrors = response.data.errors;
-                return _context4.abrupt("return", false);
-
-              case 7:
-                if (!(response.status !== _utility__WEBPACK_IMPORTED_MODULE_1__["OK"])) {
-                  _context4.next = 10;
-                  break;
-                }
-
-                _this4.$store.commit('error/setCode', response.status);
-
-                return _context4.abrupt("return", false);
-
-              case 10:
-                _this4.followTargets.splice(_this4.editIndex, 1, response.data);
-
-                _this4.resetEditForm();
-
-              case 12:
               case "end":
                 return _context4.stop();
             }
@@ -3306,34 +3066,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     /**
      * フォローターゲットを削除する
      */
-    removeFollowTarget: function removeFollowTarget(id, index) {
-      var _this5 = this;
+    removeFollowTarget: function removeFollowTarget(id, index) {// const response = await axios.delete(`/api/follow/${id}`)
+      // if (response.status !== OK) {
+      //     this.$store.commit('error/setCode', response.status)
+      //     return false
+      // }
+      // this.followTargets.splice(index, 1)
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
-        var response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
           while (1) {
             switch (_context5.prev = _context5.next) {
               case 0:
-                _context5.next = 2;
-                return axios["delete"]("/api/follow/".concat(id));
-
-              case 2:
-                response = _context5.sent;
-
-                if (!(response.status !== _utility__WEBPACK_IMPORTED_MODULE_1__["OK"])) {
-                  _context5.next = 6;
-                  break;
-                }
-
-                _this5.$store.commit('error/setCode', response.status);
-
-                return _context5.abrupt("return", false);
-
-              case 6:
-                _this5.followTargets.splice(index, 1);
-
-              case 7:
               case "end":
                 return _context5.stop();
             }
@@ -3364,35 +3108,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     /**
      * 自動フォロー機能のサービスステータスを取得する
      */
-    fetchServiceStatus: function fetchServiceStatus() {
-      var _this6 = this;
+    fetchServiceStatus: function fetchServiceStatus() {// const response = await axios.get('/api/system/status')
+      // if (response.status !== OK) {
+      //     this.$store.commit('error/setCode', response.status)
+      //     return false
+      // }
+      // this.serviceStatus = response.data.auto_follow_status
+      // this.serviceStatusLabel = response.data.status_labels.auto_follow
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee6() {
-        var response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee6$(_context6) {
           while (1) {
             switch (_context6.prev = _context6.next) {
               case 0:
-                _context6.next = 2;
-                return axios.get('/api/system/status');
-
-              case 2:
-                response = _context6.sent;
-
-                if (!(response.status !== _utility__WEBPACK_IMPORTED_MODULE_1__["OK"])) {
-                  _context6.next = 6;
-                  break;
-                }
-
-                _this6.$store.commit('error/setCode', response.status);
-
-                return _context6.abrupt("return", false);
-
-              case 6:
-                _this6.serviceStatus = response.data.auto_follow_status;
-                _this6.serviceStatusLabel = response.data.status_labels.auto_follow;
-
-              case 8:
               case "end":
                 return _context6.stop();
             }
@@ -3404,39 +3132,21 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     /**
      * 自動フォロー機能を稼働状態にする
      */
-    runFollowService: function runFollowService() {
-      var _this7 = this;
+    runFollowService: function runFollowService() {// const serviceType = 1
+      // const data = {type: serviceType}
+      // const response = await axios.post('/api/system/run', data)
+      // if (response.status !== OK) {
+      //     this.$store.commit('error/setCode', response.status)
+      //     return false
+      // }
+      // this.serviceStatus = response.data.auto_follow_status
+      // this.serviceStatusLabel = response.data.status_labels.auto_follow
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee7() {
-        var serviceType, data, response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee7$(_context7) {
           while (1) {
             switch (_context7.prev = _context7.next) {
               case 0:
-                serviceType = 1;
-                data = {
-                  type: serviceType
-                };
-                _context7.next = 4;
-                return axios.post('/api/system/run', data);
-
-              case 4:
-                response = _context7.sent;
-
-                if (!(response.status !== _utility__WEBPACK_IMPORTED_MODULE_1__["OK"])) {
-                  _context7.next = 8;
-                  break;
-                }
-
-                _this7.$store.commit('error/setCode', response.status);
-
-                return _context7.abrupt("return", false);
-
-              case 8:
-                _this7.serviceStatus = response.data.auto_follow_status;
-                _this7.serviceStatusLabel = response.data.status_labels.auto_follow;
-
-              case 10:
               case "end":
                 return _context7.stop();
             }
@@ -3448,39 +3158,21 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     /**
      * 自動フォロー機能を停止状態にする
      */
-    stopFollowService: function stopFollowService() {
-      var _this8 = this;
+    stopFollowService: function stopFollowService() {// const serviceType = 1
+      // const data = {type: serviceType}
+      // const response = await axios.post('/api/system/stop', data)
+      // if (response.status !== OK) {
+      //     this.$store.commit('error/setCode', response.status)
+      //     return false
+      // }
+      // this.serviceStatus = response.data.auto_follow_status
+      // this.serviceStatusLabel = response.data.status_labels.auto_follow
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee8() {
-        var serviceType, data, response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee8$(_context8) {
           while (1) {
             switch (_context8.prev = _context8.next) {
               case 0:
-                serviceType = 1;
-                data = {
-                  type: serviceType
-                };
-                _context8.next = 4;
-                return axios.post('/api/system/stop', data);
-
-              case 4:
-                response = _context8.sent;
-
-                if (!(response.status !== _utility__WEBPACK_IMPORTED_MODULE_1__["OK"])) {
-                  _context8.next = 8;
-                  break;
-                }
-
-                _this8.$store.commit('error/setCode', response.status);
-
-                return _context8.abrupt("return", false);
-
-              case 8:
-                _this8.serviceStatus = response.data.auto_follow_status;
-                _this8.serviceStatusLabel = response.data.status_labels.auto_follow;
-
-              case 10:
               case "end":
                 return _context8.stop();
             }
@@ -3507,15 +3199,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
      * フィルターワードの通知を受け取ったら
      * フォロワーターゲットと、フィルターワードを再取得する
      */
-    dashChange: {
-      handler: function handler(val) {
-        if (val === true) {
-          this.fetchFollowTargets();
-          this.fetchFilters();
-          this.$store.commit('dashboard/setNoticeToTweet', null);
-        }
-      }
-    }
+    // dashChange: {
+    //     handler(val) {
+    //         if (val === true) {
+    //             this.fetchFollowTargets()
+    //             this.fetchFilters()
+    //             this.$store.commit('dashboard/setNoticeToTweet', null)
+    //         }
+    //     }
+    // },
   }
 });
 
@@ -3678,34 +3370,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     /**
      * 登録した自動いいねデータ一覧を取得する
      */
-    fetchLikes: function fetchLikes() {
-      var _this = this;
+    fetchLikes: function fetchLikes() {// const response = await axios.get('/api/like')
+      // if (response.status !== OK) {
+      //     this.$store.commit('error/setCode', response.status)
+      //     return false
+      // }
+      // this.likes = response.data
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _context.next = 2;
-                return axios.get('/api/like');
-
-              case 2:
-                response = _context.sent;
-
-                if (!(response.status !== _utility__WEBPACK_IMPORTED_MODULE_1__["OK"])) {
-                  _context.next = 6;
-                  break;
-                }
-
-                _this.$store.commit('error/setCode', response.status);
-
-                return _context.abrupt("return", false);
-
-              case 6:
-                _this.likes = response.data;
-
-              case 7:
               case "end":
                 return _context.stop();
             }
@@ -3717,34 +3393,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     /**
      * フィルターワード一覧を取得する
      */
-    fetchFilters: function fetchFilters() {
-      var _this2 = this;
+    fetchFilters: function fetchFilters() {// const response = await axios.get('/api/filter')
+      // if (response.status !== OK) {
+      //     this.$store.commit('error/setCode', response.status)
+      //     return false
+      // }
+      // this.filters = response.data
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-        var response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                _context2.next = 2;
-                return axios.get('/api/filter');
-
-              case 2:
-                response = _context2.sent;
-
-                if (!(response.status !== _utility__WEBPACK_IMPORTED_MODULE_1__["OK"])) {
-                  _context2.next = 6;
-                  break;
-                }
-
-                _this2.$store.commit('error/setCode', response.status);
-
-                return _context2.abrupt("return", false);
-
-              case 6:
-                _this2.filters = response.data;
-
-              case 7:
               case "end":
                 return _context2.stop();
             }
@@ -3756,47 +3416,24 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     /**
      * 新規自動いいねを追加する
      */
-    addLike: function addLike() {
-      var _this3 = this;
+    addLike: function addLike() {// const response = await axios.post('/api/like', this.addForm)
+      // if (response.status === UNPROCESSABLE_ENTRY) {
+      //     this.errors = response.data.errors
+      //     return false
+      // }
+      // this.addForm.filter_word_id = null
+      // if (response.status !== CREATED) {
+      //     this.$store.commit('error/setCode', response.status)
+      //     return false
+      // }
+      // this.likes.push(response.data)
+      // this.newModal = false
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
-        var response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
-                _context3.next = 2;
-                return axios.post('/api/like', _this3.addForm);
-
-              case 2:
-                response = _context3.sent;
-
-                if (!(response.status === _utility__WEBPACK_IMPORTED_MODULE_1__["UNPROCESSABLE_ENTRY"])) {
-                  _context3.next = 6;
-                  break;
-                }
-
-                _this3.errors = response.data.errors;
-                return _context3.abrupt("return", false);
-
-              case 6:
-                _this3.addForm.filter_word_id = null;
-
-                if (!(response.status !== _utility__WEBPACK_IMPORTED_MODULE_1__["CREATED"])) {
-                  _context3.next = 10;
-                  break;
-                }
-
-                _this3.$store.commit('error/setCode', response.status);
-
-                return _context3.abrupt("return", false);
-
-              case 10:
-                _this3.likes.push(response.data);
-
-                _this3.newModal = false;
-
-              case 12:
               case "end":
                 return _context3.stop();
             }
@@ -3819,36 +3456,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     /**
      * 自動いいねデータを編集する
      */
-    editLike: function editLike() {
-      var _this4 = this;
+    editLike: function editLike() {// const response = await axios.put(`/api/like/${this.editForm.id}`, this.editForm)
+      // if (response.status !== OK) {
+      //     this.$store.commit('error/setCode', response.status)
+      //     return false
+      // }
+      // this.likes.splice(this.editIndex, 1, response.data)
+      // this.resetEditForm()
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
-        var response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
           while (1) {
             switch (_context4.prev = _context4.next) {
               case 0:
-                _context4.next = 2;
-                return axios.put("/api/like/".concat(_this4.editForm.id), _this4.editForm);
-
-              case 2:
-                response = _context4.sent;
-
-                if (!(response.status !== _utility__WEBPACK_IMPORTED_MODULE_1__["OK"])) {
-                  _context4.next = 6;
-                  break;
-                }
-
-                _this4.$store.commit('error/setCode', response.status);
-
-                return _context4.abrupt("return", false);
-
-              case 6:
-                _this4.likes.splice(_this4.editIndex, 1, response.data);
-
-                _this4.resetEditForm();
-
-              case 8:
               case "end":
                 return _context4.stop();
             }
@@ -3860,34 +3480,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     /**
      * 自動いいねを削除する
      */
-    removeLike: function removeLike(id, index) {
-      var _this5 = this;
+    removeLike: function removeLike(id, index) {// const response = await axios.delete(`/api/like/${id}`)
+      // if (response.status !== OK) {
+      //     this.$store.commit('error/setCode', response.status)
+      //     return false
+      // }
+      // this.likes.splice(index, 1)
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
-        var response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
           while (1) {
             switch (_context5.prev = _context5.next) {
               case 0:
-                _context5.next = 2;
-                return axios["delete"]("/api/like/".concat(id));
-
-              case 2:
-                response = _context5.sent;
-
-                if (!(response.status !== _utility__WEBPACK_IMPORTED_MODULE_1__["OK"])) {
-                  _context5.next = 6;
-                  break;
-                }
-
-                _this5.$store.commit('error/setCode', response.status);
-
-                return _context5.abrupt("return", false);
-
-              case 6:
-                _this5.likes.splice(index, 1);
-
-              case 7:
               case "end":
                 return _context5.stop();
             }
@@ -3909,35 +3513,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     /**
      * 自動いいねサービスのステータスを取得する
      */
-    fetchServiceStatus: function fetchServiceStatus() {
-      var _this6 = this;
+    fetchServiceStatus: function fetchServiceStatus() {// const response = await axios.get('/api/system/status')
+      // if (response.status !== OK) {
+      //     this.$store.commit('error/setCode', response.status)
+      //     return false
+      // }
+      // this.serviceStatus = response.data.auto_like_status
+      // this.serviceStatusLabel = response.data.status_labels.auto_like
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee6() {
-        var response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee6$(_context6) {
           while (1) {
             switch (_context6.prev = _context6.next) {
               case 0:
-                _context6.next = 2;
-                return axios.get('/api/system/status');
-
-              case 2:
-                response = _context6.sent;
-
-                if (!(response.status !== _utility__WEBPACK_IMPORTED_MODULE_1__["OK"])) {
-                  _context6.next = 6;
-                  break;
-                }
-
-                _this6.$store.commit('error/setCode', response.status);
-
-                return _context6.abrupt("return", false);
-
-              case 6:
-                _this6.serviceStatus = response.data.auto_like_status;
-                _this6.serviceStatusLabel = response.data.status_labels.auto_like;
-
-              case 8:
               case "end":
                 return _context6.stop();
             }
@@ -3949,39 +3537,21 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     /**
      * 自動いいねサービスを稼働状態にする
      */
-    runLikeService: function runLikeService() {
-      var _this7 = this;
+    runLikeService: function runLikeService() {// const serviceType = 3
+      // const data = {type: serviceType}
+      // const response = await axios.post('/api/system/run', data)
+      // if (response.status !== OK) {
+      //     this.$store.commit('error/setCode', response.status)
+      //     return false
+      // }
+      // this.serviceStatus = response.data.auto_like_status
+      // this.serviceStatusLabel = response.data.status_labels.auto_like
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee7() {
-        var serviceType, data, response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee7$(_context7) {
           while (1) {
             switch (_context7.prev = _context7.next) {
               case 0:
-                serviceType = 3;
-                data = {
-                  type: serviceType
-                };
-                _context7.next = 4;
-                return axios.post('/api/system/run', data);
-
-              case 4:
-                response = _context7.sent;
-
-                if (!(response.status !== _utility__WEBPACK_IMPORTED_MODULE_1__["OK"])) {
-                  _context7.next = 8;
-                  break;
-                }
-
-                _this7.$store.commit('error/setCode', response.status);
-
-                return _context7.abrupt("return", false);
-
-              case 8:
-                _this7.serviceStatus = response.data.auto_like_status;
-                _this7.serviceStatusLabel = response.data.status_labels.auto_like;
-
-              case 10:
               case "end":
                 return _context7.stop();
             }
@@ -3993,39 +3563,21 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     /**
      * 自動いいねサービスを停止状態にする
      */
-    stopLikeService: function stopLikeService() {
-      var _this8 = this;
+    stopLikeService: function stopLikeService() {// const serviceType = 3
+      // const data = {type: serviceType}
+      // const response = await axios.post('/api/system/stop', data)
+      // if (response.status !== OK) {
+      //     this.$store.commit('error/setCode', response.status)
+      //     return false
+      // }
+      // this.serviceStatus = response.data.auto_like_status
+      // this.serviceStatusLabel = response.data.status_labels.auto_like
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee8() {
-        var serviceType, data, response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee8$(_context8) {
           while (1) {
             switch (_context8.prev = _context8.next) {
               case 0:
-                serviceType = 3;
-                data = {
-                  type: serviceType
-                };
-                _context8.next = 4;
-                return axios.post('/api/system/stop', data);
-
-              case 4:
-                response = _context8.sent;
-
-                if (!(response.status !== _utility__WEBPACK_IMPORTED_MODULE_1__["OK"])) {
-                  _context8.next = 8;
-                  break;
-                }
-
-                _this8.$store.commit('error/setCode', response.status);
-
-                return _context8.abrupt("return", false);
-
-              case 8:
-                _this8.serviceStatus = response.data.auto_like_status;
-                _this8.serviceStatusLabel = response.data.status_labels.auto_like;
-
-              case 10:
               case "end":
                 return _context8.stop();
             }
@@ -4044,15 +3596,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
      * フィルターワードの通知を受け取ったら
      * 自動いいねと、フィルターワードを再取得する
      */
-    dashChange: {
-      handler: function handler(val) {
-        if (val === true) {
-          this.fetchLikes();
-          this.fetchFilters();
-          this.$store.commit('dashboard/setNoticeToLike', null);
-        }
-      }
-    }
+    // dashChange: {
+    //     handler(val) {
+    //         if (val === true) {
+    //             this.fetchLikes()
+    //             this.fetchFilters()
+    //             this.$store.commit('dashboard/setNoticeToLike', null)
+    //         }
+    //     }
+    // },
   }
 });
 
@@ -6331,10 +5883,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/DashBoard.vue?vue&type=template&id=7b804a99&":
-/*!************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/DashBoard.vue?vue&type=template&id=7b804a99& ***!
-  \************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Board.vue?vue&type=template&id=7299848b&":
+/*!********************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Board.vue?vue&type=template&id=7299848b& ***!
+  \********************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -6346,179 +5898,129 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "l-contents" }, [
-    _c("div", { staticClass: "p-contents__area" }, [
-      _c("section", { staticClass: "p-profile" }, [
-        _c("figure", [
-          _c("img", {
-            staticClass: "p-profile__img",
-            attrs: { src: _vm.twitterUser.thumbnail, alt: "" }
-          })
+  return _c("div")
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/DashBoard.vue?vue&type=template&id=7b804a99&scoped=true&":
+/*!************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/DashBoard.vue?vue&type=template&id=7b804a99&scoped=true& ***!
+  \************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "p-board__wrap" }, [
+    _c("div", { staticClass: "p-board__sidebar" }, [
+      _c("div", [
+        _c("div", { staticClass: "p-board__mp-4" }, [
+          _c("div", { staticClass: "p-board__top" }, [_vm._v("@xxkajiya")]),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "p-board__d-flex p-board__top p-board__space-end" },
+            [
+              _c("div", { staticClass: "p-board__mr-2 p-board__text-small" }, [
+                _vm._v("フォロー")
+              ]),
+              _vm._v(" "),
+              _c("div", [
+                _vm._v(
+                  "\n                        " +
+                    _vm._s(_vm.followNum) +
+                    "\n                        "
+                ),
+                _c("small", { staticClass: "p-board__text-small" }, [
+                  _vm._v("人")
+                ])
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "p-board__d-flex p-board__top p-board__space-end" },
+            [
+              _c("div", { staticClass: "p-board__mr-2 p-board__text-small" }, [
+                _vm._v("フォロワー")
+              ]),
+              _vm._v(" "),
+              _c("div", [
+                _vm._v(
+                  "\n                        " +
+                    _vm._s(_vm.followerNum) +
+                    "\n                        "
+                ),
+                _c("small", { staticClass: "p-board__text-small" }, [
+                  _vm._v("人")
+                ])
+              ])
+            ]
+          )
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "p-profile__info" }, [
-          _c("p", { staticClass: "p-profile__name" }, [
-            _vm._v(_vm._s(_vm.twitterUser.name))
-          ]),
-          _vm._v(" "),
-          _c("p", { staticClass: "p-profile__screen" }, [
-            _vm._v("@" + _vm._s(_vm.twitterUser.screen_name))
-          ]),
-          _vm._v(" "),
-          _c("p", { staticClass: "p-profile__follow" }, [
-            _vm._v("\n                    フォロー: "),
-            _c("span", { staticClass: "p-profile__number" }, [
-              _vm._v(_vm._s(_vm.twitterUser.follows))
-            ]),
-            _vm._v("\n                    フォロワー: "),
-            _c("span", { staticClass: "p-profile__number" }, [
-              _vm._v(_vm._s(_vm.twitterUser.followers))
+        _c(
+          "div",
+          _vm._l(_vm.link, function(i, index) {
+            return _c("div", { key: index }, [
+              _c(
+                "div",
+                {
+                  staticClass: "p-board__link p-board__hover",
+                  class: [_vm.flgId === i.id ? "is-selected" : ""],
+                  on: {
+                    click: function($event) {
+                      return _vm.change(index)
+                    }
+                  }
+                },
+                [_c("div", {}, [_vm._v(_vm._s(i.label))])]
+              )
             ])
-          ])
-        ])
+          }),
+          0
+        )
       ]),
       _vm._v(" "),
-      _c("section", { staticClass: "c-tab" }, [
-        _c("ul", { staticClass: "c-tab__list" }, [
-          _c(
-            "li",
-            {
-              staticClass: "c-tab__item",
-              class: { "c-tab__item--active": _vm.tab === 1 },
-              on: {
-                click: function($event) {
-                  _vm.tab = 1
-                }
-              }
-            },
-            [_vm._v("自動フォロー\n                ")]
-          ),
-          _vm._v(" "),
-          _c(
-            "li",
-            {
-              staticClass: "c-tab__item",
-              class: { "c-tab__item--active": _vm.tab === 2 },
-              on: {
-                click: function($event) {
-                  _vm.tab = 2
-                }
-              }
-            },
-            [_vm._v("自動アンフォロー\n                ")]
-          ),
-          _vm._v(" "),
-          _c(
-            "li",
-            {
-              staticClass: "c-tab__item",
-              class: { "c-tab__item--active": _vm.tab === 3 },
-              on: {
-                click: function($event) {
-                  _vm.tab = 3
-                }
-              }
-            },
-            [_vm._v("自動いいね\n                ")]
-          ),
-          _vm._v(" "),
-          _c(
-            "li",
-            {
-              staticClass: "c-tab__item",
-              class: { "c-tab__item--active": _vm.tab === 4 },
-              on: {
-                click: function($event) {
-                  _vm.tab = 4
-                }
-              }
-            },
-            [_vm._v("自動ツイート\n                ")]
-          ),
-          _vm._v(" "),
-          _c(
-            "li",
-            {
-              staticClass: "c-tab__item",
-              class: { "c-tab__item--active": _vm.tab === 5 },
-              on: {
-                click: function($event) {
-                  _vm.tab = 5
-                }
-              }
-            },
-            [_vm._v("キーワード登録\n                ")]
-          )
-        ])
-      ]),
-      _vm._v(" "),
+      _vm._m(0)
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "p-board__body" }, [
       _c(
         "section",
-        { staticClass: "p-dashboard" },
+        { staticClass: "p-board__section" },
         [
           _c(
             "transition-group",
             { attrs: { name: "t-dashboard_panel", tag: "div" } },
             [
-              _c("panel-follow", {
-                directives: [
-                  {
-                    name: "show",
-                    rawName: "v-show",
-                    value: _vm.tab === 1,
-                    expression: "tab===1"
-                  }
-                ],
-                key: "follow"
-              }),
+              _vm.page === 1
+                ? _c("twitter-account", { key: "account" })
+                : _vm._e(),
               _vm._v(" "),
-              _c("panel-unfollow", {
-                directives: [
-                  {
-                    name: "show",
-                    rawName: "v-show",
-                    value: _vm.tab === 2,
-                    expression: "tab===2"
-                  }
-                ],
-                key: "unfollow"
-              }),
+              _vm.page === 2 ? _c("panel-follow", { key: "follow" }) : _vm._e(),
               _vm._v(" "),
-              _c("panel-like", {
-                directives: [
-                  {
-                    name: "show",
-                    rawName: "v-show",
-                    value: _vm.tab === 3,
-                    expression: "tab===3"
-                  }
-                ],
-                key: "like"
-              }),
+              _vm.page === 3
+                ? _c("panel-unfollow", { key: "unfollow" })
+                : _vm._e(),
               _vm._v(" "),
-              _c("panel-tweet", {
-                directives: [
-                  {
-                    name: "show",
-                    rawName: "v-show",
-                    value: _vm.tab === 4,
-                    expression: "tab===4"
-                  }
-                ],
-                key: "tweet"
-              }),
+              _vm.page === 4 ? _c("panel-like", { key: "like" }) : _vm._e(),
               _vm._v(" "),
-              _c("panel-filter", {
-                directives: [
-                  {
-                    name: "show",
-                    rawName: "v-show",
-                    value: _vm.tab === 5,
-                    expression: "tab===5"
-                  }
-                ],
-                key: "filter"
-              })
+              _vm.page === 5 ? _c("panel-tweet", { key: "tweet" }) : _vm._e(),
+              _vm._v(" "),
+              _vm.page === 6 ? _c("panel-filter", { key: "filter" }) : _vm._e()
             ],
             1
           )
@@ -6528,7 +6030,46 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("footer", { staticClass: "p-footer" }, [
+      _c("div", { staticClass: "p-footer__info" }, [
+        _c("div", { staticClass: "p-footer__menu" }, [
+          _c("div", { staticClass: "p-footer__list" }, [
+            _c(
+              "a",
+              { staticClass: "p-footer__href", attrs: { href: "/contact" } },
+              [_vm._v("お問い合わせ ")]
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "p-footer__list" }, [
+            _c(
+              "a",
+              { staticClass: "p-footer__href", attrs: { href: "/term" } },
+              [_vm._v("利用規約 ")]
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "p-footer__list" }, [
+            _c(
+              "a",
+              { staticClass: "p-footer__href", attrs: { href: "/policy" } },
+              [_vm._v("プライバシーポリシー")]
+            )
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "p-footer__copyright" }, [
+        _c("div", [_vm._v("©kamitter2020 kamitter.All Rights Reserved")])
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -6586,98 +6127,6 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Header.vue?vue&type=template&id=1f42fb90&":
-/*!*********************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Header.vue?vue&type=template&id=1f42fb90& ***!
-  \*********************************************************************************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("nav", { staticClass: "p-navbar" }, [
-    _c(
-      "h1",
-      { staticClass: "p-navbar__title" },
-      [
-        _c(
-          "RouterLink",
-          { staticClass: "p-navbar__title_link", attrs: { to: "/" } },
-          [_vm._v("神ったー")]
-        )
-      ],
-      1
-    ),
-    _vm._v(" "),
-    _vm.isLogin
-      ? _c(
-          "div",
-          {
-            staticClass: "p-navbar__menu",
-            on: {
-              click: function($event) {
-                _vm.isMenuActive = !_vm.isMenuActive
-              }
-            }
-          },
-          [
-            _c("div", { staticClass: "p-navbar__name" }, [
-              _vm._v("\n            " + _vm._s(_vm.username)),
-              _c("i", { staticClass: "c-icon fas fa-caret-down" })
-            ]),
-            _vm._v(" "),
-            _c(
-              "ul",
-              {
-                staticClass: "p-navbar__list",
-                class: { "p-navbar__list--active": _vm.isMenuActive }
-              },
-              [
-                _c(
-                  "li",
-                  {
-                    staticClass: "p-navbar__item",
-                    on: { click: _vm.changeTwitterUser }
-                  },
-                  [_vm._v("\n                アカウント切り替え\n            ")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "li",
-                  { staticClass: "p-navbar__item", on: { click: _vm.logout } },
-                  [_vm._v("\n                ログアウト\n            ")]
-                )
-              ]
-            )
-          ]
-        )
-      : _c(
-          "div",
-          { staticClass: "p-navbar__menu" },
-          [
-            _c(
-              "RouterLink",
-              { staticClass: "button button--link", attrs: { to: "/login" } },
-              [_vm._v("\n            ログイン/新規登録\n        ")]
-            )
-          ],
-          1
-        )
-  ])
-}
-var staticRenderFns = []
-render._withStripped = true
-
-
-
-/***/ }),
-
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Login.vue?vue&type=template&id=6bdc8b8e&":
 /*!********************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Login.vue?vue&type=template&id=6bdc8b8e& ***!
@@ -6696,18 +6145,6 @@ var render = function() {
   return _c("div", { staticClass: "l-main__container" }, [
     _c("div", { staticClass: "p-login__container", attrs: { id: "login" } }, [
       _c("div", [
-        _vm.errors.email
-          ? _c("div", { staticClass: "p-login__inputError" }, [
-              _vm._v(_vm._s(_vm.errors.email))
-            ])
-          : _vm._e(),
-        _vm._v(" "),
-        _vm.errors.password
-          ? _c("div", { staticClass: "p-login__inputError" }, [
-              _vm._v(_vm._s(_vm.errors.password))
-            ])
-          : _vm._e(),
-        _vm._v(" "),
         _c("div", { staticClass: "p-login__inner" }, [
           _c("i", { staticClass: "fas fa-user" }),
           _vm._v(" "),
@@ -6733,6 +6170,12 @@ var render = function() {
             }
           })
         ]),
+        _vm._v(" "),
+        _vm.errors.email
+          ? _c("div", { staticClass: "p-login__inputError" }, [
+              _vm._v(_vm._s(_vm.errors.email))
+            ])
+          : _vm._e(),
         _vm._v(" "),
         _c("div", { staticClass: "p-login__inner" }, [
           _c("i", { staticClass: "fas fa-unlock-alt" }),
@@ -6760,51 +6203,45 @@ var render = function() {
           })
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "p-top__login" }, [
+        _vm.errors.password
+          ? _c("div", { staticClass: "p-login__inputError" }, [
+              _vm._v(_vm._s(_vm.errors.password))
+            ])
+          : _vm._e(),
+        _vm._v(" "),
+        _c("div", { staticClass: "p-login__button__wrap" }, [
           _c(
-            "button",
-            {
-              staticClass: "p-login__text p-btn__login",
-              attrs: { type: "submit" },
-              on: { click: _vm.login }
-            },
+            "a",
+            { staticClass: "p-botton__login", on: { click: _vm.login } },
             [_vm._v("ログイン")]
           )
         ]),
         _vm._v(" "),
-        _c(
-          "p",
-          {
-            staticClass: "p-login__text p-login-add-margin__3",
-            staticStyle: { "font-size": "13px" }
-          },
-          [_vm._v("アカウントをお持ちで無い方はこちらから")]
-        ),
+        _c("p", { staticClass: "p-login__text" }, [
+          _vm._v("アカウントをお持ちで無い方はこちらから")
+        ]),
         _vm._v(" "),
-        _c("div", { staticClass: "p-top__login" }, [
+        _c("div", { staticClass: "p-login__button__wrap" }, [
           _c(
             "a",
-            {
-              staticClass: "p-login__text p-btn__login",
-              on: { click: _vm.twitterLogin }
-            },
+            { staticClass: "p-botton__login", on: { click: _vm.twitterLogin } },
             [_vm._v("Twitterでログイン")]
           )
         ]),
         _vm._v(" "),
         _c(
           "div",
-          { staticClass: "p-top__login", on: { click: _vm.register } },
+          { staticClass: "p-login__button__wrap", on: { click: _vm.register } },
           [
-            _c("a", { staticClass: "p-login__text p-btn__new" }, [
+            _c("a", { staticClass: "p-botton__register__top" }, [
               _vm._v("新規登録")
             ])
           ]
         ),
         _vm._v(" "),
-        _c("div", { staticClass: "p-top__login" }, [
+        _c("div", { staticClass: "p-login__button__wrap" }, [
           _c(
-            "a",
+            "p",
             { staticClass: "p-login__forgot", on: { click: _vm.passlost } },
             [_vm._v("パスワードを忘れた方はこちら")]
           )
@@ -21224,8 +20661,8 @@ __webpack_require__.r(__webpack_exports__);
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 Vue.component('footer-component', __webpack_require__(/*! ./components/FooterComponent.vue */ "./resources/js/components/FooterComponent.vue")["default"]);
 Vue.component('dash-board', __webpack_require__(/*! ./components/DashBoard.vue */ "./resources/js/components/DashBoard.vue")["default"]);
+Vue.component('board', __webpack_require__(/*! ./components/Board.vue */ "./resources/js/components/Board.vue")["default"]);
 Vue.component('login', __webpack_require__(/*! ./components/Login.vue */ "./resources/js/components/Login.vue")["default"]);
-Vue.component('header', __webpack_require__(/*! ./components/Header.vue */ "./resources/js/components/Header.vue")["default"]);
 Vue.component('panel-filter', __webpack_require__(/*! ./components/PanelFilter.vue */ "./resources/js/components/PanelFilter.vue")["default"]);
 Vue.component('panel-follow', __webpack_require__(/*! ./components/PanelFollow.vue */ "./resources/js/components/PanelFollow.vue")["default"]);
 Vue.component('panel-like', __webpack_require__(/*! ./components/PanelLike.vue */ "./resources/js/components/PanelLike.vue")["default"]);
@@ -21308,6 +20745,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/Board.vue":
+/*!*******************************************!*\
+  !*** ./resources/js/components/Board.vue ***!
+  \*******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Board_vue_vue_type_template_id_7299848b___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Board.vue?vue&type=template&id=7299848b& */ "./resources/js/components/Board.vue?vue&type=template&id=7299848b&");
+/* harmony import */ var _Board_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Board.vue?vue&type=script&lang=js& */ "./resources/js/components/Board.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Board_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Board_vue_vue_type_template_id_7299848b___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Board_vue_vue_type_template_id_7299848b___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Board.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Board.vue?vue&type=script&lang=js&":
+/*!********************************************************************!*\
+  !*** ./resources/js/components/Board.vue?vue&type=script&lang=js& ***!
+  \********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Board_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./Board.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Board.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Board_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Board.vue?vue&type=template&id=7299848b&":
+/*!**************************************************************************!*\
+  !*** ./resources/js/components/Board.vue?vue&type=template&id=7299848b& ***!
+  \**************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Board_vue_vue_type_template_id_7299848b___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./Board.vue?vue&type=template&id=7299848b& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Board.vue?vue&type=template&id=7299848b&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Board_vue_vue_type_template_id_7299848b___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Board_vue_vue_type_template_id_7299848b___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/DashBoard.vue":
 /*!***********************************************!*\
   !*** ./resources/js/components/DashBoard.vue ***!
@@ -21317,7 +20823,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _DashBoard_vue_vue_type_template_id_7b804a99___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./DashBoard.vue?vue&type=template&id=7b804a99& */ "./resources/js/components/DashBoard.vue?vue&type=template&id=7b804a99&");
+/* harmony import */ var _DashBoard_vue_vue_type_template_id_7b804a99_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./DashBoard.vue?vue&type=template&id=7b804a99&scoped=true& */ "./resources/js/components/DashBoard.vue?vue&type=template&id=7b804a99&scoped=true&");
 /* harmony import */ var _DashBoard_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./DashBoard.vue?vue&type=script&lang=js& */ "./resources/js/components/DashBoard.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
@@ -21329,11 +20835,11 @@ __webpack_require__.r(__webpack_exports__);
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
   _DashBoard_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _DashBoard_vue_vue_type_template_id_7b804a99___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _DashBoard_vue_vue_type_template_id_7b804a99___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _DashBoard_vue_vue_type_template_id_7b804a99_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _DashBoard_vue_vue_type_template_id_7b804a99_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
-  null,
+  "7b804a99",
   null
   
 )
@@ -21359,19 +20865,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/DashBoard.vue?vue&type=template&id=7b804a99&":
-/*!******************************************************************************!*\
-  !*** ./resources/js/components/DashBoard.vue?vue&type=template&id=7b804a99& ***!
-  \******************************************************************************/
+/***/ "./resources/js/components/DashBoard.vue?vue&type=template&id=7b804a99&scoped=true&":
+/*!******************************************************************************************!*\
+  !*** ./resources/js/components/DashBoard.vue?vue&type=template&id=7b804a99&scoped=true& ***!
+  \******************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DashBoard_vue_vue_type_template_id_7b804a99___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./DashBoard.vue?vue&type=template&id=7b804a99& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/DashBoard.vue?vue&type=template&id=7b804a99&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DashBoard_vue_vue_type_template_id_7b804a99___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DashBoard_vue_vue_type_template_id_7b804a99_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./DashBoard.vue?vue&type=template&id=7b804a99&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/DashBoard.vue?vue&type=template&id=7b804a99&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DashBoard_vue_vue_type_template_id_7b804a99_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DashBoard_vue_vue_type_template_id_7b804a99___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DashBoard_vue_vue_type_template_id_7b804a99_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
@@ -21425,75 +20931,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FooterComponent_vue_vue_type_template_id_abfbddf2___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FooterComponent_vue_vue_type_template_id_abfbddf2___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
-
-
-
-/***/ }),
-
-/***/ "./resources/js/components/Header.vue":
-/*!********************************************!*\
-  !*** ./resources/js/components/Header.vue ***!
-  \********************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Header_vue_vue_type_template_id_1f42fb90___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Header.vue?vue&type=template&id=1f42fb90& */ "./resources/js/components/Header.vue?vue&type=template&id=1f42fb90&");
-/* harmony import */ var _Header_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Header.vue?vue&type=script&lang=js& */ "./resources/js/components/Header.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-/* normalize component */
-
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _Header_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _Header_vue_vue_type_template_id_1f42fb90___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _Header_vue_vue_type_template_id_1f42fb90___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/components/Header.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/js/components/Header.vue?vue&type=script&lang=js&":
-/*!*********************************************************************!*\
-  !*** ./resources/js/components/Header.vue?vue&type=script&lang=js& ***!
-  \*********************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Header_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./Header.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Header.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Header_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/js/components/Header.vue?vue&type=template&id=1f42fb90&":
-/*!***************************************************************************!*\
-  !*** ./resources/js/components/Header.vue?vue&type=template&id=1f42fb90& ***!
-  \***************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Header_vue_vue_type_template_id_1f42fb90___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./Header.vue?vue&type=template&id=1f42fb90& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Header.vue?vue&type=template&id=1f42fb90&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Header_vue_vue_type_template_id_1f42fb90___WEBPACK_IMPORTED_MODULE_0__["render"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Header_vue_vue_type_template_id_1f42fb90___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
@@ -22055,12 +21492,12 @@ __webpack_require__.r(__webpack_exports__);
 /*!*********************************!*\
   !*** ./resources/js/utility.js ***!
   \*********************************/
-/*! exports provided: getCookieValue, OK, CREATED, UNAUTHORISED, NOT_FOUND, EXPIRED, UNPROCESSABLE_ENTRY, INTERNAL_SERVER_ERROR */
+/*! exports provided: linkParam, OK, CREATED, UNAUTHORISED, NOT_FOUND, EXPIRED, UNPROCESSABLE_ENTRY, INTERNAL_SERVER_ERROR */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getCookieValue", function() { return getCookieValue; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "linkParam", function() { return linkParam; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OK", function() { return OK; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CREATED", function() { return CREATED; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UNAUTHORISED", function() { return UNAUTHORISED; });
@@ -22068,18 +21505,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EXPIRED", function() { return EXPIRED; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UNPROCESSABLE_ENTRY", function() { return UNPROCESSABLE_ENTRY; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "INTERNAL_SERVER_ERROR", function() { return INTERNAL_SERVER_ERROR; });
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
 $(function () {
   $('.js_push').on('click', function () {
     $('.js_toggle').toggleClass("active");
@@ -22090,28 +21515,25 @@ $(function () {
     $('.flash_message__fade').fadeOut(3000);
   });
 });
-/**
- *クッキーの値を取得する
- */
-
-function getCookieValue(searchKey) {
-  if (typeof searchKey === 'undefined') {
-    return '';
-  }
-
-  var val = '';
-  document.cookie.split(';').forEach(function (cookie) {
-    var _cookie$split = cookie.split('='),
-        _cookie$split2 = _slicedToArray(_cookie$split, 2),
-        key = _cookie$split2[0],
-        value = _cookie$split2[1];
-
-    if (key === searchKey) {
-      return val = value;
-    }
-  });
-  return val;
-}
+var linkParam = [{
+  id: 1,
+  label: 'アカウント登録'
+}, {
+  id: 2,
+  label: '自動フォロー'
+}, {
+  id: 3,
+  label: '自動アンフォロー'
+}, {
+  id: 4,
+  label: '自動いいね'
+}, {
+  id: 5,
+  label: '自動予約ツイート'
+}, {
+  id: 6,
+  label: 'キーワード登録'
+}];
 /**
  *Vueでエラーを判別するためのステータスコード
  */

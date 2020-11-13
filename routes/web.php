@@ -40,9 +40,9 @@ Route::get('/login/{provider}/callback', 'Auth\LoginController@handleProviderCal
 // })->where('any', '.+');
 
 Route::group(['middleware' => 'auth'], function() {
-    // news一覧用
+    // ダッシュボード
     Route::get('/dashboard', 'IndexController@dashboard')->name('index.dashBoard');
-    // アカウント登録画面遷移
+    // あかうんと
     Route::get('/account', 'IndexController@account')->name('index.account');
 
     // アカウント登録処理

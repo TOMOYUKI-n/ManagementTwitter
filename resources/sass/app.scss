@@ -10,7 +10,7 @@
 @import "layout/main";
 //component
 @import "object/component/button";
-@import "object/component/card";
+// @import "object/component/card";
 @import "object/component/panel";
 //project
 @import "object/project/dashboard";
@@ -21,6 +21,7 @@
 @import "object/project/password";
 @import "object/project/top";
 @import "object/project/verify";
+@import "object/project/register";
 
 //utility
 @import "object/utility/parts";

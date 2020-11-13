@@ -3,34 +3,33 @@
         <div id="login" class="p-login__container">
             <div>
                 <!--入力エリア-->
-                <div class="p-login__inputError" v-if="errors.email">{{ errors.email }}</div>
-                <div class="p-login__inputError" v-if="errors.password">{{ errors.password }}</div>
-
                 <div class="p-login__inner">
                     <i class="fas fa-user"></i>
                     <input type="text" class="p-login__form" v-model="email" placeholder="メールアドレス" />
                 </div>
+                <div class="p-login__inputError" v-if="errors.email">{{ errors.email }}</div>
 
                 <div class="p-login__inner">
                     <i class="fas fa-unlock-alt"></i>
                     <input type="password" class="p-login__form" v-model="password" placeholder="パスワード" />
                 </div>
+                <div class="p-login__inputError" v-if="errors.password">{{ errors.password }}</div>
 
                 <!--ボタンエリア-->
-                <div class="p-top__login">
-                    <button @click="login" type="submit" class="p-login__text p-btn__login">ログイン</button>
+                <div class="p-login__button__wrap">
+                    <a @click="login" class="p-botton__login">ログイン</a>
                 </div>
 
-                <p class="p-login__text p-login-add-margin__3" style="font-size: 13px;">アカウントをお持ちで無い方はこちらから</p>
-                <div class="p-top__login">
-                    <a class="p-login__text p-btn__login" @click="twitterLogin">Twitterでログイン</a>
+                <p class="p-login__text">アカウントをお持ちで無い方はこちらから</p>
+                <div class="p-login__button__wrap">
+                    <a class="p-botton__login" @click="twitterLogin">Twitterでログイン</a>
                 </div>
-                <div class="p-top__login" @click="register">
-                    <a class="p-login__text p-btn__new">新規登録</a>
+                <div class="p-login__button__wrap" @click="register">
+                    <a class="p-botton__register__top">新規登録</a>
                 </div>
 
-                <div class="p-top__login">
-                    <a class="p-login__forgot" @click="passlost">パスワードを忘れた方はこちら</a>
+                <div class="p-login__button__wrap">
+                    <p class="p-login__forgot" @click="passlost">パスワードを忘れた方はこちら</p>
                 </div>
             </div>
         </div>

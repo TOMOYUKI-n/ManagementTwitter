@@ -170,83 +170,83 @@
              * 登録したフォローターゲット一覧を取得する
              */
             async fetchFollowTargets() {
-                const response = await axios.get('/api/follow')
-                if (response.status !== OK) {
-                    this.$store.commit('error/setCode', response.status)
-                    return false
-                }
-                this.followTargets = response.data
+                // const response = await axios.get('/api/follow')
+                // if (response.status !== OK) {
+                //     this.$store.commit('error/setCode', response.status)
+                //     return false
+                // }
+                // this.followTargets = response.data
             },
             /**
              * フィルターワード一覧を取得する
              */
             async fetchFilters() {
-                const response = await axios.get('/api/filter')
-                if (response.status !== OK) {
-                    this.$store.commit('error/setCode', response.status)
-                    return false
-                }
+                // const response = await axios.get('/api/filter')
+                // if (response.status !== OK) {
+                //     this.$store.commit('error/setCode', response.status)
+                //     return false
+                // }
 
-                this.filters = response.data
+                // this.filters = response.data
             },
             /**
              * 新規フォローターゲットを追加する
              */
             async addFollowTarget() {
-                this.clearErrors()
-                const response = await axios.post('/api/follow', this.addForm)
-                if (response.status === UNPROCESSABLE_ENTRY) {
-                    this.addErrors = response.data.errors
-                    return false
-                }
-                this.resetAddForm()
-                if (response.status !== CREATED) {
-                    this.$store.commit('error/setCode', response.status)
-                    return false
-                }
-                this.followTargets.unshift(response.data)
-                this.newModal = false
+                // this.clearErrors()
+                // const response = await axios.post('/api/follow', this.addForm)
+                // if (response.status === UNPROCESSABLE_ENTRY) {
+                //     this.addErrors = response.data.errors
+                //     return false
+                // }
+                // this.resetAddForm()
+                // if (response.status !== CREATED) {
+                //     this.$store.commit('error/setCode', response.status)
+                //     return false
+                // }
+                // this.followTargets.unshift(response.data)
+                // this.newModal = false
             },
             /**
              * 編集用のモーダルフォームを表示する
              * 表示の際にフォローターゲットのデータを入力しておく
              */
             showEditModal(followTarget, index) {
-                this.editModal = true
-                this.editForm.id = followTarget.id
-                this.editForm.target = followTarget.target
-                this.editForm.filter_word_id = followTarget.filter_word_id
-                this.editIndex = index
+                // this.editModal = true
+                // this.editForm.id = followTarget.id
+                // this.editForm.target = followTarget.target
+                // this.editForm.filter_word_id = followTarget.filter_word_id
+                // this.editIndex = index
             },
             /**
              * フォーローターゲットを編集する
              */
             async editFollowTarget() {
-                this.clearErrors()
-                const response = await axios.put(`/api/follow/${this.editForm.id}`, this.editForm)
+                // this.clearErrors()
+                // const response = await axios.put(`/api/follow/${this.editForm.id}`, this.editForm)
 
-                if (response.status === UNPROCESSABLE_ENTRY) {
-                    this.editErrors = response.data.errors
-                    return false
-                }
-                if (response.status !== OK) {
-                    this.$store.commit('error/setCode', response.status)
-                    return false
-                }
-                this.followTargets.splice(this.editIndex, 1, response.data)
-                this.resetEditForm()
+                // if (response.status === UNPROCESSABLE_ENTRY) {
+                //     this.editErrors = response.data.errors
+                //     return false
+                // }
+                // if (response.status !== OK) {
+                //     this.$store.commit('error/setCode', response.status)
+                //     return false
+                // }
+                // this.followTargets.splice(this.editIndex, 1, response.data)
+                // this.resetEditForm()
             },
 
             /**
              * フォローターゲットを削除する
              */
             async removeFollowTarget(id, index) {
-                const response = await axios.delete(`/api/follow/${id}`)
-                if (response.status !== OK) {
-                    this.$store.commit('error/setCode', response.status)
-                    return false
-                }
-                this.followTargets.splice(index, 1)
+                // const response = await axios.delete(`/api/follow/${id}`)
+                // if (response.status !== OK) {
+                //     this.$store.commit('error/setCode', response.status)
+                //     return false
+                // }
+                // this.followTargets.splice(index, 1)
             },
             /**
              * 新規追加フォームのデータを空にする
@@ -269,42 +269,42 @@
              * 自動フォロー機能のサービスステータスを取得する
              */
             async fetchServiceStatus() {
-                const response = await axios.get('/api/system/status')
-                if (response.status !== OK) {
-                    this.$store.commit('error/setCode', response.status)
-                    return false
-                }
-                this.serviceStatus = response.data.auto_follow_status
-                this.serviceStatusLabel = response.data.status_labels.auto_follow
+                // const response = await axios.get('/api/system/status')
+                // if (response.status !== OK) {
+                //     this.$store.commit('error/setCode', response.status)
+                //     return false
+                // }
+                // this.serviceStatus = response.data.auto_follow_status
+                // this.serviceStatusLabel = response.data.status_labels.auto_follow
             },
             /**
              * 自動フォロー機能を稼働状態にする
              */
             async runFollowService() {
-                const serviceType = 1
-                const data = {type: serviceType}
-                const response = await axios.post('/api/system/run', data)
-                if (response.status !== OK) {
-                    this.$store.commit('error/setCode', response.status)
-                    return false
-                }
-                this.serviceStatus = response.data.auto_follow_status
-                this.serviceStatusLabel = response.data.status_labels.auto_follow
+                // const serviceType = 1
+                // const data = {type: serviceType}
+                // const response = await axios.post('/api/system/run', data)
+                // if (response.status !== OK) {
+                //     this.$store.commit('error/setCode', response.status)
+                //     return false
+                // }
+                // this.serviceStatus = response.data.auto_follow_status
+                // this.serviceStatusLabel = response.data.status_labels.auto_follow
 
             },
             /**
              * 自動フォロー機能を停止状態にする
              */
             async stopFollowService() {
-                const serviceType = 1
-                const data = {type: serviceType}
-                const response = await axios.post('/api/system/stop', data)
-                if (response.status !== OK) {
-                    this.$store.commit('error/setCode', response.status)
-                    return false
-                }
-                this.serviceStatus = response.data.auto_follow_status
-                this.serviceStatusLabel = response.data.status_labels.auto_follow
+                // const serviceType = 1
+                // const data = {type: serviceType}
+                // const response = await axios.post('/api/system/stop', data)
+                // if (response.status !== OK) {
+                //     this.$store.commit('error/setCode', response.status)
+                //     return false
+                // }
+                // this.serviceStatus = response.data.auto_follow_status
+                // this.serviceStatusLabel = response.data.status_labels.auto_follow
             },
             /**
              * 入力フォームエラーメッセージをクリアする
@@ -324,15 +324,15 @@
              * フィルターワードの通知を受け取ったら
              * フォロワーターゲットと、フィルターワードを再取得する
              */
-            dashChange: {
-                handler(val) {
-                    if (val === true) {
-                        this.fetchFollowTargets()
-                        this.fetchFilters()
-                        this.$store.commit('dashboard/setNoticeToTweet', null)
-                    }
-                }
-            },
+            // dashChange: {
+            //     handler(val) {
+            //         if (val === true) {
+            //             this.fetchFollowTargets()
+            //             this.fetchFilters()
+            //             this.$store.commit('dashboard/setNoticeToTweet', null)
+            //         }
+            //     }
+            // },
         },
 
     }

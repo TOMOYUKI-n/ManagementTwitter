@@ -12,27 +12,14 @@ $(function () {
 
 });
 
-
-/**
- *クッキーの値を取得する
- */
-export function getCookieValue (searchKey) {
-    if (typeof searchKey === 'undefined') {
-        return ''
-    }
-
-
-    let val = ''
-
-    document.cookie.split(';').forEach(cookie => {
-        const [key, value] = cookie.split('=')
-        if (key === searchKey) {
-            return val = value
-        }
-    })
-
-    return val
-}
+export const linkParam = [
+    {id: 1, label: 'アカウント登録'},
+    {id: 2, label: '自動フォロー'},
+    {id: 3, label: '自動アンフォロー'},
+    {id: 4, label: '自動いいね'},
+    {id: 5, label: '自動予約ツイート'},
+    {id: 6, label: 'キーワード登録'},
+];
 
 /**
  *Vueでエラーを判別するためのステータスコード
