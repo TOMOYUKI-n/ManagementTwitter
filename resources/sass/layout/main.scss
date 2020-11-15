@@ -70,3 +70,26 @@
         }
     }
 }
+
+.width{
+    &__half{
+        width: 50% !important;
+    }
+    &__three{
+        width: 30% !important;
+    }
+}
+
+.m{
+    &__r2{
+        margin-right: 8px;
+    }
+    &__r3{
+        margin-right: 12px;
+    }
+}
+.c{
+    &__color--blue {
+        color: $color-twitter;
+    }
+}

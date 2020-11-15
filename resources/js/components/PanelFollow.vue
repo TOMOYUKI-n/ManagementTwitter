@@ -1,48 +1,58 @@
 <template>
-    <div class="c-panel u-color__bg--white">
+    <div class="p-panel u-color__bg--white">
 
         <div class="p-status">
-            <p class="p-status__show">{{serviceStatusLabel}}</p>
-            <button class="p-status__button c-button c-button--success"
-                    v-show="showRunButton"
-                    @click.stop="runFollowService">サービス開始
+            <p v-show="showRunButton" class="p-status__show" style="background-color: #3335;">{{serviceStatusLabel}}</p>
+            <p v-show="showStopButton" class="p-status__show p-status__active">{{serviceStatusLabel}}</p>
+            <button class="c-button c-button__status--on"
+                    @click="runFollowService"
+                    v-show="showRunButton">
+                    <i class="fas fa-power-off c-icon__mr-2"></i>稼働
             </button>
-            <button class="p-status__button c-button c-button--danger"
-                    v-show="showStopButton"
-                    @click.stop="stopFollowService">停止
+            <button class="c-button c-button__status--off"
+                    @click="stopFollowService"
+                    v-show="showStopButton">
+                    <i class="fas fa-ban c-icon__mr-2"></i>停止
             </button>
         </div>
 
 
         <div class="p-table__title">
-            <h2 class="p-table__caption">○ターゲットアカウントリスト</h2>
-            <button class="c-button c-button--twitter" @click="newModal = ! newModal">
-                <i class="c-icon c-icon--white fas fa-plus"></i>
-                ターゲットを追加
+            <div class="p-table__sp__title">
+                <h2 class="p-table__caption">対象アカウントリスト</h2>
+                <p class="p-table__caption__text">※ここでは登録されたアカウントの "フォロワー" に対して、自動フォローを行えます。</p>
+            </div>
+            <button class="c-button c-button--add" @click="newModal = ! newModal">
+                <i class="c-icon__mr-2 c__color--blue fas fa-plus"></i>
+                対象アカウントを追加
             </button>
         </div>
 
         <table class="p-table">
             <tr class="p-table__head">
-                <th class="p-table__th p-table__th--follow">ステータス</th>
                 <th class="p-table__th p-table__th--follow">ターゲット</th>
                 <th class="p-table__th p-table__th--follow">条件</th>
-                <th class="p-table__th p-table__th--follow">操作</th>
+                <th class="p-table__th p-table__th--follow"></th>
             </tr>
 
             <tr v-for="(followTarget, index) in followTargets" :key="index">
-                <td class="p-table__td">{{followTarget.status_label}}</td>
                 <td class="p-table__td">@{{followTarget.target}}</td>
-                <td class="p-table__td">{{followTarget.filter_word.merged_word}}</td>
+                <td class="p-table__td">{{followTarget.filter_word.word}}</td>
                 <td class="p-table__td">
-                    <button class="c-button c-button--twitter p-table__button"
-                            @click.stop="showEditModal(followTarget, index)"
-                    >編集
-                    </button>
-                    <button class="c-button c-button--danger p-table__button"
-                            @click.stop="removeFollowTarget(followTarget.id, index)"
-                    >削除
-                    </button>
+                    <div class="p-table__action">
+                        <div class="p-table__btn-wrap">
+                            <button class="c-button c-button--twitter p-table__button"
+                                    @click="showEditModal(followTarget, index)"
+                            >
+                                <i class="c__color--blue fas fa-pen p-table__test-xs"></i>
+                            </button>
+                            <button class="c-button c-button--delete p-table__button c-button--delete "
+                                    @click="removeFollowTarget(followTarget.id, index)"
+                            >
+                                <i class="fas fa-trash-alt p-table__test-xs"></i>
+                            </button>
+                        </div>
+                    </div>
                 </td>
             </tr>
         </table>
@@ -50,9 +60,9 @@
         <div class="p-modal__wrapper">
             <section class="p-modal p-modal--opened" v-show="newModal">
                 <div class="p-modal__contents">
-                            <span class="p-modal__cancel u-color__bg--white" @click="newModal = ! newModal">
-                                <i class="c-icon--gray p-modal__icon fas fa-times"></i>
-                            </span>
+                    <div class="p-modal__cancel u-color__bg--white" @click="newModal = !newModal">
+                        <i class="c-icon--gray p-modal__icon fas fa-times"></i>
+                    </div>
                     <form class="p-form" @submit.prevent="addFollowTarget">
 
                         <div v-if="addErrors" class="p-form__errors">
@@ -73,7 +83,7 @@
                                 v-model="addForm.filter_word_id"
                                 required
                         >
-                            <option v-for="filter in filters" :key="filter.id" :value="filter.id">{{filter.merged_word}}</option>
+                            <option v-for="filter in filters" :key="filter.id" :value="filter.id">{{filter.word}}</option>
                             <optgroup></optgroup>
                         </select>
                         <p class="p-form__notion">※条件のキーワードは、「キーワード登録」から登録することができます。</p>
@@ -84,11 +94,11 @@
                 </div>
             </section>
 
-            <section class="p-modal p-modal--opened" v-show="editModal">
+            <section class="p-modal" v-show="editModal">
                 <div class="p-modal__contents">
-                            <span class="p-modal__cancel u-color__bg--white" @click="editModal = ! editModal">
-                                <i class="c-icon--gray p-modal__icon fas fa-times"></i>
-                            </span>
+                    <div class="p-modal__cancel u-color__bg--white" @click="editModal = !editModal">
+                        <i class="c-icon--gray p-modal__icon fas fa-times"></i>
+                    </div>
                     <form class="p-form" @submit.prevent="editFollowTarget">
 
                         <div v-if="editErrors" class="p-form__errors">
@@ -109,8 +119,7 @@
                                 v-model="editForm.filter_word_id"
                                 required
                         >
-                            <option v-for="filter in filters" :key="filter.id" :value="filter.id">{{filter.merged_word}}</option>
-                            <optgroup></optgroup>
+                            <option v-for="filter in filters" :key="filter.id" :value="filter.id">{{filter.word}}</option>
                         </select>
                         <p class="p-form__notion">※条件のキーワードは、「キーワード登録」から登録することができます。</p>
                         <div class="p-form__button">
@@ -122,11 +131,17 @@
 
         </div>
 
+        <div class="c-button--add--wrap">
+            <button class="c-button--add--sp" @click="newModal = ! newModal">
+                <i class="fas fa-plus"></i>
+            </button>
+        </div>
+
     </div>
 </template>
 
 <script>
-    import {CREATED, OK, UNPROCESSABLE_ENTRY} from "../utility"
+    import { filterWords, targetAccountList, manegementServiceStatus } from "../repository"
 
     export default {
         data() {
@@ -155,9 +170,9 @@
             /**
              * フィルターキワードの追加、変更、削除イベントの通知を取得する
              */
-            dashChange() {
-                return this.$store.state.dashboard.noticeToTweet
-            },
+            // dashChange() {
+            //     return this.$store.state.dashboard.noticeToTweet
+            // },
             showRunButton() {
                 return this.serviceStatus === 1 || this.serviceStatus === 3
             },
@@ -175,7 +190,8 @@
                 //     this.$store.commit('error/setCode', response.status)
                 //     return false
                 // }
-                // this.followTargets = response.data
+                const response = targetAccountList;
+                this.followTargets = response;
             },
             /**
              * フィルターワード一覧を取得する
@@ -186,8 +202,8 @@
                 //     this.$store.commit('error/setCode', response.status)
                 //     return false
                 // }
-
-                // this.filters = response.data
+                const response = filterWords;
+                this.filters = response;
             },
             /**
              * 新規フォローターゲットを追加する
@@ -212,11 +228,11 @@
              * 表示の際にフォローターゲットのデータを入力しておく
              */
             showEditModal(followTarget, index) {
-                // this.editModal = true
-                // this.editForm.id = followTarget.id
-                // this.editForm.target = followTarget.target
-                // this.editForm.filter_word_id = followTarget.filter_word_id
-                // this.editIndex = index
+                this.editModal = true;
+                this.editForm.id = followTarget.twitter_user_id
+                this.editForm.target = followTarget.target
+                this.editForm.filter_word_id = followTarget.filter_word_id
+                this.editIndex = index
             },
             /**
              * フォーローターゲットを編集する
@@ -233,8 +249,8 @@
                 //     this.$store.commit('error/setCode', response.status)
                 //     return false
                 // }
-                // this.followTargets.splice(this.editIndex, 1, response.data)
-                // this.resetEditForm()
+                this.followTargets.splice(this.editIndex, 1, response.data)
+                this.resetEditForm()
             },
 
             /**
@@ -246,7 +262,7 @@
                 //     this.$store.commit('error/setCode', response.status)
                 //     return false
                 // }
-                // this.followTargets.splice(index, 1)
+                this.followTargets.splice(index, 1)
             },
             /**
              * 新規追加フォームのデータを空にする
@@ -274,8 +290,9 @@
                 //     this.$store.commit('error/setCode', response.status)
                 //     return false
                 // }
-                // this.serviceStatus = response.data.auto_follow_status
-                // this.serviceStatusLabel = response.data.status_labels.auto_follow
+                const response = manegementServiceStatus;
+                this.serviceStatus = 1;
+                this.serviceStatusLabel = 'サービス停止中';
             },
             /**
              * 自動フォロー機能を稼働状態にする
@@ -289,8 +306,9 @@
                 //     return false
                 // }
                 // this.serviceStatus = response.data.auto_follow_status
-                // this.serviceStatusLabel = response.data.status_labels.auto_follow
-
+                // this.serviceStatusLabel = response.auto_follow_status
+                this.serviceStatus = 2;
+                this.serviceStatusLabel = 'サービス稼働中';
             },
             /**
              * 自動フォロー機能を停止状態にする
@@ -305,6 +323,9 @@
                 // }
                 // this.serviceStatus = response.data.auto_follow_status
                 // this.serviceStatusLabel = response.data.status_labels.auto_follow
+
+                this.serviceStatus = 1;
+                this.serviceStatusLabel = 'サービス停止中';
             },
             /**
              * 入力フォームエラーメッセージをクリアする
@@ -337,3 +358,14 @@
 
     }
 </script>
+<style lang="scss" scoped>
+.running{
+    border-color: #5cb85c;
+    background: #5cb85c;
+}
+.stopping{
+    border-color: #EF5350;
+    background: #EF5350;
+}
+
+</style>

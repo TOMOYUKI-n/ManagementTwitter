@@ -3,40 +3,63 @@
 
         <div class="p-contents__area--narrow">
             <h2 class="p-contents__head"><i class="c-icon--twitter fab fa-twitter"></i>利用するTwitterアカウントを選択する</h2>
-            <div v-show="isMaximumAccount" class="c-card p-twitter__card u-color__bg--white">
-                <a href="auth/twitter/oauth">
-                    <p class="p-twitter__create">
-                        <i class="c-icon--twitter p-twitter__icon--create far fa-plus-square"></i>Twitterアカウントの追加
+            <div v-show="isMaximumAccount" class="">
+                <a class="p-botton__account__add" href="auth/twitter/oauth">
+                    <p class="">
+                        <i class="c-icon__twitter far fa-plus-square c-icon__mr-2"></i>Twitterアカウントの追加
                     </p>
                 </a>
             </div>
             <ul class="p-twitter">
                 <transition-group name="t-twitter_card">
-                    <AccountCard
+                    <account-card
                             v-for="(user, index) in users"
-                            :key="user.id"
+                            :key="user.twitter_id"
                             :item="user"
                             :index="index"
-                            @delUser="removeCard"
+                            @delUser="deleteModal"
+                            :selectId="twitterAccountId"
                     />
                 </transition-group>
             </ul>
+            <section class="p-modal p-modal--opened" v-show="deleteOn">
+                <div class="p-modal__contents">
+                    <p class="p-form__delete">本当に削除しますか？</p>
+                    <div class="p-form__delete__wrap">
+                        <div type="submit" class="p-botton__delete p-form__half-btn width__three" @click="deleteOn = false">
+                            <i class="fas fa-times m__r2"></i>
+                            <div>キャンセル</div>
+                        </div>
+                        <div type="submit" class="p-botton__delete  p-form__half-btn width__three" @click="removeCard">
+                            <i class="fas fa-check m__r2"></i>
+                            <div>削除</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </div>
     </div>
 </template>
 
 <script>
-    import AccountCard from '../components/AccountCard.vue'
-    import {OK} from '../utility'
+
+    import { twitterAccount } from '../repository'
 
     export default {
-        components: {
-            AccountCard,
+        props: {
+            twitterAccountId: 0,
         },
         data() {
             return {
                 users: [],
-                accountNum: 0
+                accountNum: 0,
+                deleteOn: false,
+                error: '',
+                message: {
+                    connect: '接続ができませんでした。再度実行してください。',
+                    disconnect: '解除ができませんでした。再度実行してください。',
+                    status: '連携状況が取得できませんでした。再度実行してください。'
+                },
             }
         },
         methods: {
@@ -44,21 +67,22 @@
              * ユーザーが登録しているTwitterUserのID一覧を取得する
              */
             async fetchTwitterUsers() {
-                const response = await axios.get('/api/twitter/user/list')
-                if (response.status !== OK) {
-                    this.$store.commit('error/setCode', response.status)
-                    return false
-                }
-                this.users = response.data.twitter_accounts
-                this.accountNum = response.data.account_num
+                const response = twitterAccount;
+                this.users = response;
+                this.accountNum = response.length;
 
             },
             /**
              * TwitterCardのemitをトリガーにして
              * TwitterUserのカードを配列から削除する
              */
-            removeCard(emitObject) {
-                this.users.splice(emitObject.index, 1)
+            removeCard() {
+                this.users.splice(this.deleteTarget, 1);
+                this.deleteOn = false;
+            },
+            deleteModal(emitObject) {
+                this.deleteOn = true;
+                this.deleteTarget = emitObject.index;
             }
         },
         computed: {

@@ -1,13 +1,16 @@
 <template>
-    <div class="c-panel u-color__bg--white">
+    <div class="p-panel u-color__bg--white">
+
         <div class="p-table__title">
-            <h2 class="p-table__caption">○キーワードリスト</h2>
-            <button class="c-button c-button--twitter" @click="newModal = ! newModal">
-                <i class="c-icon c-icon--white fas fa-plus"></i>
+            <div class="p-table__sp__title">
+                <h2 class="p-table__caption">キーワードリスト</h2>
+                <p class="p-table__caption__text">※登録したキーワードは他の自動サービスで使用します。</p>
+            </div>
+            <button class="c-button c-button--add" @click="newModal = ! newModal">
+                <i class="c-icon__mr-2 c__color--blue fas fa-plus"></i>
                 キーワードを追加
             </button>
         </div>
-
 
         <table class="p-table">
             <tr class="p-table__head">
@@ -21,25 +24,31 @@
                 <td class="p-table__td">{{filter.word}}</td>
                 <td class="p-table__td">{{filter.remove}}</td>
                 <td class="p-table__td">
-                    <button class="c-button c-button--twitter p-table__button"
-                            @click.stop="showEditModal(filter, index)"
-                    >編集
-                    </button>
-                    <button class="c-button c-button--danger p-table__button"
-                            @click.stop="removeFilter(filter.id, index)"
-                    >削除
-                    </button>
+                    <div class="p-table__action">
+                        <div class="p-table__btn-wrap">
+                            <button class="c-button c-button--twitter p-table__button"
+                                    @click="showEditModal(filter, index)"
+                            >
+                                <i class="c__color--blue fas fa-pen p-table__test-xs"></i>
+                            </button>
+                            <button class="c-button c-button--delete p-table__button c-button--delete "
+                                    @click="removeFilter(filter.id, index)"
+                            >
+                                <i class="fas fa-trash-alt p-table__test-xs"></i>
+                            </button>
+                        </div>
+                    </div>
                 </td>
             </tr>
 
         </table>
 
         <div class="p-modal__wrapper">
-            <section class="p-modal p-modal--opened" v-show="newModal">
+            <section class="p-modal" v-show="newModal">
                 <div class="p-modal__contents">
-                            <span class="p-modal__cancel u-color__bg--white" @click="newModal = ! newModal">
-                                <i class="c-icon--gray p-modal__icon fas fa-times"></i>
-                            </span>
+                    <div class="p-modal__cancel u-color__bg--white" @click="newModal = !newModal">
+                        <i class="c-icon--gray p-modal__icon fas fa-times"></i>
+                    </div>
                     <form class="p-form" @submit.prevent="addFilter">
 
                         <div v-if="addErrors" class="p-form__errors">
@@ -68,11 +77,11 @@
                 </div>
             </section>
 
-            <section class="p-modal p-modal--opened" v-show="editModal">
+            <section class="p-modal" v-show="editModal">
                 <div class="p-modal__contents">
-                            <span class="p-modal__cancel u-color__bg--white" @click="editModal = ! editModal">
-                                <i class="c-icon--gray p-modal__icon fas fa-times"></i>
-                            </span>
+                    <div class="p-modal__cancel u-color__bg--white" @click="editModal = !editModal">
+                        <i class="c-icon--gray p-modal__icon fas fa-times"></i>
+                    </div>
                     <form class="p-form" @submit.prevent="editFilter">
 
 
@@ -96,12 +105,17 @@
                 </div>
             </section>
         </div>
+        <div class="c-button--add--wrap">
+            <button class="c-button--add--sp" @click="newModal = ! newModal">
+                <i class="fas fa-plus"></i>
+            </button>
+        </div>
 
     </div>
 </template>
 
 <script>
-    import {CREATED, OK, UNPROCESSABLE_ENTRY} from "../utility"
+    import {  } from "../repository"
 
     export default {
         data() {
@@ -130,42 +144,42 @@
              * 登録したフィルターキーワード一覧をAPIで取得する
              */
             async fetchFilters() {
-                const response = await axios.get('/api/filter')
-                if (response.status !== OK) {
-                    this.$store.commit('error/setCode', response.status)
-                    return false
-                }
+                // const response = await axios.get('/api/filter')
+                // if (response.status !== OK) {
+                //     this.$store.commit('error/setCode', response.status)
+                //     return false
+                // }
 
-                this.filters = response.data
+                // this.filters = response.data
             },
             /**
              * 新規フィルターキーワードをAPIで登録する
              */
             async addFilter() {
-                this.clearErrors()
-                const response = await axios.post('/api/filter', this.addForm)
+                // this.clearErrors()
+                // const response = await axios.post('/api/filter', this.addForm)
 
-                if (response.status === UNPROCESSABLE_ENTRY) {
-                    //バリデーションエラー
-                    this.addErrors = response.data.errors
-                    return false
-                }
+                // if (response.status === UNPROCESSABLE_ENTRY) {
+                //     //バリデーションエラー
+                //     this.addErrors = response.data.errors
+                //     return false
+                // }
                 this.resetAddForm()
-                if (response.status !== CREATED) {
-                    //システムエラー類
-                    this.$store.commit('error/setCode', response.status)
-                    return false
-                }
+                // if (response.status !== CREATED) {
+                //     //システムエラー類
+                //     this.$store.commit('error/setCode', response.status)
+                //     return false
+                // }
 
-                //取得したデータを格納する
-                const addedFilter = response.data;
+                // //取得したデータを格納する
+                const addedFilter = this.addForm;
                 this.filters.push(addedFilter)
                 this.newModal = false
 
-                //自動ツイート、自動いいね機能ではフィルターキーワードを参照しているので、
-                //フィルターキーワードに変更があった際に変更を通知する
-                this.$store.commit('dashboard/setNoticeToTweet', true)
-                this.$store.commit('dashboard/setNoticeToLike', true)
+                // //自動ツイート、自動いいね機能ではフィルターキーワードを参照しているので、
+                // //フィルターキーワードに変更があった際に変更を通知する
+                // this.$store.commit('dashboard/setNoticeToTweet', true)
+                // this.$store.commit('dashboard/setNoticeToLike', true)
             },
             /**
              * 編集フォームモーダルの表示を行って、値を入力しておく
@@ -182,40 +196,40 @@
              * APIを利用してフィルターキーワードの変更を行う
              */
             async editFilter() {
-                this.clearErrors()
-                const response = await axios.put(`/api/filter/${this.editForm.id}`, this.editForm)
-                if (response.status === UNPROCESSABLE_ENTRY) {
-                    //バリデーションエラー
-                    this.editErrors = response.data.errors
-                    return false
-                }
-                if (response.status !== OK) {
-                    //システムエラー類
-                    this.$store.commit('error/setCode', response.status)
-                    return false
-                }
+                // this.clearErrors()
+                // const response = await axios.put(`/api/filter/${this.editForm.id}`, this.editForm)
+                // if (response.status === UNPROCESSABLE_ENTRY) {
+                //     //バリデーションエラー
+                //     this.editErrors = response.data.errors
+                //     return false
+                // }
+                // if (response.status !== OK) {
+                //     //システムエラー類
+                //     this.$store.commit('error/setCode', response.status)
+                //     return false
+                // }
 
-                this.filters.splice(this.editIndex, 1, response.data)
+                this.filters.splice(this.editIndex, 1, this.editForm)
                 this.resetEditForm()
 
                 //自動ツイート、自動いいね機能ではフィルターキーワードを参照しているので、
                 //フィルターキーワードに変更があった際に変更を通知する
-                this.$store.commit('dashboard/setNoticeToTweet', true)
-                this.$store.commit('dashboard/setNoticeToLike', true)
+                // this.$store.commit('dashboard/setNoticeToTweet', true)
+                // this.$store.commit('dashboard/setNoticeToLike', true)
             },
             /**
              * APIを利用してフィルターキーワードの削除を行う
              */
             async removeFilter(id, index) {
-                const response = await axios.delete(`/api/filter/${id}`)
-                if (response.status !== OK) {
-                    this.$store.commit('error/setCode', response.status)
-                    return false
-                }
+                // const response = await axios.delete(`/api/filter/${id}`)
+                // if (response.status !== OK) {
+                //     this.$store.commit('error/setCode', response.status)
+                //     return false
+                // }
 
                 this.filters.splice(index, 1)
-                this.$store.commit('dashboard/setNoticeToTweet', true)
-                this.$store.commit('dashboard/setNoticeToLike', true)
+                // this.$store.commit('dashboard/setNoticeToTweet', true)
+                // this.$store.commit('dashboard/setNoticeToLike', true)
             },
 
             /**

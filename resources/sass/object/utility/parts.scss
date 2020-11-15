@@ -55,3 +55,10 @@
         margin-bottom: 20px;
     }
 }
+
+// カラー
+.u-color{
+    &__bg--white{
+        background: $color-white;
+    }
+}

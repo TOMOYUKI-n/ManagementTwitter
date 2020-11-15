@@ -11,8 +11,7 @@
         width:20%;
         color: #fff;
         background-color: #333;
-        // height:87vh;
-        height:93vh;
+        min-height:93vh;
         display: grid;
         @include mq(){
             display: none;
@@ -53,6 +52,7 @@
     // body
     &__body{
         width:80%;
+        display: grid;
         @include mq(){
             width: 100%;
             display: block;

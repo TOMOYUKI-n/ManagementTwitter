@@ -1,0 +1,229 @@
+// ============================
+// ボタン
+// ============================
+.p-botton{
+    &__register{
+        &__top{
+            // aタグ
+            background-color: #FFA726;
+            box-shadow: 0 1px 4px #5a5b5e;
+            border-radius: 4px;
+            width: 100%;
+            padding: 12px 16px;
+            display: inline-block;
+            text-align: center;
+            box-sizing: border-box;
+            &:hover{
+                cursor: pointer;
+            }
+        }
+        &__new{
+            background-color: #FFA726;
+            box-shadow: 0 1px 4px #5a5b5e;
+            border-radius: 4px;
+            width: 100%;
+            padding: 12px 16px;
+            border: none;
+            box-sizing: border-box;
+            &:hover{
+                cursor: pointer;
+            }
+        }
+    }
+    &__login{
+        // aタグ
+        background-color: #2196F3;
+        box-shadow: 0 1px 4px #5a5b5e;
+        border-radius: 4px;
+        width: 100%;
+        padding: 12px 16px;
+        display: inline-block;
+        text-align: center;
+        box-sizing: border-box;
+        &:hover{
+            cursor: pointer;
+        }
+    }
+    &__account{
+        &__add{
+            // aタグ
+            background-color: #fff;
+            box-shadow: 0 1px 4px #5a5b5e;
+            border-radius: 4px;
+            width: 100%;
+            padding: 12px 16px;
+            display: inline-block;
+            text-align: center;
+            box-sizing: border-box;
+            &:hover{
+                cursor: pointer;
+            }
+        }
+    }
+    &__trash{
+        // iタグ
+        background-color: #fff;
+        box-shadow: 0 1px 4px #5a5b5e;
+        border-radius: 4px;
+        width: 100%;
+        padding: 12px 16px;
+        display: inline-block;
+        text-align: center;
+        box-sizing: border-box;
+        &:hover{
+            background-color: rgba(250, 56, 56, 0.61);
+            cursor: pointer;
+        }
+    }
+    &__delete{
+        // divタグ
+        background-color: #EF5350;
+        box-shadow: 0 1px 4px #5a5b5e;
+        border-radius: 4px;
+        width: 100%;
+        padding: 12px 16px;
+        display: inline-block;
+        text-align: center;
+        box-sizing: border-box;
+        &:hover{
+            background-color: rgba(250, 56, 56, 0.61);
+            cursor: pointer;
+        }
+    }
+}
+// ==================================
+// c-button 操作用ボタン
+// ==================================
+.c-button {
+    border: 1px solid $color-default;
+    border-radius: 4px;
+    display: inline-block;
+    padding: 8px 16px;
+    cursor: pointer;
+    @include mq(){
+        padding: 8px 16px;
+    }
+    &--inverse {
+        background: $color-default;
+        border-color: $color-default;
+        color: $color-white;
+    }   
+  
+    // &--twitter {
+    //     background: $color-twitter;
+    //     border-color: $color-twitter;
+    //     color: $color-white;
+    // }
+  
+    &--cancel {
+        border-color: $color-default;
+        color: $color-default;
+    }
+  
+    &--danger {
+        color: $color-white;
+        border-color: $color-danger;
+        background: $color-danger;
+    }
+    &--success {
+        color: $color-white;
+        border-color: $color-success;
+        background: $color-success;
+    }
+    // 追加したもの
+    &--twitter {
+        color: #333;
+        box-shadow: 0 1px 2px #5a5b5e55;
+        border: none;
+        &:hover{
+            color: #fff;
+            background-color: #333;
+        }
+    }
+    &--add {
+        color: #333;
+        box-shadow: 0 1px 2px #5a5b5e55;
+        border: none;
+        &:hover{
+            color: #fff;
+            background-color: #333;
+        }
+        @include mq(){
+            display: none;
+        }
+    }
+    &--add--wrap{
+        display: none;
+        @include mq(){
+            display: block;
+            position: absolute;
+            right: 0px;
+            margin: 12px;
+        }
+    }
+    &--add--sp {
+        @include mq(){
+            box-shadow: 0 1px 2px #5a5b5e55;
+            border: none;
+            padding: 12px;
+            border-radius: 50%;
+            height: 40px;
+            width: 40px;
+            line-height: 1.4;
+            background-color: #55acee;
+            &:hover{
+                color: #fff;
+                background-color: #333;
+            }
+        }
+
+    }
+    &--delete {
+        color: #333;
+        box-shadow: 0 1px 2px #5a5b5e55;
+        border: none;
+        &:hover{
+            background-color: $color-danger;
+        }
+    }
+    &__status{
+        &--on {
+            color: #333;
+            border: none;
+            box-shadow: 0 1px 2px #5a5b5e55;
+            &:hover{
+                color: #fff;
+                background-color: #333;
+            }
+        }
+        &--off {
+            color: #333;
+            border: none;
+            box-shadow: 0 1px 2px #5a5b5e55;
+            &:hover{
+                color: #fff;
+                background-color: #333;
+            }
+        }
+    }
+
+}
+
+// ==================================
+// c-icon
+// ==================================
+.c-icon {
+    &__twitter {
+        color: $color-twitter;
+    }
+    &--gray{
+        color: $color-icon-gray;
+    }
+    &--white{
+        color: $color-white;
+    }
+    // 余白
+    &__mr-2{
+        margin-right: 8px;
+    }
+}

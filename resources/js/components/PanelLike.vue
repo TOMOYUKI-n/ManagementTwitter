@@ -1,24 +1,29 @@
 <template>
-    <div class="c-panel u-color__bg--white">
+    <div class="p-panel u-color__bg--white">
 
         <div class="p-status">
-            <p class="p-status__show">{{serviceStatusLabel}}</p>
-            <button class="p-status__button c-button c-button--success"
-                    v-show="showRunButton"
-                    @click.stop="runLikeService">サービス開始
+            <p v-show="showRunButton" class="p-status__show" style="background-color: #3335;">{{serviceStatusLabel}}</p>
+            <p v-show="showStopButton" class="p-status__show p-status__active">{{serviceStatusLabel}}</p>
+            <button class="c-button c-button__status--on"
+                    @click="runLikeService"
+                    v-show="showRunButton">
+                    <i class="fas fa-power-off c-icon__mr-2"></i>稼働
             </button>
-            <button class="p-status__button c-button c-button--danger"
-                    v-show="showStopButton"
-                    @click.stop="stopLikeService">停止
+            <button class="c-button c-button__status--off"
+                    @click="stopLikeService"
+                    v-show="showStopButton">
+                    <i class="fas fa-ban c-icon__mr-2"></i>停止
             </button>
         </div>
 
-
         <div class="p-table__title">
-            <h2 class="p-table__caption">○自動いいねリスト</h2>
-            <button class="c-button c-button--twitter" @click="newModal = ! newModal">
-                <i class="c-icon c-icon--white fas fa-plus"></i>
-                いいね設定を追加
+            <div class="p-table__sp__title">
+                <h2 class="p-table__caption">自動いいねリスト</h2>
+                <p class="p-table__caption__text">※キーワードを設定することで、該当するツイートに自動でいいねを送ります。</p>
+            </div>
+            <button class="c-button c-button--add" @click="newModal = ! newModal">
+                <i class="c-icon__mr-2 c__color--blue fas fa-plus"></i>
+                自動いいねの設定を追加
             </button>
         </div>
 
@@ -29,28 +34,33 @@
             </tr>
 
             <tr v-for="(like, index) in likes" :key="index">
-                <th class="p-table__td">{{like.filter_word.merged_word}}</th>
-                <th class="p-table__td">
-                    <button class="c-button c-button--twitter p-table__button"
-                            @click.stop="showEditModal(like, index)"
-                    >編集
-                    </button>
-                    <button class="c-button c-button--danger p-table__button"
-                            @click.stop="removeLike(like.id, index)"
-                    >削除
-                    </button>
-                </th>
+                <td class="p-table__td">{{like.filter_word.word}}</td>
+                <td class="p-table__td">
+                    <div class="p-table__action">
+                        <div class="p-table__btn-wrap">
+                            <button class="c-button c-button--twitter p-table__button"
+                                    @click="showEditModal(like, index)"
+                            >
+                                <i class="c__color--blue fas fa-pen p-table__test-xs"></i>
+                            </button>
+                            <button class="c-button c-button--delete p-table__button c-button--delete "
+                                    @click="removeLike(like.id, index)"
+                            >
+                                <i class="fas fa-trash-alt p-table__test-xs"></i>
+                            </button>
+                        </div>
+                    </div>
+                </td>
             </tr>
         </table>
 
         <div class="p-modal__wrapper">
-            <section class="p-modal p-modal--opened" v-show="newModal">
+            <section class="p-modal" v-show="newModal">
                 <div class="p-modal__contents">
-                            <span class="p-modal__cancel u-color__bg--white" @click="newModal = ! newModal">
-                                <i class="c-icon--gray p-modal__icon fas fa-times"></i>
-                            </span>
+                    <div class="p-modal__cancel u-color__bg--white" @click="newModal = !newModal">
+                        <i class="c-icon--gray p-modal__icon fas fa-times"></i>
+                    </div>
                     <form class="p-form" @submit.prevent="addLike">
-
 
                         <label class="p-form__label" for="add-like-filter">いいね条件の選択 *必須</label>
                         <select class="p-form__select" id="add-like-filter"
@@ -58,7 +68,6 @@
                                 required
                         >
                             <option v-for="filter in filters" :key="filter.id" :value="filter.id">{{filter.merged_word}}</option>
-                            <optgroup></optgroup>
                         </select>
                         <p class="p-form__notion">※条件のキーワードは、「キーワード登録」から登録することができます。</p>
                         <div class="p-form__button">
@@ -68,13 +77,12 @@
                 </div>
             </section>
 
-            <section class="p-modal p-modal--opened" v-show="editModal">
+            <section class="p-modal" v-show="editModal">
                 <div class="p-modal__contents">
-                            <span class="p-modal__cancel u-color__bg--white" @click="editModal = ! editModal">
-                                <i class="c-icon--gray p-modal__icon fas fa-times"></i>
-                            </span>
+                    <div class="p-modal__cancel u-color__bg--white" @click="editModal = !editModal">
+                        <i class="c-icon--gray p-modal__icon fas fa-times"></i>
+                    </div>
                     <form class="p-form" @submit.prevent="editLike">
-
 
                         <label class="p-form__label" for="edit-like-filter">いいね条件の選択 *必須</label>
                         <select class="p-form__select" id="edit-like-filter"
@@ -82,7 +90,7 @@
                                 required
                         >
                             <option v-for="filter in filters" :key="filter.id" :value="filter.id">{{filter.merged_word}}</option>
-                            <optgroup></optgroup>
+
                         </select>
                         <p class="p-form__notion">※条件のキーワードは、「キーワード登録」から登録することができます。</p>
                         <div class="p-form__button">
@@ -93,13 +101,17 @@
             </section>
 
         </div>
-
+        <div class="c-button--add--wrap">
+            <button class="c-button--add--sp" @click="newModal = ! newModal">
+                <i class="fas fa-plus"></i>
+            </button>
+        </div>
 
     </div>
 </template>
 
 <script>
-    import {CREATED, OK, UNPROCESSABLE_ENTRY} from "../utility"
+    import { filterWords, targetAccountList, manegementServiceStatus } from "../repository"
 
     export default {
         data() {
@@ -125,9 +137,9 @@
             /**
              * フィルターキワードの追加、変更、削除イベントの通知を取得する
              */
-            dashChange() {
-                return this.$store.state.dashboard.noticeToLike
-            },
+            // dashChange() {
+            //     return this.$store.state.dashboard.noticeToLike
+            // },
             showRunButton() {
                 return this.serviceStatus === 1 || this.serviceStatus === 3
             },
@@ -234,6 +246,8 @@
 
                 // this.serviceStatus = response.data.auto_like_status
                 // this.serviceStatusLabel = response.data.status_labels.auto_like
+                this.serviceStatus = 1;
+                this.serviceStatusLabel = 'サービス停止中';
             },
 
             /**
@@ -249,6 +263,8 @@
                 // }
                 // this.serviceStatus = response.data.auto_like_status
                 // this.serviceStatusLabel = response.data.status_labels.auto_like
+                this.serviceStatus = 2;
+                this.serviceStatusLabel = 'サービス稼働中';
             },
 
             /**
@@ -264,6 +280,8 @@
                 // }
                 // this.serviceStatus = response.data.auto_like_status
                 // this.serviceStatusLabel = response.data.status_labels.auto_like
+                this.serviceStatus = 1;
+                this.serviceStatusLabel = 'サービス停止中';
             }
 
         },
