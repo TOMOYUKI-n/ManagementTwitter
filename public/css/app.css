@@ -764,6 +764,10 @@ img {
   background-color: #333f;
   border: 1px solid #74d456;
   color: #74d456;
+  font-size: 13px;
+}
+.p-status__sleep {
+  font-size: 13px;
 }
 .p-status__button {
   margin-right: 12px;
@@ -772,18 +776,25 @@ img {
 .p-modal {
   background: #3335;
   height: 100vh;
-  width: 100vw;
+  width: 80%;
   position: fixed;
-  top: 0;
+  top: 7vh;
   right: 0;
   bottom: 0;
-  left: 0;
+  left: 20%;
   overflow-y: auto;
   z-index: 200;
   display: flex;
   justify-content: center;
   align-items: center;
   opacity: 1;
+}
+@media screen and (max-width: 960px) {
+  .p-modal {
+    width: 100vw;
+    top: 0;
+    left: 0;
+  }
 }
 .p-modal__contents {
   position: relative;
@@ -982,6 +993,13 @@ img {
     letter-spacing: 0;
   }
 }
+.p-table__img--wrap {
+  text-align: center;
+  margin-top: 100px;
+}
+.p-table__img--small {
+  max-width: 400px;
+}
 .p-table__title {
   margin-bottom: 20px;
   width: 100%;
@@ -1044,6 +1062,7 @@ img {
   padding: 8px 12px;
   border-bottom: 1px solid #3335;
   box-sizing: border-box;
+  font-size: 14px;
 }
 @media screen and (max-width: 960px) {
   .p-table__th {
@@ -1099,6 +1118,7 @@ img {
 .p-table__td {
   padding: 8px 12px;
   border-bottom: 1px solid #3335;
+  font-size: 13px;
 }
 @media screen and (max-width: 960px) {
   .p-table__td {

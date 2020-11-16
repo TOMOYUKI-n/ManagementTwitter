@@ -2,7 +2,7 @@
     <div class="p-panel u-color__bg--white">
 
         <div class="p-status">
-            <p v-show="showRunButton" class="p-status__show" style="background-color: #3335;">{{serviceStatusLabel}}</p>
+            <p v-show="showRunButton" class="p-status__show p-status__sleep" style="background-color: #3335;">{{serviceStatusLabel}}</p>
             <p v-show="showStopButton" class="p-status__show p-status__active">{{serviceStatusLabel}}</p>
             <button class="c-button c-button__status--on"
                     @click="runUnfollowService"
@@ -10,7 +10,12 @@
                     <i class="fas fa-power-off c-icon__mr-2"></i>稼働
             </button>
         </div>
-        <p>※ 自動アンフォロー機能はフォロワー5000人以内の場合、自動的に停止されます。</p>
+        <div v-show="showStopButton">
+            <p class="p-table__caption__text">※ 自動アンフォロー機能はフォロワー5000人以内の場合、自動的に停止されます。</p>
+            <div class="p-table__img--wrap">
+                <img class="p-table__img--small" :src="'/images/working.png'">
+            </div>
+        </div>
 
     </div>
 </template>

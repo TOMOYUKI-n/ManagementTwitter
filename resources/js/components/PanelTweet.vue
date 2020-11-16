@@ -2,7 +2,7 @@
     <div class="p-panel u-color__bg--white">
 
         <div class="p-status">
-            <p v-show="showRunButton" class="p-status__show" style="background-color: #3335;">{{serviceStatusLabel}}</p>
+            <p v-show="showRunButton" class="p-status__show p-status__sleep" style="background-color: #3335;">{{serviceStatusLabel}}</p>
             <p v-show="showStopButton" class="p-status__show p-status__active">{{serviceStatusLabel}}</p>
             <button class="c-button c-button__status--on"
                     @click="runTweetService"

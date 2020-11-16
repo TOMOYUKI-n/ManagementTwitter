@@ -9,6 +9,13 @@
     letter-spacing: 0;
   }
 
+  &__img--wrap {
+    text-align: center;
+    margin-top: 100px;
+  }
+  &__img--small {
+    max-width: 400px;
+  }
   &__title {
     margin-bottom: 20px;
     width: 100%;
@@ -66,6 +73,7 @@
     padding: 8px 12px;
     border-bottom: 1px solid #3335;
     box-sizing: border-box;
+    font-size: 14px;
     @include mq() {
       font-size: $font-size_s;
       padding: 5px;
@@ -135,6 +143,7 @@
   &__td {
     padding: 8px 12px;
     border-bottom: 1px solid #3335;
+    font-size: 13px;
     @include mq() {
       font-size: 12px;
       padding: 4px;

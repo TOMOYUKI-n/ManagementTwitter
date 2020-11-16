@@ -20,7 +20,7 @@
                 <th class="p-table__th p-table__th--filter">操作</th>
             </tr>
             <tr v-for="(filter, index) in filters" :key="index">
-                <td class="p-table__td">{{filter.type_label}}</td>
+                <td class="p-table__td">{{filter.type}}</td>
                 <td class="p-table__td">{{filter.word}}</td>
                 <td class="p-table__td">{{filter.remove}}</td>
                 <td class="p-table__td">
@@ -115,7 +115,7 @@
 </template>
 
 <script>
-    import {  } from "../repository"
+    import { filterWords } from "../repository"
 
     export default {
         data() {
@@ -149,8 +149,8 @@
                 //     this.$store.commit('error/setCode', response.status)
                 //     return false
                 // }
-
-                // this.filters = response.data
+                const response = filterWords;
+                this.filters = response;
             },
             /**
              * 新規フィルターキーワードをAPIで登録する

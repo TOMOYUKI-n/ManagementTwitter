@@ -38,12 +38,12 @@
                     </div>
                 </div>
             </div>
-            <!--  -->
+            <!-- menu -->
             <div>
                 <div v-for="(i, index) in link" :key="index">
                     <div class="p-board__link p-board__hover" @click="change(index)"
                         :class="[flgId === i.id ? 'is-selected' : '']">
-                        <div class="">{{ i.label }}</div>
+                        <div style="font-size: 14px;">{{ i.label }}</div>
                     </div>
                 </div>
             </div>
@@ -83,7 +83,7 @@
     export default {
         data() {
             return {
-                page: 4,
+                page: 6,
                 flgId:1,
                 link: linkParam,
                 loginUserInfo: loginUserInfo,

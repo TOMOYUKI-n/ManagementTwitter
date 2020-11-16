@@ -2235,7 +2235,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      page: 4,
+      page: 6,
       flgId: 1,
       link: _repository__WEBPACK_IMPORTED_MODULE_1__["linkParam"],
       loginUserInfo: _repository__WEBPACK_IMPORTED_MODULE_1__["loginUserInfo"],
@@ -2629,18 +2629,24 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     /**
      * 登録したフィルターキーワード一覧をAPIで取得する
      */
-    fetchFilters: function fetchFilters() {// const response = await axios.get('/api/filter')
-      // if (response.status !== OK) {
-      //     this.$store.commit('error/setCode', response.status)
-      //     return false
-      // }
-      // this.filters = response.data
+    fetchFilters: function fetchFilters() {
+      var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
+                // const response = await axios.get('/api/filter')
+                // if (response.status !== OK) {
+                //     this.$store.commit('error/setCode', response.status)
+                //     return false
+                // }
+                response = _repository__WEBPACK_IMPORTED_MODULE_1__["filterWords"];
+                _this.filters = response;
+
+              case 2:
               case "end":
                 return _context.stop();
             }
@@ -2653,7 +2659,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
      * 新規フィルターキーワードをAPIで登録する
      */
     addFilter: function addFilter() {
-      var _this = this;
+      var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
         var addedFilter;
@@ -2668,7 +2674,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 //     this.addErrors = response.data.errors
                 //     return false
                 // }
-                _this.resetAddForm(); // if (response.status !== CREATED) {
+                _this2.resetAddForm(); // if (response.status !== CREATED) {
                 //     //システムエラー類
                 //     this.$store.commit('error/setCode', response.status)
                 //     return false
@@ -2676,11 +2682,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 // //取得したデータを格納する
 
 
-                addedFilter = _this.addForm;
+                addedFilter = _this2.addForm;
 
-                _this.filters.push(addedFilter);
+                _this2.filters.push(addedFilter);
 
-                _this.newModal = false; // //自動ツイート、自動いいね機能ではフィルターキーワードを参照しているので、
+                _this2.newModal = false; // //自動ツイート、自動いいね機能ではフィルターキーワードを参照しているので、
                 // //フィルターキーワードに変更があった際に変更を通知する
                 // this.$store.commit('dashboard/setNoticeToTweet', true)
                 // this.$store.commit('dashboard/setNoticeToLike', true)
@@ -2710,7 +2716,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
      * APIを利用してフィルターキーワードの変更を行う
      */
     editFilter: function editFilter() {
-      var _this2 = this;
+      var _this3 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
@@ -2729,9 +2735,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 //     this.$store.commit('error/setCode', response.status)
                 //     return false
                 // }
-                _this2.filters.splice(_this2.editIndex, 1, _this2.editForm);
+                _this3.filters.splice(_this3.editIndex, 1, _this3.editForm);
 
-                _this2.resetEditForm(); //自動ツイート、自動いいね機能ではフィルターキーワードを参照しているので、
+                _this3.resetEditForm(); //自動ツイート、自動いいね機能ではフィルターキーワードを参照しているので、
                 //フィルターキーワードに変更があった際に変更を通知する
                 // this.$store.commit('dashboard/setNoticeToTweet', true)
                 // this.$store.commit('dashboard/setNoticeToLike', true)
@@ -2750,7 +2756,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
      * APIを利用してフィルターキーワードの削除を行う
      */
     removeFilter: function removeFilter(id, index) {
-      var _this3 = this;
+      var _this4 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
@@ -2762,7 +2768,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 //     this.$store.commit('error/setCode', response.status)
                 //     return false
                 // }
-                _this3.filters.splice(index, 1); // this.$store.commit('dashboard/setNoticeToTweet', true)
+                _this4.filters.splice(index, 1); // this.$store.commit('dashboard/setNoticeToTweet', true)
                 // this.$store.commit('dashboard/setNoticeToLike', true)
 
 
@@ -4250,6 +4256,11 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
+//
+//
+//
 //
 //
 //
@@ -6673,7 +6684,11 @@ var render = function() {
                     }
                   }
                 },
-                [_c("div", {}, [_vm._v(_vm._s(i.label))])]
+                [
+                  _c("div", { staticStyle: { "font-size": "14px" } }, [
+                    _vm._v(_vm._s(i.label))
+                  ])
+                ]
               )
             ])
           }),
@@ -7030,7 +7045,7 @@ var render = function() {
         _vm._l(_vm.filters, function(filter, index) {
           return _c("tr", { key: index }, [
             _c("td", { staticClass: "p-table__td" }, [
-              _vm._v(_vm._s(filter.type_label))
+              _vm._v(_vm._s(filter.type))
             ]),
             _vm._v(" "),
             _c("td", { staticClass: "p-table__td" }, [
@@ -7579,7 +7594,7 @@ var render = function() {
               expression: "showRunButton"
             }
           ],
-          staticClass: "p-status__show",
+          staticClass: "p-status__show p-status__sleep",
           staticStyle: { "background-color": "#3335" }
         },
         [_vm._v(_vm._s(_vm.serviceStatusLabel))]
@@ -8195,7 +8210,7 @@ var render = function() {
               expression: "showRunButton"
             }
           ],
-          staticClass: "p-status__show",
+          staticClass: "p-status__show p-status__sleep",
           staticStyle: { "background-color": "#3335" }
         },
         [_vm._v(_vm._s(_vm.serviceStatusLabel))]
@@ -8669,7 +8684,7 @@ var render = function() {
               expression: "showRunButton"
             }
           ],
-          staticClass: "p-status__show",
+          staticClass: "p-status__show p-status__sleep",
           staticStyle: { "background-color": "#3335" }
         },
         [_vm._v(_vm._s(_vm.serviceStatusLabel))]
@@ -9264,7 +9279,7 @@ var render = function() {
               expression: "showRunButton"
             }
           ],
-          staticClass: "p-status__show",
+          staticClass: "p-status__show p-status__sleep",
           staticStyle: { "background-color": "#3335" }
         },
         [_vm._v(_vm._s(_vm.serviceStatusLabel))]
@@ -9307,11 +9322,33 @@ var render = function() {
       )
     ]),
     _vm._v(" "),
-    _c("p", [
-      _vm._v(
-        "※ 自動アンフォロー機能はフォロワー5000人以内の場合、自動的に停止されます。"
-      )
-    ])
+    _c(
+      "div",
+      {
+        directives: [
+          {
+            name: "show",
+            rawName: "v-show",
+            value: _vm.showStopButton,
+            expression: "showStopButton"
+          }
+        ]
+      },
+      [
+        _c("p", { staticClass: "p-table__caption__text" }, [
+          _vm._v(
+            "※ 自動アンフォロー機能はフォロワー5000人以内の場合、自動的に停止されます。"
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "p-table__img--wrap" }, [
+          _c("img", {
+            staticClass: "p-table__img--small",
+            attrs: { src: "/images/working.png" }
+          })
+        ])
+      ]
+    )
   ])
 }
 var staticRenderFns = []
