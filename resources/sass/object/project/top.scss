@@ -1,0 +1,138 @@
+// ============================
+// TOPページ
+// ============================
+
+.l-main-top-barner{
+    width: 100vw;
+    text-align: center;
+    @include mq(){
+        width: 100%;
+    }
+}
+.p-top{
+    // ============================
+    // バナーエリア
+    // ============================
+    &__top{
+        box-sizing: border-box;
+        display: block;
+        margin: 0px auto;
+    }
+    &__head{
+        margin:0;
+    }
+    &__top-message{
+        box-sizing: border-box;
+        display: block;
+        border-radius: 6px;
+    }
+    &__introduction{
+        color: $color_black;
+        font-size: 2.4vw;
+        &__2{
+            box-sizing: border-box;
+            position: absolute;
+            top: 60px;
+            left: calc(50%/1.9);
+        }
+    }
+    &__login{
+        padding: 10px;
+        display: block;
+        box-sizing: border-box;
+        text-align: center;
+    }
+
+    // ============================
+    // ログインエリア
+    // ============================
+    &__account{
+        border-radius: 6px;
+        box-shadow: 0 2px 4px 0 #b2b5be;
+        background-color: #fff;
+        box-sizing: border-box;
+        padding: 20px 0;
+        width: 320px;
+        height: 280px;
+        margin: 60px auto 0px auto;
+    }
+    &__register, &__login{
+        padding: 16px 32px;
+    }
+    &__text-xs{
+        font-size: 13px;
+    }
+    &__mt-3{
+        margin-top: 12px;
+    }
+    // ============================
+    // 特徴紹介エリア
+    // ============================
+    &__section-container{
+        text-align: center;
+        margin: 0px 10px;
+        @include mq(){
+            width: 100%;
+            margin: 0px;
+            margin-bottom: 64px;
+
+        }
+    }
+    &__section-title{
+        margin: 60px 0px 30px 0px;
+    }
+    &__section-wrap{
+        display: flex;
+        @include mq(){
+            display: block;
+        }
+    }
+    &__section{
+        margin: 0px 10px;
+        border-radius: 4px;
+        padding: 12px;
+        background-color: #fff;
+        box-shadow: 0 2px 4px 2px #b2b5be33;
+        width: calc(100% / 3);
+        @include mq(){
+            width: 100%;
+            margin: 0px;
+            margin-bottom: 12px;
+            box-sizing: border-box;
+        }
+    }
+    &__section__text{
+        font-size: 14px;
+        text-align: left;
+        padding: 0px 12px;
+    }
+    &__section__subtitle{
+        padding: 10px;
+    }
+    
+    // ============================
+    // imageに対するcss
+    // ============================
+    &__img{
+        width: 50%;
+        height: auto;
+
+        &__main{
+            margin: 0;
+        }
+        &__trend{
+            margin:0;
+            border-radius: 6px;
+        }
+        &__follow{
+            margin:0;
+            border-radius: 6px;
+        }
+        &__news{
+            margin:0;
+            border-radius: 6px;
+        }
+    }
+
+}
+

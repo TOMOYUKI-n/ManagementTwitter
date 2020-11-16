@@ -1,0 +1,71 @@
+// ==================================
+// p-twitter
+// ==================================
+.p-twitter {
+    width: 100%;
+    margin-top: 24px;
+    &__card {
+        overflow: hidden;
+        // transition: 0.5s;
+        padding: 4px;
+        border-radius: 4px;
+        margin-bottom: 1px;
+        box-shadow: 0 0px 2px #999;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        @include mq(){
+              height: 60px;
+        }
+  
+        &:hover {
+            background-color: rgba(104, 177, 250, 0.1);;
+            cursor: pointer;
+            @include mq(){
+                transform: initial;
+            }
+        }
+    }
+  
+    &__create {
+        font-size: $font-size_l;
+        line-height: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        @include mq() {
+            font-size: $font-size_m;
+            line-height: 40px;
+        }
+    }
+  
+    &__width-80 {
+        width: 80%;
+    }
+  
+    &__img{
+        background: $color-brown-parent;
+        height: 50px;
+        width: 50px;
+        border-radius: 50%;
+        margin-right: 30px;
+        float: left;
+        @include mq(){
+            height: 40px;
+            width: 40px;
+        }
+    }
+  
+    &__ids{
+        line-height: 25px;
+        overflow: auto;
+        @include mq(){
+            line-height: 20px;
+        }
+    }
+  
+    &__text__bold{
+        font-weight: bold;
+    }
+  
+}

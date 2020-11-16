@@ -1,0 +1,81 @@
+.p-board{
+    &__wrap{
+        width:100%;
+        display: flex;
+        @include mq(){
+            display: block;
+        }
+    }
+    // sidebar
+    &__sidebar{
+        width:20%;
+        color: #fff;
+        background-color: #333;
+        min-height:93vh;
+        display: grid;
+        @include mq(){
+            display: none;
+        }
+    }
+    &__top{
+        margin-top: 8px;
+    }
+    &__d-flex{
+        display: flex;
+    }
+    &__mp-4{
+        padding: 16px;
+    }
+    &__mr-2{
+        margin-right: 8px;
+    }
+    &__space-end{
+        justify-content: space-between;
+        align-items: baseline;
+    }
+    &__link{
+        cursor: pointer;
+        padding: 8px 32px;
+    }
+    &__hover{
+        &:hover{
+            background-color: rgba(5, 121, 216, 0.2);
+        }
+    }
+    &__mt-8{
+        margin-top: 32px;
+    }
+    &__text-small{
+        font-size: 13px;
+    }
+
+    // body
+    &__body{
+        width:80%;
+        display: grid;
+        @include mq(){
+            width: 100%;
+            display: block;
+        }
+    }
+    &__section{
+        @include mq(){
+            width: 100%;
+            display: block;
+        }
+    }
+}
+.is-selected {
+    animation: selected 2s ease-in-out infinite;
+}
+@keyframes selected {
+    0% {
+        background: rgba(57, 157, 224, 0.2);
+    }
+    50% {
+        background: rgba(57, 157, 224, 0.3);
+    }
+    100% {
+        background: rgba(57, 157, 224, 0.2);
+    }
+}

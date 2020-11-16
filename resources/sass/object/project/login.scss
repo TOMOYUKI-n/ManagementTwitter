@@ -1,0 +1,79 @@
+// ============================
+// login画面
+// ============================
+
+.p-login{
+    &__inputError{
+        color: red;
+        font-size: 13px;
+        text-align: center;
+    }
+    // ============================
+    // カバーパーツ
+    // ============================
+    &__container{
+        max-width: 500px;
+        min-width: 350px;
+        margin: 60px auto;
+        padding: 30px;
+        box-sizing: border-box;
+        box-shadow: 0px 4px 8px 2px #b2b5be;
+        font-size: $font-size_xxs;
+        border-radius: 6px;
+        @include mq(){
+            width: 100%;
+            margin: 20px auto;
+            box-shadow: 0px 0px 0px 0px #b2b5be;
+        }
+    }
+    // ============================
+    // フォーム部分 入力エリア
+    // ============================
+    &__inner{
+        margin-top: 10px;
+        display: flex;
+        align-items: baseline;
+    }
+    &__form{
+        display: block;
+        width: 100%;
+        padding: 4px 12px;
+        font-size: 16px;
+        line-height: 1.6;
+        color: #495057;
+        border: 1px solid #ced4da;
+        border-radius: 4px;
+        transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        margin: 4px 0px 4px 12px;
+    }
+    // ============================
+    // フォーム部分 ログインエリア
+    // ============================
+    &__button__wrap{
+        box-sizing: border-box;
+        margin: 8px 16px;
+    }
+
+    &__text{
+        padding: 10px;
+        margin: 10px;
+        margin-top: 30px;
+        word-break: break-word;
+        text-align: center;
+        @include mq(){
+            width: 100%;
+        }
+    }
+    &__forgot{
+        padding: 10px;
+        margin: 10px;
+        margin-top: 30px;
+        word-break: break-word;
+        text-align: center;
+        font-weight: bold;
+        color: #386cfa9c !important;
+        &:hover{
+            cursor: pointer;
+        }
+    }
+}

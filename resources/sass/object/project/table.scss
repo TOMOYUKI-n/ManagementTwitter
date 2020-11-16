@@ -1,0 +1,163 @@
+// ==================================
+// p-table
+// ==================================
+.p-table {
+  width: 100%;
+  text-align: left;
+  box-sizing: border-box;
+  @include mq() {
+    letter-spacing: 0;
+  }
+
+  &__img--wrap {
+    text-align: center;
+    margin-top: 100px;
+  }
+  &__img--small {
+    max-width: 400px;
+  }
+  &__title {
+    margin-bottom: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    @include mq() {
+      // margin-bottom: 10px;
+      display: block;
+    }
+  }
+  &__btn-wrap {
+    @include mq() {
+      display: block;
+      text-align: end;
+    }
+  }
+
+  &__caption {
+    font-weight: bold;
+    font-size: $font-size_l;
+    text-align: left;
+    display: inline-block;
+    @include mq() {
+      font-size: 16px;
+      width: 50%;
+    }
+    &__text {
+      font-size: 12px;
+      @include mq() {
+        font-size: 12px;
+        text-align: left;
+        margin-top: 12px;
+        margin-bottom: 12px;
+      }
+    }
+  }
+
+  &__button {
+    display: inline-block;
+    @include mq() {
+      margin-bottom: 3px;
+    }
+  }
+
+  &__head {
+    font-size: $font-size_m;
+    font-weight: bold;
+    @include mq() {
+      font-size: $font-size_default;
+    }
+  }
+
+  &__th {
+    padding: 8px 12px;
+    border-bottom: 1px solid #3335;
+    box-sizing: border-box;
+    font-size: 14px;
+    @include mq() {
+      font-size: $font-size_s;
+      padding: 5px;
+    }
+
+    &--follow {
+      &:nth-child(1) {
+        width: 20%;
+        @include mq() {
+          width: 20%;
+        }
+      }
+
+      &:nth-child(2) {
+        @include mq() {
+          width: 40%;
+        }
+      }
+
+      &:nth-child(3) {
+        min-width: 120px;
+        @include mq() {
+          width: 30%;
+        }
+      }
+    }
+
+    &--like {
+      &:nth-child(1) {
+        width: 80%;
+      }
+
+      &:nth-child(2) {
+        width: 20%;
+      }
+    }
+
+    &--tweet {
+      &:nth-child(1), &:nth-child(4) {
+        width: 20%;
+      }
+
+      &:nth-child(3) {
+        width: 25%;
+      }
+
+      &:nth-child(2) {
+        width: 35%;
+      }
+    }
+
+    &--filter {
+      &:nth-child(1) {
+        width: 20%;
+      }
+
+      &:nth-child(2), &:nth-child(3) {
+        width: 30%;
+      }
+
+      &:nth-child(4) {
+        width: 20%;
+      }
+    }
+  }
+
+  &__td {
+    padding: 8px 12px;
+    border-bottom: 1px solid #3335;
+    font-size: 13px;
+    @include mq() {
+      font-size: 12px;
+      padding: 4px;
+      word-break: break-word;
+      border-bottom: 1px solid #3335;
+    }
+  }
+
+  &__test-xs {
+    font-size: 12px;
+  }
+
+  &__action {
+    text-align: end;
+  }
+
+}

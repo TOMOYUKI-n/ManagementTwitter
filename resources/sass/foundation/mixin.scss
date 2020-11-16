@@ -1,0 +1,22 @@
+// ==============================
+// breakpoints
+// ==============================
+$breakpoints: (
+        'sm': 'screen and (max-width: 640px)',
+        'md': 'screen and (max-width: 960px)',
+        'lg': 'screen and (max-width: 1200px)',
+        'xl': 'screen and (max-width: 1366px)',
+) !default;
+
+// ==============================
+// mixin
+// ==============================
+@mixin mq($breakpoint: md) {
+  @media #{map-get($breakpoints, $breakpoint)} {
+    @content;
+  }
+}
+// @mixin fontsizeVw($size) {
+//   $winW: 680px; // 画面幅を設定する
+//   font-size: ($size / $winW) * 100 + vw;
+// }

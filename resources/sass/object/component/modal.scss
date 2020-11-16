@@ -1,0 +1,49 @@
+// ==================================
+// p-modal
+// ==================================
+.p-modal {
+    background: $color-default-parent;
+    height: 100vh;
+    width: 80%;
+    position: fixed;
+    top: 7vh;
+    right: 0;
+    bottom: 0;
+    left: 20%;
+    overflow-y: auto;
+    z-index: 200;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+    @include mq() {
+        width: 100vw;
+        top: 0;
+        left: 0;
+    }
+  
+    &__contents {
+        position: relative;
+        background: $color-white;
+        width: 600px;
+        padding: 40px;
+        box-sizing: border-box;
+        @include mq() {
+            width: 100%;
+            padding: 20px;
+            margin: 2.5%;
+        }
+    }
+  
+    &__cancel {
+        position: absolute;
+        z-index: 201;
+        right: 16px;
+        top: 8px;
+    }
+  
+    &__icon {
+        font-size: $font-size_l;
+    }
+  
+}
