@@ -41,13 +41,8 @@ class KeywordController extends Controller
      */
     public function add(Request $request)
     {
-
-        $twitter_user_id = 1;
-
         $keyword = new Keyword();
-        // $keyword->type = $request->type;
         $keyword->word = $this->fixWordSpace($request->word);
-        // $keyword->word = $request->word;
         $keyword->remove = $this->fixWordSpace($request->remove);
         $keyword->remove = $request->remove;
 

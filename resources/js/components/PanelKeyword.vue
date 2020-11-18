@@ -117,11 +117,11 @@
 
 <script>
     import { filterWords } from "../repository"
-    import { UNPROCESSABLE_ENTRY, OK } from "../utility"
     import axios from "axios";
     export default {
         data() {
             return {
+                page: 6,
                 filters: [],
                 newModal: false,
                 editModal: false,
@@ -147,7 +147,7 @@
              */
             async fetchFilters() {
                 const response = await axios.get('/api/keyword');
-                if (response.status !== OK) {
+                if (response.status !== 200) {
                     return false;
                 }
                 this.filters = response.data;
@@ -159,13 +159,13 @@
                 this.clearErrors()
                 const response = await axios.post('/api/keyword', this.addForm);
                 
-                if (response.status === UNPROCESSABLE_ENTRY) {
+                if (response.status === 422) {
                     //バリデーションエラー
                     this.addErrors = response.data.errors;
                     return false;
                 };
                 this.resetAddForm()
-                if (response.status !== CREATED) {
+                if (response.status !== 200) {
                     return false;
                 }
                 this.newModal = false;
@@ -189,12 +189,12 @@
             async editFilter() {
                 this.clearErrors();
                 const response = await axios.put(`/api/keyword/${this.editForm.id}`, this.editForm);
-                if (response.status === UNPROCESSABLE_ENTRY) {
+                if (response.status === 422) {
                     //バリデーションエラー
                     this.editErrors = response.data.errors;
                     return false;
                 }
-                if (response.status !== OK) {
+                if (response.status !== 200) {
                     console.log(response.status);
                     return false;
                 }
@@ -207,7 +207,7 @@
              */
             async removeFilter(id, index) {
                 const response = await axios.delete(`/api/keyword/${id}`)
-                if (response.status !== OK) {
+                if (response.status !== 200) {
                     this.$store.commit('error/setCode', response.status);
                     return false;
                 }
@@ -239,10 +239,17 @@
             clearErrors() {
                 this.addErrors = null;
                 this.editErrors = null;
+            },
+            /**
+             * localstorageから現在のページを保存する
+             */
+            getCurrentPage() {
+                localStorage.setItem('page', this.page);
             }
         },
         created() {
             this.fetchFilters();
+            this.getCurrentPage();
         },
     }
 </script>

@@ -117,11 +117,24 @@
                     this.loginTwitterUser = response;
                 }
             },
+            /**
+             * localstorageに現在のページを取得する
+             */
+            async getCurrentPage() {
+                const pages = await localStorage.getItem('page');
+                console.log(pages);
+                if(pages === null){
+                    this.flgId = 1;  
+                    this.page = 1;  
+                }
+                else {
+                    this.flgId = Number(pages);
+                    this.page = Number(pages);
+                }
+            }
         },
-        /**
-         * localstorageに保存しておく
-         */
         async created() {
+            await this.getCurrentPage();
             await this.getAccountInfo();
             await this.setLoginData();
         }

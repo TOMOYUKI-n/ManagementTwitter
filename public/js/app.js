@@ -2319,33 +2319,69 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }
         }, _callee2);
       }))();
+    },
+
+    /**
+     * localstorageに現在のページを取得する
+     */
+    getCurrentPage: function getCurrentPage() {
+      var _this3 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+        var pages;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                _context3.next = 2;
+                return localStorage.getItem('page');
+
+              case 2:
+                pages = _context3.sent;
+                console.log(pages);
+
+                if (pages === null) {
+                  _this3.flgId = 1;
+                  _this3.page = 1;
+                } else {
+                  _this3.flgId = Number(pages);
+                  _this3.page = Number(pages);
+                }
+
+              case 5:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
+      }))();
     }
   },
-
-  /**
-   * localstorageに保存しておく
-   */
   created: function created() {
-    var _this3 = this;
+    var _this4 = this;
 
-    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
         while (1) {
-          switch (_context3.prev = _context3.next) {
+          switch (_context4.prev = _context4.next) {
             case 0:
-              _context3.next = 2;
-              return _this3.getAccountInfo();
+              _context4.next = 2;
+              return _this4.getCurrentPage();
 
             case 2:
-              _context3.next = 4;
-              return _this3.setLoginData();
+              _context4.next = 4;
+              return _this4.getAccountInfo();
 
             case 4:
+              _context4.next = 6;
+              return _this4.setLoginData();
+
+            case 6:
             case "end":
-              return _context3.stop();
+              return _context4.stop();
           }
         }
-      }, _callee3);
+      }, _callee4);
     }))();
   }
 });
@@ -2632,6 +2668,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
+      page: 2,
       followTargets: [],
       filters: [],
       newModal: false,
@@ -2947,12 +2984,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     clearErrors: function clearErrors() {
       this.addErrors = null;
       this.editErrors = null;
+    },
+    getCurrentPage: function getCurrentPage() {
+      localStorage.setItem('page', this.page);
     }
   },
   created: function created() {
     this.fetchFollowTargets();
     this.fetchFilters();
     this.fetchServiceStatus();
+    this.getCurrentPage();
   },
   watch: {
     /**
@@ -2985,9 +3026,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _repository__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../repository */ "./resources/js/repository.js");
-/* harmony import */ var _utility__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../utility */ "./resources/js/utility.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -3113,10 +3153,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 
 
-
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
+      page: 6,
       filters: [],
       newModal: false,
       editModal: false,
@@ -3150,12 +3190,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.get('/api/keyword');
+                return axios__WEBPACK_IMPORTED_MODULE_2___default.a.get('/api/keyword');
 
               case 2:
                 response = _context.sent;
 
-                if (!(response.status !== _utility__WEBPACK_IMPORTED_MODULE_2__["OK"])) {
+                if (!(response.status !== 200)) {
                   _context.next = 5;
                   break;
                 }
@@ -3189,12 +3229,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _this2.clearErrors();
 
                 _context2.next = 3;
-                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.post('/api/keyword', _this2.addForm);
+                return axios__WEBPACK_IMPORTED_MODULE_2___default.a.post('/api/keyword', _this2.addForm);
 
               case 3:
                 response = _context2.sent;
 
-                if (!(response.status === _utility__WEBPACK_IMPORTED_MODULE_2__["UNPROCESSABLE_ENTRY"])) {
+                if (!(response.status === 422)) {
                   _context2.next = 7;
                   break;
                 }
@@ -3208,7 +3248,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 _this2.resetAddForm();
 
-                if (!(response.status !== CREATED)) {
+                if (!(response.status !== 200)) {
                   _context2.next = 11;
                   break;
                 }
@@ -3256,12 +3296,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _this3.clearErrors();
 
                 _context3.next = 3;
-                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.put("/api/keyword/".concat(_this3.editForm.id), _this3.editForm);
+                return axios__WEBPACK_IMPORTED_MODULE_2___default.a.put("/api/keyword/".concat(_this3.editForm.id), _this3.editForm);
 
               case 3:
                 response = _context3.sent;
 
-                if (!(response.status === _utility__WEBPACK_IMPORTED_MODULE_2__["UNPROCESSABLE_ENTRY"])) {
+                if (!(response.status === 422)) {
                   _context3.next = 7;
                   break;
                 }
@@ -3271,7 +3311,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _context3.abrupt("return", false);
 
               case 7:
-                if (!(response.status !== _utility__WEBPACK_IMPORTED_MODULE_2__["OK"])) {
+                if (!(response.status !== 200)) {
                   _context3.next = 10;
                   break;
                 }
@@ -3307,12 +3347,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context4.prev = _context4.next) {
               case 0:
                 _context4.next = 2;
-                return axios__WEBPACK_IMPORTED_MODULE_3___default.a["delete"]("/api/keyword/".concat(id));
+                return axios__WEBPACK_IMPORTED_MODULE_2___default.a["delete"]("/api/keyword/".concat(id));
 
               case 2:
                 response = _context4.sent;
 
-                if (!(response.status !== _utility__WEBPACK_IMPORTED_MODULE_2__["OK"])) {
+                if (!(response.status !== 200)) {
                   _context4.next = 6;
                   break;
                 }
@@ -3361,10 +3401,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     clearErrors: function clearErrors() {
       this.addErrors = null;
       this.editErrors = null;
+    },
+
+    /**
+     * localstorageから現在のページを保存する
+     */
+    getCurrentPage: function getCurrentPage() {
+      localStorage.setItem('page', this.page);
     }
   },
   created: function created() {
     this.fetchFilters();
+    this.getCurrentPage();
   }
 });
 

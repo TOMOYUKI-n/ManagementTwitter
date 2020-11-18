@@ -146,6 +146,7 @@
     export default {
         data() {
             return {
+                page: 2,
                 followTargets: [],
                 filters: [],
                 newModal: false,
@@ -333,12 +334,16 @@
             clearErrors() {
                 this.addErrors = null
                 this.editErrors = null
+            },
+            getCurrentPage() {
+                localStorage.setItem('page', this.page);
             }
         },
         created() {
             this.fetchFollowTargets()
             this.fetchFilters()
-            this.fetchServiceStatus()
+            this.fetchServiceStatus();
+            this.getCurrentPage();
         },
         watch: {
             /**
