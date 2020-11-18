@@ -34,11 +34,9 @@ Route::get('/login/{provider}', 'Auth\LoginController@redirectToProvider');
 Route::get('/login/{provider}/callback', 'Auth\LoginController@handleProviderCallback');
 
 
-// 他のルートに該当しない場合indexを返す
-// Route::get('{any?}', function () {
-//     return view('index');
-// })->where('any', '.+');
-
+/**
+ * 認証が必要なルート
+ */
 Route::group(['middleware' => 'auth'], function() {
     // ダッシュボード
     Route::get('/dashboard', 'IndexController@dashboard')->name('index.dashBoard');
@@ -51,6 +49,15 @@ Route::group(['middleware' => 'auth'], function() {
     Route::post('/provider/disconnect', 'ConnectController@disconnect');
     // アカウント情報取得処理
     Route::get('/provider/status', 'ConnectController@status');
+
+    /**
+     * キーワード関連
+     */
+    Route::post('/api/keyword', 'KeywordController@add')->name('keyword.add');
+    Route::get('/api/keyword', 'KeywordController@show')->name('keyword.show');
+    Route::get('/api/keyword/{id}', 'KeywordController@get')->name('keyword.get');
+    Route::put('/api/keyword/{id}', 'KeywordController@edit')->name('keyword.edit');
+    Route::delete('/api/keyword/{id}', 'KeywordController@delete')->name('keyword.delete');
 
     // アカウント一覧画面遷移
     Route::get('/accountList', function(){ return view('index.accountList'); });

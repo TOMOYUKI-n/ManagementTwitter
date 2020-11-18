@@ -69,7 +69,7 @@
                 <panel-unfollow key="unfollow" v-if="page === 3" />
                 <panel-like key="like" v-if="page === 4" />
                 <panel-tweet key="tweet" v-if="page === 5" />
-                <panel-filter key="filter" v-if="page === 6" />
+                <panel-keyword key="filter" v-if="page === 6" />
             </transition-group>
         </section>
     </div>
@@ -83,7 +83,7 @@
     export default {
         data() {
             return {
-                page: 6,
+                page: 5,
                 flgId:1,
                 link: linkParam,
                 loginUserInfo: loginUserInfo,

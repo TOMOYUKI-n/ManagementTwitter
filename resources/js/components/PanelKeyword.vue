@@ -49,7 +49,7 @@
                     <div class="p-modal__cancel u-color__bg--white" @click="newModal = !newModal">
                         <i class="c-icon--gray p-modal__icon fas fa-times"></i>
                     </div>
-                    <form class="p-form" @submit.prevent="addFilter">
+                    <form class="p-form" @submit="addFilter">
 
                         <div v-if="addErrors" class="p-form__errors">
                             <ul v-if="addErrors.word">
@@ -105,6 +105,7 @@
                 </div>
             </section>
         </div>
+        <!-- レスポンシブで表示 -->
         <div class="c-button--add--wrap">
             <button class="c-button--add--sp" @click="newModal = ! newModal">
                 <i class="fas fa-plus"></i>
@@ -116,7 +117,8 @@
 
 <script>
     import { filterWords } from "../repository"
-
+    import { UNPROCESSABLE_ENTRY, OK } from "../utility"
+    import axios from "axios";
     export default {
         data() {
             return {
@@ -141,122 +143,102 @@
         },
         methods: {
             /**
-             * 登録したフィルターキーワード一覧をAPIで取得する
+             * キーワード一覧を取得
              */
             async fetchFilters() {
-                // const response = await axios.get('/api/filter')
-                // if (response.status !== OK) {
-                //     this.$store.commit('error/setCode', response.status)
-                //     return false
-                // }
-                const response = filterWords;
-                this.filters = response;
+                const response = await axios.get('/api/keyword');
+                if (response.status !== OK) {
+                    return false;
+                }
+                this.filters = response.data;
             },
             /**
-             * 新規フィルターキーワードをAPIで登録する
+             * 新規キーワードを登録
              */
             async addFilter() {
-                // this.clearErrors()
-                // const response = await axios.post('/api/filter', this.addForm)
-
-                // if (response.status === UNPROCESSABLE_ENTRY) {
-                //     //バリデーションエラー
-                //     this.addErrors = response.data.errors
-                //     return false
-                // }
+                this.clearErrors()
+                const response = await axios.post('/api/keyword', this.addForm);
+                
+                if (response.status === UNPROCESSABLE_ENTRY) {
+                    //バリデーションエラー
+                    this.addErrors = response.data.errors;
+                    return false;
+                };
                 this.resetAddForm()
-                // if (response.status !== CREATED) {
-                //     //システムエラー類
-                //     this.$store.commit('error/setCode', response.status)
-                //     return false
-                // }
-
-                // //取得したデータを格納する
-                const addedFilter = this.addForm;
-                this.filters.push(addedFilter)
-                this.newModal = false
-
-                // //自動ツイート、自動いいね機能ではフィルターキーワードを参照しているので、
-                // //フィルターキーワードに変更があった際に変更を通知する
-                // this.$store.commit('dashboard/setNoticeToTweet', true)
-                // this.$store.commit('dashboard/setNoticeToLike', true)
+                if (response.status !== CREATED) {
+                    return false;
+                }
+                this.newModal = false;
+                // 一覧を更新
+                this.fetchFilters();
             },
             /**
              * 編集フォームモーダルの表示を行って、値を入力しておく
              */
             showEditModal(filter, index) {
-                this.editModal = true
-                this.editForm.id = filter.id
-                this.editForm.type = filter.type
-                this.editForm.word = filter.word
-                this.editForm.remove = filter.remove
-                this.editIndex = index
+                this.editModal = true;
+                this.editForm.id = filter.id;
+                this.editForm.type = filter.type;
+                this.editForm.word = filter.word;
+                this.editForm.remove = filter.remove;
+                this.editIndex = index;
             },
             /**
              * APIを利用してフィルターキーワードの変更を行う
              */
             async editFilter() {
-                // this.clearErrors()
-                // const response = await axios.put(`/api/filter/${this.editForm.id}`, this.editForm)
-                // if (response.status === UNPROCESSABLE_ENTRY) {
-                //     //バリデーションエラー
-                //     this.editErrors = response.data.errors
-                //     return false
-                // }
-                // if (response.status !== OK) {
-                //     //システムエラー類
-                //     this.$store.commit('error/setCode', response.status)
-                //     return false
-                // }
-
-                this.filters.splice(this.editIndex, 1, this.editForm)
-                this.resetEditForm()
-
-                //自動ツイート、自動いいね機能ではフィルターキーワードを参照しているので、
-                //フィルターキーワードに変更があった際に変更を通知する
-                // this.$store.commit('dashboard/setNoticeToTweet', true)
-                // this.$store.commit('dashboard/setNoticeToLike', true)
+                this.clearErrors();
+                const response = await axios.put(`/api/keyword/${this.editForm.id}`, this.editForm);
+                if (response.status === UNPROCESSABLE_ENTRY) {
+                    //バリデーションエラー
+                    this.editErrors = response.data.errors;
+                    return false;
+                }
+                if (response.status !== OK) {
+                    console.log(response.status);
+                    return false;
+                }
+                // 一覧を更新
+                this.fetchFilters();
+                this.resetEditForm();
             },
             /**
              * APIを利用してフィルターキーワードの削除を行う
              */
             async removeFilter(id, index) {
-                // const response = await axios.delete(`/api/filter/${id}`)
-                // if (response.status !== OK) {
-                //     this.$store.commit('error/setCode', response.status)
-                //     return false
-                // }
-
-                this.filters.splice(index, 1)
-                // this.$store.commit('dashboard/setNoticeToTweet', true)
-                // this.$store.commit('dashboard/setNoticeToLike', true)
+                const response = await axios.delete(`/api/keyword/${id}`)
+                if (response.status !== OK) {
+                    this.$store.commit('error/setCode', response.status);
+                    return false;
+                }
+                // そのまま一覧から消す
+                this.filters.splice(index, 1);
             },
-
             /**
              * 登録フォームの入力欄を空にする
              */
             resetAddForm() {
-                this.addForm.type = 1
-                this.addForm.word = ''
-                this.addForm.remove = ''
+                this.addForm.type = 1;
+                this.addForm.word = '';
+                this.addForm.remove = '';
             },
             /**
              * 編集フォームの入力欄を空にする
              */
             resetEditForm() {
-                this.editModal = false
-                this.editForm.id = null
-                this.editForm.type = ''
-                this.editForm.word = ''
-                this.editForm.remove = ''
-                this.editIndex = null
+                this.editModal = false;
+                this.editForm.id = null;
+                this.editForm.type = '';
+                this.editForm.word = '';
+                this.editForm.remove = '';
+                this.editIndex = null;
             },
             /**
              * エラーメッセージを空にする
              */
             clearErrors() {
-                this.addErrors = null
-                this.editErrors = null
+                this.addErrors = null;
+                this.editErrors = null;
             }
         },
         created() {

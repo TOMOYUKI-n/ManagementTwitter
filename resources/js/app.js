@@ -6,7 +6,7 @@ Vue.component('login', require('./components/Login.vue').default);
 Vue.component('footer-component', require('./components/FooterComponent.vue').default);
 
 Vue.component('dash-board', require('./components/DashBoard.vue').default);
-Vue.component('panel-filter', require('./components/PanelFilter.vue').default);
+Vue.component('panel-keyword', require('./components/PanelKeyword.vue').default);
 Vue.component('panel-follow', require('./components/PanelFollow.vue').default);
 Vue.component('panel-like', require('./components/PanelLike.vue').default);
 Vue.component('panel-tweet', require('./components/PanelTweet.vue').default);

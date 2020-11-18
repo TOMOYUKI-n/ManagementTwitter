@@ -2235,7 +2235,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      page: 6,
+      page: 5,
       flgId: 1,
       link: _repository__WEBPACK_IMPORTED_MODULE_1__["linkParam"],
       loginUserInfo: _repository__WEBPACK_IMPORTED_MODULE_1__["loginUserInfo"],
@@ -2463,355 +2463,6 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     this.getLoginData();
-  }
-});
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/PanelFilter.vue?vue&type=script&lang=js&":
-/*!**********************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/PanelFilter.vue?vue&type=script&lang=js& ***!
-  \**********************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _repository__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../repository */ "./resources/js/repository.js");
-
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  data: function data() {
-    return {
-      filters: [],
-      newModal: false,
-      editModal: false,
-      editIndex: null,
-      addErrors: null,
-      editErrors: null,
-      addForm: {
-        type: 1,
-        word: '',
-        remove: ''
-      },
-      editForm: {
-        id: null,
-        type: '',
-        word: '',
-        remove: ''
-      }
-    };
-  },
-  methods: {
-    /**
-     * 登録したフィルターキーワード一覧をAPIで取得する
-     */
-    fetchFilters: function fetchFilters() {
-      var _this = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var response;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                // const response = await axios.get('/api/filter')
-                // if (response.status !== OK) {
-                //     this.$store.commit('error/setCode', response.status)
-                //     return false
-                // }
-                response = _repository__WEBPACK_IMPORTED_MODULE_1__["filterWords"];
-                _this.filters = response;
-
-              case 2:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee);
-      }))();
-    },
-
-    /**
-     * 新規フィルターキーワードをAPIで登録する
-     */
-    addFilter: function addFilter() {
-      var _this2 = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-        var addedFilter;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
-          while (1) {
-            switch (_context2.prev = _context2.next) {
-              case 0:
-                // this.clearErrors()
-                // const response = await axios.post('/api/filter', this.addForm)
-                // if (response.status === UNPROCESSABLE_ENTRY) {
-                //     //バリデーションエラー
-                //     this.addErrors = response.data.errors
-                //     return false
-                // }
-                _this2.resetAddForm(); // if (response.status !== CREATED) {
-                //     //システムエラー類
-                //     this.$store.commit('error/setCode', response.status)
-                //     return false
-                // }
-                // //取得したデータを格納する
-
-
-                addedFilter = _this2.addForm;
-
-                _this2.filters.push(addedFilter);
-
-                _this2.newModal = false; // //自動ツイート、自動いいね機能ではフィルターキーワードを参照しているので、
-                // //フィルターキーワードに変更があった際に変更を通知する
-                // this.$store.commit('dashboard/setNoticeToTweet', true)
-                // this.$store.commit('dashboard/setNoticeToLike', true)
-
-              case 4:
-              case "end":
-                return _context2.stop();
-            }
-          }
-        }, _callee2);
-      }))();
-    },
-
-    /**
-     * 編集フォームモーダルの表示を行って、値を入力しておく
-     */
-    showEditModal: function showEditModal(filter, index) {
-      this.editModal = true;
-      this.editForm.id = filter.id;
-      this.editForm.type = filter.type;
-      this.editForm.word = filter.word;
-      this.editForm.remove = filter.remove;
-      this.editIndex = index;
-    },
-
-    /**
-     * APIを利用してフィルターキーワードの変更を行う
-     */
-    editFilter: function editFilter() {
-      var _this3 = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
-          while (1) {
-            switch (_context3.prev = _context3.next) {
-              case 0:
-                // this.clearErrors()
-                // const response = await axios.put(`/api/filter/${this.editForm.id}`, this.editForm)
-                // if (response.status === UNPROCESSABLE_ENTRY) {
-                //     //バリデーションエラー
-                //     this.editErrors = response.data.errors
-                //     return false
-                // }
-                // if (response.status !== OK) {
-                //     //システムエラー類
-                //     this.$store.commit('error/setCode', response.status)
-                //     return false
-                // }
-                _this3.filters.splice(_this3.editIndex, 1, _this3.editForm);
-
-                _this3.resetEditForm(); //自動ツイート、自動いいね機能ではフィルターキーワードを参照しているので、
-                //フィルターキーワードに変更があった際に変更を通知する
-                // this.$store.commit('dashboard/setNoticeToTweet', true)
-                // this.$store.commit('dashboard/setNoticeToLike', true)
-
-
-              case 2:
-              case "end":
-                return _context3.stop();
-            }
-          }
-        }, _callee3);
-      }))();
-    },
-
-    /**
-     * APIを利用してフィルターキーワードの削除を行う
-     */
-    removeFilter: function removeFilter(id, index) {
-      var _this4 = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
-          while (1) {
-            switch (_context4.prev = _context4.next) {
-              case 0:
-                // const response = await axios.delete(`/api/filter/${id}`)
-                // if (response.status !== OK) {
-                //     this.$store.commit('error/setCode', response.status)
-                //     return false
-                // }
-                _this4.filters.splice(index, 1); // this.$store.commit('dashboard/setNoticeToTweet', true)
-                // this.$store.commit('dashboard/setNoticeToLike', true)
-
-
-              case 1:
-              case "end":
-                return _context4.stop();
-            }
-          }
-        }, _callee4);
-      }))();
-    },
-
-    /**
-     * 登録フォームの入力欄を空にする
-     */
-    resetAddForm: function resetAddForm() {
-      this.addForm.type = 1;
-      this.addForm.word = '';
-      this.addForm.remove = '';
-    },
-
-    /**
-     * 編集フォームの入力欄を空にする
-     */
-    resetEditForm: function resetEditForm() {
-      this.editModal = false;
-      this.editForm.id = null;
-      this.editForm.type = '';
-      this.editForm.word = '';
-      this.editForm.remove = '';
-      this.editIndex = null;
-    },
-
-    /**
-     * エラーメッセージを空にする
-     */
-    clearErrors: function clearErrors() {
-      this.addErrors = null;
-      this.editErrors = null;
-    }
-  },
-  created: function created() {
-    this.fetchFilters();
   }
 });
 
@@ -3317,6 +2968,403 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     //         }
     //     }
     // },
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/PanelKeyword.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/PanelKeyword.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _repository__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../repository */ "./resources/js/repository.js");
+/* harmony import */ var _utility__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../utility */ "./resources/js/utility.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_3__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      filters: [],
+      newModal: false,
+      editModal: false,
+      editIndex: null,
+      addErrors: null,
+      editErrors: null,
+      addForm: {
+        type: 1,
+        word: '',
+        remove: ''
+      },
+      editForm: {
+        id: null,
+        type: '',
+        word: '',
+        remove: ''
+      }
+    };
+  },
+  methods: {
+    /**
+     * キーワード一覧を取得
+     */
+    fetchFilters: function fetchFilters() {
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.get('/api/keyword');
+
+              case 2:
+                response = _context.sent;
+
+                if (!(response.status !== _utility__WEBPACK_IMPORTED_MODULE_2__["OK"])) {
+                  _context.next = 5;
+                  break;
+                }
+
+                return _context.abrupt("return", false);
+
+              case 5:
+                _this.filters = response.data;
+
+              case 6:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
+    },
+
+    /**
+     * 新規キーワードを登録
+     */
+    addFilter: function addFilter() {
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _this2.clearErrors();
+
+                _context2.next = 3;
+                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.post('/api/keyword', _this2.addForm);
+
+              case 3:
+                response = _context2.sent;
+
+                if (!(response.status === _utility__WEBPACK_IMPORTED_MODULE_2__["UNPROCESSABLE_ENTRY"])) {
+                  _context2.next = 7;
+                  break;
+                }
+
+                //バリデーションエラー
+                _this2.addErrors = response.data.errors;
+                return _context2.abrupt("return", false);
+
+              case 7:
+                ;
+
+                _this2.resetAddForm();
+
+                if (!(response.status !== CREATED)) {
+                  _context2.next = 11;
+                  break;
+                }
+
+                return _context2.abrupt("return", false);
+
+              case 11:
+                _this2.newModal = false; // 一覧を更新
+
+                _this2.fetchFilters();
+
+              case 13:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
+    },
+
+    /**
+     * 編集フォームモーダルの表示を行って、値を入力しておく
+     */
+    showEditModal: function showEditModal(filter, index) {
+      this.editModal = true;
+      this.editForm.id = filter.id;
+      this.editForm.type = filter.type;
+      this.editForm.word = filter.word;
+      this.editForm.remove = filter.remove;
+      this.editIndex = index;
+    },
+
+    /**
+     * APIを利用してフィルターキーワードの変更を行う
+     */
+    editFilter: function editFilter() {
+      var _this3 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                _this3.clearErrors();
+
+                _context3.next = 3;
+                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.put("/api/keyword/".concat(_this3.editForm.id), _this3.editForm);
+
+              case 3:
+                response = _context3.sent;
+
+                if (!(response.status === _utility__WEBPACK_IMPORTED_MODULE_2__["UNPROCESSABLE_ENTRY"])) {
+                  _context3.next = 7;
+                  break;
+                }
+
+                //バリデーションエラー
+                _this3.editErrors = response.data.errors;
+                return _context3.abrupt("return", false);
+
+              case 7:
+                if (!(response.status !== _utility__WEBPACK_IMPORTED_MODULE_2__["OK"])) {
+                  _context3.next = 10;
+                  break;
+                }
+
+                console.log(response.status);
+                return _context3.abrupt("return", false);
+
+              case 10:
+                // 一覧を更新
+                _this3.fetchFilters();
+
+                _this3.resetEditForm();
+
+              case 12:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
+      }))();
+    },
+
+    /**
+     * APIを利用してフィルターキーワードの削除を行う
+     */
+    removeFilter: function removeFilter(id, index) {
+      var _this4 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                _context4.next = 2;
+                return axios__WEBPACK_IMPORTED_MODULE_3___default.a["delete"]("/api/keyword/".concat(id));
+
+              case 2:
+                response = _context4.sent;
+
+                if (!(response.status !== _utility__WEBPACK_IMPORTED_MODULE_2__["OK"])) {
+                  _context4.next = 6;
+                  break;
+                }
+
+                _this4.$store.commit('error/setCode', response.status);
+
+                return _context4.abrupt("return", false);
+
+              case 6:
+                // そのまま一覧から消す
+                _this4.filters.splice(index, 1);
+
+              case 7:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4);
+      }))();
+    },
+
+    /**
+     * 登録フォームの入力欄を空にする
+     */
+    resetAddForm: function resetAddForm() {
+      this.addForm.type = 1;
+      this.addForm.word = '';
+      this.addForm.remove = '';
+    },
+
+    /**
+     * 編集フォームの入力欄を空にする
+     */
+    resetEditForm: function resetEditForm() {
+      this.editModal = false;
+      this.editForm.id = null;
+      this.editForm.type = '';
+      this.editForm.word = '';
+      this.editForm.remove = '';
+      this.editIndex = null;
+    },
+
+    /**
+     * エラーメッセージを空にする
+     */
+    clearErrors: function clearErrors() {
+      this.addErrors = null;
+      this.editErrors = null;
+    }
+  },
+  created: function created() {
+    this.fetchFilters();
   }
 });
 
@@ -6725,7 +6773,7 @@ var render = function() {
               _vm._v(" "),
               _vm.page === 5 ? _c("panel-tweet", { key: "tweet" }) : _vm._e(),
               _vm._v(" "),
-              _vm.page === 6 ? _c("panel-filter", { key: "filter" }) : _vm._e()
+              _vm.page === 6 ? _c("panel-keyword", { key: "filter" }) : _vm._e()
             ],
             1
           )
@@ -6994,572 +7042,6 @@ var render = function() {
   ])
 }
 var staticRenderFns = []
-render._withStripped = true
-
-
-
-/***/ }),
-
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/PanelFilter.vue?vue&type=template&id=3fc17b81&":
-/*!**************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/PanelFilter.vue?vue&type=template&id=3fc17b81& ***!
-  \**************************************************************************************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "p-panel u-color__bg--white" }, [
-    _c("div", { staticClass: "p-table__title" }, [
-      _vm._m(0),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "c-button c-button--add",
-          on: {
-            click: function($event) {
-              _vm.newModal = !_vm.newModal
-            }
-          }
-        },
-        [
-          _c("i", { staticClass: "c-icon__mr-2 c__color--blue fas fa-plus" }),
-          _vm._v("\n            キーワードを追加\n        ")
-        ]
-      )
-    ]),
-    _vm._v(" "),
-    _c(
-      "table",
-      { staticClass: "p-table" },
-      [
-        _vm._m(1),
-        _vm._v(" "),
-        _vm._l(_vm.filters, function(filter, index) {
-          return _c("tr", { key: index }, [
-            _c("td", { staticClass: "p-table__td" }, [
-              _vm._v(_vm._s(filter.type))
-            ]),
-            _vm._v(" "),
-            _c("td", { staticClass: "p-table__td" }, [
-              _vm._v(_vm._s(filter.word))
-            ]),
-            _vm._v(" "),
-            _c("td", { staticClass: "p-table__td" }, [
-              _vm._v(_vm._s(filter.remove))
-            ]),
-            _vm._v(" "),
-            _c("td", { staticClass: "p-table__td" }, [
-              _c("div", { staticClass: "p-table__action" }, [
-                _c("div", { staticClass: "p-table__btn-wrap" }, [
-                  _c(
-                    "button",
-                    {
-                      staticClass: "c-button c-button--twitter p-table__button",
-                      on: {
-                        click: function($event) {
-                          return _vm.showEditModal(filter, index)
-                        }
-                      }
-                    },
-                    [
-                      _c("i", {
-                        staticClass:
-                          "c__color--blue fas fa-pen p-table__test-xs"
-                      })
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass:
-                        "c-button c-button--delete p-table__button c-button--delete ",
-                      on: {
-                        click: function($event) {
-                          return _vm.removeFilter(filter.id, index)
-                        }
-                      }
-                    },
-                    [
-                      _c("i", {
-                        staticClass: "fas fa-trash-alt p-table__test-xs"
-                      })
-                    ]
-                  )
-                ])
-              ])
-            ])
-          ])
-        })
-      ],
-      2
-    ),
-    _vm._v(" "),
-    _c("div", { staticClass: "p-modal__wrapper" }, [
-      _c(
-        "section",
-        {
-          directives: [
-            {
-              name: "show",
-              rawName: "v-show",
-              value: _vm.newModal,
-              expression: "newModal"
-            }
-          ],
-          staticClass: "p-modal"
-        },
-        [
-          _c("div", { staticClass: "p-modal__contents" }, [
-            _c(
-              "div",
-              {
-                staticClass: "p-modal__cancel u-color__bg--white",
-                on: {
-                  click: function($event) {
-                    _vm.newModal = !_vm.newModal
-                  }
-                }
-              },
-              [
-                _c("i", {
-                  staticClass: "c-icon--gray p-modal__icon fas fa-times"
-                })
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "form",
-              {
-                staticClass: "p-form",
-                on: {
-                  submit: function($event) {
-                    $event.preventDefault()
-                    return _vm.addFilter($event)
-                  }
-                }
-              },
-              [
-                _vm.addErrors
-                  ? _c("div", { staticClass: "p-form__errors" }, [
-                      _vm.addErrors.word
-                        ? _c(
-                            "ul",
-                            _vm._l(_vm.addErrors.word, function(msg) {
-                              return _c("li", { key: msg }, [
-                                _vm._v(_vm._s(msg))
-                              ])
-                            }),
-                            0
-                          )
-                        : _vm._e()
-                    ])
-                  : _vm._e(),
-                _vm._v(" "),
-                _c(
-                  "label",
-                  {
-                    staticClass: "p-form__label",
-                    attrs: { for: "add-filter" }
-                  },
-                  [_vm._v("条件タイプ")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "select",
-                  {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.addForm.type,
-                        expression: "addForm.type"
-                      }
-                    ],
-                    staticClass: "p-form__select",
-                    attrs: { id: "add-filter" },
-                    on: {
-                      change: function($event) {
-                        var $$selectedVal = Array.prototype.filter
-                          .call($event.target.options, function(o) {
-                            return o.selected
-                          })
-                          .map(function(o) {
-                            var val = "_value" in o ? o._value : o.value
-                            return val
-                          })
-                        _vm.$set(
-                          _vm.addForm,
-                          "type",
-                          $event.target.multiple
-                            ? $$selectedVal
-                            : $$selectedVal[0]
-                        )
-                      }
-                    }
-                  },
-                  [
-                    _c("option", { attrs: { value: "1" } }, [
-                      _vm._v("次のワードを含む")
-                    ]),
-                    _vm._v(" "),
-                    _c("option", { attrs: { value: "2" } }, [
-                      _vm._v("いずれかのワードを含む")
-                    ])
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "label",
-                  { staticClass: "p-form__label", attrs: { for: "keyword" } },
-                  [_vm._v("キーワード *必須")]
-                ),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.addForm.word,
-                      expression: "addForm.word"
-                    }
-                  ],
-                  staticClass: "p-form__item",
-                  attrs: {
-                    type: "text",
-                    id: "keyword",
-                    required: "",
-                    maxlength: "50"
-                  },
-                  domProps: { value: _vm.addForm.word },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(_vm.addForm, "word", $event.target.value)
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _c(
-                  "label",
-                  {
-                    staticClass: "p-form__label",
-                    attrs: { for: "remove_word" }
-                  },
-                  [_vm._v("除外ワード")]
-                ),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.addForm.remove,
-                      expression: "addForm.remove"
-                    }
-                  ],
-                  staticClass: "p-form__item",
-                  attrs: { type: "text", id: "remove_word", maxlength: "50" },
-                  domProps: { value: _vm.addForm.remove },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(_vm.addForm, "remove", $event.target.value)
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _c("p", { staticClass: "p-form__notion" }, [
-                  _vm._v(
-                    "※複数ワードを指定する際は、「ツイッター 神」のように半角スペースで区切ってください。"
-                  )
-                ]),
-                _vm._v(" "),
-                _vm._m(2)
-              ]
-            )
-          ])
-        ]
-      ),
-      _vm._v(" "),
-      _c(
-        "section",
-        {
-          directives: [
-            {
-              name: "show",
-              rawName: "v-show",
-              value: _vm.editModal,
-              expression: "editModal"
-            }
-          ],
-          staticClass: "p-modal"
-        },
-        [
-          _c("div", { staticClass: "p-modal__contents" }, [
-            _c(
-              "div",
-              {
-                staticClass: "p-modal__cancel u-color__bg--white",
-                on: {
-                  click: function($event) {
-                    _vm.editModal = !_vm.editModal
-                  }
-                }
-              },
-              [
-                _c("i", {
-                  staticClass: "c-icon--gray p-modal__icon fas fa-times"
-                })
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "form",
-              {
-                staticClass: "p-form",
-                on: {
-                  submit: function($event) {
-                    $event.preventDefault()
-                    return _vm.editFilter($event)
-                  }
-                }
-              },
-              [
-                _c(
-                  "label",
-                  {
-                    staticClass: "p-form__label",
-                    attrs: { for: "edit-filter" }
-                  },
-                  [_vm._v("条件タイプ")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "select",
-                  {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.editForm.type,
-                        expression: "editForm.type"
-                      }
-                    ],
-                    staticClass: "p-form__select",
-                    attrs: { id: "edit-filter" },
-                    on: {
-                      change: function($event) {
-                        var $$selectedVal = Array.prototype.filter
-                          .call($event.target.options, function(o) {
-                            return o.selected
-                          })
-                          .map(function(o) {
-                            var val = "_value" in o ? o._value : o.value
-                            return val
-                          })
-                        _vm.$set(
-                          _vm.editForm,
-                          "type",
-                          $event.target.multiple
-                            ? $$selectedVal
-                            : $$selectedVal[0]
-                        )
-                      }
-                    }
-                  },
-                  [
-                    _c("option", { attrs: { value: "1" } }, [
-                      _vm._v("次のワードを含む")
-                    ]),
-                    _vm._v(" "),
-                    _c("option", { attrs: { value: "2" } }, [
-                      _vm._v("いずれかのワードを含む")
-                    ])
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "label",
-                  {
-                    staticClass: "p-form__label",
-                    attrs: { for: "edit-keyword" }
-                  },
-                  [_vm._v("キーワード ※必須")]
-                ),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.editForm.word,
-                      expression: "editForm.word"
-                    }
-                  ],
-                  staticClass: "p-form__item",
-                  attrs: {
-                    type: "text",
-                    id: "edit-keyword",
-                    required: "",
-                    maxlength: "50"
-                  },
-                  domProps: { value: _vm.editForm.word },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(_vm.editForm, "word", $event.target.value)
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _c(
-                  "label",
-                  {
-                    staticClass: "p-form__label",
-                    attrs: { for: "edit-remove_keyword" }
-                  },
-                  [_vm._v("除外ワード")]
-                ),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.editForm.remove,
-                      expression: "editForm.remove"
-                    }
-                  ],
-                  staticClass: "p-form__item",
-                  attrs: {
-                    type: "text",
-                    id: "edit-remove_keyword",
-                    maxlength: "50"
-                  },
-                  domProps: { value: _vm.editForm.remove },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(_vm.editForm, "remove", $event.target.value)
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _c("p", { staticClass: "p-form__notion" }, [
-                  _vm._v(
-                    "※複数ワードを指定する際は、「ツイッター 神」のように半角スペースで区切ってください。"
-                  )
-                ]),
-                _vm._v(" "),
-                _vm._m(3)
-              ]
-            )
-          ])
-        ]
-      )
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "c-button--add--wrap" }, [
-      _c(
-        "button",
-        {
-          staticClass: "c-button--add--sp",
-          on: {
-            click: function($event) {
-              _vm.newModal = !_vm.newModal
-            }
-          }
-        },
-        [_c("i", { staticClass: "fas fa-plus" })]
-      )
-    ])
-  ])
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "p-table__sp__title" }, [
-      _c("h2", { staticClass: "p-table__caption" }, [
-        _vm._v("キーワードリスト")
-      ]),
-      _vm._v(" "),
-      _c("p", { staticClass: "p-table__caption__text" }, [
-        _vm._v("※登録したキーワードは他の自動サービスで使用します。")
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("tr", { staticClass: "p-table__head" }, [
-      _c("th", { staticClass: "p-table__th p-table__th--filter" }, [
-        _vm._v("条件タイプ")
-      ]),
-      _vm._v(" "),
-      _c("th", { staticClass: "p-table__th p-table__th--filter" }, [
-        _vm._v("キーワード")
-      ]),
-      _vm._v(" "),
-      _c("th", { staticClass: "p-table__th p-table__th--filter" }, [
-        _vm._v("除外ワード")
-      ]),
-      _vm._v(" "),
-      _c("th", { staticClass: "p-table__th p-table__th--filter" }, [
-        _vm._v("操作")
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "p-form__button" }, [
-      _c(
-        "button",
-        {
-          staticClass: "c-button c-button--twitter",
-          attrs: { type: "submit" }
-        },
-        [_vm._v("追加")]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "p-form__button" }, [
-      _c(
-        "button",
-        {
-          staticClass: "c-button c-button--twitter",
-          attrs: { type: "submit" }
-        },
-        [_vm._v("変更")]
-      )
-    ])
-  }
-]
 render._withStripped = true
 
 
@@ -8172,6 +7654,564 @@ var staticRenderFns = [
           attrs: { type: "submit" }
         },
         [_vm._v("編集")]
+      )
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/PanelKeyword.vue?vue&type=template&id=ba992ea0&":
+/*!***************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/PanelKeyword.vue?vue&type=template&id=ba992ea0& ***!
+  \***************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "p-panel u-color__bg--white" }, [
+    _c("div", { staticClass: "p-table__title" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "c-button c-button--add",
+          on: {
+            click: function($event) {
+              _vm.newModal = !_vm.newModal
+            }
+          }
+        },
+        [
+          _c("i", { staticClass: "c-icon__mr-2 c__color--blue fas fa-plus" }),
+          _vm._v("\n            キーワードを追加\n        ")
+        ]
+      )
+    ]),
+    _vm._v(" "),
+    _c(
+      "table",
+      { staticClass: "p-table" },
+      [
+        _vm._m(1),
+        _vm._v(" "),
+        _vm._l(_vm.filters, function(filter, index) {
+          return _c("tr", { key: index }, [
+            _c("td", { staticClass: "p-table__td" }, [
+              _vm._v(_vm._s(filter.type))
+            ]),
+            _vm._v(" "),
+            _c("td", { staticClass: "p-table__td" }, [
+              _vm._v(_vm._s(filter.word))
+            ]),
+            _vm._v(" "),
+            _c("td", { staticClass: "p-table__td" }, [
+              _vm._v(_vm._s(filter.remove))
+            ]),
+            _vm._v(" "),
+            _c("td", { staticClass: "p-table__td" }, [
+              _c("div", { staticClass: "p-table__action" }, [
+                _c("div", { staticClass: "p-table__btn-wrap" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "c-button c-button--twitter p-table__button",
+                      on: {
+                        click: function($event) {
+                          return _vm.showEditModal(filter, index)
+                        }
+                      }
+                    },
+                    [
+                      _c("i", {
+                        staticClass:
+                          "c__color--blue fas fa-pen p-table__test-xs"
+                      })
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass:
+                        "c-button c-button--delete p-table__button c-button--delete ",
+                      on: {
+                        click: function($event) {
+                          return _vm.removeFilter(filter.id, index)
+                        }
+                      }
+                    },
+                    [
+                      _c("i", {
+                        staticClass: "fas fa-trash-alt p-table__test-xs"
+                      })
+                    ]
+                  )
+                ])
+              ])
+            ])
+          ])
+        })
+      ],
+      2
+    ),
+    _vm._v(" "),
+    _c("div", { staticClass: "p-modal__wrapper" }, [
+      _c(
+        "section",
+        {
+          directives: [
+            {
+              name: "show",
+              rawName: "v-show",
+              value: _vm.newModal,
+              expression: "newModal"
+            }
+          ],
+          staticClass: "p-modal"
+        },
+        [
+          _c("div", { staticClass: "p-modal__contents" }, [
+            _c(
+              "div",
+              {
+                staticClass: "p-modal__cancel u-color__bg--white",
+                on: {
+                  click: function($event) {
+                    _vm.newModal = !_vm.newModal
+                  }
+                }
+              },
+              [
+                _c("i", {
+                  staticClass: "c-icon--gray p-modal__icon fas fa-times"
+                })
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "form",
+              { staticClass: "p-form", on: { submit: _vm.addFilter } },
+              [
+                _vm.addErrors
+                  ? _c("div", { staticClass: "p-form__errors" }, [
+                      _vm.addErrors.word
+                        ? _c(
+                            "ul",
+                            _vm._l(_vm.addErrors.word, function(msg) {
+                              return _c("li", { key: msg }, [
+                                _vm._v(_vm._s(msg))
+                              ])
+                            }),
+                            0
+                          )
+                        : _vm._e()
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _c(
+                  "label",
+                  {
+                    staticClass: "p-form__label",
+                    attrs: { for: "add-filter" }
+                  },
+                  [_vm._v("条件タイプ")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "select",
+                  {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.addForm.type,
+                        expression: "addForm.type"
+                      }
+                    ],
+                    staticClass: "p-form__select",
+                    attrs: { id: "add-filter" },
+                    on: {
+                      change: function($event) {
+                        var $$selectedVal = Array.prototype.filter
+                          .call($event.target.options, function(o) {
+                            return o.selected
+                          })
+                          .map(function(o) {
+                            var val = "_value" in o ? o._value : o.value
+                            return val
+                          })
+                        _vm.$set(
+                          _vm.addForm,
+                          "type",
+                          $event.target.multiple
+                            ? $$selectedVal
+                            : $$selectedVal[0]
+                        )
+                      }
+                    }
+                  },
+                  [
+                    _c("option", { attrs: { value: "1" } }, [
+                      _vm._v("次のワードを含む")
+                    ]),
+                    _vm._v(" "),
+                    _c("option", { attrs: { value: "2" } }, [
+                      _vm._v("いずれかのワードを含む")
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "label",
+                  { staticClass: "p-form__label", attrs: { for: "keyword" } },
+                  [_vm._v("キーワード *必須")]
+                ),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.addForm.word,
+                      expression: "addForm.word"
+                    }
+                  ],
+                  staticClass: "p-form__item",
+                  attrs: {
+                    type: "text",
+                    id: "keyword",
+                    required: "",
+                    maxlength: "50"
+                  },
+                  domProps: { value: _vm.addForm.word },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.addForm, "word", $event.target.value)
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c(
+                  "label",
+                  {
+                    staticClass: "p-form__label",
+                    attrs: { for: "remove_word" }
+                  },
+                  [_vm._v("除外ワード")]
+                ),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.addForm.remove,
+                      expression: "addForm.remove"
+                    }
+                  ],
+                  staticClass: "p-form__item",
+                  attrs: { type: "text", id: "remove_word", maxlength: "50" },
+                  domProps: { value: _vm.addForm.remove },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.addForm, "remove", $event.target.value)
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c("p", { staticClass: "p-form__notion" }, [
+                  _vm._v(
+                    "※複数ワードを指定する際は、「ツイッター 神」のように半角スペースで区切ってください。"
+                  )
+                ]),
+                _vm._v(" "),
+                _vm._m(2)
+              ]
+            )
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "section",
+        {
+          directives: [
+            {
+              name: "show",
+              rawName: "v-show",
+              value: _vm.editModal,
+              expression: "editModal"
+            }
+          ],
+          staticClass: "p-modal"
+        },
+        [
+          _c("div", { staticClass: "p-modal__contents" }, [
+            _c(
+              "div",
+              {
+                staticClass: "p-modal__cancel u-color__bg--white",
+                on: {
+                  click: function($event) {
+                    _vm.editModal = !_vm.editModal
+                  }
+                }
+              },
+              [
+                _c("i", {
+                  staticClass: "c-icon--gray p-modal__icon fas fa-times"
+                })
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "form",
+              {
+                staticClass: "p-form",
+                on: {
+                  submit: function($event) {
+                    $event.preventDefault()
+                    return _vm.editFilter($event)
+                  }
+                }
+              },
+              [
+                _c(
+                  "label",
+                  {
+                    staticClass: "p-form__label",
+                    attrs: { for: "edit-filter" }
+                  },
+                  [_vm._v("条件タイプ")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "select",
+                  {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.editForm.type,
+                        expression: "editForm.type"
+                      }
+                    ],
+                    staticClass: "p-form__select",
+                    attrs: { id: "edit-filter" },
+                    on: {
+                      change: function($event) {
+                        var $$selectedVal = Array.prototype.filter
+                          .call($event.target.options, function(o) {
+                            return o.selected
+                          })
+                          .map(function(o) {
+                            var val = "_value" in o ? o._value : o.value
+                            return val
+                          })
+                        _vm.$set(
+                          _vm.editForm,
+                          "type",
+                          $event.target.multiple
+                            ? $$selectedVal
+                            : $$selectedVal[0]
+                        )
+                      }
+                    }
+                  },
+                  [
+                    _c("option", { attrs: { value: "1" } }, [
+                      _vm._v("次のワードを含む")
+                    ]),
+                    _vm._v(" "),
+                    _c("option", { attrs: { value: "2" } }, [
+                      _vm._v("いずれかのワードを含む")
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "label",
+                  {
+                    staticClass: "p-form__label",
+                    attrs: { for: "edit-keyword" }
+                  },
+                  [_vm._v("キーワード ※必須")]
+                ),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.editForm.word,
+                      expression: "editForm.word"
+                    }
+                  ],
+                  staticClass: "p-form__item",
+                  attrs: {
+                    type: "text",
+                    id: "edit-keyword",
+                    required: "",
+                    maxlength: "50"
+                  },
+                  domProps: { value: _vm.editForm.word },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.editForm, "word", $event.target.value)
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c(
+                  "label",
+                  {
+                    staticClass: "p-form__label",
+                    attrs: { for: "edit-remove_keyword" }
+                  },
+                  [_vm._v("除外ワード")]
+                ),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.editForm.remove,
+                      expression: "editForm.remove"
+                    }
+                  ],
+                  staticClass: "p-form__item",
+                  attrs: {
+                    type: "text",
+                    id: "edit-remove_keyword",
+                    maxlength: "50"
+                  },
+                  domProps: { value: _vm.editForm.remove },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.editForm, "remove", $event.target.value)
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c("p", { staticClass: "p-form__notion" }, [
+                  _vm._v(
+                    "※複数ワードを指定する際は、「ツイッター 神」のように半角スペースで区切ってください。"
+                  )
+                ]),
+                _vm._v(" "),
+                _vm._m(3)
+              ]
+            )
+          ])
+        ]
+      )
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "c-button--add--wrap" }, [
+      _c(
+        "button",
+        {
+          staticClass: "c-button--add--sp",
+          on: {
+            click: function($event) {
+              _vm.newModal = !_vm.newModal
+            }
+          }
+        },
+        [_c("i", { staticClass: "fas fa-plus" })]
+      )
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "p-table__sp__title" }, [
+      _c("h2", { staticClass: "p-table__caption" }, [
+        _vm._v("キーワードリスト")
+      ]),
+      _vm._v(" "),
+      _c("p", { staticClass: "p-table__caption__text" }, [
+        _vm._v("※登録したキーワードは他の自動サービスで使用します。")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", { staticClass: "p-table__head" }, [
+      _c("th", { staticClass: "p-table__th p-table__th--filter" }, [
+        _vm._v("条件タイプ")
+      ]),
+      _vm._v(" "),
+      _c("th", { staticClass: "p-table__th p-table__th--filter" }, [
+        _vm._v("キーワード")
+      ]),
+      _vm._v(" "),
+      _c("th", { staticClass: "p-table__th p-table__th--filter" }, [
+        _vm._v("除外ワード")
+      ]),
+      _vm._v(" "),
+      _c("th", { staticClass: "p-table__th p-table__th--filter" }, [
+        _vm._v("操作")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "p-form__button" }, [
+      _c(
+        "button",
+        {
+          staticClass: "c-button c-button--twitter",
+          attrs: { type: "submit" }
+        },
+        [_vm._v("追加")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "p-form__button" }, [
+      _c(
+        "button",
+        {
+          staticClass: "c-button c-button--twitter",
+          attrs: { type: "submit" }
+        },
+        [_vm._v("変更")]
       )
     ])
   }
@@ -21701,7 +21741,7 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 Vue.component('login', __webpack_require__(/*! ./components/Login.vue */ "./resources/js/components/Login.vue")["default"]);
 Vue.component('footer-component', __webpack_require__(/*! ./components/FooterComponent.vue */ "./resources/js/components/FooterComponent.vue")["default"]);
 Vue.component('dash-board', __webpack_require__(/*! ./components/DashBoard.vue */ "./resources/js/components/DashBoard.vue")["default"]);
-Vue.component('panel-filter', __webpack_require__(/*! ./components/PanelFilter.vue */ "./resources/js/components/PanelFilter.vue")["default"]);
+Vue.component('panel-keyword', __webpack_require__(/*! ./components/PanelKeyword.vue */ "./resources/js/components/PanelKeyword.vue")["default"]);
 Vue.component('panel-follow', __webpack_require__(/*! ./components/PanelFollow.vue */ "./resources/js/components/PanelFollow.vue")["default"]);
 Vue.component('panel-like', __webpack_require__(/*! ./components/PanelLike.vue */ "./resources/js/components/PanelLike.vue")["default"]);
 Vue.component('panel-tweet', __webpack_require__(/*! ./components/PanelTweet.vue */ "./resources/js/components/PanelTweet.vue")["default"]);
@@ -22063,75 +22103,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/PanelFilter.vue":
-/*!*************************************************!*\
-  !*** ./resources/js/components/PanelFilter.vue ***!
-  \*************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _PanelFilter_vue_vue_type_template_id_3fc17b81___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PanelFilter.vue?vue&type=template&id=3fc17b81& */ "./resources/js/components/PanelFilter.vue?vue&type=template&id=3fc17b81&");
-/* harmony import */ var _PanelFilter_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./PanelFilter.vue?vue&type=script&lang=js& */ "./resources/js/components/PanelFilter.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-/* normalize component */
-
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _PanelFilter_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _PanelFilter_vue_vue_type_template_id_3fc17b81___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _PanelFilter_vue_vue_type_template_id_3fc17b81___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/components/PanelFilter.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/js/components/PanelFilter.vue?vue&type=script&lang=js&":
-/*!**************************************************************************!*\
-  !*** ./resources/js/components/PanelFilter.vue?vue&type=script&lang=js& ***!
-  \**************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PanelFilter_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./PanelFilter.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/PanelFilter.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PanelFilter_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/js/components/PanelFilter.vue?vue&type=template&id=3fc17b81&":
-/*!********************************************************************************!*\
-  !*** ./resources/js/components/PanelFilter.vue?vue&type=template&id=3fc17b81& ***!
-  \********************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PanelFilter_vue_vue_type_template_id_3fc17b81___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./PanelFilter.vue?vue&type=template&id=3fc17b81& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/PanelFilter.vue?vue&type=template&id=3fc17b81&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PanelFilter_vue_vue_type_template_id_3fc17b81___WEBPACK_IMPORTED_MODULE_0__["render"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PanelFilter_vue_vue_type_template_id_3fc17b81___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
-
-
-
-/***/ }),
-
 /***/ "./resources/js/components/PanelFollow.vue":
 /*!*************************************************!*\
   !*** ./resources/js/components/PanelFollow.vue ***!
@@ -22214,6 +22185,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PanelFollow_vue_vue_type_template_id_2381273a_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PanelFollow_vue_vue_type_template_id_2381273a_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/PanelKeyword.vue":
+/*!**************************************************!*\
+  !*** ./resources/js/components/PanelKeyword.vue ***!
+  \**************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _PanelKeyword_vue_vue_type_template_id_ba992ea0___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PanelKeyword.vue?vue&type=template&id=ba992ea0& */ "./resources/js/components/PanelKeyword.vue?vue&type=template&id=ba992ea0&");
+/* harmony import */ var _PanelKeyword_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./PanelKeyword.vue?vue&type=script&lang=js& */ "./resources/js/components/PanelKeyword.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _PanelKeyword_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _PanelKeyword_vue_vue_type_template_id_ba992ea0___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _PanelKeyword_vue_vue_type_template_id_ba992ea0___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/PanelKeyword.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/PanelKeyword.vue?vue&type=script&lang=js&":
+/*!***************************************************************************!*\
+  !*** ./resources/js/components/PanelKeyword.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PanelKeyword_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./PanelKeyword.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/PanelKeyword.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PanelKeyword_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/PanelKeyword.vue?vue&type=template&id=ba992ea0&":
+/*!*********************************************************************************!*\
+  !*** ./resources/js/components/PanelKeyword.vue?vue&type=template&id=ba992ea0& ***!
+  \*********************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PanelKeyword_vue_vue_type_template_id_ba992ea0___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./PanelKeyword.vue?vue&type=template&id=ba992ea0& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/PanelKeyword.vue?vue&type=template&id=ba992ea0&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PanelKeyword_vue_vue_type_template_id_ba992ea0___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PanelKeyword_vue_vue_type_template_id_ba992ea0___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
@@ -22818,14 +22858,15 @@ var INTERNAL_SERVER_ERROR = 500;
 /***/ }),
 
 /***/ 0:
-/*!***************************************************************************************!*\
-  !*** multi ./resources/js/app.js ./resources/js/utility.js ./resources/sass/app.scss ***!
-  \***************************************************************************************/
+/*!********************************************************************************************************************!*\
+  !*** multi ./resources/js/app.js ./resources/js/utility.js ./resources/js/repository.js ./resources/sass/app.scss ***!
+  \********************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! /Applications/MAMP/htdocs/kamitter/resources/js/app.js */"./resources/js/app.js");
 __webpack_require__(/*! /Applications/MAMP/htdocs/kamitter/resources/js/utility.js */"./resources/js/utility.js");
+__webpack_require__(/*! /Applications/MAMP/htdocs/kamitter/resources/js/repository.js */"./resources/js/repository.js");
 module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/kamitter/resources/sass/app.scss */"./resources/sass/app.scss");
 
 

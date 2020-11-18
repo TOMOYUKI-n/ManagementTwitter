@@ -5,6 +5,9 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class User extends Authenticatable
 {
@@ -17,6 +20,10 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name', 'email', 'password',
+    ];
+
+    protected $visible = [
+        'id', 'name', 'email'
     ];
 
     /**
@@ -36,4 +43,22 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * リレーションシップ　- twitter_usersテーブル
+     */
+    public function twitterUsers()
+    {
+        return $this->hasMany('App\TwitterUser', 'user_id');
+    }
+
+    /**
+     * リレーションシップ　- keywordsテーブル
+     */
+    public function keywords()
+    {
+        return $this->hasMany('App\Keyword', 'user_id');
+    }
+
+
 }

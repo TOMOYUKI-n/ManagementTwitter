@@ -1,6 +1,11 @@
 <?php
 
+use App\User;
+use App\Keyword;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
@@ -70,15 +75,6 @@ Route::post('/tweet', 'AutomaticTweetController@add')->name('tweet.add');
 Route::get('/tweet', 'AutomaticTweetController@show')->name('tweet.show');
 Route::put('/tweet/{id}', 'AutomaticTweetController@edit')->name('tweet.edit');
 Route::delete('/tweet/{id}', 'AutomaticTweetController@delete')->name('tweet.delete');
-
-/**
- * 条件キーワードの管理API
- */
-Route::post('/filter', 'FilterWordController@add')->name('filter.add');
-Route::get('/filter', 'FilterWordController@show')->name('filter.show');
-Route::get('/filter/{id}', 'FilterWordController@showOneFilter')->name('filter.showOne');
-Route::put('/filter/{id}', 'FilterWordController@editFilter')->name('edit.filter');
-Route::delete('/filter/{id}', 'FilterWordController@deleteFilter')->name('filter.delete');
 
 /**
  * システムON/OFF操作API
