@@ -20,7 +20,8 @@
 
 <script>
     import { twitterAccount } from '../repository'
-
+    import { message } from '../message';
+    import axios from "axios";
     export default {
         props: {
             selectId: 0,
@@ -44,14 +45,20 @@
         },
         methods: {
             /**
-             * TwitterUserのユーザーデータを1件取得する
+             * TwitterUserのユーザ情報を1件取得する
              */
             async fetchTwitterUser() {
-                const [response] = await twitterAccount.filter(x => x.twitter_id === this.item.twitter_id);
-                this.twitter_id = response.twitter_id;
-                this.screenName = response.screen_name;
-                this.name = response.name;
-                this.thumbnail = response.thumbnail;
+                const response = await axios.get('/api/twitter/users/' + this.item.id);
+                if (response.status === 200) {
+                    this.twitter_id = response.data.twitter_id;
+                    this.screenName = response.data.screen_name;
+                    this.name = response.data.name;
+                    this.thumbnail = response.data.thumbnail;
+                }
+                else {
+                    this.errorFlg = true;
+                    this.messageText = message.notGetData;
+                }
             },
             /**
              * 使用するユーザーが選択された時、localstorageにtwitterIdを保存 => ダッシュボードに遷移
@@ -59,6 +66,12 @@
             async setTwitterId() {
                 await localStorage.setItem('loginTwitterAccount',JSON.stringify(this.item));
                 location.href = "/dashboard";
+            },
+            /**
+             * 削除前の確認モーダルを表示する
+             */
+            changeDeleteFlg() {
+                this.deleteFlg = true;
             },
             /**
              * TwitterUserIdをstoreから削除する
@@ -85,8 +98,8 @@
             //     return this.$store.state.auth.apiStatus
             // },
         },
-        created() {
-            this.fetchTwitterUser()
+        async created() {
+            await this.fetchTwitterUser();
         }
     }
 </script>

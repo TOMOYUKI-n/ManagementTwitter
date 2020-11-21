@@ -116,6 +116,7 @@
     export default {
         data() {
             return {
+                page: 4,
                 likes: [],
                 filters: [],
                 newModal: false,
@@ -282,6 +283,12 @@
                 // this.serviceStatusLabel = response.data.status_labels.auto_like
                 this.serviceStatus = 1;
                 this.serviceStatusLabel = 'サービス停止中';
+            },
+            /**
+             * localstorageから現在のページを保存する
+             */
+            getCurrentPage() {
+                localStorage.setItem('page', this.page);
             }
 
         },
@@ -289,6 +296,7 @@
             this.fetchLikes()
             this.fetchFilters()
             this.fetchServiceStatus()
+            this.getCurrentPage();
         },
         watch: {
             /**

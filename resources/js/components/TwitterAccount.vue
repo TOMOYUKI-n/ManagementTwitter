@@ -4,17 +4,20 @@
         <div class="p-contents__area--narrow">
             <h2 class="p-contents__head"><i class="c-icon--twitter fab fa-twitter"></i>利用するTwitterアカウントを選択する</h2>
             <div v-show="isMaximumAccount" class="">
-                <a class="p-botton__account__add" href="auth/twitter/oauth">
+                <a class="p-botton__account__add" @click="twitterLogin">
                     <p class="">
                         <i class="c-icon__twitter far fa-plus-square c-icon__mr-2"></i>Twitterアカウントの追加
                     </p>
                 </a>
             </div>
+            <p v-show="errorFlg" style="color: red; font-size: 14px; margin-top: 8px;">
+                {{ messageText }}
+            </p>
             <ul class="p-twitter">
                 <transition-group name="t-twitter_card">
                     <account-card
-                            v-for="(user, index) in users"
-                            :key="user.twitter_id"
+                            v-for="(user, index) in accounts"
+                            :key="user.id"
                             :item="user"
                             :index="index"
                             @delUser="deleteModal"
@@ -37,29 +40,28 @@
                     </div>
                 </div>
             </section>
+
         </div>
     </div>
 </template>
 
 <script>
 
-    import { twitterAccount } from '../repository'
-
+    import { twitterAccount } from '../repository';
+    import { message } from '../message';
+    import axios from "axios";
     export default {
         props: {
             twitterAccountId: 0,
         },
         data() {
             return {
-                users: [],
+                page: 1,
+                accounts: [],
                 accountNum: 0,
                 deleteOn: false,
-                error: '',
-                message: {
-                    connect: '接続ができませんでした。再度実行してください。',
-                    disconnect: '解除ができませんでした。再度実行してください。',
-                    status: '連携状況が取得できませんでした。再度実行してください。'
-                },
+                errorFlg: false,
+                messageText: '',
             }
         },
         methods: {
@@ -67,10 +69,17 @@
              * ユーザーが登録しているTwitterUserのID一覧を取得する
              */
             async fetchTwitterUsers() {
-                const response = twitterAccount;
-                this.users = response;
-                this.accountNum = response.length;
-
+                try {
+                    const response = await axios.get('/api/twitter/users/list');
+                    if (response.status === 200) {
+                        this.accounts = response.data.accounts;
+                        this.accountNum = response.data.accounts_num;
+                    }                    
+                }
+                catch (error) {
+                    this.errorFlg = true;
+                    this.messageText = message.notGetData;
+                }
             },
             /**
              * TwitterCardのemitをトリガーにして
@@ -83,6 +92,15 @@
             deleteModal(emitObject) {
                 this.deleteOn = true;
                 this.deleteTarget = emitObject.index;
+            },
+            twitterLogin(){
+                location.href = "/login/twitter";
+            },
+            /**
+             * localstorageから現在のページを保存する
+             */
+            getCurrentPage() {
+                localStorage.setItem('page', this.page);
             }
         },
         computed: {
@@ -93,7 +111,8 @@
         },
         //ページ作成時に実行
         async created() {
-            await this.fetchTwitterUsers()
+            await this.fetchTwitterUsers();
+            this.getCurrentPage();
         }
     }
 </script>

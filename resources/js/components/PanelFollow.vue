@@ -335,6 +335,9 @@
                 this.addErrors = null
                 this.editErrors = null
             },
+            /**
+             * localstorageから現在のページを保存する
+             */
             getCurrentPage() {
                 localStorage.setItem('page', this.page);
             }

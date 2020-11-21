@@ -21,12 +21,12 @@
                 </ul>
                 @else
                 <ul class="l-navbar__section ">
-                    <li class="l-navbar__list"><a class="l-navbar__text" href="/dashboard"><p>ダッシュボード</p></a></li>
+                    <li class="l-navbar__list"><a class="l-navbar__text" href="/dashboard"><p><i class="fas fa-home"></i></p></a></li>
                     <li class="l-navbar__list">
                         <a class="l-navbar__text" href="{{ route('logout') }}"
                             onclick ="event.preventDefault();
                             document.getElementById('logout-form').submit();">
-                            <p>ログアウト</p>
+                            <p><i class="fas fa-sign-out-alt"></i></p>
                         </a>
 
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="l-header__sp__form">
@@ -65,7 +65,7 @@
                     <a class="l-navbar__text-black" href="{{ route('logout') }}"
                         onclick="event.preventDefault();
                         document.getElementById('logout-form-sp').submit();">
-                        <p>ログアウト</p>
+                        <p><i class="fas fa-sign-out-alt"></i>ログアウト</p>
                     </a>
                     <form id="logout-form-sp" action="{{ route('logout') }}" method="POST" class="l-header__sp__form">
                         @csrf
