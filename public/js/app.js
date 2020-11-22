@@ -1928,6 +1928,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_3__);
 
 
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
@@ -1965,7 +1977,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     index: {
       type: Number,
       required: true
-    }
+    },
+    deleteActionFlg: false
   },
   data: function data() {
     return {
@@ -1984,28 +1997,36 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var response;
+        var response, _twitterAccount$filte, _twitterAccount$filte2, data;
+
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.get('/api/twitter/users/' + _this.item.id);
+                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.get('/test/twitter/users/getTestInfo/' + _this.item.id);
 
               case 2:
                 response = _context.sent;
+                _twitterAccount$filte = _repository__WEBPACK_IMPORTED_MODULE_1__["twitterAccount"].filter(function (x) {
+                  return x.id === response.data[0].id;
+                }), _twitterAccount$filte2 = _slicedToArray(_twitterAccount$filte, 1), data = _twitterAccount$filte2[0];
+                _this.twitter_id = data.id;
+                _this.screenName = data.screen_name;
+                _this.name = data.name;
+                _this.thumbnail = data.thumbnail; // const response = await axios.get('/api/twitter/users/' + this.item.id);
+                // if (response.status === 200) {
+                //     this.twitter_id = response.data.twitter_id;
+                //     this.screenName = response.data.screen_name;
+                //     this.name = response.data.name;
+                //     this.thumbnail = response.data.thumbnail;
+                // }
+                // else {
+                //     this.errorFlg = true;
+                //     this.messageText = message.notGetData;
+                // }
 
-                if (response.status === 200) {
-                  _this.twitter_id = response.data.twitter_id;
-                  _this.screenName = response.data.screen_name;
-                  _this.name = response.data.name;
-                  _this.thumbnail = response.data.thumbnail;
-                } else {
-                  _this.errorFlg = true;
-                  _this.messageText = _message__WEBPACK_IMPORTED_MODULE_2__["message"].notGetData;
-                }
-
-              case 4:
+              case 8:
               case "end":
                 return _context.stop();
             }
@@ -2044,41 +2065,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
      * 削除前の確認モーダルを表示する
      */
     changeDeleteFlg: function changeDeleteFlg() {
-      this.deleteFlg = true;
-    },
-
-    /**
-     * TwitterUserIdをstoreから削除する
-     * TwitterUserをDBから削除するAPIを実行する
-     * APIが正常に完了した場合、Twitterページemitを通知して、削除の描画を行う
-     */
-    deleteTwitterUser: function deleteTwitterUser() {
-      var _this3 = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
-          while (1) {
-            switch (_context3.prev = _context3.next) {
-              case 0:
-                // await this.$store.dispatch('auth/twitterUserLogout')
-                // if (this.apiStatus) {
-                //     const response = await axios.delete(`/api/twitter/${this.item.id}`)
-                //     if (response.status !== OK) {
-                //         this.$store.commit('error/setCode', response.status)
-                //         return false
-                //     }
-                // }
-                _this3.$emit('delUser', {
-                  index: _this3.index
-                });
-
-              case 1:
-              case "end":
-                return _context3.stop();
-            }
-          }
-        }, _callee3);
-      }))();
+      this.$emit('delUser', {
+        index: this.index,
+        item_id: this.item.id
+      });
     }
   },
   computed: {//storeを使ってAPIを実行する際に、APIのステータスを取得する
@@ -2087,22 +2077,22 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     // },
   },
   created: function created() {
-    var _this4 = this;
+    var _this3 = this;
 
-    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
         while (1) {
-          switch (_context4.prev = _context4.next) {
+          switch (_context3.prev = _context3.next) {
             case 0:
-              _context4.next = 2;
-              return _this4.fetchTwitterUser();
+              _context3.next = 2;
+              return _this3.fetchTwitterUser();
 
             case 2:
             case "end":
-              return _context4.stop();
+              return _context3.stop();
           }
         }
-      }, _callee4);
+      }, _callee3);
     }))();
   }
 });
@@ -2155,6 +2145,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_3__);
 
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
@@ -2254,7 +2256,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       loginUserInfo: _repository__WEBPACK_IMPORTED_MODULE_1__["loginUserInfo"],
       authData: {},
       loginTwitterUser: {},
-      account: {},
       errorFlg: false,
       messageText: ''
     };
@@ -2298,7 +2299,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-        var storage, response;
+        var storage, _yield$twitterAccount, _yield$twitterAccount2, response, _storage;
+
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
@@ -2308,20 +2310,35 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 2:
                 storage = _context2.sent;
-                _context2.next = 5;
-                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.get('/api/twitter/users/' + storage.id);
 
-              case 5:
-                response = _context2.sent;
-
-                if (response.status === 200) {
-                  _this2.loginTwitterUser = response.data;
-                } else {
-                  _this2.errorFlg = true;
-                  _this2.messageText = _message__WEBPACK_IMPORTED_MODULE_2__["message"].notGetData;
+                if (!storage) {
+                  _context2.next = 13;
+                  break;
                 }
 
+                _this2.account = storage;
+                _context2.next = 7;
+                return _repository__WEBPACK_IMPORTED_MODULE_1__["twitterAccount"].filter(function (x) {
+                  return x.id === storage.id;
+                });
+
               case 7:
+                _yield$twitterAccount = _context2.sent;
+                _yield$twitterAccount2 = _slicedToArray(_yield$twitterAccount, 1);
+                response = _yield$twitterAccount2[0];
+                _this2.loginTwitterUser = response;
+                _context2.next = 17;
+                break;
+
+              case 13:
+                _context2.next = 15;
+                return JSON.parse(localStorage.getItem('authData'));
+
+              case 15:
+                _storage = _context2.sent;
+                _this2.authData = _storage.name;
+
+              case 17:
               case "end":
                 return _context2.stop();
             }
@@ -2525,6 +2542,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _repository__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../repository */ "./resources/js/repository.js");
+/* harmony import */ var _message__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../message */ "./resources/js/message.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_3__);
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -2673,6 +2693,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -2725,7 +2748,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                // const response = await axios.get('/api/follow')
+                // const response = await axios.get('/api/follow/list')
                 // if (response.status !== OK) {
                 //     this.$store.commit('error/setCode', response.status)
                 //     return false
@@ -4649,7 +4672,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       accountNum: 0,
       deleteOn: false,
       errorFlg: false,
-      messageText: ''
+      messageText: '',
+      deleteTarget: 0,
+      deleteTargetTwitterId: 0
     };
   },
   methods: {
@@ -4667,11 +4692,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 _context.prev = 0;
                 _context.next = 3;
-                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.get('/api/twitter/users/list');
+                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.get('/test/twitter/users/list');
 
               case 3:
                 response = _context.sent;
 
+                //テスト用
                 if (response.status === 200) {
                   _this.accounts = response.data.accounts;
                   _this.accountNum = response.data.accounts_num;
@@ -4700,12 +4726,91 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
      * TwitterUserのカードを配列から削除する
      */
     removeCard: function removeCard() {
-      this.users.splice(this.deleteTarget, 1);
-      this.deleteOn = false;
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        var res;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.next = 2;
+                return _this2.deleteTwitterUser();
+
+              case 2:
+                res = _context2.sent;
+
+                if (!res) {
+                  _context2.next = 10;
+                  break;
+                }
+
+                // 削除の描画
+                _this2.accounts.splice(_this2.deleteTarget, 1);
+
+                _this2.deleteOn = false; // 再描画
+
+                _context2.next = 8;
+                return _this2.fetchTwitterUsers();
+
+              case 8:
+                _context2.next = 12;
+                break;
+
+              case 10:
+                _this2.errorFlg = true;
+                _this2.messageText = _message__WEBPACK_IMPORTED_MODULE_2__["message"].notDelete;
+
+              case 12:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
     },
     deleteModal: function deleteModal(emitObject) {
       this.deleteOn = true;
       this.deleteTarget = emitObject.index;
+      this.deleteTargetTwitterId = emitObject.item_id;
+    },
+
+    /**
+     * TwitterUserIdをlocalstorage,DBから削除する
+     * 正常終了後 -> 
+     */
+    deleteTwitterUser: function deleteTwitterUser() {
+      var _this3 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                _context3.next = 2;
+                return axios__WEBPACK_IMPORTED_MODULE_3___default.a["delete"]("/api/twitter/users/".concat(_this3.deleteTargetTwitterId));
+
+              case 2:
+                response = _context3.sent;
+
+                if (!(response.status !== 200)) {
+                  _context3.next = 7;
+                  break;
+                }
+
+                return _context3.abrupt("return", false);
+
+              case 7:
+                return _context3.abrupt("return", true);
+
+              case 8:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
+      }))();
     },
     twitterLogin: function twitterLogin() {
       location.href = "/login/twitter";
@@ -4726,25 +4831,25 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   //ページ作成時に実行
   created: function created() {
-    var _this2 = this;
+    var _this4 = this;
 
-    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
         while (1) {
-          switch (_context2.prev = _context2.next) {
+          switch (_context4.prev = _context4.next) {
             case 0:
-              _context2.next = 2;
-              return _this2.fetchTwitterUsers();
+              _context4.next = 2;
+              return _this4.fetchTwitterUsers();
 
             case 2:
-              _this2.getCurrentPage();
+              _this4.getCurrentPage();
 
             case 3:
             case "end":
-              return _context2.stop();
+              return _context4.stop();
           }
         }
-      }, _callee2);
+      }, _callee4);
     }))();
   }
 });
@@ -6715,9 +6820,18 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("div", [
-        _c("div", { on: { click: _vm.deleteTwitterUser } }, [
-          _c("i", { staticClass: "p-botton__trash fas fa-trash-alt" })
-        ])
+        _c(
+          "div",
+          {
+            on: {
+              click: function($event) {
+                $event.stopPropagation()
+                return _vm.changeDeleteFlg($event)
+              }
+            }
+          },
+          [_c("i", { staticClass: "p-botton__trash fas fa-trash-alt" })]
+        )
       ])
     ]
   )
@@ -7593,6 +7707,12 @@ var render = function() {
                 }
               },
               [
+                _c("p", { staticClass: "p-form__notion" }, [
+                  _vm._v(
+                    "※キーワードは、「キーワード登録」から登録してください。"
+                  )
+                ]),
+                _vm._v(" "),
                 _vm.editErrors
                   ? _c("div", { staticClass: "p-form__errors" }, [
                       _vm.editErrors.target
@@ -7625,11 +7745,8 @@ var render = function() {
                 _vm._v(" "),
                 _c(
                   "label",
-                  {
-                    staticClass: "p-form__label",
-                    attrs: { for: "edit-target" }
-                  },
-                  [_vm._v("ターゲット名 *必須")]
+                  { staticClass: "p-form__label", attrs: { for: "account" } },
+                  [_vm._v("アカウント名 *必須")]
                 ),
                 _vm._v(" "),
                 _c("input", {
@@ -7644,7 +7761,7 @@ var render = function() {
                   staticClass: "p-form__item",
                   attrs: {
                     type: "text",
-                    id: "edit-target",
+                    id: "account",
                     required: "",
                     maxlength: "15",
                     placeholder: "例) kamitter_1234"
@@ -7664,9 +7781,9 @@ var render = function() {
                   "label",
                   {
                     staticClass: "p-form__label",
-                    attrs: { for: "eidt-target_filter_id" }
+                    attrs: { for: "keyword_id" }
                   },
-                  [_vm._v("キーワード条件の選択 *必須")]
+                  [_vm._v("抽出キーワードの選択 *必須")]
                 ),
                 _vm._v(" "),
                 _c(
@@ -7681,7 +7798,7 @@ var render = function() {
                       }
                     ],
                     staticClass: "p-form__select",
-                    attrs: { id: "eidt-target_filter_id", required: "" },
+                    attrs: { id: "keyword_id", required: "" },
                     on: {
                       change: function($event) {
                         var $$selectedVal = Array.prototype.filter
@@ -7711,12 +7828,6 @@ var render = function() {
                   }),
                   0
                 ),
-                _vm._v(" "),
-                _c("p", { staticClass: "p-form__notion" }, [
-                  _vm._v(
-                    "※条件のキーワードは、「キーワード登録」から登録することができます。"
-                  )
-                ]),
                 _vm._v(" "),
                 _vm._m(3)
               ]
@@ -22785,7 +22896,7 @@ __webpack_require__.r(__webpack_exports__);
 var message = {
   disConnect: '接続ができませんでした。再度実行してください。',
   notGetData: 'データが取得できませんでした。再度時間を置いて更新してください。',
-  notGetStatus: '連携状況が取得できませんでした。再度実行してください。'
+  notDelete: '正常に通信することができませんでした。画面を更新してください。'
 };
 
 /***/ }),
@@ -22841,67 +22952,85 @@ var loginUserInfo = [{
  */
 
 var twitterAccount = [{
-  twitter_id: 1000037652727401,
-  screen_name: 'xxxhhskjosekjag',
-  name: 'さんぷる太郎',
+  id: 4,
+  screen_name: 'tomozo01v',
+  name: 'tomozo01v',
   thumbnail: '',
-  follow: 500,
-  follower: 3400
+  follows: 500,
+  followers: 3400
 }, {
-  twitter_id: 1000037652727402,
-  screen_name: 'dddwesekjag',
-  name: 'てきとーまん',
+  id: 34,
+  screen_name: 'Nayeli Stracke',
+  name: 'Nayeli Stracke',
   thumbnail: '',
-  follow: 400,
-  follower: 300
+  follows: 400,
+  followers: 300
 }, {
-  twitter_id: 1000037652727403,
-  screen_name: 'hapybirth',
-  name: '誕生日',
+  id: 462,
+  screen_name: 'Mrs. Meagan Mraz',
+  name: 'Mrs. Meagan Mraz',
   thumbnail: '',
-  follow: 550,
-  follower: 30
+  follows: 550,
+  followers: 30
 }, {
-  twitter_id: 1000037652727404,
-  screen_name: 'monky',
-  name: '猿',
+  id: 94031,
+  screen_name: 'Fabiola Feest',
+  name: 'Fabiola Feest',
   thumbnail: '',
-  follow: 343,
-  follower: 340
+  follows: 343,
+  followers: 340
 }, {
-  twitter_id: 1000037652727405,
-  screen_name: 'printeee',
-  name: '印刷業界からWEBの新生児',
+  id: 24351399,
+  screen_name: 'Aliza Beier',
+  name: 'Aliza Beier',
   thumbnail: '',
-  follow: 5,
-  follower: 34
+  follows: 5,
+  followers: 34
 }, {
-  twitter_id: 1000037652727406,
-  screen_name: 'hogehoge',
-  name: 'ほげさん',
+  id: 67848767,
+  screen_name: 'Annamae Cummerata',
+  name: 'Annamae Cummerata',
   thumbnail: '',
-  follow: 1100,
-  follower: 5000
+  follows: 1100,
+  followers: 5000
 }, {
-  twitter_id: 1000037652727407,
-  screen_name: 'fugag3',
-  name: 'ふがふが',
+  id: 86904763,
+  screen_name: 'Jaunita Upton IV',
+  name: 'Jaunita Upton IV',
   thumbnail: '',
-  follow: 11900,
-  follower: 3000
-} // {id: 1000037652727408, screen_name: 'omo', name: 'おもしろいひと', thumbnail: ''},
-// {id: 1000037652727409, screen_name: 'ttrex', name: 'れっくす', thumbnail: ''},
-// {id: 1000037652727410, screen_name: 'logijij', name: 'じじい', thumbnail: ''},
-];
+  follows: 11900,
+  followers: 3000
+}, {
+  id: 97867039,
+  screen_name: 'Dr. Milford Grant',
+  name: 'Dr. Milford Grant',
+  thumbnail: '',
+  follows: 22,
+  followers: 567
+}, {
+  id: 97867040,
+  screen_name: 'Elody Halvorson',
+  name: 'Elody Halvorson',
+  thumbnail: '',
+  follows: 33,
+  followers: 5543
+}, {
+  id: 366571107,
+  screen_name: 'Deontae Mante',
+  name: 'Deontae Mante',
+  thumbnail: '',
+  follows: 112,
+  followers: 322
+}];
 /**
  * 切り替えたアカウントでtwitter APIを利用する際に取得が必要
  * twitter_users_tableの中身
  */
 
 var twitterUsersTable = [{
-  id: 1,
-  user_id: 1000037652727401,
-  token: 'token_xxxhhskjosekjag',
+  id: 4,
+  user_id: 1,
+  token: 'tomozo01v',
   token_secret: 'token_secret_xxxhhskjosekjag'
 }];
 /**

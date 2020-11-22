@@ -93,7 +93,6 @@
                 loginUserInfo: loginUserInfo,
                 authData: {},
                 loginTwitterUser: {},
-                account: {},
                 errorFlg: false,
                 messageText: '',
             }
@@ -116,16 +115,34 @@
              * APIで名前とフォロー人数を取得する
              */
             async getAccountInfo() {
+                // test用
                 const storage = await JSON.parse(localStorage.getItem('loginTwitterAccount'));
-                // if(storage === undefined) return false;
-                const response = await axios.get('/api/twitter/users/' + storage.id);
-                if (response.status === 200) {
-                    this.loginTwitterUser = response.data;
+                if(storage){
+                    this.account = storage;
+                    const [response] = await twitterAccount.filter(x => x.id === storage.id);
+                    this.loginTwitterUser = response;
                 }
                 else {
-                    this.errorFlg = true;
-                    this.messageText = message.notGetData;
+                    const storage = await JSON.parse(localStorage.getItem('authData'));
+                    this.authData = storage.name;
                 }
+
+                // 本番用
+                // const storage = await JSON.parse(localStorage.getItem('loginTwitterAccount'));
+                // if(storage){
+                //     const response = await axios.get('/api/twitter/users/' + storage.id);
+                //     if (response.status === 200) {
+                //         this.loginTwitterUser = response.data;
+                //     }
+                //     else {
+                //         this.errorFlg = true;
+                //         this.messageText = message.notGetData;
+                //     }
+                // }
+                // else {
+                //     const storage = await JSON.parse(localStorage.getItem('authData'));
+                //     this.authData = storage.name;
+                // }
             },
             /**
              * localstorageに現在のページを取得する

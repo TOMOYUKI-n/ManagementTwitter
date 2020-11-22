@@ -2,6 +2,10 @@
     padding: 24px;
     display: flex;
     justify-content: center;
+    max-height: 100%;// 追加
+    overflow-y: scroll;// 追加
+    height: 93vh;
+    box-sizing: border-box;
     @include mq(){
         padding: 20px;
     }

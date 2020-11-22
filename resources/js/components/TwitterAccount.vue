@@ -62,6 +62,8 @@
                 deleteOn: false,
                 errorFlg: false,
                 messageText: '',
+                deleteTarget: 0,
+                deleteTargetTwitterId: 0
             }
         },
         methods: {
@@ -70,7 +72,8 @@
              */
             async fetchTwitterUsers() {
                 try {
-                    const response = await axios.get('/api/twitter/users/list');
+                    // const response = await axios.get('/api/twitter/users/list');
+                    const response = await axios.get('/test/twitter/users/list');//テスト用
                     if (response.status === 200) {
                         this.accounts = response.data.accounts;
                         this.accountNum = response.data.accounts_num;
@@ -85,13 +88,39 @@
              * TwitterCardのemitをトリガーにして
              * TwitterUserのカードを配列から削除する
              */
-            removeCard() {
-                this.users.splice(this.deleteTarget, 1);
-                this.deleteOn = false;
+            async removeCard() {
+                const res = await this.deleteTwitterUser();
+
+                if(res){
+                    // 削除の描画
+                    this.accounts.splice(this.deleteTarget, 1);
+                    this.deleteOn = false;
+                    // 再描画
+                    await this.fetchTwitterUsers();
+                }
+                else{
+                    this.errorFlg = true;
+                    this.messageText = message.notDelete;
+                }
+
             },
             deleteModal(emitObject) {
                 this.deleteOn = true;
                 this.deleteTarget = emitObject.index;
+                this.deleteTargetTwitterId = emitObject.item_id;
+            },
+            /**
+             * TwitterUserIdをlocalstorage,DBから削除する
+             * 正常終了後 -> 
+             */
+            async deleteTwitterUser() {
+                const response = await axios.delete(`/api/twitter/users/${this.deleteTargetTwitterId}`)
+                if (response.status !== 200) {
+                    return false;
+                }
+                else {
+                    return true;
+                }
             },
             twitterLogin(){
                 location.href = "/login/twitter";
