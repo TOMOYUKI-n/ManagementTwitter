@@ -11,7 +11,7 @@
             </div>
         </div>
         <div>
-            <div class="" @click="deleteTwitterUser">
+            <div class="" @click.stop="changeDeleteFlg">
                 <i class="p-botton__trash fas fa-trash-alt"></i>
             </div>
         </div>
@@ -20,7 +20,8 @@
 
 <script>
     import { twitterAccount } from '../repository'
-
+    import { message } from '../message';
+    import axios from "axios";
     export default {
         props: {
             selectId: 0,
@@ -31,7 +32,8 @@
             index: {
                 type: Number,
                 required: true
-            }
+            },
+            deleteActionFlg: false
         },
         data() {
             return {
@@ -44,14 +46,28 @@
         },
         methods: {
             /**
-             * TwitterUserのユーザーデータを1件取得する
+             * TwitterUserのユーザ情報を1件取得する
              */
             async fetchTwitterUser() {
-                const [response] = await twitterAccount.filter(x => x.twitter_id === this.item.twitter_id);
-                this.twitter_id = response.twitter_id;
-                this.screenName = response.screen_name;
-                this.name = response.name;
-                this.thumbnail = response.thumbnail;
+                // テスト用
+                const response = await axios.get('/test/twitter/users/getTestInfo/' + this.item.id);
+                const [data] = twitterAccount.filter(x => x.id === response.data[0].id);
+                this.twitter_id = data.id;
+                this.screenName = data.screen_name;
+                this.name = data.name;
+                this.thumbnail = data.thumbnail;
+
+                // const response = await axios.get('/api/twitter/users/' + this.item.id);
+                // if (response.status === 200) {
+                //     this.twitter_id = response.data.twitter_id;
+                //     this.screenName = response.data.screen_name;
+                //     this.name = response.data.name;
+                //     this.thumbnail = response.data.thumbnail;
+                // }
+                // else {
+                //     this.errorFlg = true;
+                //     this.messageText = message.notGetData;
+                // }
             },
             /**
              * 使用するユーザーが選択された時、localstorageにtwitterIdを保存 => ダッシュボードに遷移
@@ -61,22 +77,10 @@
                 location.href = "/dashboard";
             },
             /**
-             * TwitterUserIdをstoreから削除する
-             * TwitterUserをDBから削除するAPIを実行する
-             * APIが正常に完了した場合、Twitterページemitを通知して、削除の描画を行う
+             * 削除前の確認モーダルを表示する
              */
-            async deleteTwitterUser() {
-                // await this.$store.dispatch('auth/twitterUserLogout')
-                // if (this.apiStatus) {
-                //     const response = await axios.delete(`/api/twitter/${this.item.id}`)
-                //     if (response.status !== OK) {
-                //         this.$store.commit('error/setCode', response.status)
-                //         return false
-                //     }
-                // }
-                this.$emit('delUser', {
-                    index: this.index,
-                })
+            changeDeleteFlg() {
+                this.$emit('delUser', { index: this.index, item_id: this.item.id });
             },
         },
         computed: {
@@ -85,8 +89,8 @@
             //     return this.$store.state.auth.apiStatus
             // },
         },
-        created() {
-            this.fetchTwitterUser()
+        async created() {
+            await this.fetchTwitterUser();
         }
     }
 </script>

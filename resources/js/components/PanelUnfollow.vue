@@ -26,6 +26,7 @@
     export default {
         data() {
             return {
+                page: 3,
                 serviceStatus: null,
                 serviceStatusLabel: null,
             }
@@ -87,10 +88,17 @@
                 // this.serviceStatusLabel = response.data.status_labels.auto_unfollow
                 this.serviceStatus = 1;
                 this.serviceStatusLabel = 'サービス停止中';
+            },
+            /**
+             * localstorageから現在のページを保存する
+             */
+            getCurrentPage() {
+                localStorage.setItem('page', this.page);
             }
         },
         created() {
-            this.fetchServiceStatus()
+            this.fetchServiceStatus();
+            this.getCurrentPage();
         }
     }
 </script>

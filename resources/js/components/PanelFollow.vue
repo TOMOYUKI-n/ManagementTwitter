@@ -101,6 +101,7 @@
                     </div>
                     <form class="p-form" @submit.prevent="editFollowTarget">
 
+                        <p class="p-form__notion">※キーワードは、「キーワード登録」から登録してください。</p>
                         <div v-if="editErrors" class="p-form__errors">
                             <ul v-if="editErrors.target">
                                 <li v-for="msg in editErrors.target" :key="msg">{{ msg }}</li>
@@ -110,18 +111,18 @@
                             </ul>
                         </div>
 
-                        <label class="p-form__label" for="edit-target">ターゲット名 *必須</label>
-                        <input type="text" class="p-form__item" id="edit-target"
+                        <label class="p-form__label" for="account">アカウント名 *必須</label>
+                        <input type="text" class="p-form__item" id="account"
                                v-model="editForm.target" required maxlength="15" placeholder="例) kamitter_1234">
 
-                        <label class="p-form__label" for="eidt-target_filter_id">キーワード条件の選択 *必須</label>
-                        <select class="p-form__select" id="eidt-target_filter_id"
+                        <label class="p-form__label" for="keyword_id">抽出キーワードの選択 *必須</label>
+                        <select class="p-form__select" id="keyword_id"
                                 v-model="editForm.filter_word_id"
                                 required
                         >
                             <option v-for="filter in filters" :key="filter.id" :value="filter.id">{{filter.word}}</option>
                         </select>
-                        <p class="p-form__notion">※条件のキーワードは、「キーワード登録」から登録することができます。</p>
+
                         <div class="p-form__button">
                             <button type="submit" class="c-button c-button--twitter">編集</button>
                         </div>
@@ -142,7 +143,8 @@
 
 <script>
     import { filterWords, targetAccountList, manegementServiceStatus } from "../repository"
-
+    import { message } from '../message';
+    import axios from "axios";
     export default {
         data() {
             return {
@@ -186,7 +188,7 @@
              * 登録したフォローターゲット一覧を取得する
              */
             async fetchFollowTargets() {
-                // const response = await axios.get('/api/follow')
+                // const response = await axios.get('/api/follow/list')
                 // if (response.status !== OK) {
                 //     this.$store.commit('error/setCode', response.status)
                 //     return false
@@ -335,6 +337,9 @@
                 this.addErrors = null
                 this.editErrors = null
             },
+            /**
+             * localstorageから現在のページを保存する
+             */
             getCurrentPage() {
                 localStorage.setItem('page', this.page);
             }

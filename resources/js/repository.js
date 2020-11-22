@@ -22,16 +22,16 @@ export const loginUserInfo = [
  * twitterAPIレスポンス結果
  */
 export const twitterAccount = [
-    {twitter_id: 1000037652727401, screen_name: 'xxxhhskjosekjag', name: 'さんぷる太郎', thumbnail: '', follow: 500, follower: 3400 },
-    {twitter_id: 1000037652727402, screen_name: 'dddwesekjag', name: 'てきとーまん', thumbnail: '', follow: 400, follower: 300},
-    {twitter_id: 1000037652727403, screen_name: 'hapybirth', name: '誕生日', thumbnail: '', follow: 550, follower: 30},
-    {twitter_id: 1000037652727404, screen_name: 'monky', name: '猿', thumbnail: '', follow: 343, follower: 340},
-    {twitter_id: 1000037652727405, screen_name: 'printeee', name: '印刷業界からWEBの新生児', thumbnail: '', follow: 5, follower: 34},
-    {twitter_id: 1000037652727406, screen_name: 'hogehoge', name: 'ほげさん', thumbnail: '', follow: 1100, follower: 5000},
-    {twitter_id: 1000037652727407, screen_name: 'fugag3', name: 'ふがふが', thumbnail: '', follow: 11900, follower: 3000},
-    // {id: 1000037652727408, screen_name: 'omo', name: 'おもしろいひと', thumbnail: ''},
-    // {id: 1000037652727409, screen_name: 'ttrex', name: 'れっくす', thumbnail: ''},
-    // {id: 1000037652727410, screen_name: 'logijij', name: 'じじい', thumbnail: ''},
+    {id: 4, screen_name: 'tomozo01v', name: 'tomozo01v', thumbnail: '', follows: 500, followers: 3400 },
+    {id: 34, screen_name: 'Nayeli Stracke', name: 'Nayeli Stracke', thumbnail: '', follows: 400, followers: 300},
+    {id: 462, screen_name: 'Mrs. Meagan Mraz', name: 'Mrs. Meagan Mraz', thumbnail: '', follows: 550, followers: 30},
+    {id: 94031, screen_name: 'Fabiola Feest', name: 'Fabiola Feest', thumbnail: '', follows: 343, followers: 340},
+    {id: 24351399, screen_name: 'Aliza Beier', name: 'Aliza Beier', thumbnail: '', follows: 5, followers: 34},
+    {id: 67848767, screen_name: 'Annamae Cummerata', name: 'Annamae Cummerata', thumbnail: '', follows: 1100, followers: 5000},
+    {id: 86904763, screen_name: 'Jaunita Upton IV', name: 'Jaunita Upton IV', thumbnail: '', follows: 11900, followers: 3000},
+    {id: 97867039, screen_name: 'Dr. Milford Grant', name: 'Dr. Milford Grant', thumbnail: '', follows: 22, followers: 567},
+    {id: 97867040, screen_name: 'Elody Halvorson', name: 'Elody Halvorson', thumbnail: '', follows: 33, followers: 5543},
+    {id: 366571107, screen_name: 'Deontae Mante', name: 'Deontae Mante', thumbnail: '', follows: 112, followers: 322},
 ];
 
 /**
@@ -39,7 +39,7 @@ export const twitterAccount = [
  * twitter_users_tableの中身
  */
 export const twitterUsersTable = [
-    { id: 1, user_id: 1000037652727401, token: 'token_xxxhhskjosekjag', token_secret: 'token_secret_xxxhhskjosekjag' }
+    { id: 4, user_id: 1, token: 'tomozo01v', token_secret: 'token_secret_xxxhhskjosekjag' }
 ];
 
 /**

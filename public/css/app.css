@@ -90,6 +90,10 @@ img {
   padding: 24px;
   display: flex;
   justify-content: center;
+  max-height: 100%;
+  overflow-y: scroll;
+  height: 93vh;
+  box-sizing: border-box;
 }
 @media screen and (max-width: 960px) {
   .l-contents {
@@ -1461,9 +1465,11 @@ img {
 .p-twitter {
   width: 100%;
   margin-top: 24px;
+  margin-bottom: 24px;
 }
 .p-twitter__card {
   overflow: hidden;
+  transition: 0.5s;
   padding: 4px;
   border-radius: 4px;
   margin-bottom: 1px;

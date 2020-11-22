@@ -26,23 +26,23 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 /**
  * パスワードリマインダーAPI
  */
-Route::group([
-    'namespace' => 'Auth',
-    'middleware' => 'api',
-    'prefix' => 'password'
-], function () {
-    Route::post('/create', 'PasswordResetController@create');
-    Route::get('/find/{token}', 'PasswordResetController@find');
-    Route::post('/reset', 'PasswordResetController@reset');
-});
+// Route::group([
+//     'namespace' => 'Auth',
+//     'middleware' => 'api',
+//     'prefix' => 'password'
+// ], function () {
+//     Route::post('/create', 'PasswordResetController@create');
+//     Route::get('/find/{token}', 'PasswordResetController@find');
+//     Route::post('/reset', 'PasswordResetController@reset');
+// });
 
 /**
  * ツイッターアカウント管理API
  */
-Route::post('/twitter/logout', 'TwitterAuthController@logout')->name('twitter.logout');
-Route::delete('/twitter/{id}', 'TwitterAuthController@delete')->name('twitter.delete');
-Route::get('/twitter/id', 'TwitterAuthController@getId')->name('twitter.getId');
-Route::post('/twitter/{id}', 'TwitterAuthController@setId')->name('twitter.setId');
+// Route::post('/twitter/logout', 'TwitterAuthController@logout')->name('twitter.logout');
+// Route::delete('/twitter/{id}', 'TwitterAuthController@delete')->name('twitter.delete');
+// Route::get('/twitter/id', 'TwitterAuthController@getId')->name('twitter.getId');
+// Route::post('/twitter/{id}', 'TwitterAuthController@setId')->name('twitter.setId');
 
 
 /**

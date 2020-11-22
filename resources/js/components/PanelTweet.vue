@@ -141,6 +141,7 @@
     export default {
         data() {
             return {
+                page: 5,
                 autoTweets: [],
                 newModal: false,
                 editModal: false,
@@ -364,11 +365,18 @@
             clearErrors() {
                 this.addErrors = null
                 this.editErrors = null
+            },
+            /**
+             * localstorageから現在のページを保存する
+             */
+            getCurrentPage() {
+                localStorage.setItem('page', this.page);
             }
         },
         created() {
             this.fetchAutoTweets()
             this.fetchServiceStatus()
+            this.getCurrentPage();
         },
     }
 

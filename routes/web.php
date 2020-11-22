@@ -26,29 +26,31 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/contact', 'ContactController@index')->name('contact.index');
 Route::post('/contact/confirm', 'ContactController@confirm')->name('contact.confirm');
 Route::post('/contact/complete', 'ContactController@send')->name('contact.send');
-// ログイン失敗時
-Route::get('/misslogin', 'IndexController@misslogin')->name('misslogin');
-//ソーシャルログイン
-Route::get('/login/{provider}', 'Auth\LoginController@redirectToProvider');
-//ソーシャルログインのcallback
-Route::get('/login/{provider}/callback', 'Auth\LoginController@handleProviderCallback');
 
+/**
+ * twitterログイン
+ */
+Route::get('/login/{provider}', 'Auth\LoginController@redirectToProvider');
+Route::get('/login/{provider}/callback', 'Auth\LoginController@handleProviderCallback');
 
 /**
  * 認証が必要なルート
  */
 Route::group(['middleware' => 'auth'], function() {
-    // ダッシュボード
+    
+    /**
+     * ダッシュボード 画面遷移
+     */
     Route::get('/dashboard', 'IndexController@dashboard')->name('index.dashBoard');
-    // あかうんと
-    Route::get('/account', 'IndexController@account')->name('index.account');
 
-    // アカウント登録処理
-    Route::post('/provider/connect', 'ConnectController@connect');
-    // アカウント解除処理
-    Route::post('/provider/disconnect', 'ConnectController@disconnect');
-    // アカウント情報取得処理
-    Route::get('/provider/status', 'ConnectController@status');
+    /**
+     * 登録済みtwitterアカウントの一覧取得
+     */
+    Route::get('/test/twitter/users/list', 'TwitterController@testlist')->name('twitter.testlist');
+    Route::get('/test/twitter/users/getTestInfo/{id}', 'TwitterController@getTestInfo')->name('twitter.testinfo');
+    Route::get('/api/twitter/users/list', 'TwitterController@list')->name('twitter.list');
+    Route::get('/api/twitter/users/{id}', 'TwitterController@getInfo')->name('twitter.info');
+    Route::delete('/api/twitter/users/{id}', 'TwitterController@delete')->name('twitter.delete');
 
     /**
      * キーワード関連
@@ -58,6 +60,14 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/api/keyword/{id}', 'KeywordController@get')->name('keyword.get');
     Route::put('/api/keyword/{id}', 'KeywordController@edit')->name('keyword.edit');
     Route::delete('/api/keyword/{id}', 'KeywordController@delete')->name('keyword.delete');
+
+    /**
+     * 自動フォロー関連
+     */
+    Route::get('/api/follow/list', 'FollowController@list')->name('follow.list');
+
+
+
 
     // アカウント一覧画面遷移
     Route::get('/accountList', function(){ return view('index.accountList'); });
