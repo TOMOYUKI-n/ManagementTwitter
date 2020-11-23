@@ -1077,24 +1077,24 @@ img {
     padding: 5px;
   }
 }
-.p-table__th--follow:nth-child(1) {
+.p-table__th--follow:nth-child(1), .p-table__th--follow:nth-child(2) {
   width: 20%;
 }
 @media screen and (max-width: 960px) {
-  .p-table__th--follow:nth-child(1) {
+  .p-table__th--follow:nth-child(1), .p-table__th--follow:nth-child(2) {
     width: 20%;
   }
 }
 @media screen and (max-width: 960px) {
-  .p-table__th--follow:nth-child(2) {
+  .p-table__th--follow:nth-child(3) {
     width: 40%;
   }
 }
-.p-table__th--follow:nth-child(3) {
+.p-table__th--follow:nth-child(4) {
   min-width: 120px;
 }
 @media screen and (max-width: 960px) {
-  .p-table__th--follow:nth-child(3) {
+  .p-table__th--follow:nth-child(4) {
     width: 30%;
   }
 }

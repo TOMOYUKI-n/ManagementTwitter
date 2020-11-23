@@ -69,6 +69,14 @@ Route::group(['middleware' => 'auth'], function() {
     Route::put('/api/follow/{id}', 'FollowController@edit')->name('follow.edit');
     Route::post('/api/follow/delete/{id}', 'FollowController@delete')->name('follow.delete');
 
+
+    /**
+     * システム管理関連
+     */
+    Route::get('/api/system/status/{id}', 'ManagerController@show')->name('system.show');
+    Route::post('/api/system/running', 'ManagerController@run')->name('system.run');
+    Route::post('/system/stop', 'SystemManagerController@stop')->name('system.stop');
+
     // アカウント一覧画面遷移
     Route::get('/accountList', function(){ return view('index.accountList'); });
     // フォローチェック

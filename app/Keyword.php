@@ -11,6 +11,15 @@ class Keyword extends Model
 {
     protected $table = 'keywords';
 
+    protected $casts = [
+        'id' => 'integer',
+        'user_id' => 'integer',
+        'type' => 'integer'
+    ];
+    
+    /**
+     * タイプを定義
+     */
     const AND = 1;
     const OR = 2;
     const TYPE = [
@@ -24,12 +33,6 @@ class Keyword extends Model
 
     protected $hidden = [
         'created_at', 'updated_at'
-    ];
-
-    protected $casts = [
-        'id' => 'integer',
-        'user_id' => 'integer',
-        'type' => 'integer'
     ];
 
     /**

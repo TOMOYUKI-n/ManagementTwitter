@@ -15,7 +15,16 @@ class CreateManagementsTable extends Migration
     {
         Schema::create('managements', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('twitter_user_id');
+            $table->unsignedBigInteger('auto_follow_status')->default(1);
+            $table->unsignedBigInteger('auto_unfollow_status')->default(1);
+            $table->unsignedBigInteger('auto_like_status')->default(1);
+            $table->unsignedBigInteger('auto_tweet_status')->default(1);
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('twitter_user_id')->references('id')->on('twitter_users')->onDelete('cascade');
         });
     }
 

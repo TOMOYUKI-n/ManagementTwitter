@@ -58,6 +58,9 @@
                 </td>
             </tr>
         </table>
+        <p v-show="followTargets.length === 0" style="font-size: 14px; margin-top: 8px;">
+            データがありません
+        </p>
         <p v-show="errorFlg" style="color: red; font-size: 14px; margin-top: 8px;">
             {{ messageText }}
         </p>
@@ -214,14 +217,16 @@
             async fetchFollowTargets() {
                 const response = await axios.get(`/api/follow/list/${this.twitter_id}`);
 
-                if (response.status !== 200 || response.data === 500 || response.data.length === 0) {
+                if (response.status !== 200 || response.data === 500) {
                     this.errorFlg = true;
                     this.messageText = message.notGetData;
                 }
-                this.followTargets = response.data;
+                else {
+                    this.followTargets = response.data;
+                }
             },
             /**
-             * フィルターワード一覧を取得する
+             * キーワード一覧を取得する
              */
             async fetchKeywords() {
                 const response = await axios.get('/api/keyword');
@@ -253,13 +258,11 @@
              * 表示の際にフォローターゲットのデータを入力しておく
              */
             showEditModal(followTarget, index) {
-                // console.log(followTarget);
                 this.editModal = true;
                 this.editForm.id = followTarget.twitter_user_id;
                 this.editForm.account_user_name = followTarget.account_user_name;
                 this.editForm.keyword_id = followTarget.keyword_id;
                 this.editIndex = index;
-                console.log(this.editForm.id);
             },
             /**
              * フォーローターゲットを編集する
@@ -322,31 +325,38 @@
              * 自動フォロー機能のサービスステータスを取得する
              */
             async fetchServiceStatus() {
-                // const response = await axios.get('/api/system/status')
-                // if (response.status !== OK) {
-                //     this.$store.commit('error/setCode', response.status)
-                //     return false
-                // }
-                const response = manegementServiceStatus;
-                this.serviceStatus = 1;
-                this.serviceStatusLabel = 'サービス停止中';
+                console.log(this.twitter_id);
+                const response = await axios.get(`/api/system/status/${this.twitter_id}`);
+                console.log(response);
+                if (response.status !== 200) {
+                    this.errorFlg = true;
+                    this.messageText = message.notGetData;
+                }
+                else {
+                    const response = manegementServiceStatus;
+                    this.serviceStatus = 1;
+                    this.serviceStatusLabel = 'サービス停止中';
+                }
             },
             /**
              * 自動フォロー機能を稼働状態にする
              */
             async runFollowService() {
-                // const serviceType = 1
-                // const data = {type: serviceType}
-                // const response = await axios.post('/api/system/run', data)
-                // if (response.status !== OK) {
-                //     this.$store.commit('error/setCode', response.status)
-                //     return false
-                // }
-                // this.serviceStatus = response.data.auto_follow_status
-                // this.serviceStatusLabel = response.auto_follow_status
-                this.serviceSwitch = false;
-                this.serviceStatus = 2;
-                this.serviceStatusLabel = 'サービス稼働中';
+                const serviceType = 1;
+                const data = {type: serviceType, twitter_id: this.twitter_id};
+                const response = await axios.post('/api/system/running', data);
+                console.log(response.data);
+                if (response.data === 500 || response.status !== 200) {
+                    this.errorFlg = true;
+                    this.messageText = message.notUpdate;
+                    this.serviceSwitch = false;
+                }
+                else{
+                    this.serviceSwitch = false;
+                    this.serviceStatus = 2;
+                    this.serviceStatusLabel = 'サービス稼働中';
+                    await this.fetchServiceStatus();
+                }
             },
             /**
              * 自動フォロー機能を停止状態にする

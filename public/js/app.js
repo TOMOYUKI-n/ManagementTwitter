@@ -2719,6 +2719,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 
 
 
@@ -2778,14 +2781,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 2:
                 response = _context.sent;
 
-                if (response.status !== 200 || response.data === 500 || response.data.length === 0) {
+                if (response.status !== 200 || response.data === 500) {
                   _this.errorFlg = true;
                   _this.messageText = _message__WEBPACK_IMPORTED_MODULE_2__["message"].notGetData;
+                } else {
+                  _this.followTargets = response.data;
                 }
 
-                _this.followTargets = response.data;
-
-              case 5:
+              case 4:
               case "end":
                 return _context.stop();
             }
@@ -2795,7 +2798,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
 
     /**
-     * フィルターワード一覧を取得する
+     * キーワード一覧を取得する
      */
     fetchKeywords: function fetchKeywords() {
       var _this2 = this;
@@ -2881,13 +2884,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
      * 表示の際にフォローターゲットのデータを入力しておく
      */
     showEditModal: function showEditModal(followTarget, index) {
-      // console.log(followTarget);
       this.editModal = true;
       this.editForm.id = followTarget.twitter_user_id;
       this.editForm.account_user_name = followTarget.account_user_name;
       this.editForm.keyword_id = followTarget.keyword_id;
       this.editIndex = index;
-      console.log(this.editForm.id);
     },
 
     /**
@@ -3019,21 +3020,30 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this6 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee6() {
-        var response;
+        var response, _response;
+
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee6$(_context6) {
           while (1) {
             switch (_context6.prev = _context6.next) {
               case 0:
-                // const response = await axios.get('/api/system/status')
-                // if (response.status !== OK) {
-                //     this.$store.commit('error/setCode', response.status)
-                //     return false
-                // }
-                response = _repository__WEBPACK_IMPORTED_MODULE_1__["manegementServiceStatus"];
-                _this6.serviceStatus = 1;
-                _this6.serviceStatusLabel = 'サービス停止中';
+                console.log(_this6.twitter_id);
+                _context6.next = 3;
+                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.get("/api/system/status/".concat(_this6.twitter_id));
 
               case 3:
+                response = _context6.sent;
+                console.log(response);
+
+                if (response.status !== 200) {
+                  _this6.errorFlg = true;
+                  _this6.messageText = _message__WEBPACK_IMPORTED_MODULE_2__["message"].notGetData;
+                } else {
+                  _response = _repository__WEBPACK_IMPORTED_MODULE_1__["manegementServiceStatus"];
+                  _this6.serviceStatus = 1;
+                  _this6.serviceStatusLabel = 'サービス停止中';
+                }
+
+              case 6:
               case "end":
                 return _context6.stop();
             }
@@ -3049,24 +3059,42 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this7 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee7() {
+        var serviceType, data, response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee7$(_context7) {
           while (1) {
             switch (_context7.prev = _context7.next) {
               case 0:
-                // const serviceType = 1
-                // const data = {type: serviceType}
-                // const response = await axios.post('/api/system/run', data)
-                // if (response.status !== OK) {
-                //     this.$store.commit('error/setCode', response.status)
-                //     return false
-                // }
-                // this.serviceStatus = response.data.auto_follow_status
-                // this.serviceStatusLabel = response.auto_follow_status
+                serviceType = 1;
+                data = {
+                  type: serviceType,
+                  twitter_id: _this7.twitter_id
+                };
+                _context7.next = 4;
+                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.post('/api/system/running', data);
+
+              case 4:
+                response = _context7.sent;
+                console.log(response.data);
+
+                if (!(response.data === 500 || response.status !== 200)) {
+                  _context7.next = 12;
+                  break;
+                }
+
+                _this7.errorFlg = true;
+                _this7.messageText = _message__WEBPACK_IMPORTED_MODULE_2__["message"].notUpdate;
+                _this7.serviceSwitch = false;
+                _context7.next = 17;
+                break;
+
+              case 12:
                 _this7.serviceSwitch = false;
                 _this7.serviceStatus = 2;
                 _this7.serviceStatusLabel = 'サービス稼働中';
+                _context7.next = 17;
+                return _this7.fetchServiceStatus();
 
-              case 3:
+              case 17:
               case "end":
                 return _context7.stop();
             }
@@ -7652,6 +7680,22 @@ var render = function() {
         })
       ],
       2
+    ),
+    _vm._v(" "),
+    _c(
+      "p",
+      {
+        directives: [
+          {
+            name: "show",
+            rawName: "v-show",
+            value: _vm.followTargets.length === 0,
+            expression: "followTargets.length === 0"
+          }
+        ],
+        staticStyle: { "font-size": "14px", "margin-top": "8px" }
+      },
+      [_vm._v("\n        データがありません\n    ")]
     ),
     _vm._v(" "),
     _c(
@@ -23297,64 +23341,76 @@ var loginUserInfo = [{
  */
 
 var twitterAccount = [{
-  id: 114,
-  screen_name: 'tomozo01v',
-  name: 'tomozo01v',
+  id: 6044,
+  screen_name: 'tomo',
+  name: 'tomo',
   thumbnail: '',
   follows: 500,
   followers: 3400
 }, {
-  id: 2771,
+  id: 12425,
   screen_name: 'Nayeli Stracke',
   name: 'Nayeli Stracke',
   thumbnail: '',
   follows: 400,
   followers: 300
 }, {
-  id: 79062,
+  id: 59319,
   screen_name: 'Mrs. Meagan Mraz',
   name: 'Mrs. Meagan Mraz',
   thumbnail: '',
   follows: 550,
   followers: 30
 }, {
-  id: 696445,
+  id: 63407,
   screen_name: 'Fabiola Feest',
   name: 'Fabiola Feest',
   thumbnail: '',
   follows: 343,
   followers: 340
 }, {
-  id: 4250377,
+  id: 86713,
   screen_name: 'Aliza Beier',
   name: 'Aliza Beier',
   thumbnail: '',
   follows: 5,
   followers: 34
 }, {
-  id: 73824476,
+  id: 92887,
   screen_name: 'Annamae Cummerata',
   name: 'Annamae Cummerata',
   thumbnail: '',
   follows: 1100,
   followers: 5000
 }, {
-  id: 73824477,
+  id: 711157,
   screen_name: 'Jaunita Upton IV',
   name: 'Jaunita Upton IV',
   thumbnail: '',
   follows: 11900,
   followers: 3000
 }, {
-  id: 96357276,
+  id: 5240583,
   screen_name: 'Dr. Milford Grant',
   name: 'Dr. Milford Grant',
   thumbnail: '',
   follows: 22,
   followers: 567
-} // {id: 97867040, screen_name: 'Elody Halvorson', name: 'Elody Halvorson', thumbnail: '', follows: 33, followers: 5543},
-// {id: 366571107, screen_name: 'Deontae Mante', name: 'Deontae Mante', thumbnail: '', follows: 112, followers: 322},
-];
+}, {
+  id: 113477983,
+  screen_name: 'Elody Halvorson',
+  name: 'Elody Halvorson',
+  thumbnail: '',
+  follows: 33,
+  followers: 5543
+}, {
+  id: 113477987,
+  screen_name: 'tomozo01v',
+  name: 'tomozo01v',
+  thumbnail: '',
+  follows: 112,
+  followers: 322
+}];
 /**
  * 切り替えたアカウントでtwitter APIを利用する際に取得が必要
  * twitter_users_tableの中身
