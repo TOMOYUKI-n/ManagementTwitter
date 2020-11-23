@@ -2,15 +2,15 @@
     <div class="p-panel u-color__bg--white">
 
         <div class="p-status">
-            <p v-show="showRunButton" class="p-status__show p-status__sleep" style="background-color: #3335;">{{serviceStatusLabel}}</p>
+            <p v-show="showRunButton" class="p-status__show p-status__sleep">{{serviceStatusLabel}}</p>
             <p v-show="showStopButton" class="p-status__show p-status__active">{{serviceStatusLabel}}</p>
             <button class="c-button c-button__status--on"
-                    @click="runFollowService"
+                    @click="serviceSwitch = true"
                     v-show="showRunButton">
                     <i class="fas fa-power-off c-icon__mr-2"></i>稼働
             </button>
             <button class="c-button c-button__status--off"
-                    @click="stopFollowService"
+                    @click="serviceSwitch = true"
                     v-show="showStopButton">
                     <i class="fas fa-ban c-icon__mr-2"></i>停止
             </button>
@@ -30,14 +30,16 @@
 
         <table class="p-table">
             <tr class="p-table__head">
+                <th class="p-table__th p-table__th--follow">ステータス</th>
                 <th class="p-table__th p-table__th--follow">ターゲット</th>
                 <th class="p-table__th p-table__th--follow">条件</th>
                 <th class="p-table__th p-table__th--follow"></th>
             </tr>
 
             <tr v-for="(followTarget, index) in followTargets" :key="index">
-                <td class="p-table__td">@{{followTarget.target}}</td>
-                <td class="p-table__td">{{followTarget.filter_word.word}}</td>
+                <td class="p-table__td">{{followTarget.status_label}}</td>
+                <td class="p-table__td">@{{followTarget.account_user_name}}</td>
+                <td class="p-table__td">{{followTarget.keyword.merged_word}}</td>
                 <td class="p-table__td">
                     <div class="p-table__action">
                         <div class="p-table__btn-wrap">
@@ -47,7 +49,7 @@
                                 <i class="c__color--blue fas fa-pen p-table__test-xs"></i>
                             </button>
                             <button class="c-button c-button--delete p-table__button c-button--delete "
-                                    @click="removeFollowTarget(followTarget.id, index)"
+                                    @click="remove(followTarget, index)"
                             >
                                 <i class="fas fa-trash-alt p-table__test-xs"></i>
                             </button>
@@ -56,6 +58,12 @@
                 </td>
             </tr>
         </table>
+        <p v-show="followTargets.length === 0" style="font-size: 14px; margin-top: 8px;">
+            データがありません
+        </p>
+        <p v-show="errorFlg" style="color: red; font-size: 14px; margin-top: 8px;">
+            {{ messageText }}
+        </p>
 
         <div class="p-modal__wrapper">
             <section class="p-modal p-modal--opened" v-show="newModal">
@@ -65,28 +73,20 @@
                     </div>
                     <form class="p-form" @submit.prevent="addFollowTarget">
 
-                        <div v-if="addErrors" class="p-form__errors">
-                            <ul v-if="addErrors.target">
-                                <li v-for="msg in addErrors.target" :key="msg">{{ msg }}</li>
-                            </ul>
-                            <ul v-if="addErrors.filter_word_id">
-                                <li v-for="msg in addErrors.filter_word_id" :key="msg">{{ msg }}</li>
-                            </ul>
-                        </div>
-
+                        <p class="p-form__notion">※条件のキーワードは、「キーワード登録」から登録することができます。</p>
                         <label class="p-form__label" for="add-target">ターゲット名 *必須</label>
-                        <input type="text" class="p-form__item" id="add-target"
-                               v-model="addForm.target" required maxlength="15" placeholder="例) kamitter_1234">
+                        <input type="text" class="p-form__item" id="add-account"
+                               v-model="addForm.account_user_name" required maxlength="15" placeholder="例) kamitter_1234">
 
-                        <label class="p-form__label" for="add-target_filter_id">フォロー条件の選択 *必須</label>
-                        <select class="p-form__select" id="add-target_filter_id"
-                                v-model="addForm.filter_word_id"
+                        <label class="p-form__label" for="add-account_id">フォロー条件の選択 *必須</label>
+                        <select class="p-form__select" id="add-account_id"
+                                v-model="addForm.keyword_id"
                                 required
                         >
-                            <option v-for="filter in filters" :key="filter.id" :value="filter.id">{{filter.word}}</option>
+                            <option v-for="keyword in keywords" :key="keyword.id" :value="keyword.id">{{keyword.word}}</option>
                             <optgroup></optgroup>
                         </select>
-                        <p class="p-form__notion">※条件のキーワードは、「キーワード登録」から登録することができます。</p>
+
                         <div class="p-form__button">
                             <button type="submit" class="c-button c-button--twitter">追加</button>
                         </div>
@@ -102,25 +102,17 @@
                     <form class="p-form" @submit.prevent="editFollowTarget">
 
                         <p class="p-form__notion">※キーワードは、「キーワード登録」から登録してください。</p>
-                        <div v-if="editErrors" class="p-form__errors">
-                            <ul v-if="editErrors.target">
-                                <li v-for="msg in editErrors.target" :key="msg">{{ msg }}</li>
-                            </ul>
-                            <ul v-if="editErrors.filter_word_id">
-                                <li v-for="msg in editErrors.filter_word_id" :key="msg">{{ msg }}</li>
-                            </ul>
-                        </div>
 
                         <label class="p-form__label" for="account">アカウント名 *必須</label>
                         <input type="text" class="p-form__item" id="account"
-                               v-model="editForm.target" required maxlength="15" placeholder="例) kamitter_1234">
+                               v-model="editForm.account_user_name" required maxlength="15" placeholder="例) kamitter_1234">
 
                         <label class="p-form__label" for="keyword_id">抽出キーワードの選択 *必須</label>
                         <select class="p-form__select" id="keyword_id"
-                                v-model="editForm.filter_word_id"
+                                v-model="editForm.keyword_id"
                                 required
                         >
-                            <option v-for="filter in filters" :key="filter.id" :value="filter.id">{{filter.word}}</option>
+                            <option v-for="keyword in keywords" :key="keyword.id" :value="keyword.id">{{keyword.word}}</option>
                         </select>
 
                         <div class="p-form__button">
@@ -130,10 +122,46 @@
                 </div>
             </section>
 
+            <section class="p-modal p-modal--opened" v-show="serviceSwitch">
+                <div class="p-modal__contents">
+                    <p class="p-form__delete">自動化サービスを利用しますか？</p>
+                    <div class="p-form__delete__wrap">
+                        <div type="submit" class="c-button p-form__half-btn width__three" @click="serviceSwitch = false">
+                            <i class="fas fa-times m__r2"></i>
+                            <div>キャンセル</div>
+                        </div>
+                        <div v-show="showRunButton" type="submit" class="c-button p-status__active p-form__half-btn width__three" @click="runFollowService">
+                            <i class="fas fa-check m__r2"></i>
+                            <div>開始する</div>
+                        </div>
+                        <div v-show="showStopButton" type="submit" class="c-button p-status__sleep p-form__half-btn width__three" @click="stopFollowService">
+                            <i class="fas fa-check m__r2"></i>
+                            <div>停止する</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="p-modal p-modal--opened" v-show="deleteOn">
+                <div class="p-modal__contents">
+                    <p class="p-form__delete">本当に削除しますか？</p>
+                    <div class="p-form__delete__wrap">
+                        <div type="submit" class="c-button p-form__half-btn width__three" @click="deleteOn = false">
+                            <i class="fas fa-times m__r2"></i>
+                            <div>キャンセル</div>
+                        </div>
+                        <div type="submit" class="p-botton__delete  p-form__half-btn width__three" @click="removeFollowTarget">
+                            <i class="fas fa-check m__r2"></i>
+                            <div>削除</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
         </div>
 
         <div class="c-button--add--wrap">
-            <button class="c-button--add--sp" @click="newModal = ! newModal">
+            <button class="c-button--add--sp" @click="newModal = !newModal">
                 <i class="fas fa-plus"></i>
             </button>
         </div>
@@ -149,33 +177,32 @@
         data() {
             return {
                 page: 2,
+                twitter_id: 0,
+                errorFlg: false,
+                messageText: '',
+                serviceSwitch: false,
+                deleteOn: false,
+                deleteIndex: 0,
+                deleteItem: [],
                 followTargets: [],
-                filters: [],
+                keywords: [],
                 newModal: false,
                 editModal: false,
                 editIndex: null,
                 serviceStatus: null,
                 serviceStatusLabel: null,
-                addErrors: null,
-                editErrors: null,
                 addForm: {
-                    target: null,
-                    filter_word_id: null,
+                    account_user_name: null,
+                    keyword_id: null,
                 },
                 editForm: {
-                    id: null,
-                    target: null,
-                    filter_word_id: null,
+                    id: 0,
+                    account_user_name: '',
+                    keyword_id: 0,
                 },
             }
         },
         computed: {
-            /**
-             * フィルターキワードの追加、変更、削除イベントの通知を取得する
-             */
-            // dashChange() {
-            //     return this.$store.state.dashboard.noticeToTweet
-            // },
             showRunButton() {
                 return this.serviceStatus === 1 || this.serviceStatus === 3
             },
@@ -188,43 +215,43 @@
              * 登録したフォローターゲット一覧を取得する
              */
             async fetchFollowTargets() {
-                // const response = await axios.get('/api/follow/list')
-                // if (response.status !== OK) {
-                //     this.$store.commit('error/setCode', response.status)
-                //     return false
-                // }
-                const response = targetAccountList;
-                this.followTargets = response;
+                const response = await axios.get(`/api/follow/list/${this.twitter_id}`);
+
+                if (response.status !== 200 || response.data === 500) {
+                    this.errorFlg = true;
+                    this.messageText = message.notGetData;
+                }
+                else {
+                    this.followTargets = response.data;
+                }
             },
             /**
-             * フィルターワード一覧を取得する
+             * キーワード一覧を取得する
              */
-            async fetchFilters() {
-                // const response = await axios.get('/api/filter')
-                // if (response.status !== OK) {
-                //     this.$store.commit('error/setCode', response.status)
-                //     return false
-                // }
-                const response = filterWords;
-                this.filters = response;
+            async fetchKeywords() {
+                const response = await axios.get('/api/keyword');
+                if (response.status !== 200) {
+                    this.errorFlg = true;
+                    this.messageText = message.notGetData;
+                }
+                this.keywords = response.data;
             },
             /**
              * 新規フォローターゲットを追加する
              */
             async addFollowTarget() {
-                // this.clearErrors()
-                // const response = await axios.post('/api/follow', this.addForm)
-                // if (response.status === UNPROCESSABLE_ENTRY) {
-                //     this.addErrors = response.data.errors
-                //     return false
-                // }
-                // this.resetAddForm()
-                // if (response.status !== CREATED) {
-                //     this.$store.commit('error/setCode', response.status)
-                //     return false
-                // }
-                // this.followTargets.unshift(response.data)
-                // this.newModal = false
+                const response = await axios.post(`/api/follow/${this.twitter_id}`, this.addForm);
+                if (response.status !== 200) {
+                    this.errorFlg = true;
+                    this.messageText = message.notUpdate;
+                }
+                if (response.data === 200) {
+                    this.resetAddForm();
+                    this.newModal = false;
+                    // 再描画
+                    await this.fetchFollowTargets();
+                    await this.fetchKeywords();
+                }
             },
             /**
              * 編集用のモーダルフォームを表示する
@@ -232,140 +259,137 @@
              */
             showEditModal(followTarget, index) {
                 this.editModal = true;
-                this.editForm.id = followTarget.twitter_user_id
-                this.editForm.target = followTarget.target
-                this.editForm.filter_word_id = followTarget.filter_word_id
-                this.editIndex = index
+                this.editForm.id = followTarget.twitter_user_id;
+                this.editForm.account_user_name = followTarget.account_user_name;
+                this.editForm.keyword_id = followTarget.keyword_id;
+                this.editIndex = index;
             },
             /**
              * フォーローターゲットを編集する
              */
             async editFollowTarget() {
-                // this.clearErrors()
-                // const response = await axios.put(`/api/follow/${this.editForm.id}`, this.editForm)
-
-                // if (response.status === UNPROCESSABLE_ENTRY) {
-                //     this.editErrors = response.data.errors
-                //     return false
-                // }
-                // if (response.status !== OK) {
-                //     this.$store.commit('error/setCode', response.status)
-                //     return false
-                // }
-                this.followTargets.splice(this.editIndex, 1, response.data)
-                this.resetEditForm()
+                const response = await axios.put(`/api/follow/${this.editForm.id}`, this.editForm);
+                if (response.status !== 200 || response.data === 500) {
+                    this.errorFlg = true;
+                    this.messageText = message.notGetData;
+                }
+                if (response.data === 200) {
+                    // 再描画
+                    await this.fetchFollowTargets();
+                    await this.fetchKeywords();
+                }
+                this.resetEditForm();
             },
-
+            /**
+             * 削除モーダル表示、indexを取得
+             */
+            remove(item, index) {
+                this.deleteOn = true;
+                this.deleteIndex = index;
+                this.deleteItem = item;
+            },
             /**
              * フォローターゲットを削除する
              */
-            async removeFollowTarget(id, index) {
-                // const response = await axios.delete(`/api/follow/${id}`)
-                // if (response.status !== OK) {
-                //     this.$store.commit('error/setCode', response.status)
-                //     return false
-                // }
-                this.followTargets.splice(index, 1)
+            async removeFollowTarget() {
+                // console.log(this.deleteItem);
+                const response = await axios.post(`/api/follow/delete/${this.deleteItem.id}`, this.deleteItem);
+                if (response.status !== 200 || response.data === 500) {
+                    this.errorFlg = true;
+                    this.messageText = message.notGetData;
+                    this.deleteOn = false;
+                }
+                if (response.data === 200) {
+                    this.deleteOn = false;
+                    this.followTargets.splice(this.deleteIndex, 1);
+                    // 再描画
+                    await this.fetchFollowTargets();
+                    await this.fetchKeywords();
+                }
             },
             /**
-             * 新規追加フォームのデータを空にする
+             * フォームを初期化
              */
             resetAddForm() {
-                this.addForm.target = null
-                this.addForm.filter_word_id = null
+                this.addForm.account_user_name = null
+                this.addForm.keyword_id = null
             },
-            /**
-             * 編集フォームのデータを空にする
-             */
             resetEditForm() {
                 this.editModal = null
                 this.editForm.id = null
-                this.editForm.target = null
-                this.editForm.filter_word_id = null
+                this.editForm.account_user_name = null
+                this.editForm.keyword_id = null
                 this.editIndex = null
             },
             /**
              * 自動フォロー機能のサービスステータスを取得する
              */
             async fetchServiceStatus() {
-                // const response = await axios.get('/api/system/status')
-                // if (response.status !== OK) {
-                //     this.$store.commit('error/setCode', response.status)
-                //     return false
-                // }
-                const response = manegementServiceStatus;
-                this.serviceStatus = 1;
-                this.serviceStatusLabel = 'サービス停止中';
+                const response = await axios.get(`/api/system/status/${this.twitter_id}`);
+                // console.log(response);
+                if (response.status !== 200) {
+                    this.errorFlg = true;
+                    this.messageText = message.notGetData;
+                }
+                else {
+                    this.serviceSwitch = false;
+                    this.serviceStatus = response.data.auto_follow_status;
+                    this.serviceStatusLabel = response.data.status_labels.auto_follow;
+                }
             },
             /**
              * 自動フォロー機能を稼働状態にする
              */
             async runFollowService() {
-                // const serviceType = 1
-                // const data = {type: serviceType}
-                // const response = await axios.post('/api/system/run', data)
-                // if (response.status !== OK) {
-                //     this.$store.commit('error/setCode', response.status)
-                //     return false
-                // }
-                // this.serviceStatus = response.data.auto_follow_status
-                // this.serviceStatusLabel = response.auto_follow_status
-                this.serviceStatus = 2;
-                this.serviceStatusLabel = 'サービス稼働中';
+                const serviceType = 1;
+                const data = {type: serviceType, twitter_id: this.twitter_id};
+                const response = await axios.post('/api/system/running', data);
+                if (response.data === 500 || response.status !== 200) {
+                    this.errorFlg = true;
+                    this.messageText = message.notUpdate;
+                    this.serviceSwitch = false;
+                }
+                else{
+                    await this.fetchServiceStatus();
+                }
             },
             /**
              * 自動フォロー機能を停止状態にする
              */
             async stopFollowService() {
-                // const serviceType = 1
-                // const data = {type: serviceType}
-                // const response = await axios.post('/api/system/stop', data)
-                // if (response.status !== OK) {
-                //     this.$store.commit('error/setCode', response.status)
-                //     return false
-                // }
-                // this.serviceStatus = response.data.auto_follow_status
-                // this.serviceStatusLabel = response.data.status_labels.auto_follow
-
-                this.serviceStatus = 1;
-                this.serviceStatusLabel = 'サービス停止中';
-            },
-            /**
-             * 入力フォームエラーメッセージをクリアする
-             */
-            clearErrors() {
-                this.addErrors = null
-                this.editErrors = null
+                const serviceType = 1;
+                const data = {type: serviceType, twitter_id: this.twitter_id};
+                const response = await axios.post('/api/system/stop', data);
+                if (response.data === 500 || response.status !== 200) {
+                    this.errorFlg = true;
+                    this.messageText = message.notUpdate;
+                    this.serviceSwitch = false;
+                }
+                else{
+                    await this.fetchServiceStatus();
+                }
             },
             /**
              * localstorageから現在のページを保存する
              */
             getCurrentPage() {
                 localStorage.setItem('page', this.page);
+            },
+            /**
+             * localstorageから現在使用しているtwitter_userのidを取得する
+             */
+            async getCurrentTwitterId() {
+                const storage = JSON.parse(localStorage.getItem('loginTwitterAccount'));
+                this.twitter_id = storage.id;
             }
         },
-        created() {
-            this.fetchFollowTargets()
-            this.fetchFilters()
-            this.fetchServiceStatus();
-            this.getCurrentPage();
+        async created() {
+            await this.getCurrentPage();
+            await this.getCurrentTwitterId();
+            await this.fetchFollowTargets()
+            await this.fetchKeywords()
+            await this.fetchServiceStatus();
         },
-        watch: {
-            /**
-             * フィルターワードの通知を受け取ったら
-             * フォロワーターゲットと、フィルターワードを再取得する
-             */
-            // dashChange: {
-            //     handler(val) {
-            //         if (val === true) {
-            //             this.fetchFollowTargets()
-            //             this.fetchFilters()
-            //             this.$store.commit('dashboard/setNoticeToTweet', null)
-            //         }
-            //     }
-            // },
-        },
-
     }
 </script>
 <style lang="scss" scoped>

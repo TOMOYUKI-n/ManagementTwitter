@@ -45,7 +45,7 @@ class User extends Authenticatable
     ];
 
     /**
-     * リレーションシップ　- twitter_usersテーブル
+     * twitter_usersテーブル
      */
     public function twitterUsers()
     {
@@ -53,12 +53,26 @@ class User extends Authenticatable
     }
 
     /**
-     * リレーションシップ　- keywordsテーブル
+     * keywordsテーブル
      */
     public function keywords()
     {
         return $this->hasMany('App\Keyword', 'user_id');
     }
 
+    /**
+     * follow_targetsテーブル
+     */
+    public function followTargets()
+    {
+        return $this->hasMany('App\FollowTarget', 'user_id');
+    }
 
+    /**
+     * system_managersテーブル
+     */
+    public function systemManagers()
+    {
+        return $this->hasMany('App\SystemManages', 'user_id');
+    }
 }

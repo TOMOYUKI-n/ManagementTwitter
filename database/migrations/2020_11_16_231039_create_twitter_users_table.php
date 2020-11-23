@@ -14,7 +14,7 @@ class CreateTwitterUsersTable extends Migration
     public function up()
     {
         Schema::create('twitter_users', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
             $table->string('token', 100);
             $table->string('token_secret', 100);

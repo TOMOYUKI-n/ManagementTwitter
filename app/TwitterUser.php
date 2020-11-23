@@ -23,7 +23,7 @@ class TwitterUser extends Model
     ];
 
     /**
-     * リレーションシップ -usersテーブル
+     * usersテーブル
      */
     public function user()
     {
@@ -31,11 +31,19 @@ class TwitterUser extends Model
     }
 
     /**
-     * リレーションシップ　- system_managersテーブル
+     * follow_targetsテーブル
+     */
+    public function followTarget()
+    {
+        return $this->hasMany('App\FollowTarget', 'twitter_user_id');
+    }
+
+    /**
+     * system_managersテーブル
      */
     public function systemManagers()
     {
-        return $this->hasMany('App\SystemManager', 'twitter_user_id');
+        return $this->hasMany('App\SystemManager');
 
     }
 }

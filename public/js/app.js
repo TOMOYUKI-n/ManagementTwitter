@@ -2694,6 +2694,34 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2701,33 +2729,32 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   data: function data() {
     return {
       page: 2,
+      twitter_id: 0,
+      errorFlg: false,
+      messageText: '',
+      serviceSwitch: false,
+      deleteOn: false,
+      deleteIndex: 0,
+      deleteItem: [],
       followTargets: [],
-      filters: [],
+      keywords: [],
       newModal: false,
       editModal: false,
       editIndex: null,
       serviceStatus: null,
       serviceStatusLabel: null,
-      addErrors: null,
-      editErrors: null,
       addForm: {
-        target: null,
-        filter_word_id: null
+        account_user_name: null,
+        keyword_id: null
       },
       editForm: {
-        id: null,
-        target: null,
-        filter_word_id: null
+        id: 0,
+        account_user_name: '',
+        keyword_id: 0
       }
     };
   },
   computed: {
-    /**
-     * フィルターキワードの追加、変更、削除イベントの通知を取得する
-     */
-    // dashChange() {
-    //     return this.$store.state.dashboard.noticeToTweet
-    // },
     showRunButton: function showRunButton() {
       return this.serviceStatus === 1 || this.serviceStatus === 3;
     },
@@ -2748,15 +2775,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                // const response = await axios.get('/api/follow/list')
-                // if (response.status !== OK) {
-                //     this.$store.commit('error/setCode', response.status)
-                //     return false
-                // }
-                response = _repository__WEBPACK_IMPORTED_MODULE_1__["targetAccountList"];
-                _this.followTargets = response;
+                _context.next = 2;
+                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.get("/api/follow/list/".concat(_this.twitter_id));
 
               case 2:
+                response = _context.sent;
+
+                if (response.status !== 200 || response.data === 500) {
+                  _this.errorFlg = true;
+                  _this.messageText = _message__WEBPACK_IMPORTED_MODULE_2__["message"].notGetData;
+                } else {
+                  _this.followTargets = response.data;
+                }
+
+              case 4:
               case "end":
                 return _context.stop();
             }
@@ -2766,9 +2798,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
 
     /**
-     * フィルターワード一覧を取得する
+     * キーワード一覧を取得する
      */
-    fetchFilters: function fetchFilters() {
+    fetchKeywords: function fetchKeywords() {
       var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
@@ -2777,15 +2809,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                // const response = await axios.get('/api/filter')
-                // if (response.status !== OK) {
-                //     this.$store.commit('error/setCode', response.status)
-                //     return false
-                // }
-                response = _repository__WEBPACK_IMPORTED_MODULE_1__["filterWords"];
-                _this2.filters = response;
+                _context2.next = 2;
+                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.get('/api/keyword');
 
               case 2:
+                response = _context2.sent;
+
+                if (response.status !== 200) {
+                  _this2.errorFlg = true;
+                  _this2.messageText = _message__WEBPACK_IMPORTED_MODULE_2__["message"].notGetData;
+                }
+
+                _this2.keywords = response.data;
+
+              case 5:
               case "end":
                 return _context2.stop();
             }
@@ -2797,25 +2834,43 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     /**
      * 新規フォローターゲットを追加する
      */
-    addFollowTarget: function addFollowTarget() {// this.clearErrors()
-      // const response = await axios.post('/api/follow', this.addForm)
-      // if (response.status === UNPROCESSABLE_ENTRY) {
-      //     this.addErrors = response.data.errors
-      //     return false
-      // }
-      // this.resetAddForm()
-      // if (response.status !== CREATED) {
-      //     this.$store.commit('error/setCode', response.status)
-      //     return false
-      // }
-      // this.followTargets.unshift(response.data)
-      // this.newModal = false
+    addFollowTarget: function addFollowTarget() {
+      var _this3 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+        var response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
+                _context3.next = 2;
+                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.post("/api/follow/".concat(_this3.twitter_id), _this3.addForm);
+
+              case 2:
+                response = _context3.sent;
+
+                if (response.status !== 200) {
+                  _this3.errorFlg = true;
+                  _this3.messageText = _message__WEBPACK_IMPORTED_MODULE_2__["message"].notUpdate;
+                }
+
+                if (!(response.data === 200)) {
+                  _context3.next = 11;
+                  break;
+                }
+
+                _this3.resetAddForm();
+
+                _this3.newModal = false; // 再描画
+
+                _context3.next = 9;
+                return _this3.fetchFollowTargets();
+
+              case 9:
+                _context3.next = 11;
+                return _this3.fetchKeywords();
+
+              case 11:
               case "end":
                 return _context3.stop();
             }
@@ -2831,8 +2886,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     showEditModal: function showEditModal(followTarget, index) {
       this.editModal = true;
       this.editForm.id = followTarget.twitter_user_id;
-      this.editForm.target = followTarget.target;
-      this.editForm.filter_word_id = followTarget.filter_word_id;
+      this.editForm.account_user_name = followTarget.account_user_name;
+      this.editForm.keyword_id = followTarget.keyword_id;
       this.editIndex = index;
     },
 
@@ -2840,28 +2895,41 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
      * フォーローターゲットを編集する
      */
     editFollowTarget: function editFollowTarget() {
-      var _this3 = this;
+      var _this4 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+        var response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
           while (1) {
             switch (_context4.prev = _context4.next) {
               case 0:
-                // this.clearErrors()
-                // const response = await axios.put(`/api/follow/${this.editForm.id}`, this.editForm)
-                // if (response.status === UNPROCESSABLE_ENTRY) {
-                //     this.editErrors = response.data.errors
-                //     return false
-                // }
-                // if (response.status !== OK) {
-                //     this.$store.commit('error/setCode', response.status)
-                //     return false
-                // }
-                _this3.followTargets.splice(_this3.editIndex, 1, response.data);
-
-                _this3.resetEditForm();
+                _context4.next = 2;
+                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.put("/api/follow/".concat(_this4.editForm.id), _this4.editForm);
 
               case 2:
+                response = _context4.sent;
+
+                if (response.status !== 200 || response.data === 500) {
+                  _this4.errorFlg = true;
+                  _this4.messageText = _message__WEBPACK_IMPORTED_MODULE_2__["message"].notGetData;
+                }
+
+                if (!(response.data === 200)) {
+                  _context4.next = 9;
+                  break;
+                }
+
+                _context4.next = 7;
+                return _this4.fetchFollowTargets();
+
+              case 7:
+                _context4.next = 9;
+                return _this4.fetchKeywords();
+
+              case 9:
+                _this4.resetEditForm();
+
+              case 10:
               case "end":
                 return _context4.stop();
             }
@@ -2871,24 +2939,56 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
 
     /**
+     * 削除モーダル表示、indexを取得
+     */
+    remove: function remove(item, index) {
+      this.deleteOn = true;
+      this.deleteIndex = index;
+      this.deleteItem = item;
+    },
+
+    /**
      * フォローターゲットを削除する
      */
-    removeFollowTarget: function removeFollowTarget(id, index) {
-      var _this4 = this;
+    removeFollowTarget: function removeFollowTarget() {
+      var _this5 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
+        var response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
           while (1) {
             switch (_context5.prev = _context5.next) {
               case 0:
-                // const response = await axios.delete(`/api/follow/${id}`)
-                // if (response.status !== OK) {
-                //     this.$store.commit('error/setCode', response.status)
-                //     return false
-                // }
-                _this4.followTargets.splice(index, 1);
+                _context5.next = 2;
+                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.post("/api/follow/delete/".concat(_this5.deleteItem.id), _this5.deleteItem);
 
-              case 1:
+              case 2:
+                response = _context5.sent;
+
+                if (response.status !== 200 || response.data === 500) {
+                  _this5.errorFlg = true;
+                  _this5.messageText = _message__WEBPACK_IMPORTED_MODULE_2__["message"].notGetData;
+                  _this5.deleteOn = false;
+                }
+
+                if (!(response.data === 200)) {
+                  _context5.next = 11;
+                  break;
+                }
+
+                _this5.deleteOn = false;
+
+                _this5.followTargets.splice(_this5.deleteIndex, 1); // 再描画
+
+
+                _context5.next = 9;
+                return _this5.fetchFollowTargets();
+
+              case 9:
+                _context5.next = 11;
+                return _this5.fetchKeywords();
+
+              case 11:
               case "end":
                 return _context5.stop();
             }
@@ -2898,21 +2998,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
 
     /**
-     * 新規追加フォームのデータを空にする
+     * フォームを初期化
      */
     resetAddForm: function resetAddForm() {
-      this.addForm.target = null;
-      this.addForm.filter_word_id = null;
+      this.addForm.account_user_name = null;
+      this.addForm.keyword_id = null;
     },
-
-    /**
-     * 編集フォームのデータを空にする
-     */
     resetEditForm: function resetEditForm() {
       this.editModal = null;
       this.editForm.id = null;
-      this.editForm.target = null;
-      this.editForm.filter_word_id = null;
+      this.editForm.account_user_name = null;
+      this.editForm.keyword_id = null;
       this.editIndex = null;
     },
 
@@ -2920,7 +3016,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
      * 自動フォロー機能のサービスステータスを取得する
      */
     fetchServiceStatus: function fetchServiceStatus() {
-      var _this5 = this;
+      var _this6 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee6() {
         var response;
@@ -2928,16 +3024,23 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context6.prev = _context6.next) {
               case 0:
-                // const response = await axios.get('/api/system/status')
-                // if (response.status !== OK) {
-                //     this.$store.commit('error/setCode', response.status)
-                //     return false
-                // }
-                response = _repository__WEBPACK_IMPORTED_MODULE_1__["manegementServiceStatus"];
-                _this5.serviceStatus = 1;
-                _this5.serviceStatusLabel = 'サービス停止中';
+                _context6.next = 2;
+                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.get("/api/system/status/".concat(_this6.twitter_id));
 
-              case 3:
+              case 2:
+                response = _context6.sent;
+
+                // console.log(response);
+                if (response.status !== 200) {
+                  _this6.errorFlg = true;
+                  _this6.messageText = _message__WEBPACK_IMPORTED_MODULE_2__["message"].notGetData;
+                } else {
+                  _this6.serviceSwitch = false;
+                  _this6.serviceStatus = response.data.auto_follow_status;
+                  _this6.serviceStatusLabel = response.data.status_labels.auto_follow;
+                }
+
+              case 4:
               case "end":
                 return _context6.stop();
             }
@@ -2950,26 +3053,41 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
      * 自動フォロー機能を稼働状態にする
      */
     runFollowService: function runFollowService() {
-      var _this6 = this;
+      var _this7 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee7() {
+        var serviceType, data, response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee7$(_context7) {
           while (1) {
             switch (_context7.prev = _context7.next) {
               case 0:
-                // const serviceType = 1
-                // const data = {type: serviceType}
-                // const response = await axios.post('/api/system/run', data)
-                // if (response.status !== OK) {
-                //     this.$store.commit('error/setCode', response.status)
-                //     return false
-                // }
-                // this.serviceStatus = response.data.auto_follow_status
-                // this.serviceStatusLabel = response.auto_follow_status
-                _this6.serviceStatus = 2;
-                _this6.serviceStatusLabel = 'サービス稼働中';
+                serviceType = 1;
+                data = {
+                  type: serviceType,
+                  twitter_id: _this7.twitter_id
+                };
+                _context7.next = 4;
+                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.post('/api/system/running', data);
 
-              case 2:
+              case 4:
+                response = _context7.sent;
+
+                if (!(response.data === 500 || response.status !== 200)) {
+                  _context7.next = 11;
+                  break;
+                }
+
+                _this7.errorFlg = true;
+                _this7.messageText = _message__WEBPACK_IMPORTED_MODULE_2__["message"].notUpdate;
+                _this7.serviceSwitch = false;
+                _context7.next = 13;
+                break;
+
+              case 11:
+                _context7.next = 13;
+                return _this7.fetchServiceStatus();
+
+              case 13:
               case "end":
                 return _context7.stop();
             }
@@ -2982,26 +3100,41 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
      * 自動フォロー機能を停止状態にする
      */
     stopFollowService: function stopFollowService() {
-      var _this7 = this;
+      var _this8 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee8() {
+        var serviceType, data, response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee8$(_context8) {
           while (1) {
             switch (_context8.prev = _context8.next) {
               case 0:
-                // const serviceType = 1
-                // const data = {type: serviceType}
-                // const response = await axios.post('/api/system/stop', data)
-                // if (response.status !== OK) {
-                //     this.$store.commit('error/setCode', response.status)
-                //     return false
-                // }
-                // this.serviceStatus = response.data.auto_follow_status
-                // this.serviceStatusLabel = response.data.status_labels.auto_follow
-                _this7.serviceStatus = 1;
-                _this7.serviceStatusLabel = 'サービス停止中';
+                serviceType = 1;
+                data = {
+                  type: serviceType,
+                  twitter_id: _this8.twitter_id
+                };
+                _context8.next = 4;
+                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.post('/api/system/stop', data);
 
-              case 2:
+              case 4:
+                response = _context8.sent;
+
+                if (!(response.data === 500 || response.status !== 200)) {
+                  _context8.next = 11;
+                  break;
+                }
+
+                _this8.errorFlg = true;
+                _this8.messageText = _message__WEBPACK_IMPORTED_MODULE_2__["message"].notUpdate;
+                _this8.serviceSwitch = false;
+                _context8.next = 13;
+                break;
+
+              case 11:
+                _context8.next = 13;
+                return _this8.fetchServiceStatus();
+
+              case 13:
               case "end":
                 return _context8.stop();
             }
@@ -3011,40 +3144,70 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
 
     /**
-     * 入力フォームエラーメッセージをクリアする
-     */
-    clearErrors: function clearErrors() {
-      this.addErrors = null;
-      this.editErrors = null;
-    },
-
-    /**
      * localstorageから現在のページを保存する
      */
     getCurrentPage: function getCurrentPage() {
       localStorage.setItem('page', this.page);
+    },
+
+    /**
+     * localstorageから現在使用しているtwitter_userのidを取得する
+     */
+    getCurrentTwitterId: function getCurrentTwitterId() {
+      var _this9 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee9() {
+        var storage;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee9$(_context9) {
+          while (1) {
+            switch (_context9.prev = _context9.next) {
+              case 0:
+                storage = JSON.parse(localStorage.getItem('loginTwitterAccount'));
+                _this9.twitter_id = storage.id;
+
+              case 2:
+              case "end":
+                return _context9.stop();
+            }
+          }
+        }, _callee9);
+      }))();
     }
   },
   created: function created() {
-    this.fetchFollowTargets();
-    this.fetchFilters();
-    this.fetchServiceStatus();
-    this.getCurrentPage();
-  },
-  watch: {
-    /**
-     * フィルターワードの通知を受け取ったら
-     * フォロワーターゲットと、フィルターワードを再取得する
-     */
-    // dashChange: {
-    //     handler(val) {
-    //         if (val === true) {
-    //             this.fetchFollowTargets()
-    //             this.fetchFilters()
-    //             this.$store.commit('dashboard/setNoticeToTweet', null)
-    //         }
-    //     }
-    // },
+    var _this10 = this;
+
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee10() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee10$(_context10) {
+        while (1) {
+          switch (_context10.prev = _context10.next) {
+            case 0:
+              _context10.next = 2;
+              return _this10.getCurrentPage();
+
+            case 2:
+              _context10.next = 4;
+              return _this10.getCurrentTwitterId();
+
+            case 4:
+              _context10.next = 6;
+              return _this10.fetchFollowTargets();
+
+            case 6:
+              _context10.next = 8;
+              return _this10.fetchKeywords();
+
+            case 8:
+              _context10.next = 10;
+              return _this10.fetchServiceStatus();
+
+            case 10:
+            case "end":
+              return _context10.stop();
+          }
+        }
+      }, _callee10);
+    }))();
   }
 });
 
@@ -3064,6 +3227,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _repository__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../repository */ "./resources/js/repository.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _message__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../message */ "./resources/js/message.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -3187,18 +3351,37 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       page: 6,
-      filters: [],
+      keywords: [],
       newModal: false,
       editModal: false,
       editIndex: null,
-      addErrors: null,
-      editErrors: null,
+      errorFlg: false,
+      messageText: '',
+      deleteOn: false,
+      deleteIndex: 0,
+      deleteItem: [],
       addForm: {
         type: 1,
         word: '',
@@ -3216,7 +3399,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     /**
      * キーワード一覧を取得
      */
-    fetchFilters: function fetchFilters() {
+    fetchKeywords: function fetchKeywords() {
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
@@ -3231,17 +3414,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 2:
                 response = _context.sent;
 
-                if (!(response.status !== 200)) {
-                  _context.next = 5;
-                  break;
+                if (response.status !== 200 || response.data === 500) {
+                  _this.errorFlg = true;
+                  _this.messageText = _message__WEBPACK_IMPORTED_MODULE_3__["message"].notGetData;
+                } else {
+                  _this.keywords = response.data;
                 }
 
-                return _context.abrupt("return", false);
-
-              case 5:
-                _this.filters = response.data;
-
-              case 6:
+              case 4:
               case "end":
                 return _context.stop();
             }
@@ -3253,7 +3433,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     /**
      * 新規キーワードを登録
      */
-    addFilter: function addFilter() {
+    addKeyword: function addKeyword() {
       var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
@@ -3262,41 +3442,25 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                _this2.clearErrors();
-
-                _context2.next = 3;
+                _context2.next = 2;
                 return axios__WEBPACK_IMPORTED_MODULE_2___default.a.post('/api/keyword', _this2.addForm);
 
-              case 3:
+              case 2:
                 response = _context2.sent;
 
-                if (!(response.status === 422)) {
-                  _context2.next = 7;
-                  break;
+                if (response.data === 500) {
+                  _this2.errorFlg = true;
+                  _this2.messageText = _message__WEBPACK_IMPORTED_MODULE_3__["message"].notGetData;
+                } else {
+                  _this2.newModal = false;
+
+                  _this2.resetAddForm(); // 一覧を更新
+
+
+                  _this2.fetchKeywords();
                 }
 
-                //バリデーションエラー
-                _this2.addErrors = response.data.errors;
-                return _context2.abrupt("return", false);
-
-              case 7:
-                ;
-
-                _this2.resetAddForm();
-
-                if (!(response.status !== 200)) {
-                  _context2.next = 11;
-                  break;
-                }
-
-                return _context2.abrupt("return", false);
-
-              case 11:
-                _this2.newModal = false; // 一覧を更新
-
-                _this2.fetchFilters();
-
-              case 13:
+              case 4:
               case "end":
                 return _context2.stop();
             }
@@ -3308,19 +3472,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     /**
      * 編集フォームモーダルの表示を行って、値を入力しておく
      */
-    showEditModal: function showEditModal(filter, index) {
+    showEditModal: function showEditModal(keyword, index) {
       this.editModal = true;
-      this.editForm.id = filter.id;
-      this.editForm.type = filter.type;
-      this.editForm.word = filter.word;
-      this.editForm.remove = filter.remove;
+      this.editForm.id = keyword.id;
+      this.editForm.type = keyword.type;
+      this.editForm.word = keyword.word;
+      this.editForm.remove = keyword.remove;
       this.editIndex = index;
     },
 
     /**
      * APIを利用してフィルターキーワードの変更を行う
      */
-    editFilter: function editFilter() {
+    editKeyword: function editKeyword() {
       var _this3 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
@@ -3329,39 +3493,30 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
-                _this3.clearErrors();
-
-                _context3.next = 3;
+                _context3.next = 2;
                 return axios__WEBPACK_IMPORTED_MODULE_2___default.a.put("/api/keyword/".concat(_this3.editForm.id), _this3.editForm);
 
-              case 3:
+              case 2:
                 response = _context3.sent;
 
-                if (!(response.status === 422)) {
-                  _context3.next = 7;
+                if (!(response.status !== 200 || response.data === 500)) {
+                  _context3.next = 8;
                   break;
                 }
 
-                //バリデーションエラー
-                _this3.editErrors = response.data.errors;
-                return _context3.abrupt("return", false);
+                _this3.errorFlg = true;
+                _this3.messageText = _message__WEBPACK_IMPORTED_MODULE_3__["message"].notGetData;
+                _context3.next = 11;
+                break;
 
-              case 7:
-                if (!(response.status !== 200)) {
-                  _context3.next = 10;
-                  break;
-                }
-
-                console.log(response.status);
-                return _context3.abrupt("return", false);
+              case 8:
+                _context3.next = 10;
+                return _this3.fetchKeywords();
 
               case 10:
-                // 一覧を更新
-                _this3.fetchFilters();
-
                 _this3.resetEditForm();
 
-              case 12:
+              case 11:
               case "end":
                 return _context3.stop();
             }
@@ -3371,9 +3526,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
 
     /**
+     * 削除モーダル表示、indexを取得
+     */
+    remove: function remove(item, index) {
+      this.deleteOn = true;
+      this.deleteIndex = index;
+      this.deleteItem = item;
+    },
+
+    /**
      * APIを利用してフィルターキーワードの削除を行う
      */
-    removeFilter: function removeFilter(id, index) {
+    removeKeywords: function removeKeywords() {
       var _this4 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
@@ -3383,25 +3547,29 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context4.prev = _context4.next) {
               case 0:
                 _context4.next = 2;
-                return axios__WEBPACK_IMPORTED_MODULE_2___default.a["delete"]("/api/keyword/".concat(id));
+                return axios__WEBPACK_IMPORTED_MODULE_2___default.a["delete"]("/api/keyword/".concat(_this4.deleteItem));
 
               case 2:
                 response = _context4.sent;
+                console.log(response);
 
-                if (!(response.status !== 200)) {
-                  _context4.next = 6;
+                if (!(response.status !== 200 || response.data === 500)) {
+                  _context4.next = 10;
                   break;
                 }
 
-                _this4.$store.commit('error/setCode', response.status);
+                _this4.errorFlg = true;
+                _this4.messageText = _message__WEBPACK_IMPORTED_MODULE_3__["message"].notGetData;
+                _this4.deleteOn = false;
+                _context4.next = 13;
+                break;
 
-                return _context4.abrupt("return", false);
+              case 10:
+                _this4.deleteOn = false;
+                _context4.next = 13;
+                return _this4.fetchKeywords();
 
-              case 6:
-                // そのまま一覧から消す
-                _this4.filters.splice(index, 1);
-
-              case 7:
+              case 13:
               case "end":
                 return _context4.stop();
             }
@@ -3432,14 +3600,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
 
     /**
-     * エラーメッセージを空にする
-     */
-    clearErrors: function clearErrors() {
-      this.addErrors = null;
-      this.editErrors = null;
-    },
-
-    /**
      * localstorageから現在のページを保存する
      */
     getCurrentPage: function getCurrentPage() {
@@ -3447,8 +3607,27 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }
   },
   created: function created() {
-    this.fetchFilters();
-    this.getCurrentPage();
+    var _this5 = this;
+
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
+        while (1) {
+          switch (_context5.prev = _context5.next) {
+            case 0:
+              _context5.next = 2;
+              return _this5.fetchKeywords();
+
+            case 2:
+              _context5.next = 4;
+              return _this5.getCurrentPage();
+
+            case 4:
+            case "end":
+              return _context5.stop();
+          }
+        }
+      }, _callee5);
+    }))();
   }
 });
 
@@ -7338,8 +7517,7 @@ var render = function() {
               expression: "showRunButton"
             }
           ],
-          staticClass: "p-status__show p-status__sleep",
-          staticStyle: { "background-color": "#3335" }
+          staticClass: "p-status__show p-status__sleep"
         },
         [_vm._v(_vm._s(_vm.serviceStatusLabel))]
       ),
@@ -7372,7 +7550,11 @@ var render = function() {
             }
           ],
           staticClass: "c-button c-button__status--on",
-          on: { click: _vm.runFollowService }
+          on: {
+            click: function($event) {
+              _vm.serviceSwitch = true
+            }
+          }
         },
         [
           _c("i", { staticClass: "fas fa-power-off c-icon__mr-2" }),
@@ -7392,7 +7574,11 @@ var render = function() {
             }
           ],
           staticClass: "c-button c-button__status--off",
-          on: { click: _vm.stopFollowService }
+          on: {
+            click: function($event) {
+              _vm.serviceSwitch = true
+            }
+          }
         },
         [
           _c("i", { staticClass: "fas fa-ban c-icon__mr-2" }),
@@ -7430,11 +7616,15 @@ var render = function() {
         _vm._l(_vm.followTargets, function(followTarget, index) {
           return _c("tr", { key: index }, [
             _c("td", { staticClass: "p-table__td" }, [
-              _vm._v("@" + _vm._s(followTarget.target))
+              _vm._v(_vm._s(followTarget.status_label))
             ]),
             _vm._v(" "),
             _c("td", { staticClass: "p-table__td" }, [
-              _vm._v(_vm._s(followTarget.filter_word.word))
+              _vm._v("@" + _vm._s(followTarget.account_user_name))
+            ]),
+            _vm._v(" "),
+            _c("td", { staticClass: "p-table__td" }, [
+              _vm._v(_vm._s(followTarget.keyword.merged_word))
             ]),
             _vm._v(" "),
             _c("td", { staticClass: "p-table__td" }, [
@@ -7465,7 +7655,7 @@ var render = function() {
                         "c-button c-button--delete p-table__button c-button--delete ",
                       on: {
                         click: function($event) {
-                          return _vm.removeFollowTarget(followTarget.id, index)
+                          return _vm.remove(followTarget, index)
                         }
                       }
                     },
@@ -7482,6 +7672,38 @@ var render = function() {
         })
       ],
       2
+    ),
+    _vm._v(" "),
+    _c(
+      "p",
+      {
+        directives: [
+          {
+            name: "show",
+            rawName: "v-show",
+            value: _vm.followTargets.length === 0,
+            expression: "followTargets.length === 0"
+          }
+        ],
+        staticStyle: { "font-size": "14px", "margin-top": "8px" }
+      },
+      [_vm._v("\n        データがありません\n    ")]
+    ),
+    _vm._v(" "),
+    _c(
+      "p",
+      {
+        directives: [
+          {
+            name: "show",
+            rawName: "v-show",
+            value: _vm.errorFlg,
+            expression: "errorFlg"
+          }
+        ],
+        staticStyle: { color: "red", "font-size": "14px", "margin-top": "8px" }
+      },
+      [_vm._v("\n        " + _vm._s(_vm.messageText) + "\n    ")]
     ),
     _vm._v(" "),
     _c("div", { staticClass: "p-modal__wrapper" }, [
@@ -7529,33 +7751,11 @@ var render = function() {
                 }
               },
               [
-                _vm.addErrors
-                  ? _c("div", { staticClass: "p-form__errors" }, [
-                      _vm.addErrors.target
-                        ? _c(
-                            "ul",
-                            _vm._l(_vm.addErrors.target, function(msg) {
-                              return _c("li", { key: msg }, [
-                                _vm._v(_vm._s(msg))
-                              ])
-                            }),
-                            0
-                          )
-                        : _vm._e(),
-                      _vm._v(" "),
-                      _vm.addErrors.filter_word_id
-                        ? _c(
-                            "ul",
-                            _vm._l(_vm.addErrors.filter_word_id, function(msg) {
-                              return _c("li", { key: msg }, [
-                                _vm._v(_vm._s(msg))
-                              ])
-                            }),
-                            0
-                          )
-                        : _vm._e()
-                    ])
-                  : _vm._e(),
+                _c("p", { staticClass: "p-form__notion" }, [
+                  _vm._v(
+                    "※条件のキーワードは、「キーワード登録」から登録することができます。"
+                  )
+                ]),
                 _vm._v(" "),
                 _c(
                   "label",
@@ -7571,25 +7771,29 @@ var render = function() {
                     {
                       name: "model",
                       rawName: "v-model",
-                      value: _vm.addForm.target,
-                      expression: "addForm.target"
+                      value: _vm.addForm.account_user_name,
+                      expression: "addForm.account_user_name"
                     }
                   ],
                   staticClass: "p-form__item",
                   attrs: {
                     type: "text",
-                    id: "add-target",
+                    id: "add-account",
                     required: "",
                     maxlength: "15",
                     placeholder: "例) kamitter_1234"
                   },
-                  domProps: { value: _vm.addForm.target },
+                  domProps: { value: _vm.addForm.account_user_name },
                   on: {
                     input: function($event) {
                       if ($event.target.composing) {
                         return
                       }
-                      _vm.$set(_vm.addForm, "target", $event.target.value)
+                      _vm.$set(
+                        _vm.addForm,
+                        "account_user_name",
+                        $event.target.value
+                      )
                     }
                   }
                 }),
@@ -7598,7 +7802,7 @@ var render = function() {
                   "label",
                   {
                     staticClass: "p-form__label",
-                    attrs: { for: "add-target_filter_id" }
+                    attrs: { for: "add-account_id" }
                   },
                   [_vm._v("フォロー条件の選択 *必須")]
                 ),
@@ -7610,12 +7814,12 @@ var render = function() {
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.addForm.filter_word_id,
-                        expression: "addForm.filter_word_id"
+                        value: _vm.addForm.keyword_id,
+                        expression: "addForm.keyword_id"
                       }
                     ],
                     staticClass: "p-form__select",
-                    attrs: { id: "add-target_filter_id", required: "" },
+                    attrs: { id: "add-account_id", required: "" },
                     on: {
                       change: function($event) {
                         var $$selectedVal = Array.prototype.filter
@@ -7628,7 +7832,7 @@ var render = function() {
                           })
                         _vm.$set(
                           _vm.addForm,
-                          "filter_word_id",
+                          "keyword_id",
                           $event.target.multiple
                             ? $$selectedVal
                             : $$selectedVal[0]
@@ -7637,11 +7841,11 @@ var render = function() {
                     }
                   },
                   [
-                    _vm._l(_vm.filters, function(filter) {
+                    _vm._l(_vm.keywords, function(keyword) {
                       return _c(
                         "option",
-                        { key: filter.id, domProps: { value: filter.id } },
-                        [_vm._v(_vm._s(filter.word))]
+                        { key: keyword.id, domProps: { value: keyword.id } },
+                        [_vm._v(_vm._s(keyword.word))]
                       )
                     }),
                     _vm._v(" "),
@@ -7649,12 +7853,6 @@ var render = function() {
                   ],
                   2
                 ),
-                _vm._v(" "),
-                _c("p", { staticClass: "p-form__notion" }, [
-                  _vm._v(
-                    "※条件のキーワードは、「キーワード登録」から登録することができます。"
-                  )
-                ]),
                 _vm._v(" "),
                 _vm._m(2)
               ]
@@ -7713,36 +7911,6 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _vm.editErrors
-                  ? _c("div", { staticClass: "p-form__errors" }, [
-                      _vm.editErrors.target
-                        ? _c(
-                            "ul",
-                            _vm._l(_vm.editErrors.target, function(msg) {
-                              return _c("li", { key: msg }, [
-                                _vm._v(_vm._s(msg))
-                              ])
-                            }),
-                            0
-                          )
-                        : _vm._e(),
-                      _vm._v(" "),
-                      _vm.editErrors.filter_word_id
-                        ? _c(
-                            "ul",
-                            _vm._l(_vm.editErrors.filter_word_id, function(
-                              msg
-                            ) {
-                              return _c("li", { key: msg }, [
-                                _vm._v(_vm._s(msg))
-                              ])
-                            }),
-                            0
-                          )
-                        : _vm._e()
-                    ])
-                  : _vm._e(),
-                _vm._v(" "),
                 _c(
                   "label",
                   { staticClass: "p-form__label", attrs: { for: "account" } },
@@ -7754,8 +7922,8 @@ var render = function() {
                     {
                       name: "model",
                       rawName: "v-model",
-                      value: _vm.editForm.target,
-                      expression: "editForm.target"
+                      value: _vm.editForm.account_user_name,
+                      expression: "editForm.account_user_name"
                     }
                   ],
                   staticClass: "p-form__item",
@@ -7766,13 +7934,17 @@ var render = function() {
                     maxlength: "15",
                     placeholder: "例) kamitter_1234"
                   },
-                  domProps: { value: _vm.editForm.target },
+                  domProps: { value: _vm.editForm.account_user_name },
                   on: {
                     input: function($event) {
                       if ($event.target.composing) {
                         return
                       }
-                      _vm.$set(_vm.editForm, "target", $event.target.value)
+                      _vm.$set(
+                        _vm.editForm,
+                        "account_user_name",
+                        $event.target.value
+                      )
                     }
                   }
                 }),
@@ -7793,8 +7965,8 @@ var render = function() {
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.editForm.filter_word_id,
-                        expression: "editForm.filter_word_id"
+                        value: _vm.editForm.keyword_id,
+                        expression: "editForm.keyword_id"
                       }
                     ],
                     staticClass: "p-form__select",
@@ -7811,7 +7983,7 @@ var render = function() {
                           })
                         _vm.$set(
                           _vm.editForm,
-                          "filter_word_id",
+                          "keyword_id",
                           $event.target.multiple
                             ? $$selectedVal
                             : $$selectedVal[0]
@@ -7819,11 +7991,11 @@ var render = function() {
                       }
                     }
                   },
-                  _vm._l(_vm.filters, function(filter) {
+                  _vm._l(_vm.keywords, function(keyword) {
                     return _c(
                       "option",
-                      { key: filter.id, domProps: { value: filter.id } },
-                      [_vm._v(_vm._s(filter.word))]
+                      { key: keyword.id, domProps: { value: keyword.id } },
+                      [_vm._v(_vm._s(keyword.word))]
                     )
                   }),
                   0
@@ -7832,6 +8004,151 @@ var render = function() {
                 _vm._m(3)
               ]
             )
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "section",
+        {
+          directives: [
+            {
+              name: "show",
+              rawName: "v-show",
+              value: _vm.serviceSwitch,
+              expression: "serviceSwitch"
+            }
+          ],
+          staticClass: "p-modal p-modal--opened"
+        },
+        [
+          _c("div", { staticClass: "p-modal__contents" }, [
+            _c("p", { staticClass: "p-form__delete" }, [
+              _vm._v("自動化サービスを利用しますか？")
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "p-form__delete__wrap" }, [
+              _c(
+                "div",
+                {
+                  staticClass: "c-button p-form__half-btn width__three",
+                  attrs: { type: "submit" },
+                  on: {
+                    click: function($event) {
+                      _vm.serviceSwitch = false
+                    }
+                  }
+                },
+                [
+                  _c("i", { staticClass: "fas fa-times m__r2" }),
+                  _vm._v(" "),
+                  _c("div", [_vm._v("キャンセル")])
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: _vm.showRunButton,
+                      expression: "showRunButton"
+                    }
+                  ],
+                  staticClass:
+                    "c-button p-status__active p-form__half-btn width__three",
+                  attrs: { type: "submit" },
+                  on: { click: _vm.runFollowService }
+                },
+                [
+                  _c("i", { staticClass: "fas fa-check m__r2" }),
+                  _vm._v(" "),
+                  _c("div", [_vm._v("開始する")])
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: _vm.showStopButton,
+                      expression: "showStopButton"
+                    }
+                  ],
+                  staticClass:
+                    "c-button p-status__sleep p-form__half-btn width__three",
+                  attrs: { type: "submit" },
+                  on: { click: _vm.stopFollowService }
+                },
+                [
+                  _c("i", { staticClass: "fas fa-check m__r2" }),
+                  _vm._v(" "),
+                  _c("div", [_vm._v("停止する")])
+                ]
+              )
+            ])
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "section",
+        {
+          directives: [
+            {
+              name: "show",
+              rawName: "v-show",
+              value: _vm.deleteOn,
+              expression: "deleteOn"
+            }
+          ],
+          staticClass: "p-modal p-modal--opened"
+        },
+        [
+          _c("div", { staticClass: "p-modal__contents" }, [
+            _c("p", { staticClass: "p-form__delete" }, [
+              _vm._v("本当に削除しますか？")
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "p-form__delete__wrap" }, [
+              _c(
+                "div",
+                {
+                  staticClass: "c-button p-form__half-btn width__three",
+                  attrs: { type: "submit" },
+                  on: {
+                    click: function($event) {
+                      _vm.deleteOn = false
+                    }
+                  }
+                },
+                [
+                  _c("i", { staticClass: "fas fa-times m__r2" }),
+                  _vm._v(" "),
+                  _c("div", [_vm._v("キャンセル")])
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "p-botton__delete  p-form__half-btn width__three",
+                  attrs: { type: "submit" },
+                  on: { click: _vm.removeFollowTarget }
+                },
+                [
+                  _c("i", { staticClass: "fas fa-check m__r2" }),
+                  _vm._v(" "),
+                  _c("div", [_vm._v("削除")])
+                ]
+              )
+            ])
           ])
         ]
       )
@@ -7875,6 +8192,10 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("tr", { staticClass: "p-table__head" }, [
+      _c("th", { staticClass: "p-table__th p-table__th--follow" }, [
+        _vm._v("ステータス")
+      ]),
+      _vm._v(" "),
       _c("th", { staticClass: "p-table__th p-table__th--follow" }, [
         _vm._v("ターゲット")
       ]),
@@ -7965,18 +8286,18 @@ var render = function() {
       [
         _vm._m(1),
         _vm._v(" "),
-        _vm._l(_vm.filters, function(filter, index) {
+        _vm._l(_vm.keywords, function(keyword, index) {
           return _c("tr", { key: index }, [
             _c("td", { staticClass: "p-table__td" }, [
-              _vm._v(_vm._s(filter.type))
+              _vm._v(_vm._s(keyword.type))
             ]),
             _vm._v(" "),
             _c("td", { staticClass: "p-table__td" }, [
-              _vm._v(_vm._s(filter.word))
+              _vm._v(_vm._s(keyword.word))
             ]),
             _vm._v(" "),
             _c("td", { staticClass: "p-table__td" }, [
-              _vm._v(_vm._s(filter.remove))
+              _vm._v(_vm._s(keyword.remove))
             ]),
             _vm._v(" "),
             _c("td", { staticClass: "p-table__td" }, [
@@ -7988,7 +8309,7 @@ var render = function() {
                       staticClass: "c-button c-button--twitter p-table__button",
                       on: {
                         click: function($event) {
-                          return _vm.showEditModal(filter, index)
+                          return _vm.showEditModal(keyword, index)
                         }
                       }
                     },
@@ -8007,7 +8328,7 @@ var render = function() {
                         "c-button c-button--delete p-table__button c-button--delete ",
                       on: {
                         click: function($event) {
-                          return _vm.removeFilter(filter.id, index)
+                          return _vm.remove(keyword.id, index)
                         }
                       }
                     },
@@ -8024,6 +8345,22 @@ var render = function() {
         })
       ],
       2
+    ),
+    _vm._v(" "),
+    _c(
+      "p",
+      {
+        directives: [
+          {
+            name: "show",
+            rawName: "v-show",
+            value: _vm.errorFlg,
+            expression: "errorFlg"
+          }
+        ],
+        staticStyle: { color: "red", "font-size": "14px", "margin-top": "8px" }
+      },
+      [_vm._v("\n        " + _vm._s(_vm.messageText) + "\n    ")]
     ),
     _vm._v(" "),
     _c("div", { staticClass: "p-modal__wrapper" }, [
@@ -8061,29 +8398,19 @@ var render = function() {
             _vm._v(" "),
             _c(
               "form",
-              { staticClass: "p-form", on: { submit: _vm.addFilter } },
+              { staticClass: "p-form", on: { submit: _vm.addKeyword } },
               [
-                _vm.addErrors
-                  ? _c("div", { staticClass: "p-form__errors" }, [
-                      _vm.addErrors.word
-                        ? _c(
-                            "ul",
-                            _vm._l(_vm.addErrors.word, function(msg) {
-                              return _c("li", { key: msg }, [
-                                _vm._v(_vm._s(msg))
-                              ])
-                            }),
-                            0
-                          )
-                        : _vm._e()
-                    ])
-                  : _vm._e(),
+                _c("p", { staticClass: "p-form__notion" }, [
+                  _vm._v(
+                    "※複数ワードを指定する際は、「ツイッター 神」のように半角スペースで区切ってください。"
+                  )
+                ]),
                 _vm._v(" "),
                 _c(
                   "label",
                   {
                     staticClass: "p-form__label",
-                    attrs: { for: "add-filter" }
+                    attrs: { for: "add-keyword" }
                   },
                   [_vm._v("条件タイプ")]
                 ),
@@ -8100,7 +8427,7 @@ var render = function() {
                       }
                     ],
                     staticClass: "p-form__select",
-                    attrs: { id: "add-filter" },
+                    attrs: { id: "add-keyword" },
                     on: {
                       change: function($event) {
                         var $$selectedVal = Array.prototype.filter
@@ -8135,7 +8462,7 @@ var render = function() {
                 _c(
                   "label",
                   { staticClass: "p-form__label", attrs: { for: "keyword" } },
-                  [_vm._v("キーワード *必須")]
+                  [_vm._v("キーワード *必須 最大50文字")]
                 ),
                 _vm._v(" "),
                 _c("input", {
@@ -8171,7 +8498,7 @@ var render = function() {
                     staticClass: "p-form__label",
                     attrs: { for: "remove_word" }
                   },
-                  [_vm._v("除外ワード")]
+                  [_vm._v("除外ワード ※最大50文字")]
                 ),
                 _vm._v(" "),
                 _c("input", {
@@ -8195,12 +8522,6 @@ var render = function() {
                     }
                   }
                 }),
-                _vm._v(" "),
-                _c("p", { staticClass: "p-form__notion" }, [
-                  _vm._v(
-                    "※複数ワードを指定する際は、「ツイッター 神」のように半角スペースで区切ってください。"
-                  )
-                ]),
                 _vm._v(" "),
                 _vm._m(2)
               ]
@@ -8248,7 +8569,7 @@ var render = function() {
                 on: {
                   submit: function($event) {
                     $event.preventDefault()
-                    return _vm.editFilter($event)
+                    return _vm.editKeyword($event)
                   }
                 }
               },
@@ -8257,7 +8578,7 @@ var render = function() {
                   "label",
                   {
                     staticClass: "p-form__label",
-                    attrs: { for: "edit-filter" }
+                    attrs: { for: "edit-keyword" }
                   },
                   [_vm._v("条件タイプ")]
                 ),
@@ -8274,7 +8595,7 @@ var render = function() {
                       }
                     ],
                     staticClass: "p-form__select",
-                    attrs: { id: "edit-filter" },
+                    attrs: { id: "edit-keyword" },
                     on: {
                       change: function($event) {
                         var $$selectedVal = Array.prototype.filter
@@ -8388,6 +8709,63 @@ var render = function() {
             )
           ])
         ]
+      ),
+      _vm._v(" "),
+      _c(
+        "section",
+        {
+          directives: [
+            {
+              name: "show",
+              rawName: "v-show",
+              value: _vm.deleteOn,
+              expression: "deleteOn"
+            }
+          ],
+          staticClass: "p-modal p-modal--opened"
+        },
+        [
+          _c("div", { staticClass: "p-modal__contents" }, [
+            _c("p", { staticClass: "p-form__delete" }, [
+              _vm._v("本当に削除しますか？")
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "p-form__delete__wrap" }, [
+              _c(
+                "div",
+                {
+                  staticClass: "c-button p-form__half-btn width__three",
+                  attrs: { type: "submit" },
+                  on: {
+                    click: function($event) {
+                      _vm.deleteOn = false
+                    }
+                  }
+                },
+                [
+                  _c("i", { staticClass: "fas fa-times m__r2" }),
+                  _vm._v(" "),
+                  _c("div", [_vm._v("キャンセル")])
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "p-botton__delete  p-form__half-btn width__three",
+                  attrs: { type: "submit" },
+                  on: { click: _vm.removeKeywords }
+                },
+                [
+                  _c("i", { staticClass: "fas fa-check m__r2" }),
+                  _vm._v(" "),
+                  _c("div", [_vm._v("削除")])
+                ]
+              )
+            ])
+          ])
+        ]
       )
     ]),
     _vm._v(" "),
@@ -8418,7 +8796,9 @@ var staticRenderFns = [
       ]),
       _vm._v(" "),
       _c("p", { staticClass: "p-table__caption__text" }, [
-        _vm._v("※登録したキーワードは他の自動サービスで使用します。")
+        _vm._v(
+          "※登録したキーワードは他の自動サービスで「条件」として使用します。"
+        )
       ])
     ])
   },
@@ -8427,19 +8807,19 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("tr", { staticClass: "p-table__head" }, [
-      _c("th", { staticClass: "p-table__th p-table__th--filter" }, [
+      _c("th", { staticClass: "p-table__th p-table__th--keyword" }, [
         _vm._v("条件タイプ")
       ]),
       _vm._v(" "),
-      _c("th", { staticClass: "p-table__th p-table__th--filter" }, [
+      _c("th", { staticClass: "p-table__th p-table__th--keyword" }, [
         _vm._v("キーワード")
       ]),
       _vm._v(" "),
-      _c("th", { staticClass: "p-table__th p-table__th--filter" }, [
+      _c("th", { staticClass: "p-table__th p-table__th--keyword" }, [
         _vm._v("除外ワード")
       ]),
       _vm._v(" "),
-      _c("th", { staticClass: "p-table__th p-table__th--filter" }, [
+      _c("th", { staticClass: "p-table__th p-table__th--keyword" }, [
         _vm._v("操作")
       ])
     ])
@@ -22896,7 +23276,8 @@ __webpack_require__.r(__webpack_exports__);
 var message = {
   disConnect: '接続ができませんでした。再度実行してください。',
   notGetData: 'データが取得できませんでした。再度時間を置いて更新してください。',
-  notDelete: '正常に通信することができませんでした。画面を更新してください。'
+  notDelete: '正常に通信することができませんでした。画面を再度更新してください。',
+  notUpdate: '更新できませんでした。時間を置いて再度更新してください。'
 };
 
 /***/ }),
@@ -22952,72 +23333,72 @@ var loginUserInfo = [{
  */
 
 var twitterAccount = [{
-  id: 4,
-  screen_name: 'tomozo01v',
-  name: 'tomozo01v',
+  id: 6044,
+  screen_name: 'tomo',
+  name: 'tomo',
   thumbnail: '',
   follows: 500,
   followers: 3400
 }, {
-  id: 34,
+  id: 12425,
   screen_name: 'Nayeli Stracke',
   name: 'Nayeli Stracke',
   thumbnail: '',
   follows: 400,
   followers: 300
 }, {
-  id: 462,
+  id: 59319,
   screen_name: 'Mrs. Meagan Mraz',
   name: 'Mrs. Meagan Mraz',
   thumbnail: '',
   follows: 550,
   followers: 30
 }, {
-  id: 94031,
+  id: 63407,
   screen_name: 'Fabiola Feest',
   name: 'Fabiola Feest',
   thumbnail: '',
   follows: 343,
   followers: 340
 }, {
-  id: 24351399,
+  id: 86713,
   screen_name: 'Aliza Beier',
   name: 'Aliza Beier',
   thumbnail: '',
   follows: 5,
   followers: 34
 }, {
-  id: 67848767,
+  id: 92887,
   screen_name: 'Annamae Cummerata',
   name: 'Annamae Cummerata',
   thumbnail: '',
   follows: 1100,
   followers: 5000
 }, {
-  id: 86904763,
+  id: 711157,
   screen_name: 'Jaunita Upton IV',
   name: 'Jaunita Upton IV',
   thumbnail: '',
   follows: 11900,
   followers: 3000
 }, {
-  id: 97867039,
+  id: 5240583,
   screen_name: 'Dr. Milford Grant',
   name: 'Dr. Milford Grant',
   thumbnail: '',
   follows: 22,
   followers: 567
 }, {
-  id: 97867040,
+  id: 113477983,
   screen_name: 'Elody Halvorson',
   name: 'Elody Halvorson',
   thumbnail: '',
   follows: 33,
   followers: 5543
 }, {
-  id: 366571107,
-  screen_name: 'Deontae Mante',
-  name: 'Deontae Mante',
+  id: 113477987,
+  screen_name: 'tomozo01v',
+  name: 'tomozo01v',
   thumbnail: '',
   follows: 112,
   followers: 322
@@ -23173,15 +23554,16 @@ var INTERNAL_SERVER_ERROR = 500;
 /***/ }),
 
 /***/ 0:
-/*!********************************************************************************************************************!*\
-  !*** multi ./resources/js/app.js ./resources/js/utility.js ./resources/js/repository.js ./resources/sass/app.scss ***!
-  \********************************************************************************************************************/
+/*!**********************************************************************************************************************************************!*\
+  !*** multi ./resources/js/app.js ./resources/js/utility.js ./resources/js/repository.js ./resources/js/message.js ./resources/sass/app.scss ***!
+  \**********************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! /Applications/MAMP/htdocs/kamitter/resources/js/app.js */"./resources/js/app.js");
 __webpack_require__(/*! /Applications/MAMP/htdocs/kamitter/resources/js/utility.js */"./resources/js/utility.js");
 __webpack_require__(/*! /Applications/MAMP/htdocs/kamitter/resources/js/repository.js */"./resources/js/repository.js");
+__webpack_require__(/*! /Applications/MAMP/htdocs/kamitter/resources/js/message.js */"./resources/js/message.js");
 module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/kamitter/resources/sass/app.scss */"./resources/sass/app.scss");
 
 

@@ -13,10 +13,13 @@ use App\TwitterUser;
 class KeywordController extends Controller
 {
 
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+    /**
+     * responce定義
+     */
+    const CODE = [
+        0 => ["status" => 200],
+        1 => ["status" => 500]
+    ];
 
     /**
      * 入力文字列の全角スペースを半角スペースに変換する
@@ -41,15 +44,19 @@ class KeywordController extends Controller
      */
     public function add(Request $request)
     {
-        $keyword = new Keyword();
-        $keyword->word = $this->fixWordSpace($request->word);
-        $keyword->remove = $this->fixWordSpace($request->remove);
-        $keyword->remove = $request->remove;
-
-        Auth::user()->keywords()->save($keyword);
-        $new = Keyword::where('id', $keyword->id)->with('user')->first();
-
-        return $new;
+        try {
+            $keyword = new Keyword();
+            $keyword->type = $request->type;
+            $keyword->word = $this->fixWordSpace($request->word);
+            $keyword->remove = $this->fixWordSpace($request->remove);
+            $keyword->remove = $request->remove;
+    
+            Auth::user()->keywords()->save($keyword);
+            return self::CODE[0]['status'];
+        }
+        catch (\Exception $e) {
+            return self::CODE[1]['status'];
+        }
     }
 
     /**
@@ -57,19 +64,27 @@ class KeywordController extends Controller
      */
     public function show()
     {
-        $keywordList = Auth::user()->keywords()->get();
-        return $keywordList;
+        try {
+            $keywordList = Auth::user()->keywords()->get();
+            return $keywordList;
+        }
+        catch (\Exception $e) {
+            return self::CODE[1]['status'];
+        }
     }
 
     /**
      * キーワードを削除
      */
     public function delete(int $id){
-        $deleteKeywords = Auth::user()->keywords()->where('id', $id)->first();
-        if (! $deleteKeywords){
-            abort(404);// Not Foundページを表示
+        try {
+            $deleteKeywords = Auth::user()->keywords()->where('id', $id)->first();
+            $deleteKeywords->delete();
+            return self::CODE[0]['status'];
         }
-        $deleteKeywords->delete();
+        catch (\Exception $e) {
+            return self::CODE[1]['status'];
+        }
     }
 
     /**
@@ -77,15 +92,17 @@ class KeywordController extends Controller
      */
     public function edit(int $id, Request $request)
     {
-        $update = Auth::user()->keywords()->where('id', $id)->first();
-        if (! $update){
-            abort(404);// Not Foundページを表示
+        try {
+            $update = Auth::user()->keywords()->where('id', $id)->first();
+            $update->type = $request->type;
+            $update->word = $request->word;
+            $update->remove = $request->remove;
+            $update->save();
+            return self::CODE[0]['status'];
         }
-        $update->type = $request->type;
-        $update->word = $request->word;
-        $update->remove = $request->remove;
-        $update->save();
-        return $update;
+        catch (\Exception $e) {
+            return self::CODE[1]['status'];
+        }
     }
 
     /**
@@ -93,8 +110,14 @@ class KeywordController extends Controller
      */
     public function get(int $id)
     {
-        $getWord = Auth::user()->keywords()->where('id', $id)->first();
-        return $getWord ?? abort(404);
+        try {
+            $getWord = Auth::user()->keywords()->where('id', $id)->first();
+            return $getWord;
+        }
+        catch (\Exception $e) {
+            return self::CODE[1]['status'];
+        }
+
     }
 
 }

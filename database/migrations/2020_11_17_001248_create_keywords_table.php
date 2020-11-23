@@ -14,7 +14,7 @@ class CreateKeywordsTable extends Migration
     public function up()
     {
         Schema::create('keywords', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
             $table->integer('type')->default(1);
             $table->string('word', 100)->nullable();
