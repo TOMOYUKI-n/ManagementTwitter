@@ -43,7 +43,7 @@ class ManagerController extends Controller
             }
 
             $system_manager->save();
-            return $system_manager;
+            return self::CODE[0]['status'];
         }
         catch (\Exception $e) {
             return self::CODE[1]['status'];
@@ -61,6 +61,38 @@ class ManagerController extends Controller
         try {
             $system_manager = Management::where('twitter_user_id', $id)->first();
             return $system_manager;
+        }
+        catch (\Exception $e) {
+            return self::CODE[1]['status'];
+        }
+    }
+
+    /**
+     * サービスを停止状態にする
+     * 1:自動フォロー、2:自動アンフォロー, 3:自動いいね, 4:自動ツイート
+     * @param 停止させるサービスタイプ
+     */
+    public function stop(Request $request)
+    {
+        // Log::Debug($request);
+        try {
+            $system_manager = Management::where('twitter_user_id', $request->twitter_id)->first();
+
+            if ($request->type === 1) {
+                $system_manager->auto_follow_status = 1;
+            }
+            else if ($request->type === 2) {
+                $system_manager->auto_unfollow_status = 1;
+            }
+            else if ($request->type === 3) {
+                $system_manager->auto_like_status = 1;
+            }
+            else if ($request->type === 4) {
+                $system_manager->auto_tweet_status = 1;
+            }
+
+            $system_manager->save();
+            return self::CODE[0]['status'];
         }
         catch (\Exception $e) {
             return self::CODE[1]['status'];

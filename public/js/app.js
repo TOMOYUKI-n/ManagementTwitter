@@ -2959,11 +2959,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context5.prev = _context5.next) {
               case 0:
-                console.log(_this5.deleteItem);
-                _context5.next = 3;
+                _context5.next = 2;
                 return axios__WEBPACK_IMPORTED_MODULE_3___default.a.post("/api/follow/delete/".concat(_this5.deleteItem.id), _this5.deleteItem);
 
-              case 3:
+              case 2:
                 response = _context5.sent;
 
                 if (response.status !== 200 || response.data === 500) {
@@ -2973,7 +2972,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 }
 
                 if (!(response.data === 200)) {
-                  _context5.next = 12;
+                  _context5.next = 11;
                   break;
                 }
 
@@ -2982,14 +2981,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _this5.followTargets.splice(_this5.deleteIndex, 1); // 再描画
 
 
-                _context5.next = 10;
+                _context5.next = 9;
                 return _this5.fetchFollowTargets();
 
-              case 10:
-                _context5.next = 12;
+              case 9:
+                _context5.next = 11;
                 return _this5.fetchKeywords();
 
-              case 12:
+              case 11:
               case "end":
                 return _context5.stop();
             }
@@ -3020,30 +3019,28 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this6 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee6() {
-        var response, _response;
-
+        var response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee6$(_context6) {
           while (1) {
             switch (_context6.prev = _context6.next) {
               case 0:
-                console.log(_this6.twitter_id);
-                _context6.next = 3;
+                _context6.next = 2;
                 return axios__WEBPACK_IMPORTED_MODULE_3___default.a.get("/api/system/status/".concat(_this6.twitter_id));
 
-              case 3:
+              case 2:
                 response = _context6.sent;
-                console.log(response);
 
+                // console.log(response);
                 if (response.status !== 200) {
                   _this6.errorFlg = true;
                   _this6.messageText = _message__WEBPACK_IMPORTED_MODULE_2__["message"].notGetData;
                 } else {
-                  _response = _repository__WEBPACK_IMPORTED_MODULE_1__["manegementServiceStatus"];
-                  _this6.serviceStatus = 1;
-                  _this6.serviceStatusLabel = 'サービス停止中';
+                  _this6.serviceSwitch = false;
+                  _this6.serviceStatus = response.data.auto_follow_status;
+                  _this6.serviceStatusLabel = response.data.status_labels.auto_follow;
                 }
 
-              case 6:
+              case 4:
               case "end":
                 return _context6.stop();
             }
@@ -3074,27 +3071,23 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 4:
                 response = _context7.sent;
-                console.log(response.data);
 
                 if (!(response.data === 500 || response.status !== 200)) {
-                  _context7.next = 12;
+                  _context7.next = 11;
                   break;
                 }
 
                 _this7.errorFlg = true;
                 _this7.messageText = _message__WEBPACK_IMPORTED_MODULE_2__["message"].notUpdate;
                 _this7.serviceSwitch = false;
-                _context7.next = 17;
+                _context7.next = 13;
                 break;
 
-              case 12:
-                _this7.serviceSwitch = false;
-                _this7.serviceStatus = 2;
-                _this7.serviceStatusLabel = 'サービス稼働中';
-                _context7.next = 17;
+              case 11:
+                _context7.next = 13;
                 return _this7.fetchServiceStatus();
 
-              case 17:
+              case 13:
               case "end":
                 return _context7.stop();
             }
@@ -3110,24 +3103,38 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this8 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee8() {
+        var serviceType, data, response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee8$(_context8) {
           while (1) {
             switch (_context8.prev = _context8.next) {
               case 0:
-                // const serviceType = 1
-                // const data = {type: serviceType}
-                // const response = await axios.post('/api/system/stop', data)
-                // if (response.status !== OK) {
-                //     this.$store.commit('error/setCode', response.status)
-                //     return false
-                // }
-                // this.serviceStatus = response.data.auto_follow_status
-                // this.serviceStatusLabel = response.data.status_labels.auto_follow
-                _this8.serviceSwitch = false;
-                _this8.serviceStatus = 1;
-                _this8.serviceStatusLabel = 'サービス停止中';
+                serviceType = 1;
+                data = {
+                  type: serviceType,
+                  twitter_id: _this8.twitter_id
+                };
+                _context8.next = 4;
+                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.post('/api/system/stop', data);
 
-              case 3:
+              case 4:
+                response = _context8.sent;
+
+                if (!(response.data === 500 || response.status !== 200)) {
+                  _context8.next = 11;
+                  break;
+                }
+
+                _this8.errorFlg = true;
+                _this8.messageText = _message__WEBPACK_IMPORTED_MODULE_2__["message"].notUpdate;
+                _this8.serviceSwitch = false;
+                _context8.next = 13;
+                break;
+
+              case 11:
+                _context8.next = 13;
+                return _this8.fetchServiceStatus();
+
+              case 13:
               case "end":
                 return _context8.stop();
             }
@@ -3201,21 +3208,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }
       }, _callee10);
     }))();
-  },
-  watch: {
-    /**
-     * フィルターワードの通知を受け取ったら
-     * フォロワーターゲットと、フィルターワードを再取得する
-     */
-    // dashChange: {
-    //     handler(val) {
-    //         if (val === true) {
-    //             this.fetchFollowTargets()
-    //             this.fetchFilters()
-    //             this.$store.commit('dashboard/setNoticeToTweet', null)
-    //         }
-    //     }
-    // },
   }
 });
 

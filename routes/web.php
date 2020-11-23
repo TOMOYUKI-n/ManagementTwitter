@@ -75,7 +75,7 @@ Route::group(['middleware' => 'auth'], function() {
      */
     Route::get('/api/system/status/{id}', 'ManagerController@show')->name('system.show');
     Route::post('/api/system/running', 'ManagerController@run')->name('system.run');
-    Route::post('/system/stop', 'SystemManagerController@stop')->name('system.stop');
+    Route::post('/api/system/stop', 'ManagerController@stop')->name('system.stop');
 
     // アカウント一覧画面遷移
     Route::get('/accountList', function(){ return view('index.accountList'); });

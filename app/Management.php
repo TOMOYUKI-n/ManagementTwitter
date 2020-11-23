@@ -66,17 +66,17 @@ class Management extends Model
      * アクセサ
      * 各自動化サービスのステータスをラベルで返す
      */
-    // public function returnServiceStatus()
-    // {
-    //     $status_labels = [];
-    //     foreach (self::TYPE as $key => $service_name) {
-    //         $status = $this->attributes[$service_name . '_status'];
-    //         $label = self::STATUS[$status]['label'];
-    //         $status_labels[$service_name] = $label;
-    //     }
+    public function getStatusLabelsAttribute()
+    {
+        $status_labels = [];
+        foreach (self::TYPE as $key => $service_name) {
+            $status = $this->attributes[$service_name . '_status'];
+            $label = self::STATUS[$status]['label'];
+            $status_labels[$service_name] = $label;
+        }
 
-    //     return $status_labels;
-    // }
+        return $status_labels;
+    }
 
     /**
      * すべてのサービスを停止状態にする

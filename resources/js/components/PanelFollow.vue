@@ -292,7 +292,7 @@
              * フォローターゲットを削除する
              */
             async removeFollowTarget() {
-                console.log(this.deleteItem);
+                // console.log(this.deleteItem);
                 const response = await axios.post(`/api/follow/delete/${this.deleteItem.id}`, this.deleteItem);
                 if (response.status !== 200 || response.data === 500) {
                     this.errorFlg = true;
@@ -325,17 +325,16 @@
              * 自動フォロー機能のサービスステータスを取得する
              */
             async fetchServiceStatus() {
-                console.log(this.twitter_id);
                 const response = await axios.get(`/api/system/status/${this.twitter_id}`);
-                console.log(response);
+                // console.log(response);
                 if (response.status !== 200) {
                     this.errorFlg = true;
                     this.messageText = message.notGetData;
                 }
                 else {
-                    const response = manegementServiceStatus;
-                    this.serviceStatus = 1;
-                    this.serviceStatusLabel = 'サービス停止中';
+                    this.serviceSwitch = false;
+                    this.serviceStatus = response.data.auto_follow_status;
+                    this.serviceStatusLabel = response.data.status_labels.auto_follow;
                 }
             },
             /**
@@ -345,16 +344,12 @@
                 const serviceType = 1;
                 const data = {type: serviceType, twitter_id: this.twitter_id};
                 const response = await axios.post('/api/system/running', data);
-                console.log(response.data);
                 if (response.data === 500 || response.status !== 200) {
                     this.errorFlg = true;
                     this.messageText = message.notUpdate;
                     this.serviceSwitch = false;
                 }
                 else{
-                    this.serviceSwitch = false;
-                    this.serviceStatus = 2;
-                    this.serviceStatusLabel = 'サービス稼働中';
                     await this.fetchServiceStatus();
                 }
             },
@@ -362,18 +357,17 @@
              * 自動フォロー機能を停止状態にする
              */
             async stopFollowService() {
-                // const serviceType = 1
-                // const data = {type: serviceType}
-                // const response = await axios.post('/api/system/stop', data)
-                // if (response.status !== OK) {
-                //     this.$store.commit('error/setCode', response.status)
-                //     return false
-                // }
-                // this.serviceStatus = response.data.auto_follow_status
-                // this.serviceStatusLabel = response.data.status_labels.auto_follow
-                this.serviceSwitch = false;
-                this.serviceStatus = 1;
-                this.serviceStatusLabel = 'サービス停止中';
+                const serviceType = 1;
+                const data = {type: serviceType, twitter_id: this.twitter_id};
+                const response = await axios.post('/api/system/stop', data);
+                if (response.data === 500 || response.status !== 200) {
+                    this.errorFlg = true;
+                    this.messageText = message.notUpdate;
+                    this.serviceSwitch = false;
+                }
+                else{
+                    await this.fetchServiceStatus();
+                }
             },
             /**
              * localstorageから現在のページを保存する
@@ -396,22 +390,6 @@
             await this.fetchKeywords()
             await this.fetchServiceStatus();
         },
-        watch: {
-            /**
-             * フィルターワードの通知を受け取ったら
-             * フォロワーターゲットと、フィルターワードを再取得する
-             */
-            // dashChange: {
-            //     handler(val) {
-            //         if (val === true) {
-            //             this.fetchFollowTargets()
-            //             this.fetchFilters()
-            //             this.$store.commit('dashboard/setNoticeToTweet', null)
-            //         }
-            //     }
-            // },
-        },
-
     }
 </script>
 <style lang="scss" scoped>
