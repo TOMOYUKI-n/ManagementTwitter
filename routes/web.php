@@ -62,12 +62,12 @@ Route::group(['middleware' => 'auth'], function() {
     Route::delete('/api/keyword/{id}', 'KeywordController@delete')->name('keyword.delete');
 
     /**
-     * 自動フォロー関連
+     * 自動フォロー関連 ターゲットアカウント
      */
-    Route::get('/api/follow/list', 'FollowController@list')->name('follow.list');
-
-
-
+    Route::get('/api/follow/list/{id}', 'FollowController@list')->name('follow.list');
+    Route::post('/api/follow/{id}', 'FollowController@add')->name('follow.add');
+    Route::put('/api/follow/{id}', 'FollowController@edit')->name('follow.edit');
+    Route::post('/api/follow/delete/{id}', 'FollowController@delete')->name('follow.delete');
 
     // アカウント一覧画面遷移
     Route::get('/accountList', function(){ return view('index.accountList'); });

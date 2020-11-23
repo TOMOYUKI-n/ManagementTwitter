@@ -22,16 +22,16 @@ export const loginUserInfo = [
  * twitterAPIレスポンス結果
  */
 export const twitterAccount = [
-    {id: 4, screen_name: 'tomozo01v', name: 'tomozo01v', thumbnail: '', follows: 500, followers: 3400 },
-    {id: 34, screen_name: 'Nayeli Stracke', name: 'Nayeli Stracke', thumbnail: '', follows: 400, followers: 300},
-    {id: 462, screen_name: 'Mrs. Meagan Mraz', name: 'Mrs. Meagan Mraz', thumbnail: '', follows: 550, followers: 30},
-    {id: 94031, screen_name: 'Fabiola Feest', name: 'Fabiola Feest', thumbnail: '', follows: 343, followers: 340},
-    {id: 24351399, screen_name: 'Aliza Beier', name: 'Aliza Beier', thumbnail: '', follows: 5, followers: 34},
-    {id: 67848767, screen_name: 'Annamae Cummerata', name: 'Annamae Cummerata', thumbnail: '', follows: 1100, followers: 5000},
-    {id: 86904763, screen_name: 'Jaunita Upton IV', name: 'Jaunita Upton IV', thumbnail: '', follows: 11900, followers: 3000},
-    {id: 97867039, screen_name: 'Dr. Milford Grant', name: 'Dr. Milford Grant', thumbnail: '', follows: 22, followers: 567},
-    {id: 97867040, screen_name: 'Elody Halvorson', name: 'Elody Halvorson', thumbnail: '', follows: 33, followers: 5543},
-    {id: 366571107, screen_name: 'Deontae Mante', name: 'Deontae Mante', thumbnail: '', follows: 112, followers: 322},
+    {id: 114, screen_name: 'tomozo01v', name: 'tomozo01v', thumbnail: '', follows: 500, followers: 3400 },
+    {id: 2771, screen_name: 'Nayeli Stracke', name: 'Nayeli Stracke', thumbnail: '', follows: 400, followers: 300},
+    {id: 79062, screen_name: 'Mrs. Meagan Mraz', name: 'Mrs. Meagan Mraz', thumbnail: '', follows: 550, followers: 30},
+    {id: 696445, screen_name: 'Fabiola Feest', name: 'Fabiola Feest', thumbnail: '', follows: 343, followers: 340},
+    {id: 4250377, screen_name: 'Aliza Beier', name: 'Aliza Beier', thumbnail: '', follows: 5, followers: 34},
+    {id: 73824476, screen_name: 'Annamae Cummerata', name: 'Annamae Cummerata', thumbnail: '', follows: 1100, followers: 5000},
+    {id: 73824477, screen_name: 'Jaunita Upton IV', name: 'Jaunita Upton IV', thumbnail: '', follows: 11900, followers: 3000},
+    {id: 96357276, screen_name: 'Dr. Milford Grant', name: 'Dr. Milford Grant', thumbnail: '', follows: 22, followers: 567},
+    // {id: 97867040, screen_name: 'Elody Halvorson', name: 'Elody Halvorson', thumbnail: '', follows: 33, followers: 5543},
+    // {id: 366571107, screen_name: 'Deontae Mante', name: 'Deontae Mante', thumbnail: '', follows: 112, followers: 322},
 ];
 
 /**

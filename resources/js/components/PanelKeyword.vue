@@ -4,9 +4,9 @@
         <div class="p-table__title">
             <div class="p-table__sp__title">
                 <h2 class="p-table__caption">キーワードリスト</h2>
-                <p class="p-table__caption__text">※登録したキーワードは他の自動サービスで使用します。</p>
+                <p class="p-table__caption__text">※登録したキーワードは他の自動サービスで「条件」として使用します。</p>
             </div>
-            <button class="c-button c-button--add" @click="newModal = ! newModal">
+            <button class="c-button c-button--add" @click="newModal = !newModal">
                 <i class="c-icon__mr-2 c__color--blue fas fa-plus"></i>
                 キーワードを追加
             </button>
@@ -14,25 +14,25 @@
 
         <table class="p-table">
             <tr class="p-table__head">
-                <th class="p-table__th p-table__th--filter">条件タイプ</th>
-                <th class="p-table__th p-table__th--filter">キーワード</th>
-                <th class="p-table__th p-table__th--filter">除外ワード</th>
-                <th class="p-table__th p-table__th--filter">操作</th>
+                <th class="p-table__th p-table__th--keyword">条件タイプ</th>
+                <th class="p-table__th p-table__th--keyword">キーワード</th>
+                <th class="p-table__th p-table__th--keyword">除外ワード</th>
+                <th class="p-table__th p-table__th--keyword">操作</th>
             </tr>
-            <tr v-for="(filter, index) in filters" :key="index">
-                <td class="p-table__td">{{filter.type}}</td>
-                <td class="p-table__td">{{filter.word}}</td>
-                <td class="p-table__td">{{filter.remove}}</td>
+            <tr v-for="(keyword, index) in keywords" :key="index">
+                <td class="p-table__td">{{keyword.type}}</td>
+                <td class="p-table__td">{{keyword.word}}</td>
+                <td class="p-table__td">{{keyword.remove}}</td>
                 <td class="p-table__td">
                     <div class="p-table__action">
                         <div class="p-table__btn-wrap">
                             <button class="c-button c-button--twitter p-table__button"
-                                    @click="showEditModal(filter, index)"
+                                    @click="showEditModal(keyword, index)"
                             >
                                 <i class="c__color--blue fas fa-pen p-table__test-xs"></i>
                             </button>
                             <button class="c-button c-button--delete p-table__button c-button--delete "
-                                    @click="removeFilter(filter.id, index)"
+                                    @click="remove(keyword.id, index)"
                             >
                                 <i class="fas fa-trash-alt p-table__test-xs"></i>
                             </button>
@@ -42,6 +42,9 @@
             </tr>
 
         </table>
+        <p v-show="errorFlg" style="color: red; font-size: 14px; margin-top: 8px;">
+            {{ messageText }}
+        </p>
 
         <div class="p-modal__wrapper">
             <section class="p-modal" v-show="newModal">
@@ -49,27 +52,22 @@
                     <div class="p-modal__cancel u-color__bg--white" @click="newModal = !newModal">
                         <i class="c-icon--gray p-modal__icon fas fa-times"></i>
                     </div>
-                    <form class="p-form" @submit="addFilter">
+                    <form class="p-form" @submit="addKeyword">
 
-                        <div v-if="addErrors" class="p-form__errors">
-                            <ul v-if="addErrors.word">
-                                <li v-for="msg in addErrors.word" :key="msg">{{ msg }}</li>
-                            </ul>
-                        </div>
-
-                        <label class="p-form__label" for="add-filter">条件タイプ</label>
-                        <select class="p-form__select" id="add-filter" v-model="addForm.type">
+                        <p class="p-form__notion">※複数ワードを指定する際は、「ツイッター 神」のように半角スペースで区切ってください。</p>
+                        <label class="p-form__label" for="add-keyword">条件タイプ</label>
+                        <select class="p-form__select" id="add-keyword" v-model="addForm.type">
                             <option value="1">次のワードを含む</option>
                             <option value="2">いずれかのワードを含む</option>
                         </select>
-                        <label class="p-form__label" for="keyword">キーワード *必須</label>
+                        <label class="p-form__label" for="keyword">キーワード *必須 最大50文字</label>
                         <input type="text" class="p-form__item" id="keyword"
                                v-model="addForm.word" required maxlength="50">
 
-                        <label class="p-form__label" for="remove_word">除外ワード</label>
+                        <label class="p-form__label" for="remove_word">除外ワード ※最大50文字</label>
                         <input type="text" class="p-form__item" id="remove_word"
                                v-model="addForm.remove" maxlength="50">
-                        <p class="p-form__notion">※複数ワードを指定する際は、「ツイッター 神」のように半角スペースで区切ってください。</p>
+
                         <div class="p-form__button">
                             <button type="submit" class="c-button c-button--twitter">追加</button>
                         </div>
@@ -82,11 +80,11 @@
                     <div class="p-modal__cancel u-color__bg--white" @click="editModal = !editModal">
                         <i class="c-icon--gray p-modal__icon fas fa-times"></i>
                     </div>
-                    <form class="p-form" @submit.prevent="editFilter">
+                    <form class="p-form" @submit.prevent="editKeyword">
 
 
-                        <label class="p-form__label" for="edit-filter">条件タイプ</label>
-                        <select class="p-form__select" id="edit-filter" v-model="editForm.type">
+                        <label class="p-form__label" for="edit-keyword">条件タイプ</label>
+                        <select class="p-form__select" id="edit-keyword" v-model="editForm.type">
                             <option value="1">次のワードを含む</option>
                             <option value="2">いずれかのワードを含む</option>
                         </select>
@@ -104,6 +102,23 @@
                     </form>
                 </div>
             </section>
+
+            <section class="p-modal p-modal--opened" v-show="deleteOn">
+                <div class="p-modal__contents">
+                    <p class="p-form__delete">本当に削除しますか？</p>
+                    <div class="p-form__delete__wrap">
+                        <div type="submit" class="c-button p-form__half-btn width__three" @click="deleteOn = false">
+                            <i class="fas fa-times m__r2"></i>
+                            <div>キャンセル</div>
+                        </div>
+                        <div type="submit" class="p-botton__delete  p-form__half-btn width__three" @click="removeKeywords">
+                            <i class="fas fa-check m__r2"></i>
+                            <div>削除</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
         </div>
         <!-- レスポンシブで表示 -->
         <div class="c-button--add--wrap">
@@ -118,16 +133,20 @@
 <script>
     import { filterWords } from "../repository"
     import axios from "axios";
+    import { message } from '../message';
     export default {
         data() {
             return {
                 page: 6,
-                filters: [],
+                keywords: [],
                 newModal: false,
                 editModal: false,
                 editIndex: null,
-                addErrors: null,
-                editErrors: null,
+                errorFlg: false,
+                messageText: '',
+                deleteOn: false,
+                deleteIndex: 0,
+                deleteItem: [],
                 addForm: {
                     type: 1,
                     word: '',
@@ -145,74 +164,81 @@
             /**
              * キーワード一覧を取得
              */
-            async fetchFilters() {
+            async fetchKeywords() {
                 const response = await axios.get('/api/keyword');
-                if (response.status !== 200) {
-                    return false;
+                if (response.status !== 200 || response.data === 500) {
+                    this.errorFlg = true;
+                    this.messageText = message.notGetData;
                 }
-                this.filters = response.data;
+                else {
+                    this.keywords = response.data;
+                }
             },
             /**
              * 新規キーワードを登録
              */
-            async addFilter() {
-                this.clearErrors()
+            async addKeyword() {
                 const response = await axios.post('/api/keyword', this.addForm);
-                
-                if (response.status === 422) {
-                    //バリデーションエラー
-                    this.addErrors = response.data.errors;
-                    return false;
-                };
-                this.resetAddForm()
-                if (response.status !== 200) {
-                    return false;
+                if (response.data === 500) {
+                    this.errorFlg = true;
+                    this.messageText = message.notGetData;
                 }
-                this.newModal = false;
-                // 一覧を更新
-                this.fetchFilters();
+                else {
+                    this.newModal = false;
+                    this.resetAddForm();
+                    // 一覧を更新
+                    this.fetchKeywords();
+                }
             },
             /**
              * 編集フォームモーダルの表示を行って、値を入力しておく
              */
-            showEditModal(filter, index) {
+            showEditModal(keyword, index) {
                 this.editModal = true;
-                this.editForm.id = filter.id;
-                this.editForm.type = filter.type;
-                this.editForm.word = filter.word;
-                this.editForm.remove = filter.remove;
+                this.editForm.id = keyword.id;
+                this.editForm.type = keyword.type;
+                this.editForm.word = keyword.word;
+                this.editForm.remove = keyword.remove;
                 this.editIndex = index;
             },
             /**
              * APIを利用してフィルターキーワードの変更を行う
              */
-            async editFilter() {
-                this.clearErrors();
+            async editKeyword() {
                 const response = await axios.put(`/api/keyword/${this.editForm.id}`, this.editForm);
-                if (response.status === 422) {
-                    //バリデーションエラー
-                    this.editErrors = response.data.errors;
-                    return false;
+                if (response.status !== 200 || response.data === 500) {
+                    this.errorFlg = true;
+                    this.messageText = message.notGetData;
                 }
-                if (response.status !== 200) {
-                    console.log(response.status);
-                    return false;
+                else {
+                    // 一覧を更新
+                    await this.fetchKeywords();
+                    this.resetEditForm();
                 }
-                // 一覧を更新
-                this.fetchFilters();
-                this.resetEditForm();
+            },
+            /**
+             * 削除モーダル表示、indexを取得
+             */
+            remove(item, index) {
+                this.deleteOn = true;
+                this.deleteIndex = index;
+                this.deleteItem = item;
             },
             /**
              * APIを利用してフィルターキーワードの削除を行う
              */
-            async removeFilter(id, index) {
-                const response = await axios.delete(`/api/keyword/${id}`)
-                if (response.status !== 200) {
-                    this.$store.commit('error/setCode', response.status);
-                    return false;
+            async removeKeywords() {
+                const response = await axios.delete(`/api/keyword/${this.deleteItem}`);
+                console.log(response);
+                if (response.status !== 200 || response.data === 500) {
+                    this.errorFlg = true;
+                    this.messageText = message.notGetData;
+                    this.deleteOn = false;
                 }
-                // そのまま一覧から消す
-                this.filters.splice(index, 1);
+                else {
+                    this.deleteOn = false;
+                    await this.fetchKeywords();
+                }
             },
             /**
              * 登録フォームの入力欄を空にする
@@ -234,22 +260,15 @@
                 this.editIndex = null;
             },
             /**
-             * エラーメッセージを空にする
-             */
-            clearErrors() {
-                this.addErrors = null;
-                this.editErrors = null;
-            },
-            /**
              * localstorageから現在のページを保存する
              */
             getCurrentPage() {
                 localStorage.setItem('page', this.page);
             }
         },
-        created() {
-            this.fetchFilters();
-            this.getCurrentPage();
+        async created() {
+            await this.fetchKeywords();
+            await this.getCurrentPage();
         },
     }
 </script>

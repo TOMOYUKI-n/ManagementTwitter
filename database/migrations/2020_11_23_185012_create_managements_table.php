@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTwitterUsersTable extends Migration
+class CreateManagementsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,8 @@ class CreateTwitterUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('twitter_users', function (Blueprint $table) {
+        Schema::create('managements', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('user_id');
-            $table->string('token', 100);
-            $table->string('token_secret', 100);
-            $table->string('screen', 20);
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -31,6 +26,6 @@ class CreateTwitterUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('twitter_users');
+        Schema::dropIfExists('managements');
     }
 }

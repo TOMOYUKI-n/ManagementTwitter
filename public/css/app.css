@@ -774,6 +774,7 @@ img {
 }
 .p-status__sleep {
   font-size: 13px;
+  background-color: #3335;
 }
 .p-status__button {
   margin-right: 12px;
@@ -1112,13 +1113,13 @@ img {
 .p-table__th--tweet:nth-child(2) {
   width: 35%;
 }
-.p-table__th--filter:nth-child(1) {
+.p-table__th--keyword:nth-child(1) {
   width: 20%;
 }
-.p-table__th--filter:nth-child(2), .p-table__th--filter:nth-child(3) {
+.p-table__th--keyword:nth-child(2), .p-table__th--keyword:nth-child(3) {
   width: 30%;
 }
-.p-table__th--filter:nth-child(4) {
+.p-table__th--keyword:nth-child(4) {
   width: 20%;
 }
 .p-table__td {
