@@ -77,17 +77,10 @@ Route::group(['middleware' => 'auth'], function() {
     Route::post('/api/system/running', 'ManagerController@run')->name('system.run');
     Route::post('/api/system/stop', 'ManagerController@stop')->name('system.stop');
 
-    // アカウント一覧画面遷移
-    Route::get('/accountList', function(){ return view('index.accountList'); });
-    // フォローチェック
-    Route::post('/accountList/followcheck', 'AccountController@followCheck');
-    // フォロー用
-    Route::post('/accountList/follows', 'AccountController@follows');
-    // ユーザー情報取得用
-    Route::get('/auth/users', 'AccountController@getUsers');
-    // ユーザーフォロー情報取得用
-    Route::get('/auth/following', 'AccountController@getAuthFollowData');
 
-    // 自動フォロー用
-    Route::post('/accountList/autofollows', 'AccountController@autoFollows');
+    /**
+     * いいね機能関連
+     */
+    Route::get('/api/like/list/{id}','AutoLikeController@show')->name('like.show');
+
 });

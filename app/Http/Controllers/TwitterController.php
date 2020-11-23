@@ -17,13 +17,10 @@ class TwitterController extends Controller
     /**
      * responce定義
      */
-    public function code()
-    {
-        return array(
-            "success" => array("status" => 200),
-            "failed" => array("status" => 500)
-        );
-    }
+    const CODE = [
+        0 => ["status" => 200],
+        1 => ["status" => 500]
+    ];
 
     /**
      * TwitterUser 一覧と総数を返す
@@ -38,7 +35,7 @@ class TwitterController extends Controller
             Log::Debug($accounts);
         }
         catch (\Exception $e) {
-            return $code["failed"];
+            return self::CODE[1]['status'];
         }
 
         return ['accounts' => $accounts, 'accounts_num' => $accounts_num];
@@ -57,7 +54,7 @@ class TwitterController extends Controller
             Log::Debug($accounts);
         }
         catch (\Exception $e) {
-            return $code["failed"];
+            return self::CODE[1]['status'];
         }
 
         return ['accounts' => $accounts, 'accounts_num' => $accounts_num];
@@ -74,7 +71,7 @@ class TwitterController extends Controller
             return $twitter_users_data;
         }
         catch (\Exception $e){
-            abort(500);   
+            return self::CODE[1]['status'];  
         }
     }
 
@@ -88,14 +85,14 @@ class TwitterController extends Controller
         $twitter_user = TwitterUser::where('id', '=', $id)->first();
         // 存在しないユーザーを取得した場合 404
         if (is_null($twitter_user)){
-            abort(404);
+            return self::CODE[1]['status'];
         }
 
         // ログインしているユーザーと 指定のtwitterUserアカウントのuser_idが一致しなかった場合
         // 他のユーザーの登録アカウントへのアクセスになるので 403
         $user_id = Auth::id();
         if ($user_id !== $twitter_user->user_id){
-            abort(403);
+            return self::CODE[1]['status'];
         }
 
         // API情報のセット
@@ -118,7 +115,7 @@ class TwitterController extends Controller
             return $twitter_users_data;
         }
         catch (\Exception $e){
-            abort(500);   
+            return self::CODE[1]['status']; 
         }
     }
 
@@ -134,7 +131,7 @@ class TwitterController extends Controller
         // ログインしているユーザーと 指定のtwitterUserアカウントのuser_idが一致しなかった場合
         // 他のユーザーの登録アカウントへのアクセスになるので 403
         if (is_null($twitter_user)) {
-            abort(404);
+            return self::CODE[1]['status'];
         }
 
         $twitter_user->delete();

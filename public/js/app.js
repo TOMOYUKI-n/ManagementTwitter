@@ -3645,6 +3645,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _repository__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../repository */ "./resources/js/repository.js");
+/* harmony import */ var _message__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../message */ "./resources/js/message.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_3__);
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -3763,13 +3766,64 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       page: 4,
+      twitter_id: 0,
+      errorFlg: false,
+      messageText: '',
+      serviceSwitch: false,
+      deleteOn: false,
+      deleteIndex: 0,
+      deleteItem: [],
       likes: [],
-      filters: [],
+      keywords: [],
       newModal: false,
       editModal: false,
       editIndex: null,
@@ -3777,11 +3831,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       serviceStatusLabel: null,
       errors: null,
       addForm: {
-        filter_word_id: null
+        keyword_id: null
       },
       editForm: {
         id: null,
-        filter_word_id: null
+        keyword_id: null
       }
     };
   },
@@ -3803,18 +3857,30 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     /**
      * 登録した自動いいねデータ一覧を取得する
      */
-    fetchLikes: function fetchLikes() {// const response = await axios.get('/api/like')
-      // if (response.status !== OK) {
-      //     this.$store.commit('error/setCode', response.status)
-      //     return false
-      // }
-      // this.likes = response.data
+    fetchLikes: function fetchLikes() {
+      var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
+                _context.next = 2;
+                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.get("/api/like/list/".concat(_this.twitter_id));
+
+              case 2:
+                response = _context.sent;
+                console.log(response);
+
+                if (response.status !== 200 || response.data === 500) {
+                  _this.errorFlg = true;
+                  _this.messageText = _message__WEBPACK_IMPORTED_MODULE_2__["message"].notGetData;
+                } else {
+                  _this.likes = response.data;
+                }
+
+              case 5:
               case "end":
                 return _context.stop();
             }
@@ -3824,20 +3890,31 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
 
     /**
-     * フィルターワード一覧を取得する
+     * キーワード一覧を取得する
      */
-    fetchFilters: function fetchFilters() {// const response = await axios.get('/api/filter')
-      // if (response.status !== OK) {
-      //     this.$store.commit('error/setCode', response.status)
-      //     return false
-      // }
-      // this.filters = response.data
+    fetchKeywords: function fetchKeywords() {
+      var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        var response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
+                _context2.next = 2;
+                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.get('/api/keyword');
+
+              case 2:
+                response = _context2.sent;
+
+                if (response.status !== 200) {
+                  _this2.errorFlg = true;
+                  _this2.messageText = _message__WEBPACK_IMPORTED_MODULE_2__["message"].notGetData;
+                }
+
+                _this2.keywords = response.data;
+
+              case 5:
               case "end":
                 return _context2.stop();
             }
@@ -3882,7 +3959,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     showEditModal: function showEditModal(like, index) {
       this.editModal = true;
       this.editForm.id = like.id;
-      this.editForm.filter_word_id = like.filter_word_id;
+      this.editForm.keyword_id = like.keyword_id;
       this.editIndex = index;
     },
 
@@ -3911,14 +3988,31 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
 
     /**
+     * 削除モーダル表示、indexを取得
+     */
+    remove: function remove(item, index) {
+      this.deleteOn = true;
+      this.deleteIndex = index;
+      this.deleteItem = item;
+    },
+
+    /**
      * 自動いいねを削除する
      */
-    removeLike: function removeLike(id, index) {// const response = await axios.delete(`/api/like/${id}`)
-      // if (response.status !== OK) {
-      //     this.$store.commit('error/setCode', response.status)
-      //     return false
+    removeLike: function removeLike(id, index) {// console.log(this.deleteItem);
+      // const response = await axios.post(`/api/follow/delete/${this.deleteItem.id}`, this.deleteItem);
+      // if (response.status !== 200 || response.data === 500) {
+      //     this.errorFlg = true;
+      //     this.messageText = message.notGetData;
+      //     this.deleteOn = false;
       // }
-      // this.likes.splice(index, 1)
+      // if (response.data === 200) {
+      //     this.deleteOn = false;
+      //     this.followTargets.splice(this.deleteIndex, 1);
+      //     // 再描画
+      //     await this.fetchFollowTargets();
+      //     await this.fetchKeywords();
+      // }
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
@@ -3934,12 +4028,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
 
     /**
-     * 編集フォームデータを空にする
+     * フォームを初期化
      */
     resetEditForm: function resetEditForm() {
       this.editModal = false;
       this.editForm.id = null;
-      this.editForm.filter_word_id = null;
+      this.editForm.keyword_id = null;
       this.editIndex = null;
     },
 
@@ -3947,24 +4041,31 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
      * 自動いいねサービスのステータスを取得する
      */
     fetchServiceStatus: function fetchServiceStatus() {
-      var _this = this;
+      var _this3 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee6() {
+        var response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee6$(_context6) {
           while (1) {
             switch (_context6.prev = _context6.next) {
               case 0:
-                // const response = await axios.get('/api/system/status')
-                // if (response.status !== OK) {
-                //     this.$store.commit('error/setCode', response.status)
-                //     return false
-                // }
-                // this.serviceStatus = response.data.auto_like_status
-                // this.serviceStatusLabel = response.data.status_labels.auto_like
-                _this.serviceStatus = 1;
-                _this.serviceStatusLabel = 'サービス停止中';
+                _context6.next = 2;
+                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.get("/api/system/status/".concat(_this3.twitter_id));
 
               case 2:
+                response = _context6.sent;
+
+                // console.log(response);
+                if (response.status !== 200) {
+                  _this3.errorFlg = true;
+                  _this3.messageText = _message__WEBPACK_IMPORTED_MODULE_2__["message"].notGetData;
+                } else {
+                  _this3.serviceSwitch = false;
+                  _this3.serviceStatus = response.data.auto_like_status;
+                  _this3.serviceStatusLabel = response.data.status_labels.auto_like;
+                }
+
+              case 4:
               case "end":
                 return _context6.stop();
             }
@@ -3977,26 +4078,41 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
      * 自動いいねサービスを稼働状態にする
      */
     runLikeService: function runLikeService() {
-      var _this2 = this;
+      var _this4 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee7() {
+        var serviceType, data, response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee7$(_context7) {
           while (1) {
             switch (_context7.prev = _context7.next) {
               case 0:
-                // const serviceType = 3
-                // const data = {type: serviceType}
-                // const response = await axios.post('/api/system/run', data)
-                // if (response.status !== OK) {
-                //     this.$store.commit('error/setCode', response.status)
-                //     return false
-                // }
-                // this.serviceStatus = response.data.auto_like_status
-                // this.serviceStatusLabel = response.data.status_labels.auto_like
-                _this2.serviceStatus = 2;
-                _this2.serviceStatusLabel = 'サービス稼働中';
+                serviceType = 3;
+                data = {
+                  type: serviceType,
+                  twitter_id: _this4.twitter_id
+                };
+                _context7.next = 4;
+                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.post('/api/system/running', data);
 
-              case 2:
+              case 4:
+                response = _context7.sent;
+
+                if (!(response.data === 500 || response.status !== 200)) {
+                  _context7.next = 11;
+                  break;
+                }
+
+                _this4.errorFlg = true;
+                _this4.messageText = _message__WEBPACK_IMPORTED_MODULE_2__["message"].notUpdate;
+                _this4.serviceSwitch = false;
+                _context7.next = 13;
+                break;
+
+              case 11:
+                _context7.next = 13;
+                return _this4.fetchServiceStatus();
+
+              case 13:
               case "end":
                 return _context7.stop();
             }
@@ -4009,26 +4125,41 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
      * 自動いいねサービスを停止状態にする
      */
     stopLikeService: function stopLikeService() {
-      var _this3 = this;
+      var _this5 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee8() {
+        var serviceType, data, response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee8$(_context8) {
           while (1) {
             switch (_context8.prev = _context8.next) {
               case 0:
-                // const serviceType = 3
-                // const data = {type: serviceType}
-                // const response = await axios.post('/api/system/stop', data)
-                // if (response.status !== OK) {
-                //     this.$store.commit('error/setCode', response.status)
-                //     return false
-                // }
-                // this.serviceStatus = response.data.auto_like_status
-                // this.serviceStatusLabel = response.data.status_labels.auto_like
-                _this3.serviceStatus = 1;
-                _this3.serviceStatusLabel = 'サービス停止中';
+                serviceType = 3;
+                data = {
+                  type: serviceType,
+                  twitter_id: _this5.twitter_id
+                };
+                _context8.next = 4;
+                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.post('/api/system/stop', data);
 
-              case 2:
+              case 4:
+                response = _context8.sent;
+
+                if (!(response.data === 500 || response.status !== 200)) {
+                  _context8.next = 11;
+                  break;
+                }
+
+                _this5.errorFlg = true;
+                _this5.messageText = _message__WEBPACK_IMPORTED_MODULE_2__["message"].notUpdate;
+                _this5.serviceSwitch = false;
+                _context8.next = 13;
+                break;
+
+              case 11:
+                _context8.next = 13;
+                return _this5.fetchServiceStatus();
+
+              case 13:
               case "end":
                 return _context8.stop();
             }
@@ -4042,28 +4173,66 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
      */
     getCurrentPage: function getCurrentPage() {
       localStorage.setItem('page', this.page);
+    },
+
+    /**
+     * localstorageから現在使用しているtwitter_userのidを取得する
+     */
+    getCurrentTwitterId: function getCurrentTwitterId() {
+      var _this6 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee9() {
+        var storage;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee9$(_context9) {
+          while (1) {
+            switch (_context9.prev = _context9.next) {
+              case 0:
+                storage = JSON.parse(localStorage.getItem('loginTwitterAccount'));
+                _this6.twitter_id = storage.id;
+
+              case 2:
+              case "end":
+                return _context9.stop();
+            }
+          }
+        }, _callee9);
+      }))();
     }
   },
   created: function created() {
-    this.fetchLikes();
-    this.fetchFilters();
-    this.fetchServiceStatus();
-    this.getCurrentPage();
-  },
-  watch: {
-    /**
-     * フィルターワードの通知を受け取ったら
-     * 自動いいねと、フィルターワードを再取得する
-     */
-    // dashChange: {
-    //     handler(val) {
-    //         if (val === true) {
-    //             this.fetchLikes()
-    //             this.fetchFilters()
-    //             this.$store.commit('dashboard/setNoticeToLike', null)
-    //         }
-    //     }
-    // },
+    var _this7 = this;
+
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee10() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee10$(_context10) {
+        while (1) {
+          switch (_context10.prev = _context10.next) {
+            case 0:
+              _context10.next = 2;
+              return _this7.getCurrentPage();
+
+            case 2:
+              _context10.next = 4;
+              return _this7.getCurrentTwitterId();
+
+            case 4:
+              _context10.next = 6;
+              return _this7.fetchLikes();
+
+            case 6:
+              _context10.next = 8;
+              return _this7.fetchKeywords();
+
+            case 8:
+              _context10.next = 10;
+              return _this7.fetchServiceStatus();
+
+            case 10:
+            case "end":
+              return _context10.stop();
+          }
+        }
+      }, _callee10);
+    }))();
   }
 });
 
@@ -4578,7 +4747,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _repository__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../repository */ "./resources/js/repository.js");
+/* harmony import */ var _message__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../message */ "./resources/js/message.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -4607,11 +4778,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       page: 3,
+      twitter_id: 0,
+      errorFlg: false,
+      messageText: '',
       serviceStatus: null,
       serviceStatusLabel: null
     };
@@ -4632,21 +4808,27 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                // const response = await axios.get('/api/system/status')
-                // if (response.status !== OK) {
-                //     this.$store.commit('error/setCode', response.status)
-                //     return false
-                // }
-                // this.serviceStatus = response.data.auto_unfollow_status
-                // this.serviceStatusLabel = response.data.status_labels.auto_unfollow
-                _this.serviceStatus = 2;
-                _this.serviceStatusLabel = 'サービス稼働中';
+                _context.next = 2;
+                return axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("/api/system/status/".concat(_this.twitter_id));
 
               case 2:
+                response = _context.sent;
+
+                // console.log(response);
+                if (response.status !== 200) {
+                  _this.errorFlg = true;
+                  _this.messageText = _message__WEBPACK_IMPORTED_MODULE_1__["message"].notGetData;
+                } else {
+                  _this.serviceStatus = response.data.auto_unfollow_status;
+                  _this.serviceStatusLabel = response.data.status_labels.auto_unfollow;
+                }
+
+              case 4:
               case "end":
                 return _context.stop();
             }
@@ -4658,79 +4840,92 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     /**
      * APIを使用して自動アンフォローを実行状態にする
      */
-    runUnfollowService: function runUnfollowService() {
-      var _this2 = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-        var response;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
-          while (1) {
-            switch (_context2.prev = _context2.next) {
-              case 0:
-                // const serviceType = 2
-                // const data = {type: serviceType}
-                // const response = await axios.post('/api/system/run', data)
-                // if (response.status !== OK) {
-                //     this.$store.commit('error/setCode', response.status)
-                //     return false
-                // }
-                // this.serviceStatus = response.data.auto_unfollow_status
-                // this.serviceStatusLabel = response.data.status_labels.auto_unfollow
-                response = _repository__WEBPACK_IMPORTED_MODULE_1__["manegementServiceStatus"];
-                _this2.serviceStatus = 2;
-                _this2.serviceStatusLabel = 'サービス稼働中';
-
-              case 3:
-              case "end":
-                return _context2.stop();
-            }
-          }
-        }, _callee2);
-      }))();
-    },
+    // async runUnFollowService() {
+    //     const serviceType = 2;
+    //     const data = {type: serviceType, twitter_id: this.twitter_id};
+    //     const response = await axios.post('/api/system/running', data);
+    //     if (response.data === 500 || response.status !== 200) {
+    //         this.errorFlg = true;
+    //         this.messageText = message.notUpdate;
+    //     }
+    //     else{
+    //         await this.fetchServiceStatus();
+    //     }
+    // },
 
     /**
      * APIを使用して自動アンフォローを停止状態にする
      */
-    stopUnfollowService: function stopUnfollowService() {
-      var _this3 = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
-          while (1) {
-            switch (_context3.prev = _context3.next) {
-              case 0:
-                // const serviceType = 2
-                // const data = {type: serviceType}
-                // const response = await axios.post('/api/system/stop', data)
-                // if (response.status !== OK) {
-                //     this.$store.commit('error/setCode', response.status)
-                //     return false
-                // }
-                // this.serviceStatus = response.data.auto_unfollow_status
-                // this.serviceStatusLabel = response.data.status_labels.auto_unfollow
-                _this3.serviceStatus = 1;
-                _this3.serviceStatusLabel = 'サービス停止中';
-
-              case 2:
-              case "end":
-                return _context3.stop();
-            }
-          }
-        }, _callee3);
-      }))();
-    },
+    // async stopUnFollowService() {
+    //     const serviceType = 2;
+    //     const data = {type: serviceType, twitter_id: this.twitter_id};
+    //     const response = await axios.post('/api/system/stop', data);
+    //     if (response.data === 500 || response.status !== 200) {
+    //         this.errorFlg = true;
+    //         this.messageText = message.notUpdate;
+    //     }
+    //     else{
+    //         await this.fetchServiceStatus();
+    //     }
+    // },
 
     /**
      * localstorageから現在のページを保存する
      */
     getCurrentPage: function getCurrentPage() {
       localStorage.setItem('page', this.page);
+    },
+
+    /**
+     * localstorageから現在使用しているtwitter_userのidを取得する
+     */
+    getCurrentTwitterId: function getCurrentTwitterId() {
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        var storage;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                storage = JSON.parse(localStorage.getItem('loginTwitterAccount'));
+                _this2.twitter_id = storage.id;
+
+              case 2:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
     }
   },
   created: function created() {
-    this.fetchServiceStatus();
-    this.getCurrentPage();
+    var _this3 = this;
+
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+        while (1) {
+          switch (_context3.prev = _context3.next) {
+            case 0:
+              _context3.next = 2;
+              return _this3.getCurrentTwitterId();
+
+            case 2:
+              _context3.next = 4;
+              return _this3.getCurrentPage();
+
+            case 4:
+              _context3.next = 6;
+              return _this3.fetchServiceStatus();
+
+            case 6:
+            case "end":
+              return _context3.stop();
+          }
+        }
+      }, _callee3);
+    }))();
   }
 });
 
@@ -8981,7 +9176,7 @@ var render = function() {
         _vm._l(_vm.likes, function(like, index) {
           return _c("tr", { key: index }, [
             _c("td", { staticClass: "p-table__td" }, [
-              _vm._v(_vm._s(like.filter_word.word))
+              _vm._v(_vm._s(like.keyword.word))
             ]),
             _vm._v(" "),
             _c("td", { staticClass: "p-table__td" }, [
@@ -9012,7 +9207,7 @@ var render = function() {
                         "c-button c-button--delete p-table__button c-button--delete ",
                       on: {
                         click: function($event) {
-                          return _vm.removeLike(like.id, index)
+                          return _vm.remove(like.id, index)
                         }
                       }
                     },
@@ -9029,6 +9224,38 @@ var render = function() {
         })
       ],
       2
+    ),
+    _vm._v(" "),
+    _c(
+      "p",
+      {
+        directives: [
+          {
+            name: "show",
+            rawName: "v-show",
+            value: _vm.likes.length === 0,
+            expression: "likes.length === 0"
+          }
+        ],
+        staticStyle: { "font-size": "14px", "margin-top": "8px" }
+      },
+      [_vm._v("\n        データがありません\n    ")]
+    ),
+    _vm._v(" "),
+    _c(
+      "p",
+      {
+        directives: [
+          {
+            name: "show",
+            rawName: "v-show",
+            value: _vm.errorFlg,
+            expression: "errorFlg"
+          }
+        ],
+        staticStyle: { color: "red", "font-size": "14px", "margin-top": "8px" }
+      },
+      [_vm._v("\n        " + _vm._s(_vm.messageText) + "\n    ")]
     ),
     _vm._v(" "),
     _c("div", { staticClass: "p-modal__wrapper" }, [
@@ -9080,7 +9307,7 @@ var render = function() {
                   "label",
                   {
                     staticClass: "p-form__label",
-                    attrs: { for: "add-like-filter" }
+                    attrs: { for: "add-like-keyword" }
                   },
                   [_vm._v("いいね条件の選択 *必須")]
                 ),
@@ -9092,12 +9319,12 @@ var render = function() {
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.addForm.filter_word_id,
-                        expression: "addForm.filter_word_id"
+                        value: _vm.addForm.keyword_id,
+                        expression: "addForm.keyword_id"
                       }
                     ],
                     staticClass: "p-form__select",
-                    attrs: { id: "add-like-filter", required: "" },
+                    attrs: { id: "add-like-keyword", required: "" },
                     on: {
                       change: function($event) {
                         var $$selectedVal = Array.prototype.filter
@@ -9110,7 +9337,7 @@ var render = function() {
                           })
                         _vm.$set(
                           _vm.addForm,
-                          "filter_word_id",
+                          "keyword_id",
                           $event.target.multiple
                             ? $$selectedVal
                             : $$selectedVal[0]
@@ -9118,11 +9345,11 @@ var render = function() {
                       }
                     }
                   },
-                  _vm._l(_vm.filters, function(filter) {
+                  _vm._l(_vm.keywords, function(keyword) {
                     return _c(
                       "option",
-                      { key: filter.id, domProps: { value: filter.id } },
-                      [_vm._v(_vm._s(filter.merged_word))]
+                      { key: keyword.id, domProps: { value: keyword.id } },
+                      [_vm._v(_vm._s(keyword.merged_word))]
                     )
                   }),
                   0
@@ -9189,7 +9416,7 @@ var render = function() {
                   "label",
                   {
                     staticClass: "p-form__label",
-                    attrs: { for: "edit-like-filter" }
+                    attrs: { for: "edit-like-keyword" }
                   },
                   [_vm._v("いいね条件の選択 *必須")]
                 ),
@@ -9201,12 +9428,12 @@ var render = function() {
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.editForm.filter_word_id,
-                        expression: "editForm.filter_word_id"
+                        value: _vm.editForm.keyword_id,
+                        expression: "editForm.keyword_id"
                       }
                     ],
                     staticClass: "p-form__select",
-                    attrs: { id: "edit-like-filter", required: "" },
+                    attrs: { id: "edit-like-keyword", required: "" },
                     on: {
                       change: function($event) {
                         var $$selectedVal = Array.prototype.filter
@@ -9219,7 +9446,7 @@ var render = function() {
                           })
                         _vm.$set(
                           _vm.editForm,
-                          "filter_word_id",
+                          "keyword_id",
                           $event.target.multiple
                             ? $$selectedVal
                             : $$selectedVal[0]
@@ -9227,11 +9454,11 @@ var render = function() {
                       }
                     }
                   },
-                  _vm._l(_vm.filters, function(filter) {
+                  _vm._l(_vm.keywords, function(keyword) {
                     return _c(
                       "option",
-                      { key: filter.id, domProps: { value: filter.id } },
-                      [_vm._v(_vm._s(filter.merged_word))]
+                      { key: keyword.id, domProps: { value: keyword.id } },
+                      [_vm._v(_vm._s(keyword.merged_word))]
                     )
                   }),
                   0
@@ -9246,6 +9473,151 @@ var render = function() {
                 _vm._m(3)
               ]
             )
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "section",
+        {
+          directives: [
+            {
+              name: "show",
+              rawName: "v-show",
+              value: _vm.serviceSwitch,
+              expression: "serviceSwitch"
+            }
+          ],
+          staticClass: "p-modal p-modal--opened"
+        },
+        [
+          _c("div", { staticClass: "p-modal__contents" }, [
+            _c("p", { staticClass: "p-form__delete" }, [
+              _vm._v("自動化サービスを利用しますか？")
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "p-form__delete__wrap" }, [
+              _c(
+                "div",
+                {
+                  staticClass: "c-button p-form__half-btn width__three",
+                  attrs: { type: "submit" },
+                  on: {
+                    click: function($event) {
+                      _vm.serviceSwitch = false
+                    }
+                  }
+                },
+                [
+                  _c("i", { staticClass: "fas fa-times m__r2" }),
+                  _vm._v(" "),
+                  _c("div", [_vm._v("キャンセル")])
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: _vm.showRunButton,
+                      expression: "showRunButton"
+                    }
+                  ],
+                  staticClass:
+                    "c-button p-status__active p-form__half-btn width__three",
+                  attrs: { type: "submit" },
+                  on: { click: _vm.runLikeService }
+                },
+                [
+                  _c("i", { staticClass: "fas fa-check m__r2" }),
+                  _vm._v(" "),
+                  _c("div", [_vm._v("開始する")])
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: _vm.showStopButton,
+                      expression: "showStopButton"
+                    }
+                  ],
+                  staticClass:
+                    "c-button p-status__sleep p-form__half-btn width__three",
+                  attrs: { type: "submit" },
+                  on: { click: _vm.stopLikeService }
+                },
+                [
+                  _c("i", { staticClass: "fas fa-check m__r2" }),
+                  _vm._v(" "),
+                  _c("div", [_vm._v("停止する")])
+                ]
+              )
+            ])
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "section",
+        {
+          directives: [
+            {
+              name: "show",
+              rawName: "v-show",
+              value: _vm.deleteOn,
+              expression: "deleteOn"
+            }
+          ],
+          staticClass: "p-modal p-modal--opened"
+        },
+        [
+          _c("div", { staticClass: "p-modal__contents" }, [
+            _c("p", { staticClass: "p-form__delete" }, [
+              _vm._v("本当に削除しますか？")
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "p-form__delete__wrap" }, [
+              _c(
+                "div",
+                {
+                  staticClass: "c-button p-form__half-btn width__three",
+                  attrs: { type: "submit" },
+                  on: {
+                    click: function($event) {
+                      _vm.deleteOn = false
+                    }
+                  }
+                },
+                [
+                  _c("i", { staticClass: "fas fa-times m__r2" }),
+                  _vm._v(" "),
+                  _c("div", [_vm._v("キャンセル")])
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "p-botton__delete  p-form__half-btn width__three",
+                  attrs: { type: "submit" },
+                  on: { click: _vm.removeLike }
+                },
+                [
+                  _c("i", { staticClass: "fas fa-check m__r2" }),
+                  _vm._v(" "),
+                  _c("div", [_vm._v("削除")])
+                ]
+              )
+            ])
           ])
         ]
       )
@@ -9958,8 +10330,7 @@ var render = function() {
               expression: "showRunButton"
             }
           ],
-          staticClass: "p-status__show p-status__sleep",
-          staticStyle: { "background-color": "#3335" }
+          staticClass: "p-status__show p-status__sleep"
         },
         [_vm._v(_vm._s(_vm.serviceStatusLabel))]
       ),
@@ -9978,56 +10349,23 @@ var render = function() {
           staticClass: "p-status__show p-status__active"
         },
         [_vm._v(_vm._s(_vm.serviceStatusLabel))]
-      ),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          directives: [
-            {
-              name: "show",
-              rawName: "v-show",
-              value: _vm.showRunButton,
-              expression: "showRunButton"
-            }
-          ],
-          staticClass: "c-button c-button__status--on",
-          on: { click: _vm.runUnfollowService }
-        },
-        [
-          _c("i", { staticClass: "fas fa-power-off c-icon__mr-2" }),
-          _vm._v("稼働\n        ")
-        ]
       )
     ]),
     _vm._v(" "),
-    _c(
-      "div",
-      {
-        directives: [
-          {
-            name: "show",
-            rawName: "v-show",
-            value: _vm.showStopButton,
-            expression: "showStopButton"
-          }
-        ]
-      },
-      [
-        _c("p", { staticClass: "p-table__caption__text" }, [
-          _vm._v(
-            "※ 自動アンフォロー機能はフォロワー5000人以内の場合、自動的に停止されます。"
-          )
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "p-table__img--wrap" }, [
-          _c("img", {
-            staticClass: "p-table__img--small",
-            attrs: { src: "/images/working.png" }
-          })
-        ])
-      ]
-    )
+    _c("div", [
+      _c("p", { staticClass: "p-table__caption__text" }, [
+        _vm._v(
+          "※アンフォロー機能はフォロワーが5000人以内になると、自動的に停止します。"
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "p-table__img--wrap" }, [
+        _c("img", {
+          staticClass: "p-table__img--small",
+          attrs: { src: "/images/working.png" }
+        })
+      ])
+    ])
   ])
 }
 var staticRenderFns = []

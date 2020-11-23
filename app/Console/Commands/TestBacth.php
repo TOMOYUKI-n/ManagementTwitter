@@ -13,6 +13,7 @@ use Carbon\Carbon;
 use App\Keyword;
 use App\TwitterUser;
 use App\Management;
+use App\Like;
 
 class TestBacth extends Command
 {
@@ -47,8 +48,8 @@ class TestBacth extends Command
      */
     public function handle()
     {
-
-        $system_manager = Management::where('twitter_user_id', 113477987)->first();
-        var_dump($system_manager);
+        $id = 6044;
+        $auto_likes = Like::where('twitter_user_id', $id)->with('keyword')->get();
+        var_dump($auto_likes);
     }
 }
