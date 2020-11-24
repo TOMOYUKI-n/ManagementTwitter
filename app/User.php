@@ -75,4 +75,12 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\SystemManages', 'user_id');
     }
+
+    /**
+     * likesテーブル
+     */
+    public function likes()
+    {
+        return $this->hasMany('App\Like', 'user_id');
+    }
 }

@@ -82,5 +82,7 @@ Route::group(['middleware' => 'auth'], function() {
      * いいね機能関連
      */
     Route::get('/api/like/list/{id}','AutoLikeController@show')->name('like.show');
-
+    Route::post('/api/like/{id}', 'AutoLikeController@add')->name('like.add');
+    Route::put('/api/like/{id}','AutoLikeController@edit')->name('like.edit');
+    Route::post('/api/like/delete/{id}','AutoLikeController@delete')->name('like.delete');
 });

@@ -3871,7 +3871,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 2:
                 response = _context.sent;
-                console.log(response);
 
                 if (response.status !== 200 || response.data === 500) {
                   _this.errorFlg = true;
@@ -3880,7 +3879,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   _this.likes = response.data;
                 }
 
-              case 5:
+              case 4:
               case "end":
                 return _context.stop();
             }
@@ -3925,25 +3924,45 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
     /**
      * 新規自動いいねを追加する
+     * addFormはkeyword_idのみ
      */
-    addLike: function addLike() {// const response = await axios.post('/api/like', this.addForm)
-      // if (response.status === UNPROCESSABLE_ENTRY) {
-      //     this.errors = response.data.errors
-      //     return false
-      // }
-      // this.addForm.filter_word_id = null
-      // if (response.status !== CREATED) {
-      //     this.$store.commit('error/setCode', response.status)
-      //     return false
-      // }
-      // this.likes.push(response.data)
-      // this.newModal = false
+    addLike: function addLike() {
+      var _this3 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+        var response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
+                _context3.next = 2;
+                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.post("/api/like/".concat(_this3.twitter_id), _this3.addForm);
+
+              case 2:
+                response = _context3.sent;
+                console.log(response);
+
+                if (response.status !== 200 || response.data === 500) {
+                  _this3.newModal = false;
+                  _this3.errorFlg = true;
+                  _this3.messageText = _message__WEBPACK_IMPORTED_MODULE_2__["message"].notUpdate;
+                }
+
+                if (!(response.data === 200)) {
+                  _context3.next = 11;
+                  break;
+                }
+
+                _this3.newModal = false; // 再描画
+
+                _context3.next = 9;
+                return _this3.fetchLikes();
+
+              case 9:
+                _context3.next = 11;
+                return _this3.fetchKeywords();
+
+              case 11:
               case "end":
                 return _context3.stop();
             }
@@ -3956,29 +3975,53 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
      * 編集用のモーダルフォームを表示する
      * 表示の際に自動いいねのデータを入力しておく
      */
-    showEditModal: function showEditModal(like, index) {
+    showEditModal: function showEditModal(like) {
       this.editModal = true;
       this.editForm.id = like.id;
       this.editForm.keyword_id = like.keyword_id;
-      this.editIndex = index;
     },
 
     /**
      * 自動いいねデータを編集する
      */
-    editLike: function editLike() {// const response = await axios.put(`/api/like/${this.editForm.id}`, this.editForm)
-      // if (response.status !== OK) {
-      //     this.$store.commit('error/setCode', response.status)
-      //     return false
-      // }
-      // this.likes.splice(this.editIndex, 1, response.data)
-      // this.resetEditForm()
+    editLike: function editLike() {
+      var _this4 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+        var response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
           while (1) {
             switch (_context4.prev = _context4.next) {
               case 0:
+                _context4.next = 2;
+                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.put("/api/like/".concat(_this4.twitter_id), _this4.editForm);
+
+              case 2:
+                response = _context4.sent;
+
+                if (response.status !== 200 || response.data === 500) {
+                  _this4.errorFlg = true;
+                  _this4.messageText = _message__WEBPACK_IMPORTED_MODULE_2__["message"].notGetData;
+
+                  _this4.resetEditForm();
+                }
+
+                if (!(response.data === 200)) {
+                  _context4.next = 10;
+                  break;
+                }
+
+                // 再描画
+                _this4.resetEditForm();
+
+                _context4.next = 8;
+                return _this4.fetchLikes();
+
+              case 8:
+                _context4.next = 10;
+                return _this4.fetchKeywords();
+
+              case 10:
               case "end":
                 return _context4.stop();
             }
@@ -3999,26 +4042,45 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     /**
      * 自動いいねを削除する
      */
-    removeLike: function removeLike(id, index) {// console.log(this.deleteItem);
-      // const response = await axios.post(`/api/follow/delete/${this.deleteItem.id}`, this.deleteItem);
-      // if (response.status !== 200 || response.data === 500) {
-      //     this.errorFlg = true;
-      //     this.messageText = message.notGetData;
-      //     this.deleteOn = false;
-      // }
-      // if (response.data === 200) {
-      //     this.deleteOn = false;
-      //     this.followTargets.splice(this.deleteIndex, 1);
-      //     // 再描画
-      //     await this.fetchFollowTargets();
-      //     await this.fetchKeywords();
-      // }
+    removeLike: function removeLike() {
+      var _this5 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
+        var response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
           while (1) {
             switch (_context5.prev = _context5.next) {
               case 0:
+                _context5.next = 2;
+                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.post("/api/like/delete/".concat(_this5.twitter_id), _this5.deleteItem);
+
+              case 2:
+                response = _context5.sent;
+
+                if (response.status !== 200 || response.data === 500) {
+                  _this5.errorFlg = true;
+                  _this5.messageText = _message__WEBPACK_IMPORTED_MODULE_2__["message"].notGetData;
+                  _this5.deleteOn = false;
+                }
+
+                if (!(response.data === 200)) {
+                  _context5.next = 11;
+                  break;
+                }
+
+                _this5.deleteOn = false;
+
+                _this5.likes.splice(_this5.deleteIndex, 1); // 再描画
+
+
+                _context5.next = 9;
+                return _this5.fetchLikes();
+
+              case 9:
+                _context5.next = 11;
+                return _this5.fetchKeywords();
+
+              case 11:
               case "end":
                 return _context5.stop();
             }
@@ -4034,14 +4096,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.editModal = false;
       this.editForm.id = null;
       this.editForm.keyword_id = null;
-      this.editIndex = null;
     },
 
     /**
      * 自動いいねサービスのステータスを取得する
      */
     fetchServiceStatus: function fetchServiceStatus() {
-      var _this3 = this;
+      var _this6 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee6() {
         var response;
@@ -4050,19 +4111,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context6.prev = _context6.next) {
               case 0:
                 _context6.next = 2;
-                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.get("/api/system/status/".concat(_this3.twitter_id));
+                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.get("/api/system/status/".concat(_this6.twitter_id));
 
               case 2:
                 response = _context6.sent;
 
                 // console.log(response);
                 if (response.status !== 200) {
-                  _this3.errorFlg = true;
-                  _this3.messageText = _message__WEBPACK_IMPORTED_MODULE_2__["message"].notGetData;
+                  _this6.errorFlg = true;
+                  _this6.messageText = _message__WEBPACK_IMPORTED_MODULE_2__["message"].notGetData;
                 } else {
-                  _this3.serviceSwitch = false;
-                  _this3.serviceStatus = response.data.auto_like_status;
-                  _this3.serviceStatusLabel = response.data.status_labels.auto_like;
+                  _this6.serviceSwitch = false;
+                  _this6.serviceStatus = response.data.auto_like_status;
+                  _this6.serviceStatusLabel = response.data.status_labels.auto_like;
                 }
 
               case 4:
@@ -4078,7 +4139,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
      * 自動いいねサービスを稼働状態にする
      */
     runLikeService: function runLikeService() {
-      var _this4 = this;
+      var _this7 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee7() {
         var serviceType, data, response;
@@ -4089,7 +4150,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 serviceType = 3;
                 data = {
                   type: serviceType,
-                  twitter_id: _this4.twitter_id
+                  twitter_id: _this7.twitter_id
                 };
                 _context7.next = 4;
                 return axios__WEBPACK_IMPORTED_MODULE_3___default.a.post('/api/system/running', data);
@@ -4102,15 +4163,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   break;
                 }
 
-                _this4.errorFlg = true;
-                _this4.messageText = _message__WEBPACK_IMPORTED_MODULE_2__["message"].notUpdate;
-                _this4.serviceSwitch = false;
+                _this7.errorFlg = true;
+                _this7.messageText = _message__WEBPACK_IMPORTED_MODULE_2__["message"].notUpdate;
+                _this7.serviceSwitch = false;
                 _context7.next = 13;
                 break;
 
               case 11:
                 _context7.next = 13;
-                return _this4.fetchServiceStatus();
+                return _this7.fetchServiceStatus();
 
               case 13:
               case "end":
@@ -4125,7 +4186,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
      * 自動いいねサービスを停止状態にする
      */
     stopLikeService: function stopLikeService() {
-      var _this5 = this;
+      var _this8 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee8() {
         var serviceType, data, response;
@@ -4136,7 +4197,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 serviceType = 3;
                 data = {
                   type: serviceType,
-                  twitter_id: _this5.twitter_id
+                  twitter_id: _this8.twitter_id
                 };
                 _context8.next = 4;
                 return axios__WEBPACK_IMPORTED_MODULE_3___default.a.post('/api/system/stop', data);
@@ -4149,15 +4210,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   break;
                 }
 
-                _this5.errorFlg = true;
-                _this5.messageText = _message__WEBPACK_IMPORTED_MODULE_2__["message"].notUpdate;
-                _this5.serviceSwitch = false;
+                _this8.errorFlg = true;
+                _this8.messageText = _message__WEBPACK_IMPORTED_MODULE_2__["message"].notUpdate;
+                _this8.serviceSwitch = false;
                 _context8.next = 13;
                 break;
 
               case 11:
                 _context8.next = 13;
-                return _this5.fetchServiceStatus();
+                return _this8.fetchServiceStatus();
 
               case 13:
               case "end":
@@ -4179,7 +4240,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
      * localstorageから現在使用しているtwitter_userのidを取得する
      */
     getCurrentTwitterId: function getCurrentTwitterId() {
-      var _this6 = this;
+      var _this9 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee9() {
         var storage;
@@ -4188,7 +4249,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context9.prev = _context9.next) {
               case 0:
                 storage = JSON.parse(localStorage.getItem('loginTwitterAccount'));
-                _this6.twitter_id = storage.id;
+                _this9.twitter_id = storage.id; // console.log(this.twitter_id);
 
               case 2:
               case "end":
@@ -4200,7 +4261,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }
   },
   created: function created() {
-    var _this7 = this;
+    var _this10 = this;
 
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee10() {
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee10$(_context10) {
@@ -4208,23 +4269,23 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           switch (_context10.prev = _context10.next) {
             case 0:
               _context10.next = 2;
-              return _this7.getCurrentPage();
+              return _this10.getCurrentPage();
 
             case 2:
               _context10.next = 4;
-              return _this7.getCurrentTwitterId();
+              return _this10.getCurrentTwitterId();
 
             case 4:
               _context10.next = 6;
-              return _this7.fetchLikes();
+              return _this10.fetchLikes();
 
             case 6:
               _context10.next = 8;
-              return _this7.fetchKeywords();
+              return _this10.fetchKeywords();
 
             case 8:
               _context10.next = 10;
-              return _this7.fetchServiceStatus();
+              return _this10.fetchServiceStatus();
 
             case 10:
             case "end":
@@ -9118,7 +9179,11 @@ var render = function() {
             }
           ],
           staticClass: "c-button c-button__status--on",
-          on: { click: _vm.runLikeService }
+          on: {
+            click: function($event) {
+              _vm.serviceSwitch = true
+            }
+          }
         },
         [
           _c("i", { staticClass: "fas fa-power-off c-icon__mr-2" }),
@@ -9138,7 +9203,11 @@ var render = function() {
             }
           ],
           staticClass: "c-button c-button__status--off",
-          on: { click: _vm.stopLikeService }
+          on: {
+            click: function($event) {
+              _vm.serviceSwitch = true
+            }
+          }
         },
         [
           _c("i", { staticClass: "fas fa-ban c-icon__mr-2" }),
@@ -9188,7 +9257,7 @@ var render = function() {
                       staticClass: "c-button c-button--twitter p-table__button",
                       on: {
                         click: function($event) {
-                          return _vm.showEditModal(like, index)
+                          return _vm.showEditModal(like)
                         }
                       }
                     },
@@ -9207,7 +9276,7 @@ var render = function() {
                         "c-button c-button--delete p-table__button c-button--delete ",
                       on: {
                         click: function($event) {
-                          return _vm.remove(like.id, index)
+                          return _vm.remove(like, index)
                         }
                       }
                     },
@@ -9303,6 +9372,12 @@ var render = function() {
                 }
               },
               [
+                _c("p", { staticClass: "p-form__notion" }, [
+                  _vm._v(
+                    "※条件のキーワードは、「キーワード登録」から登録することができます。"
+                  )
+                ]),
+                _vm._v(" "),
                 _c(
                   "label",
                   {
@@ -9354,12 +9429,6 @@ var render = function() {
                   }),
                   0
                 ),
-                _vm._v(" "),
-                _c("p", { staticClass: "p-form__notion" }, [
-                  _vm._v(
-                    "※条件のキーワードは、「キーワード登録」から登録することができます。"
-                  )
-                ]),
                 _vm._v(" "),
                 _vm._m(2)
               ]

@@ -5,12 +5,12 @@
             <p v-show="showRunButton" class="p-status__show p-status__sleep" style="background-color: #3335;">{{serviceStatusLabel}}</p>
             <p v-show="showStopButton" class="p-status__show p-status__active">{{serviceStatusLabel}}</p>
             <button class="c-button c-button__status--on"
-                    @click="runLikeService"
+                    @click="serviceSwitch = true"
                     v-show="showRunButton">
                     <i class="fas fa-power-off c-icon__mr-2"></i>稼働
             </button>
             <button class="c-button c-button__status--off"
-                    @click="stopLikeService"
+                    @click="serviceSwitch = true"
                     v-show="showStopButton">
                     <i class="fas fa-ban c-icon__mr-2"></i>停止
             </button>
@@ -39,12 +39,12 @@
                     <div class="p-table__action">
                         <div class="p-table__btn-wrap">
                             <button class="c-button c-button--twitter p-table__button"
-                                    @click="showEditModal(like, index)"
+                                    @click="showEditModal(like)"
                             >
                                 <i class="c__color--blue fas fa-pen p-table__test-xs"></i>
                             </button>
                             <button class="c-button c-button--delete p-table__button c-button--delete "
-                                    @click="remove(like.id, index)"
+                                    @click="remove(like, index)"
                             >
                                 <i class="fas fa-trash-alt p-table__test-xs"></i>
                             </button>
@@ -67,7 +67,7 @@
                         <i class="c-icon--gray p-modal__icon fas fa-times"></i>
                     </div>
                     <form class="p-form" @submit.prevent="addLike">
-
+                        <p class="p-form__notion">※条件のキーワードは、「キーワード登録」から登録することができます。</p>
                         <label class="p-form__label" for="add-like-keyword">いいね条件の選択 *必須</label>
                         <select class="p-form__select" id="add-like-keyword"
                                 v-model="addForm.keyword_id"
@@ -75,7 +75,7 @@
                         >
                             <option v-for="keyword in keywords" :key="keyword.id" :value="keyword.id">{{keyword.merged_word}}</option>
                         </select>
-                        <p class="p-form__notion">※条件のキーワードは、「キーワード登録」から登録することができます。</p>
+
                         <div class="p-form__button">
                             <button type="submit" class="c-button c-button--twitter">追加</button>
                         </div>
@@ -204,7 +204,6 @@
              */
             async fetchLikes() {
                 const response = await axios.get(`/api/like/list/${this.twitter_id}`);
-                console.log(response);
                 if (response.status !== 200 || response.data === 500) {
                     this.errorFlg = true;
                     this.messageText = message.notGetData;
@@ -226,44 +225,50 @@
             },
             /**
              * 新規自動いいねを追加する
+             * addFormはkeyword_idのみ
              */
             async addLike() {
-                // const response = await axios.post('/api/like', this.addForm)
-                // if (response.status === UNPROCESSABLE_ENTRY) {
-                //     this.errors = response.data.errors
-                //     return false
-                // }
-                // this.addForm.filter_word_id = null
-                // if (response.status !== CREATED) {
-                //     this.$store.commit('error/setCode', response.status)
-                //     return false
-                // }
-                // this.likes.push(response.data)
-                // this.newModal = false
+                const response = await axios.post(`/api/like/${this.twitter_id}`, this.addForm);
+                console.log(response);
+                if (response.status !== 200 || response.data === 500) {
+                    this.newModal = false;
+                    this.errorFlg = true;
+                    this.messageText = message.notUpdate;
+                }
+                if (response.data === 200) {
+                    this.newModal = false;
+                    // 再描画
+                    await this.fetchLikes();
+                    await this.fetchKeywords();
+                }
             },
 
             /**
              * 編集用のモーダルフォームを表示する
              * 表示の際に自動いいねのデータを入力しておく
              */
-            showEditModal(like, index) {
-                this.editModal = true
-                this.editForm.id = like.id
-                this.editForm.keyword_id = like.keyword_id
-                this.editIndex = index
+            showEditModal(like) {
+                this.editModal = true;
+                this.editForm.id = like.id;
+                this.editForm.keyword_id = like.keyword_id;
             },
 
             /**
              * 自動いいねデータを編集する
              */
             async editLike() {
-                // const response = await axios.put(`/api/like/${this.editForm.id}`, this.editForm)
-                // if (response.status !== OK) {
-                //     this.$store.commit('error/setCode', response.status)
-                //     return false
-                // }
-                // this.likes.splice(this.editIndex, 1, response.data)
-                // this.resetEditForm()
+                const response = await axios.put(`/api/like/${this.twitter_id}`, this.editForm);
+                if (response.status !== 200 || response.data === 500) {
+                    this.errorFlg = true;
+                    this.messageText = message.notGetData;
+                    this.resetEditForm();
+                }
+                if (response.data === 200) {
+                    // 再描画
+                    this.resetEditForm();
+                    await this.fetchLikes();
+                    await this.fetchKeywords();
+                }
             },
             /**
              * 削除モーダル表示、indexを取得
@@ -276,31 +281,29 @@
             /**
              * 自動いいねを削除する
              */
-            async removeLike(id, index) {
-                // console.log(this.deleteItem);
-                // const response = await axios.post(`/api/follow/delete/${this.deleteItem.id}`, this.deleteItem);
-                // if (response.status !== 200 || response.data === 500) {
-                //     this.errorFlg = true;
-                //     this.messageText = message.notGetData;
-                //     this.deleteOn = false;
-                // }
-                // if (response.data === 200) {
-                //     this.deleteOn = false;
-                //     this.followTargets.splice(this.deleteIndex, 1);
-                //     // 再描画
-                //     await this.fetchFollowTargets();
-                //     await this.fetchKeywords();
-                // }
+            async removeLike() {
+                const response = await axios.post(`/api/like/delete/${this.twitter_id}`, this.deleteItem);
+                if (response.status !== 200 || response.data === 500) {
+                    this.errorFlg = true;
+                    this.messageText = message.notGetData;
+                    this.deleteOn = false;
+                }
+                if (response.data === 200) {
+                    this.deleteOn = false;
+                    this.likes.splice(this.deleteIndex, 1);
+                    // 再描画
+                    await this.fetchLikes();
+                    await this.fetchKeywords();
+                }
             },
 
             /**
              * フォームを初期化
              */
             resetEditForm() {
-                this.editModal = false
-                this.editForm.id = null
-                this.editForm.keyword_id = null
-                this.editIndex = null
+                this.editModal = false;
+                this.editForm.id = null;
+                this.editForm.keyword_id = null;
             },
 
             /**
@@ -365,6 +368,7 @@
             async getCurrentTwitterId() {
                 const storage = JSON.parse(localStorage.getItem('loginTwitterAccount'));
                 this.twitter_id = storage.id;
+                // console.log(this.twitter_id);
             }
         },
         async created() {

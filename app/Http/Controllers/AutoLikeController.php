@@ -35,4 +35,54 @@ class AutoLikeController extends Controller
             return self::CODE[1]['status'];
         }
     }
+
+    /**
+     * 新規いいねの設定を追加する
+     */
+    public function add(Request $request)
+    {
+        try {
+            $like = new Like();
+            $like->twitter_user_id = $request->id;
+            $like->keyword_id = $request->keyword_id;
+    
+            Auth::user()->likes()->save($like);
+            return self::CODE[0]['status'];
+        }
+        catch (\Exception $e) {
+            return self::CODE[1]['status'];
+        }
+    }
+
+    /**
+     * 自動いいね設定情報を変更する
+     */
+    public function edit(Request $request)
+    {
+        try{
+            $likes = Like::where('id', $request->id)->with('keyword')->first();
+
+            $likes->keyword_id = $request->keyword_id;
+            $likes->save();
+            return self::CODE[0]['status'];
+        }
+        catch (\Exception $e) {
+            return self::CODE[1]['status'];
+        }
+    }
+
+    /**
+     * 自動いいね設定を削除する
+     */
+    public function delete(Request $request)
+    {
+        try{
+            $likes = Like::where('id', $request->id)->first();
+            $likes->delete();
+            return self::CODE[0]['status'];
+        }
+        catch (\Exception $e) {
+            return self::CODE[1]['status'];
+        }
+    }
 }
