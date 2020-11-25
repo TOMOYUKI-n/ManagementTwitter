@@ -3,6 +3,7 @@
 window.Vue = require('vue');
 
 Vue.component('login', require('./components/Login.vue').default);
+Vue.component('header-component', require('./components/HeaderComponent.vue').default);
 Vue.component('footer-component', require('./components/FooterComponent.vue').default);
 
 Vue.component('dash-board', require('./components/DashBoard.vue').default);

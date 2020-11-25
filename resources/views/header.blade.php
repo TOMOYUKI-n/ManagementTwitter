@@ -55,12 +55,12 @@
             @else
             <ul class="l-header__sp__menu">
                 <li class="l-header__sp__menu__list "><p class="l-navbar__text-black">{{ Auth::user()->name }}</p></li>
-                <li class="l-header__sp__menu__list "><a class="l-navbar__text-black" href="/account"><p>アカウント登録</p></a></li>
-                <li class="l-header__sp__menu__list "><a class="l-navbar__text-black"　href="/follow"><p>自動フォロー</p></a></li>
-                <li class="l-header__sp__menu__list "><a class="l-navbar__text-black" href="/unfollow"><p>自動アンフォロー</p></a></li>
-                <li class="l-header__sp__menu__list "><a class="l-navbar__text-black" href="/like"><p>自動いいね</p></a></li>
-                <li class="l-header__sp__menu__list "><a class="l-navbar__text-black" href="/tweet"><p>自動予約ツイート</p></a></li>
-                <li class="l-header__sp__menu__list "><a class="l-navbar__text-black" href="/keyword"><p>キーワード登録</p></a></li>
+                <li class="l-header__sp__menu__list "><a class="l-navbar__text-black" href="/dashboard?page=1"><p>アカウント登録</p></a></li>
+                <li class="l-header__sp__menu__list "><a class="l-navbar__text-black"　href="/dashboard?page=2"><p>自動フォロー</p></a></li>
+                <li class="l-header__sp__menu__list "><a class="l-navbar__text-black" href="/dashboard"><p>自動アンフォロー</p></a></li>
+                <li class="l-header__sp__menu__list "><a class="l-navbar__text-black" href="/dashboard"><p>自動いいね</p></a></li>
+                <li class="l-header__sp__menu__list "><a class="l-navbar__text-black" href="/dashboard"><p>自動予約ツイート</p></a></li>
+                <li class="l-header__sp__menu__list "><a class="l-navbar__text-black" href="/dashboard"><p>キーワード登録</p></a></li>
                 <li class="l-header__sp__menu__list ">
                     <a class="l-navbar__text-black" href="{{ route('logout') }}"
                         onclick="event.preventDefault();

@@ -2244,6 +2244,55 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2257,17 +2306,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       authData: {},
       loginTwitterUser: {},
       errorFlg: false,
-      messageText: ''
+      messageText: '',
+      isOpen: false
     };
   },
   methods: {
     change: function change(index) {
       this.flgId = index + 1;
       this.page = this.flgId;
+      this.isOpen = false;
     },
 
     /**
-     * APIで、ログインしているユーザ情報を取得しlocalstorageに保存
+     * APIで、ログインしているユーザ情報を取得しlocalstorageに保存 // ここやらなあかんで！
      */
     setLoginData: function setLoginData() {
       var _this = this;
@@ -2364,8 +2415,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 2:
                 pages = _context3.sent;
-                console.log('pages:' + pages);
 
+                // console.log('pages:' + pages);
                 if (pages === null) {
                   _this3.flgId = 1;
                   _this3.page = 1;
@@ -2374,13 +2425,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   _this3.page = Number(pages);
                 }
 
-              case 5:
+              case 4:
               case "end":
                 return _context3.stop();
             }
           }
         }, _callee3);
       }))();
+    },
+
+    /**
+     * サイドバーの開閉
+     */
+    openSidebar: function openSidebar() {
+      this.isOpen = !this.isOpen;
     }
   },
   created: function created() {
@@ -2409,6 +2467,72 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }
       }, _callee4);
     }))();
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/FooterComponent.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/FooterComponent.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/HeaderComponent.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/HeaderComponent.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  methods: {
+    /**
+     * サイドバーの開閉
+     */
+    open: function open() {
+      this.$emit('isOpen');
+    }
   }
 });
 
@@ -3940,8 +4064,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 2:
                 response = _context3.sent;
-                console.log(response);
 
+                // console.log(response);
                 if (response.status !== 200 || response.data === 500) {
                   _this3.newModal = false;
                   _this3.errorFlg = true;
@@ -3949,20 +4073,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 }
 
                 if (!(response.data === 200)) {
-                  _context3.next = 11;
+                  _context3.next = 10;
                   break;
                 }
 
                 _this3.newModal = false; // 再描画
 
-                _context3.next = 9;
+                _context3.next = 8;
                 return _this3.fetchLikes();
 
-              case 9:
-                _context3.next = 11;
+              case 8:
+                _context3.next = 10;
                 return _this3.fetchKeywords();
 
-              case 11:
+              case 10:
               case "end":
                 return _context3.stop();
             }
@@ -4311,6 +4435,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _repository__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../repository */ "./resources/js/repository.js");
+/* harmony import */ var _message__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../message */ "./resources/js/message.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_3__);
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -4454,19 +4581,87 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       page: 5,
-      autoTweets: [],
+      twitter_id: 0,
+      errorFlg: false,
+      messageText: '',
+      serviceSwitch: false,
+      deleteOn: false,
+      deleteIndex: 0,
+      deleteItem: [],
+      tweets: [],
+      tweetsNum: 0,
       newModal: false,
       editModal: false,
       editIndex: null,
       serviceStatus: null,
       serviceStatusLabel: null,
-      addErrors: null,
-      editErrors: null,
+      // addErrors: null,
+      // editErrors: null,
       addForm: {
         tweet: '',
         date: '',
@@ -4481,14 +4676,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   computed: {
     /**
-     * 新規作成フォームでTWEETの文字数をカウントする
+     * 新規登録時 ツイートの文字数をカウントする
      */
     addTextCount: function addTextCount() {
       return this.addForm.tweet.length;
     },
 
     /**
-     * 編集フォームでTWEETの文字数をカウントする
+     * 編集時 ツイートの文字数をカウントする
      */
     editTextCount: function editTextCount() {
       return this.editForm.tweet.length;
@@ -4497,7 +4692,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     /**
      * 現在の日付をYYYY-MM-DD形式で取得する
      */
-    getCurrentYYYYMMDD: function getCurrentYYYYMMDD() {
+    getCurrentDays: function getCurrentDays() {
       var date = new Date();
       var year = date.getFullYear();
       var month = ("00" + (date.getMonth() + 1)).slice(-2);
@@ -4515,18 +4710,30 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     /**
      * APIを使用して登録した自動ツイート一覧を取得する
      */
-    fetchAutoTweets: function fetchAutoTweets() {// const response = await axios.get('/api/tweet')
-      // if (response.status !== OK) {
-      //     this.$store.commit('error/setCode', response.status)
-      //     return false
-      // }
-      // this.autoTweets = response.data
+    fetchTweets: function fetchTweets() {
+      var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
+                _context.next = 2;
+                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.get("/api/tweet/list/".concat(_this.twitter_id));
+
+              case 2:
+                response = _context.sent;
+
+                if (response.status !== 200 || response.data === 500) {
+                  _this.errorFlg = true;
+                  _this.messageText = _message__WEBPACK_IMPORTED_MODULE_2__["message"].notGetData;
+                } else {
+                  _this.tweetsNum = response.data[1];
+                  _this.tweets = response.data[0];
+                }
+
+              case 4:
               case "end":
                 return _context.stop();
             }
@@ -4538,26 +4745,38 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     /**
      * APIを使用して自動ツイートを新規登録する
      */
-    addAutoTweet: function addAutoTweet() {// this.clearErrors()
-      // const response = await axios.post('/api/tweet', this.addForm)
-      // if (response.status === UNPROCESSABLE_ENTRY) {
-      //     this.addErrors = response.data.errors
-      //     return false
-      // }
-      // this.resetAddForm()
-      // if (response.status !== CREATED) {
-      //     this.$store.commit('error/setCode', response.status)
-      //     return false
-      // }
-      // const addTweet = response.data;
-      // this.autoTweets.push(addTweet)
-      // this.newModal = false
+    addTweet: function addTweet() {
+      var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        var response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
+                _context2.next = 2;
+                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.post("/api/tweet/".concat(_this2.twitter_id), _this2.addForm);
+
+              case 2:
+                response = _context2.sent;
+
+                if (response.status !== 200 || response.data === 500) {
+                  _this2.newModal = false;
+                  _this2.errorFlg = true;
+                  _this2.messageText = _message__WEBPACK_IMPORTED_MODULE_2__["message"].notUpdate;
+                }
+
+                if (!(response.data === 200)) {
+                  _context2.next = 8;
+                  break;
+                }
+
+                _this2.newModal = false; // 再描画
+
+                _context2.next = 8;
+                return _this2.fetchTweets();
+
+              case 8:
               case "end":
                 return _context2.stop();
             }
@@ -4569,24 +4788,40 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     /**
      * APIを使用して自動ツイートを編集する
      */
-    editAutoTweet: function editAutoTweet() {// this.clearErrors()
-      // const response = await axios.put(`/api/tweet/${this.editForm.id}`, this.editForm)
-      // if (response.status === UNPROCESSABLE_ENTRY) {
-      //     this.editErrors = response.data.errors
-      //     return false
-      // }
-      // if (response.status !== OK) {
-      //     this.$store.commit('error/setCode', response.status)
-      //     return false
-      // }
-      // this.autoTweets.splice(this.editIndex, 1, response.data)
-      // this.resetEditForm()
+    editTweet: function editTweet() {
+      var _this3 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+        var response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
+                _context3.next = 2;
+                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.post("/api/tweet/edit/".concat(_this3.twitter_id), _this3.editForm);
+
+              case 2:
+                response = _context3.sent;
+
+                if (response.status !== 200 || response.data === 500) {
+                  _this3.errorFlg = true;
+                  _this3.messageText = _message__WEBPACK_IMPORTED_MODULE_2__["message"].notGetData;
+
+                  _this3.resetEditForm();
+                }
+
+                if (!(response.data === 200)) {
+                  _context3.next = 8;
+                  break;
+                }
+
+                // 再描画
+                _this3.resetEditForm();
+
+                _context3.next = 8;
+                return _this3.fetchTweets();
+
+              case 8:
               case "end":
                 return _context3.stop();
             }
@@ -4599,34 +4834,62 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
      * 自動ツイート編集用のモーダルフォームを表示する
      * 表示した際に、自動ツイートのデータをフォームに入力しておく
      */
-    showEditModal: function showEditModal(autoTweet, index) {
+    showEditModal: function showEditModal(tweet, index) {
       this.editModal = true;
-      this.editForm.id = autoTweet.id;
-      this.editForm.tweet = autoTweet.tweet;
-      this.editForm.date = this.getYYYYMMDD(autoTweet.formatted_date);
-      this.editForm.time = this.getHHMM(autoTweet.formatted_date);
+      this.editForm.id = tweet.id;
+      this.editForm.tweet = tweet.tweet;
+      this.editForm.date = this.formatter(tweet.format_date);
+      this.editForm.time = this.getHHMM(tweet.format_date);
       this.editIndex = index;
+    },
+
+    /**
+     * 削除モーダル表示、indexを取得
+     */
+    remove: function remove(item, index) {
+      this.deleteOn = true;
+      this.deleteIndex = index;
+      this.deleteItem = item;
     },
 
     /**
      * APIを使用して自動ツイートを削除する
      */
-    removeAutoTweet: function removeAutoTweet(id, index) {
-      var _this = this;
+    removeTweet: function removeTweet() {
+      var _this4 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+        var response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
           while (1) {
             switch (_context4.prev = _context4.next) {
               case 0:
-                // const response = await axios.delete(`/api/tweet/${id}`)
-                // if (response.status !== OK) {
-                //     this.$store.commit('error/setCode', response.status)
-                //     return false
-                // }
-                _this.autoTweets.splice(index, 1);
+                _context4.next = 2;
+                return axios__WEBPACK_IMPORTED_MODULE_3___default.a["delete"]("/api/tweet/".concat(_this4.deleteItem.id));
 
-              case 1:
+              case 2:
+                response = _context4.sent;
+
+                if (response.status !== 200 || response.data === 500) {
+                  _this4.errorFlg = true;
+                  _this4.messageText = _message__WEBPACK_IMPORTED_MODULE_2__["message"].notGetData;
+                  _this4.deleteOn = false;
+                }
+
+                if (!(response.data === 200)) {
+                  _context4.next = 9;
+                  break;
+                }
+
+                _this4.deleteOn = false;
+
+                _this4.tweets.splice(_this4.deleteIndex, 1); // 再描画
+
+
+                _context4.next = 9;
+                return _this4.fetchTweets();
+
+              case 9:
               case "end":
                 return _context4.stop();
             }
@@ -4637,11 +4900,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
     /**
      * Datetime型をYYYY-MM-DD形式に変換する
-     * @param formatted_date
-     * @returns {string}
      */
-    getYYYYMMDD: function getYYYYMMDD(formatted_date) {
-      var date = new Date(formatted_date);
+    formatter: function formatter(format_date) {
+      var date = new Date(format_date);
       var year = date.getFullYear();
       var month = ("00" + (date.getMonth() + 1)).slice(-2);
       var day = ("00" + date.getDate()).slice(-2);
@@ -4651,8 +4912,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     /**
      * Datetime型をHH:MMの形式に変換する
      */
-    getHHMM: function getHHMM(formatted_date) {
-      var date = new Date(formatted_date);
+    getHHMM: function getHHMM(format_date) {
+      var date = new Date(format_date);
       var hours = ("00" + date.getHours()).slice(-2);
       var minutes = ("00" + date.getMinutes()).slice(-2);
       return [hours, minutes].join(":");
@@ -4683,24 +4944,30 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
      * APIを使用して自動ツイートのサービスステータスを取得する
      */
     fetchServiceStatus: function fetchServiceStatus() {
-      var _this2 = this;
+      var _this5 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
+        var response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
           while (1) {
             switch (_context5.prev = _context5.next) {
               case 0:
-                // const response = await axios.get('/api/system/status')
-                // if (response.status !== OK) {
-                //     this.$store.commit('error/setCode', response.status)
-                //     return false
-                // }
-                // this.serviceStatus = response.data.auto_tweet_status
-                // this.serviceStatusLabel = response.data.status_labels.auto_tweet
-                _this2.serviceStatus = 1;
-                _this2.serviceStatusLabel = 'サービス停止中';
+                _context5.next = 2;
+                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.get("/api/system/status/".concat(_this5.twitter_id));
 
               case 2:
+                response = _context5.sent;
+
+                if (response.status !== 200) {
+                  _this5.errorFlg = true;
+                  _this5.messageText = _message__WEBPACK_IMPORTED_MODULE_2__["message"].notGetData;
+                } else {
+                  _this5.serviceSwitch = false;
+                  _this5.serviceStatus = response.data.auto_tweet_status;
+                  _this5.serviceStatusLabel = response.data.status_labels.auto_tweet;
+                }
+
+              case 4:
               case "end":
                 return _context5.stop();
             }
@@ -4713,26 +4980,41 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
      * 自動ツイートサービスを稼働状態に変更する
      */
     runTweetService: function runTweetService() {
-      var _this3 = this;
+      var _this6 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee6() {
+        var serviceType, data, response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee6$(_context6) {
           while (1) {
             switch (_context6.prev = _context6.next) {
               case 0:
-                // const serviceType = 4
-                // const data = {type: serviceType}
-                // const response = await axios.post('/api/system/run', data)
-                // if (response.status !== OK) {
-                //     this.$store.commit('error/setCode', response.status)
-                //     return false
-                // }
-                // this.serviceStatus = response.data.auto_tweet_status
-                // this.serviceStatusLabel = response.data.status_labels.auto_tweet
-                _this3.serviceStatus = 2;
-                _this3.serviceStatusLabel = 'サービス稼働中';
+                serviceType = 4;
+                data = {
+                  type: serviceType,
+                  twitter_id: _this6.twitter_id
+                };
+                _context6.next = 4;
+                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.post('/api/system/running', data);
 
-              case 2:
+              case 4:
+                response = _context6.sent;
+
+                if (!(response.data === 500 || response.status !== 200)) {
+                  _context6.next = 11;
+                  break;
+                }
+
+                _this6.errorFlg = true;
+                _this6.messageText = _message__WEBPACK_IMPORTED_MODULE_2__["message"].notUpdate;
+                _this6.serviceSwitch = false;
+                _context6.next = 13;
+                break;
+
+              case 11:
+                _context6.next = 13;
+                return _this6.fetchServiceStatus();
+
+              case 13:
               case "end":
                 return _context6.stop();
             }
@@ -4745,26 +5027,41 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
      * 自動ツイートサービスを停止状態にする
      */
     stopTweetService: function stopTweetService() {
-      var _this4 = this;
+      var _this7 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee7() {
+        var serviceType, data, response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee7$(_context7) {
           while (1) {
             switch (_context7.prev = _context7.next) {
               case 0:
-                // const serviceType = 4
-                // const data = {type: serviceType}
-                // const response = await axios.post('/api/system/stop', data)
-                // if (response.status !== OK) {
-                //     this.$store.commit('error/setCode', response.status)
-                //     return false
-                // }
-                // this.serviceStatus = response.data.auto_tweet_status
-                // this.serviceStatusLabel = response.data.status_labels.auto_tweet
-                _this4.serviceStatus = 1;
-                _this4.serviceStatusLabel = 'サービス停止中';
+                serviceType = 4;
+                data = {
+                  type: serviceType,
+                  twitter_id: _this7.twitter_id
+                };
+                _context7.next = 4;
+                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.post('/api/system/stop', data);
 
-              case 2:
+              case 4:
+                response = _context7.sent;
+
+                if (!(response.data === 500 || response.status !== 200)) {
+                  _context7.next = 11;
+                  break;
+                }
+
+                _this7.errorFlg = true;
+                _this7.messageText = _message__WEBPACK_IMPORTED_MODULE_2__["message"].notUpdate;
+                _this7.serviceSwitch = false;
+                _context7.next = 13;
+                break;
+
+              case 11:
+                _context7.next = 13;
+                return _this7.fetchServiceStatus();
+
+              case 13:
               case "end":
                 return _context7.stop();
             }
@@ -4786,12 +5083,62 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
      */
     getCurrentPage: function getCurrentPage() {
       localStorage.setItem('page', this.page);
+    },
+
+    /**
+     * localstorageから現在使用しているtwitter_userのidを取得する
+     */
+    getCurrentTwitterId: function getCurrentTwitterId() {
+      var _this8 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee8() {
+        var storage;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee8$(_context8) {
+          while (1) {
+            switch (_context8.prev = _context8.next) {
+              case 0:
+                storage = JSON.parse(localStorage.getItem('loginTwitterAccount'));
+                _this8.twitter_id = storage.id; // console.log(this.twitter_id);
+
+              case 2:
+              case "end":
+                return _context8.stop();
+            }
+          }
+        }, _callee8);
+      }))();
     }
   },
   created: function created() {
-    this.fetchAutoTweets();
-    this.fetchServiceStatus();
-    this.getCurrentPage();
+    var _this9 = this;
+
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee9() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee9$(_context9) {
+        while (1) {
+          switch (_context9.prev = _context9.next) {
+            case 0:
+              _context9.next = 2;
+              return _this9.getCurrentPage();
+
+            case 2:
+              _context9.next = 4;
+              return _this9.getCurrentTwitterId();
+
+            case 4:
+              _context9.next = 6;
+              return _this9.fetchServiceStatus();
+
+            case 6:
+              _context9.next = 8;
+              return _this9.fetchTweets();
+
+            case 8:
+            case "end":
+              return _context9.stop();
+          }
+        }
+      }, _callee9);
+    }))();
   }
 });
 
@@ -5304,6 +5651,25 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 // module
 exports.push([module.i, ".isSelected[data-v-18a8df42] {\n  background: rgba(39, 144, 248, 0.2);\n}", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/DashBoard.vue?vue&type=style&index=0&id=7b804a99&lang=scss&scoped=true&":
+/*!*********************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/sass-loader/lib/loader.js??ref--7-3!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/DashBoard.vue?vue&type=style&index=0&id=7b804a99&lang=scss&scoped=true& ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".on[data-v-7b804a99] {\n  display: block !important;\n}", ""]);
 
 // exports
 
@@ -6598,6 +6964,36 @@ if(false) {}
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/DashBoard.vue?vue&type=style&index=0&id=7b804a99&lang=scss&scoped=true&":
+/*!*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/sass-loader/lib/loader.js??ref--7-3!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/DashBoard.vue?vue&type=style&index=0&id=7b804a99&lang=scss&scoped=true& ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../node_modules/css-loader!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--7-2!../../../node_modules/sass-loader/lib/loader.js??ref--7-3!../../../node_modules/vue-loader/lib??vue-loader-options!./DashBoard.vue?vue&type=style&index=0&id=7b804a99&lang=scss&scoped=true& */ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/DashBoard.vue?vue&type=style&index=0&id=7b804a99&lang=scss&scoped=true&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
 /***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/PanelFollow.vue?vue&type=style&index=0&id=2381273a&lang=scss&scoped=true&":
 /*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/style-loader!./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/sass-loader/lib/loader.js??ref--7-3!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/PanelFollow.vue?vue&type=style&index=0&id=2381273a&lang=scss&scoped=true& ***!
@@ -7317,168 +7713,419 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "p-board__wrap" }, [
-    _c("div", { staticClass: "p-board__sidebar" }, [
-      _c("div", [
-        Object.keys(this.loginTwitterUser).length > 0
-          ? _c("div", { staticClass: "p-board__mp-4" }, [
-              _c("div", { staticClass: "p-board__top" }, [
-                _vm._v(_vm._s(_vm.loginTwitterUser.screen_name))
-              ]),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticClass: "p-board__d-flex p-board__top p-board__space-end"
-                },
-                [
-                  _c(
-                    "div",
-                    { staticClass: "p-board__mr-2 p-board__text-small" },
-                    [_vm._v("フォロー")]
-                  ),
-                  _vm._v(" "),
-                  _c("div", [
-                    _vm._v(
-                      "\n                        " +
-                        _vm._s(_vm.loginTwitterUser.follows) +
-                        "\n                        "
-                    ),
-                    _c("small", { staticClass: "p-board__text-small" }, [
-                      _vm._v("人")
-                    ])
-                  ])
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticClass: "p-board__d-flex p-board__top p-board__space-end"
-                },
-                [
-                  _c(
-                    "div",
-                    { staticClass: "p-board__mr-2 p-board__text-small" },
-                    [_vm._v("フォロワー")]
-                  ),
-                  _vm._v(" "),
-                  _c("div", [
-                    _vm._v(
-                      "\n                        " +
-                        _vm._s(_vm.loginTwitterUser.followers) +
-                        "\n                        "
-                    ),
-                    _c("small", { staticClass: "p-board__text-small" }, [
-                      _vm._v("人")
-                    ])
-                  ])
-                ]
-              )
-            ])
-          : _vm._e(),
-        _vm._v(" "),
-        _c(
-          "p",
-          {
-            directives: [
-              {
-                name: "show",
-                rawName: "v-show",
-                value: _vm.errorFlg,
-                expression: "errorFlg"
-              }
-            ],
-            staticStyle: {
-              color: "red",
-              "font-size": "14px",
-              "margin-top": "8px"
-            }
-          },
-          [
-            _vm._v(
-              "\n                " + _vm._s(_vm.messageText) + "\n            "
-            )
-          ]
-        ),
-        _vm._v(" "),
-        Object.keys(this.loginTwitterUser).length === 0
-          ? _c("div", { staticClass: "p-board__mp-4" }, [
-              _c("div", { staticClass: "p-board__top" }, [
-                _vm._v(_vm._s(_vm.authData.name))
-              ]),
-              _vm._v(" "),
-              _vm._m(0),
-              _vm._v(" "),
-              _vm._m(1)
-            ])
-          : _vm._e(),
-        _vm._v(" "),
-        _c(
-          "div",
-          _vm._l(_vm.link, function(i, index) {
-            return _c("div", { key: index }, [
-              _c(
-                "div",
-                {
-                  staticClass: "p-board__link p-board__hover",
-                  class: [_vm.flgId === i.id ? "is-selected" : ""],
-                  on: {
-                    click: function($event) {
-                      return _vm.change(index)
-                    }
-                  }
-                },
-                [
-                  _c("div", { staticStyle: { "font-size": "14px" } }, [
-                    _vm._v(_vm._s(i.label))
-                  ])
-                ]
-              )
-            ])
-          }),
-          0
-        )
-      ]),
+  return _c(
+    "div",
+    [
+      _c("header-component", { on: { isOpen: _vm.openSidebar } }),
       _vm._v(" "),
-      _vm._m(2)
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "p-board__body" }, [
       _c(
-        "section",
-        { staticClass: "p-board__section" },
+        "div",
+        { staticClass: "p-board__wrap" },
         [
+          _vm.isOpen
+            ? _c(
+                "transition",
+                { attrs: { name: "side", tag: "div", appear: "" } },
+                [
+                  _c(
+                    "div",
+                    { key: "side", staticClass: "p-board__sidebar-sp" },
+                    [
+                      _c("div", [
+                        Object.keys(this.loginTwitterUser).length > 0
+                          ? _c("div", { staticClass: "p-board__mp-4" }, [
+                              _c("div", { staticClass: "p-board__top" }, [
+                                _vm._v(_vm._s(_vm.loginTwitterUser.screen_name))
+                              ]),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                {
+                                  staticClass:
+                                    "p-board__d-flex p-board__top p-board__space-end"
+                                },
+                                [
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass:
+                                        "p-board__mr-2 p-board__text-small"
+                                    },
+                                    [_vm._v("フォロー")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("div", [
+                                    _vm._v(
+                                      "\n                                " +
+                                        _vm._s(_vm.loginTwitterUser.follows) +
+                                        "\n                                "
+                                    ),
+                                    _c(
+                                      "small",
+                                      { staticClass: "p-board__text-small" },
+                                      [_vm._v("人")]
+                                    )
+                                  ])
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                {
+                                  staticClass:
+                                    "p-board__d-flex p-board__top p-board__space-end"
+                                },
+                                [
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass:
+                                        "p-board__mr-2 p-board__text-small"
+                                    },
+                                    [_vm._v("フォロワー")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("div", [
+                                    _vm._v(
+                                      "\n                                " +
+                                        _vm._s(_vm.loginTwitterUser.followers) +
+                                        "\n                                "
+                                    ),
+                                    _c(
+                                      "small",
+                                      { staticClass: "p-board__text-small" },
+                                      [_vm._v("人")]
+                                    )
+                                  ])
+                                ]
+                              )
+                            ])
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _c(
+                          "p",
+                          {
+                            directives: [
+                              {
+                                name: "show",
+                                rawName: "v-show",
+                                value: _vm.errorFlg,
+                                expression: "errorFlg"
+                              }
+                            ],
+                            staticStyle: {
+                              color: "red",
+                              "font-size": "14px",
+                              "margin-top": "8px"
+                            }
+                          },
+                          [
+                            _vm._v(
+                              "\n                        " +
+                                _vm._s(_vm.messageText) +
+                                "\n                    "
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        Object.keys(this.loginTwitterUser).length === 0
+                          ? _c("div", { staticClass: "p-board__mp-4" }, [
+                              _c("div", { staticClass: "p-board__top" }, [
+                                _vm._v(_vm._s(_vm.authData.name))
+                              ]),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                {
+                                  staticClass:
+                                    "p-board__d-flex p-board__top p-board__space-end"
+                                },
+                                [
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass:
+                                        "p-board__mr-2 p-board__text-small"
+                                    },
+                                    [_vm._v("フォロー")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("div", [
+                                    _vm._v(
+                                      "\n                                ------\n                                "
+                                    ),
+                                    _c(
+                                      "small",
+                                      { staticClass: "p-board__text-small" },
+                                      [_vm._v("人")]
+                                    )
+                                  ])
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                {
+                                  staticClass:
+                                    "p-board__d-flex p-board__top p-board__space-end"
+                                },
+                                [
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass:
+                                        "p-board__mr-2 p-board__text-small"
+                                    },
+                                    [_vm._v("フォロワー")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("div", [
+                                    _vm._v(
+                                      "\n                                ------\n                                "
+                                    ),
+                                    _c(
+                                      "small",
+                                      { staticClass: "p-board__text-small" },
+                                      [_vm._v("人")]
+                                    )
+                                  ])
+                                ]
+                              )
+                            ])
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          _vm._l(_vm.link, function(i, index) {
+                            return _c("div", { key: index }, [
+                              _c(
+                                "div",
+                                {
+                                  staticClass: "p-board__link p-board__hover",
+                                  class: [
+                                    _vm.flgId === i.id ? "is-selected" : ""
+                                  ],
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.change(index)
+                                    }
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "div",
+                                    { staticStyle: { "font-size": "14px" } },
+                                    [_vm._v(_vm._s(i.label))]
+                                  )
+                                ]
+                              )
+                            ])
+                          }),
+                          0
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("footer-component")
+                    ],
+                    1
+                  )
+                ]
+              )
+            : _vm._e(),
+          _vm._v(" "),
           _c(
-            "transition-group",
-            { attrs: { name: "t-dashboard_panel", tag: "div" } },
+            "div",
+            { staticClass: "p-board__sidebar-pc" },
             [
-              _vm.page === 1
-                ? _c("twitter-account", {
-                    key: "account",
-                    attrs: { twitterAccountId: _vm.loginTwitterUser.twitter_id }
-                  })
-                : _vm._e(),
+              _c("div", [
+                Object.keys(this.loginTwitterUser).length > 0
+                  ? _c("div", { staticClass: "p-board__mp-4" }, [
+                      _c("div", { staticClass: "p-board__top" }, [
+                        _vm._v(_vm._s(_vm.loginTwitterUser.screen_name))
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass:
+                            "p-board__d-flex p-board__top p-board__space-end"
+                        },
+                        [
+                          _c(
+                            "div",
+                            {
+                              staticClass: "p-board__mr-2 p-board__text-small"
+                            },
+                            [_vm._v("フォロー")]
+                          ),
+                          _vm._v(" "),
+                          _c("div", [
+                            _vm._v(
+                              "\n                            " +
+                                _vm._s(_vm.loginTwitterUser.follows) +
+                                "\n                            "
+                            ),
+                            _c(
+                              "small",
+                              { staticClass: "p-board__text-small" },
+                              [_vm._v("人")]
+                            )
+                          ])
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass:
+                            "p-board__d-flex p-board__top p-board__space-end"
+                        },
+                        [
+                          _c(
+                            "div",
+                            {
+                              staticClass: "p-board__mr-2 p-board__text-small"
+                            },
+                            [_vm._v("フォロワー")]
+                          ),
+                          _vm._v(" "),
+                          _c("div", [
+                            _vm._v(
+                              "\n                            " +
+                                _vm._s(_vm.loginTwitterUser.followers) +
+                                "\n                            "
+                            ),
+                            _c(
+                              "small",
+                              { staticClass: "p-board__text-small" },
+                              [_vm._v("人")]
+                            )
+                          ])
+                        ]
+                      )
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _c(
+                  "p",
+                  {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value: _vm.errorFlg,
+                        expression: "errorFlg"
+                      }
+                    ],
+                    staticStyle: {
+                      color: "red",
+                      "font-size": "14px",
+                      "margin-top": "8px"
+                    }
+                  },
+                  [
+                    _vm._v(
+                      "\n                    " +
+                        _vm._s(_vm.messageText) +
+                        "\n                "
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                Object.keys(this.loginTwitterUser).length === 0
+                  ? _c("div", { staticClass: "p-board__mp-4" }, [
+                      _c("div", { staticClass: "p-board__top" }, [
+                        _vm._v(_vm._s(_vm.authData.name))
+                      ]),
+                      _vm._v(" "),
+                      _vm._m(0),
+                      _vm._v(" "),
+                      _vm._m(1)
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  _vm._l(_vm.link, function(i, index) {
+                    return _c("div", { key: index }, [
+                      _c(
+                        "div",
+                        {
+                          staticClass: "p-board__link p-board__hover",
+                          class: [_vm.flgId === i.id ? "is-selected" : ""],
+                          on: {
+                            click: function($event) {
+                              return _vm.change(index)
+                            }
+                          }
+                        },
+                        [
+                          _c("div", { staticStyle: { "font-size": "14px" } }, [
+                            _vm._v(_vm._s(i.label))
+                          ])
+                        ]
+                      )
+                    ])
+                  }),
+                  0
+                )
+              ]),
               _vm._v(" "),
-              _vm.page === 2 ? _c("panel-follow", { key: "follow" }) : _vm._e(),
-              _vm._v(" "),
-              _vm.page === 3
-                ? _c("panel-unfollow", { key: "unfollow" })
-                : _vm._e(),
-              _vm._v(" "),
-              _vm.page === 4 ? _c("panel-like", { key: "like" }) : _vm._e(),
-              _vm._v(" "),
-              _vm.page === 5 ? _c("panel-tweet", { key: "tweet" }) : _vm._e(),
-              _vm._v(" "),
-              _vm.page === 6 ? _c("panel-keyword", { key: "filter" }) : _vm._e()
+              _c("footer-component")
             ],
             1
-          )
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "p-board__body" }, [
+            _c(
+              "section",
+              { staticClass: "p-board__section" },
+              [
+                _c(
+                  "transition-group",
+                  { attrs: { name: "t-dashboard_panel", tag: "div" } },
+                  [
+                    _vm.page === 1
+                      ? _c("twitter-account", {
+                          key: "account",
+                          attrs: {
+                            twitterAccountId: _vm.loginTwitterUser.twitter_id
+                          }
+                        })
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.page === 2
+                      ? _c("panel-follow", { key: "follow" })
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.page === 3
+                      ? _c("panel-unfollow", { key: "unfollow" })
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.page === 4
+                      ? _c("panel-like", { key: "like" })
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.page === 5
+                      ? _c("panel-tweet", { key: "tweet" })
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.page === 6
+                      ? _c("panel-keyword", { key: "keyword" })
+                      : _vm._e()
+                  ],
+                  1
+                )
+              ],
+              1
+            )
+          ])
         ],
         1
       )
-    ])
-  ])
+    ],
+    1
+  )
 }
 var staticRenderFns = [
   function() {
@@ -7494,7 +8141,9 @@ var staticRenderFns = [
         ]),
         _vm._v(" "),
         _c("div", [
-          _vm._v("\n                        ------\n                        "),
+          _vm._v(
+            "\n                            ------\n                            "
+          ),
           _c("small", { staticClass: "p-board__text-small" }, [_vm._v("人")])
         ])
       ]
@@ -7513,12 +8162,39 @@ var staticRenderFns = [
         ]),
         _vm._v(" "),
         _c("div", [
-          _vm._v("\n                        ------\n                        "),
+          _vm._v(
+            "\n                            ------\n                            "
+          ),
           _c("small", { staticClass: "p-board__text-small" }, [_vm._v("人")])
         ])
       ]
     )
-  },
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/FooterComponent.vue?vue&type=template&id=abfbddf2&scoped=true&":
+/*!******************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/FooterComponent.vue?vue&type=template&id=abfbddf2&scoped=true& ***!
+  \******************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -7564,10 +8240,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/FooterComponent.vue?vue&type=template&id=abfbddf2&":
-/*!******************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/FooterComponent.vue?vue&type=template&id=abfbddf2& ***!
-  \******************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/HeaderComponent.vue?vue&type=template&id=153bfd55&scoped=true&":
+/*!******************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/HeaderComponent.vue?vue&type=template&id=153bfd55&scoped=true& ***!
+  \******************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -7579,31 +8255,36 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", [
+    _c(
+      "header",
+      {
+        staticClass: "l-navbar__main-wrap",
+        staticStyle: { "z-index": "1000" }
+      },
+      [
+        _c("div", { staticClass: "l-navbar__align" }, [
+          _c("div", { staticClass: "l-navbar__sp__d-flex" }, [
+            _c("div", { staticClass: "l-navbar__icon" }, [
+              _c("i", { staticClass: "fas fa-bars", on: { click: _vm.open } })
+            ]),
+            _vm._v(" "),
+            _vm._m(0)
+          ])
+        ])
+      ]
+    )
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("footer", { staticClass: "p-footer" }, [
-      _c("div", { staticClass: "p-footer__copyright" }, [
-        _c("div", [_vm._v("©kamitter2020 kamitter.All Rights Reserved")])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "p-footer__info" }, [
-        _c("ul", { staticClass: "p-footer__menu" }, [
-          _c("li", { staticClass: "p-footer__list" }, [
-            _c("a", { attrs: { href: "/term" } }, [_vm._v("利用規約 ")])
-          ]),
-          _vm._v(" "),
-          _c("li", { staticClass: "p-footer__list" }, [_vm._v("|")]),
-          _vm._v(" "),
-          _c("li", { staticClass: "p-footer__list" }, [
-            _c("a", { attrs: { href: "/policy" } }, [
-              _vm._v("プライバシーポリシー")
-            ])
-          ])
+    return _c("div", { staticClass: "logo" }, [
+      _c("h1", [
+        _c("a", { staticClass: "l-navbar__text", attrs: { href: "/" } }, [
+          _vm._v("kamitter")
         ])
       ])
     ])
@@ -9145,8 +9826,7 @@ var render = function() {
               expression: "showRunButton"
             }
           ],
-          staticClass: "p-status__show p-status__sleep",
-          staticStyle: { "background-color": "#3335" }
+          staticClass: "p-status__show p-status__sleep"
         },
         [_vm._v(_vm._s(_vm.serviceStatusLabel))]
       ),
@@ -9481,6 +10161,12 @@ var render = function() {
                 }
               },
               [
+                _c("p", { staticClass: "p-form__notion" }, [
+                  _vm._v(
+                    "※条件のキーワードは、「キーワード登録」から登録することができます。"
+                  )
+                ]),
+                _vm._v(" "),
                 _c(
                   "label",
                   {
@@ -9532,12 +10218,6 @@ var render = function() {
                   }),
                   0
                 ),
-                _vm._v(" "),
-                _c("p", { staticClass: "p-form__notion" }, [
-                  _vm._v(
-                    "※条件のキーワードは、「キーワード登録」から登録することができます。"
-                  )
-                ]),
                 _vm._v(" "),
                 _vm._m(3)
               ]
@@ -9804,8 +10484,7 @@ var render = function() {
               expression: "showRunButton"
             }
           ],
-          staticClass: "p-status__show p-status__sleep",
-          staticStyle: { "background-color": "#3335" }
+          staticClass: "p-status__show p-status__sleep"
         },
         [_vm._v(_vm._s(_vm.serviceStatusLabel))]
       ),
@@ -9838,7 +10517,11 @@ var render = function() {
             }
           ],
           staticClass: "c-button c-button__status--on",
-          on: { click: _vm.runTweetService }
+          on: {
+            click: function($event) {
+              _vm.serviceSwitch = true
+            }
+          }
         },
         [
           _c("i", { staticClass: "fas fa-power-off c-icon__mr-2" }),
@@ -9858,7 +10541,11 @@ var render = function() {
             }
           ],
           staticClass: "c-button c-button__status--off",
-          on: { click: _vm.stopTweetService }
+          on: {
+            click: function($event) {
+              _vm.serviceSwitch = true
+            }
+          }
         },
         [
           _c("i", { staticClass: "fas fa-ban c-icon__mr-2" }),
@@ -9893,22 +10580,22 @@ var render = function() {
       [
         _vm._m(1),
         _vm._v(" "),
-        _vm._l(_vm.autoTweets, function(autoTweet, index) {
-          return _c("tr", { key: autoTweet.id }, [
+        _vm._l(_vm.tweets, function(tweet, index) {
+          return _c("tr", { key: tweet.id }, [
             _c("td", { staticClass: "p-table__td" }, [
-              _vm._v(_vm._s(autoTweet.status_label))
+              _vm._v(_vm._s(tweet.status_label))
             ]),
             _vm._v(" "),
             _c("td", { staticClass: "p-table__td" }, [
-              _vm._v(_vm._s(autoTweet.tweet))
+              _vm._v(_vm._s(tweet.tweet))
             ]),
             _vm._v(" "),
             _c("td", { staticClass: "p-table__td" }, [
-              _vm._v(_vm._s(autoTweet.japanese_formatted_date))
+              _vm._v(_vm._s(tweet.jp_format_date))
             ]),
             _vm._v(" "),
             _c("td", { staticClass: "p-table__td" }, [
-              autoTweet.status === 1
+              tweet.status === 1
                 ? _c("div", { staticClass: "p-table__action" }, [
                     _c("div", { staticClass: "p-table__btn-wrap" }, [
                       _c(
@@ -9918,7 +10605,7 @@ var render = function() {
                             "c-button c-button--twitter p-table__button",
                           on: {
                             click: function($event) {
-                              return _vm.showEditModal(autoTweet, index)
+                              return _vm.showEditModal(tweet, index)
                             }
                           }
                         },
@@ -9937,7 +10624,7 @@ var render = function() {
                             "c-button c-button--delete p-table__button c-button--delete ",
                           on: {
                             click: function($event) {
-                              return _vm.removeAutoTweet(autoTweet.id, index)
+                              return _vm.remove(tweet, index)
                             }
                           }
                         },
@@ -9955,6 +10642,38 @@ var render = function() {
         })
       ],
       2
+    ),
+    _vm._v(" "),
+    _c(
+      "p",
+      {
+        directives: [
+          {
+            name: "show",
+            rawName: "v-show",
+            value: _vm.tweetsNum === 0,
+            expression: "tweetsNum === 0"
+          }
+        ],
+        staticStyle: { "font-size": "14px", "margin-top": "8px" }
+      },
+      [_vm._v("\n        データがありません\n    ")]
+    ),
+    _vm._v(" "),
+    _c(
+      "p",
+      {
+        directives: [
+          {
+            name: "show",
+            rawName: "v-show",
+            value: _vm.errorFlg,
+            expression: "errorFlg"
+          }
+        ],
+        staticStyle: { color: "red", "font-size": "14px", "margin-top": "8px" }
+      },
+      [_vm._v("\n        " + _vm._s(_vm.messageText) + "\n    ")]
     ),
     _vm._v(" "),
     _c("div", { staticClass: "p-modal__wrapper" }, [
@@ -9997,33 +10716,19 @@ var render = function() {
                 on: {
                   submit: function($event) {
                     $event.preventDefault()
-                    return _vm.addAutoTweet($event)
+                    return _vm.addTweet($event)
                   }
                 }
               },
               [
-                _vm.addErrors
-                  ? _c("div", { staticClass: "p-form__errors" }, [
-                      _vm.addErrors.date_time
-                        ? _c(
-                            "ul",
-                            _vm._l(_vm.addErrors.date_time, function(msg) {
-                              return _c("li", { key: msg }, [
-                                _vm._v(_vm._s(msg))
-                              ])
-                            }),
-                            0
-                          )
-                        : _vm._e()
-                    ])
-                  : _vm._e(),
-                _vm._v(" "),
                 _c(
                   "label",
                   { staticClass: "p-form__label", attrs: { for: "add-tweet" } },
                   [
                     _vm._v(
-                      "ツイート内容 " + _vm._s(_vm.addTextCount) + "/140 *必須"
+                      "\n                        ツイート内容 " +
+                        _vm._s(_vm.addTextCount) +
+                        "/140 *必須\n                    "
                     )
                   ]
                 ),
@@ -10073,7 +10778,7 @@ var render = function() {
                     staticClass: "p-form__date",
                     attrs: {
                       type: "date",
-                      min: _vm.getCurrentYYYYMMDD,
+                      min: _vm.getCurrentDays,
                       required: ""
                     },
                     domProps: { value: _vm.addForm.date },
@@ -10156,27 +10861,11 @@ var render = function() {
                 on: {
                   submit: function($event) {
                     $event.preventDefault()
-                    return _vm.editAutoTweet($event)
+                    return _vm.editTweet($event)
                   }
                 }
               },
               [
-                _vm.editErrors
-                  ? _c("div", { staticClass: "p-form__errors" }, [
-                      _vm.editErrors.date_time
-                        ? _c(
-                            "ul",
-                            _vm._l(_vm.editErrors.date_time, function(msg) {
-                              return _c("li", { key: msg }, [
-                                _vm._v(_vm._s(msg))
-                              ])
-                            }),
-                            0
-                          )
-                        : _vm._e()
-                    ])
-                  : _vm._e(),
-                _vm._v(" "),
                 _c(
                   "label",
                   {
@@ -10185,7 +10874,9 @@ var render = function() {
                   },
                   [
                     _vm._v(
-                      "ツイート内容 " + _vm._s(_vm.editTextCount) + "/140 *必須"
+                      "\n                        ツイート内容 " +
+                        _vm._s(_vm.editTextCount) +
+                        "/140 *必須\n                    "
                     )
                   ]
                 ),
@@ -10235,8 +10926,8 @@ var render = function() {
                     staticClass: "p-form__date",
                     attrs: {
                       type: "date",
-                      min: _vm.getCurrentYYYYMMDD,
-                      value: "getCurrentYYYYMMDD",
+                      min: _vm.getCurrentDays,
+                      value: "getCurrentDays",
                       required: ""
                     },
                     domProps: { value: _vm.editForm.date },
@@ -10281,6 +10972,150 @@ var render = function() {
       )
     ]),
     _vm._v(" "),
+    _c(
+      "section",
+      {
+        directives: [
+          {
+            name: "show",
+            rawName: "v-show",
+            value: _vm.serviceSwitch,
+            expression: "serviceSwitch"
+          }
+        ],
+        staticClass: "p-modal p-modal--opened"
+      },
+      [
+        _c("div", { staticClass: "p-modal__contents" }, [
+          _c("p", { staticClass: "p-form__delete" }, [
+            _vm._v("自動化サービスを利用しますか？")
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "p-form__delete__wrap" }, [
+            _c(
+              "div",
+              {
+                staticClass: "c-button p-form__half-btn width__three",
+                attrs: { type: "submit" },
+                on: {
+                  click: function($event) {
+                    _vm.serviceSwitch = false
+                  }
+                }
+              },
+              [
+                _c("i", { staticClass: "fas fa-times m__r2" }),
+                _vm._v(" "),
+                _c("div", [_vm._v("キャンセル")])
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                directives: [
+                  {
+                    name: "show",
+                    rawName: "v-show",
+                    value: _vm.showRunButton,
+                    expression: "showRunButton"
+                  }
+                ],
+                staticClass:
+                  "c-button p-status__active p-form__half-btn width__three",
+                attrs: { type: "submit" },
+                on: { click: _vm.runTweetService }
+              },
+              [
+                _c("i", { staticClass: "fas fa-check m__r2" }),
+                _vm._v(" "),
+                _c("div", [_vm._v("開始する")])
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                directives: [
+                  {
+                    name: "show",
+                    rawName: "v-show",
+                    value: _vm.showStopButton,
+                    expression: "showStopButton"
+                  }
+                ],
+                staticClass:
+                  "c-button p-status__sleep p-form__half-btn width__three",
+                attrs: { type: "submit" },
+                on: { click: _vm.stopTweetService }
+              },
+              [
+                _c("i", { staticClass: "fas fa-check m__r2" }),
+                _vm._v(" "),
+                _c("div", [_vm._v("停止する")])
+              ]
+            )
+          ])
+        ])
+      ]
+    ),
+    _vm._v(" "),
+    _c(
+      "section",
+      {
+        directives: [
+          {
+            name: "show",
+            rawName: "v-show",
+            value: _vm.deleteOn,
+            expression: "deleteOn"
+          }
+        ],
+        staticClass: "p-modal p-modal--opened"
+      },
+      [
+        _c("div", { staticClass: "p-modal__contents" }, [
+          _c("p", { staticClass: "p-form__delete" }, [
+            _vm._v("本当に削除しますか？")
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "p-form__delete__wrap" }, [
+            _c(
+              "div",
+              {
+                staticClass: "c-button p-form__half-btn width__three",
+                attrs: { type: "submit" },
+                on: {
+                  click: function($event) {
+                    _vm.deleteOn = false
+                  }
+                }
+              },
+              [
+                _c("i", { staticClass: "fas fa-times m__r2" }),
+                _vm._v(" "),
+                _c("div", [_vm._v("キャンセル")])
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "p-botton__delete  p-form__half-btn width__three",
+                attrs: { type: "submit" },
+                on: { click: _vm.removeTweet }
+              },
+              [
+                _c("i", { staticClass: "fas fa-check m__r2" }),
+                _vm._v(" "),
+                _c("div", [_vm._v("削除")])
+              ]
+            )
+          ])
+        ])
+      ]
+    ),
+    _vm._v(" "),
     _c("div", { staticClass: "c-button--add--wrap" }, [
       _c(
         "button",
@@ -10318,20 +11153,18 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("tr", { staticClass: "p-table__head" }, [
       _c("th", { staticClass: "p-table__th p-table__th--tweet" }, [
-        _vm._v("ステータス")
+        _vm._v("状況")
       ]),
       _vm._v(" "),
       _c("th", { staticClass: "p-table__th p-table__th--tweet" }, [
-        _vm._v("ツイート内容")
+        _vm._v("tweet")
       ]),
       _vm._v(" "),
       _c("th", { staticClass: "p-table__th p-table__th--tweet" }, [
-        _vm._v("時刻")
+        _vm._v("予約時刻")
       ]),
       _vm._v(" "),
-      _c("th", { staticClass: "p-table__th p-table__th--tweet" }, [
-        _vm._v("操作")
-      ])
+      _c("th", { staticClass: "p-table__th p-table__th--tweet" })
     ])
   },
   function() {
@@ -22805,6 +23638,7 @@ module.exports = g;
 // import './repository';
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 Vue.component('login', __webpack_require__(/*! ./components/Login.vue */ "./resources/js/components/Login.vue")["default"]);
+Vue.component('header-component', __webpack_require__(/*! ./components/HeaderComponent.vue */ "./resources/js/components/HeaderComponent.vue")["default"]);
 Vue.component('footer-component', __webpack_require__(/*! ./components/FooterComponent.vue */ "./resources/js/components/FooterComponent.vue")["default"]);
 Vue.component('dash-board', __webpack_require__(/*! ./components/DashBoard.vue */ "./resources/js/components/DashBoard.vue")["default"]);
 Vue.component('panel-keyword', __webpack_require__(/*! ./components/PanelKeyword.vue */ "./resources/js/components/PanelKeyword.vue")["default"]);
@@ -22989,7 +23823,9 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _DashBoard_vue_vue_type_template_id_7b804a99_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./DashBoard.vue?vue&type=template&id=7b804a99&scoped=true& */ "./resources/js/components/DashBoard.vue?vue&type=template&id=7b804a99&scoped=true&");
 /* harmony import */ var _DashBoard_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./DashBoard.vue?vue&type=script&lang=js& */ "./resources/js/components/DashBoard.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* empty/unused harmony star reexport *//* harmony import */ var _DashBoard_vue_vue_type_style_index_0_id_7b804a99_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./DashBoard.vue?vue&type=style&index=0&id=7b804a99&lang=scss&scoped=true& */ "./resources/js/components/DashBoard.vue?vue&type=style&index=0&id=7b804a99&lang=scss&scoped=true&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
 
 
 
@@ -22997,7 +23833,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /* normalize component */
 
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
   _DashBoard_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
   _DashBoard_vue_vue_type_template_id_7b804a99_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
   _DashBoard_vue_vue_type_template_id_7b804a99_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
@@ -23029,6 +23865,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/DashBoard.vue?vue&type=style&index=0&id=7b804a99&lang=scss&scoped=true&":
+/*!*********************************************************************************************************!*\
+  !*** ./resources/js/components/DashBoard.vue?vue&type=style&index=0&id=7b804a99&lang=scss&scoped=true& ***!
+  \*********************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_lib_loader_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_DashBoard_vue_vue_type_style_index_0_id_7b804a99_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader!../../../node_modules/css-loader!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--7-2!../../../node_modules/sass-loader/lib/loader.js??ref--7-3!../../../node_modules/vue-loader/lib??vue-loader-options!./DashBoard.vue?vue&type=style&index=0&id=7b804a99&lang=scss&scoped=true& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/DashBoard.vue?vue&type=style&index=0&id=7b804a99&lang=scss&scoped=true&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_lib_loader_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_DashBoard_vue_vue_type_style_index_0_id_7b804a99_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_lib_loader_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_DashBoard_vue_vue_type_style_index_0_id_7b804a99_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_lib_loader_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_DashBoard_vue_vue_type_style_index_0_id_7b804a99_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_lib_loader_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_DashBoard_vue_vue_type_style_index_0_id_7b804a99_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+
+
+/***/ }),
+
 /***/ "./resources/js/components/DashBoard.vue?vue&type=template&id=7b804a99&scoped=true&":
 /*!******************************************************************************************!*\
   !*** ./resources/js/components/DashBoard.vue?vue&type=template&id=7b804a99&scoped=true& ***!
@@ -23056,21 +23908,23 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _FooterComponent_vue_vue_type_template_id_abfbddf2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./FooterComponent.vue?vue&type=template&id=abfbddf2& */ "./resources/js/components/FooterComponent.vue?vue&type=template&id=abfbddf2&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony import */ var _FooterComponent_vue_vue_type_template_id_abfbddf2_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./FooterComponent.vue?vue&type=template&id=abfbddf2&scoped=true& */ "./resources/js/components/FooterComponent.vue?vue&type=template&id=abfbddf2&scoped=true&");
+/* harmony import */ var _FooterComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./FooterComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/FooterComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
-var script = {}
+
+
 
 
 /* normalize component */
 
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(
-  script,
-  _FooterComponent_vue_vue_type_template_id_abfbddf2___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _FooterComponent_vue_vue_type_template_id_abfbddf2___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _FooterComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _FooterComponent_vue_vue_type_template_id_abfbddf2_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _FooterComponent_vue_vue_type_template_id_abfbddf2_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
-  null,
+  "abfbddf2",
   null
   
 )
@@ -23082,19 +23936,102 @@ component.options.__file = "resources/js/components/FooterComponent.vue"
 
 /***/ }),
 
-/***/ "./resources/js/components/FooterComponent.vue?vue&type=template&id=abfbddf2&":
-/*!************************************************************************************!*\
-  !*** ./resources/js/components/FooterComponent.vue?vue&type=template&id=abfbddf2& ***!
-  \************************************************************************************/
+/***/ "./resources/js/components/FooterComponent.vue?vue&type=script&lang=js&":
+/*!******************************************************************************!*\
+  !*** ./resources/js/components/FooterComponent.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_FooterComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./FooterComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/FooterComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_FooterComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/FooterComponent.vue?vue&type=template&id=abfbddf2&scoped=true&":
+/*!************************************************************************************************!*\
+  !*** ./resources/js/components/FooterComponent.vue?vue&type=template&id=abfbddf2&scoped=true& ***!
+  \************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FooterComponent_vue_vue_type_template_id_abfbddf2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./FooterComponent.vue?vue&type=template&id=abfbddf2& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/FooterComponent.vue?vue&type=template&id=abfbddf2&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FooterComponent_vue_vue_type_template_id_abfbddf2___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FooterComponent_vue_vue_type_template_id_abfbddf2_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./FooterComponent.vue?vue&type=template&id=abfbddf2&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/FooterComponent.vue?vue&type=template&id=abfbddf2&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FooterComponent_vue_vue_type_template_id_abfbddf2_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FooterComponent_vue_vue_type_template_id_abfbddf2___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FooterComponent_vue_vue_type_template_id_abfbddf2_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/HeaderComponent.vue":
+/*!*****************************************************!*\
+  !*** ./resources/js/components/HeaderComponent.vue ***!
+  \*****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _HeaderComponent_vue_vue_type_template_id_153bfd55_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./HeaderComponent.vue?vue&type=template&id=153bfd55&scoped=true& */ "./resources/js/components/HeaderComponent.vue?vue&type=template&id=153bfd55&scoped=true&");
+/* harmony import */ var _HeaderComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./HeaderComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/HeaderComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _HeaderComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _HeaderComponent_vue_vue_type_template_id_153bfd55_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _HeaderComponent_vue_vue_type_template_id_153bfd55_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "153bfd55",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/HeaderComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/HeaderComponent.vue?vue&type=script&lang=js&":
+/*!******************************************************************************!*\
+  !*** ./resources/js/components/HeaderComponent.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_HeaderComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./HeaderComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/HeaderComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_HeaderComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/HeaderComponent.vue?vue&type=template&id=153bfd55&scoped=true&":
+/*!************************************************************************************************!*\
+  !*** ./resources/js/components/HeaderComponent.vue?vue&type=template&id=153bfd55&scoped=true& ***!
+  \************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_HeaderComponent_vue_vue_type_template_id_153bfd55_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./HeaderComponent.vue?vue&type=template&id=153bfd55&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/HeaderComponent.vue?vue&type=template&id=153bfd55&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_HeaderComponent_vue_vue_type_template_id_153bfd55_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_HeaderComponent_vue_vue_type_template_id_153bfd55_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

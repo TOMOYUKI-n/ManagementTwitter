@@ -32,7 +32,7 @@
 
     <div id="app"  class="wrapper--main">
         <main class="l-base">
-            @include('header')
+            {{-- @include('header') --}}
             
                 <!-- フラッシュメッセージ -->
                     @if (session('flash_message'))

@@ -2,7 +2,7 @@
     <div class="p-panel u-color__bg--white">
 
         <div class="p-status">
-            <p v-show="showRunButton" class="p-status__show p-status__sleep" style="background-color: #3335;">{{serviceStatusLabel}}</p>
+            <p v-show="showRunButton" class="p-status__show p-status__sleep">{{serviceStatusLabel}}</p>
             <p v-show="showStopButton" class="p-status__show p-status__active">{{serviceStatusLabel}}</p>
             <button class="c-button c-button__status--on"
                     @click="serviceSwitch = true"
@@ -21,7 +21,7 @@
                 <h2 class="p-table__caption">自動いいねリスト</h2>
                 <p class="p-table__caption__text">※キーワードを設定することで、該当するツイートに自動でいいねを送ります。</p>
             </div>
-            <button class="c-button c-button--add" @click="newModal = ! newModal">
+            <button class="c-button c-button--add" @click="newModal = !newModal">
                 <i class="c-icon__mr-2 c__color--blue fas fa-plus"></i>
                 自動いいねの設定を追加
             </button>
@@ -89,7 +89,7 @@
                         <i class="c-icon--gray p-modal__icon fas fa-times"></i>
                     </div>
                     <form class="p-form" @submit.prevent="editLike">
-
+                        <p class="p-form__notion">※条件のキーワードは、「キーワード登録」から登録することができます。</p>
                         <label class="p-form__label" for="edit-like-keyword">いいね条件の選択 *必須</label>
                         <select class="p-form__select" id="edit-like-keyword"
                                 v-model="editForm.keyword_id"
@@ -98,7 +98,7 @@
                             <option v-for="keyword in keywords" :key="keyword.id" :value="keyword.id">{{keyword.merged_word}}</option>
 
                         </select>
-                        <p class="p-form__notion">※条件のキーワードは、「キーワード登録」から登録することができます。</p>
+
                         <div class="p-form__button">
                             <button type="submit" class="c-button c-button--twitter">変更</button>
                         </div>
@@ -229,7 +229,7 @@
              */
             async addLike() {
                 const response = await axios.post(`/api/like/${this.twitter_id}`, this.addForm);
-                console.log(response);
+                // console.log(response);
                 if (response.status !== 200 || response.data === 500) {
                     this.newModal = false;
                     this.errorFlg = true;

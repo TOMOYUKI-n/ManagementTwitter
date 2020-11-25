@@ -85,4 +85,13 @@ Route::group(['middleware' => 'auth'], function() {
     Route::post('/api/like/{id}', 'AutoLikeController@add')->name('like.add');
     Route::put('/api/like/{id}','AutoLikeController@edit')->name('like.edit');
     Route::post('/api/like/delete/{id}','AutoLikeController@delete')->name('like.delete');
+
+    /**
+     * 予約ツイート関連
+     */
+    Route::get('/api/tweet/list/{id}', 'AutoTweetController@show')->name('tweet.show');
+    Route::post('/api/tweet/{id}', 'AutoTweetController@add')->name('tweet.add');
+    Route::post('/api/tweet/edit/{id}', 'AutoTweetController@edit')->name('tweet.edit');
+    Route::delete('/api/tweet/{id}', 'AutoTweetController@delete')->name('tweet.delete');
+
 });

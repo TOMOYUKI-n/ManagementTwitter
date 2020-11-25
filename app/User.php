@@ -83,4 +83,12 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Like', 'user_id');
     }
+
+    /**
+     * tweetsテーブル
+     */
+    public function tweets()
+    {
+        return $this->hasMany('App\Tweet', 'user_id');
+    }
 }
