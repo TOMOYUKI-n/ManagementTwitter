@@ -6,15 +6,29 @@
             display: block;
         }
     }
+    // &__transition-sp{
+    //     @include mq(){
+    //         &.active {
+    //             opacity: 1;
+    //             transform: translateX(0px);
+    //             transition: all 0.5s ease-in-out;
+    //         }
+    //     }
+    // }
     // sidebar
     &__sidebar-sp{
         display: none;
         @include mq(){
-            width:100%;
-            color: #fff;
-            background-color: #333;
-            min-height:93vh;
-            display: block;
+            display: none;
+            &.active {
+                width:100%;
+                color: #fff;
+                background-color: #333;
+                min-height:93vh;
+                display: block;
+                transform: translateX(0px);
+                transition: all 0.5s ease-in-out;
+            }
         }
     }
     &__sidebar-pc{

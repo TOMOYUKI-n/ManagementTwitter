@@ -10,30 +10,57 @@ use Illuminate\Support\Facades\Log;
 
 class IndexController extends Controller
 {
-    //
-    public function misslogin()
-    {
-        return view('misslogin');
-    }
+    /**
+     * responce定義
+     */
+    const CODE = [
+        0 => ["status" => 200],
+        1 => ["status" => 500]
+    ];
+
+    // 通常遷移
+    /**
+     * トップページ
+     */
     public function top()
     {
         return view('top');
     }
+
+    /**
+     * 利用規約
+     */
     public function term()
     {
         return view('term');
     }
+
+    /**
+     * プライバシーポリシー
+     */
     public function policy()
     {
         return view('policy');
     }
 
-    public function account() {
-        return view('index.account');
-    }
-
+    /**
+     * ダッシュボード
+     */
     public function dashboard() {
         return view('index.dashboard');
     }
 
+    /**
+     * ログインユーザーの情報を取得
+     */
+    public function show()
+    {
+        try {
+            $users = Auth::User()->first();
+            return $users;
+        }
+        catch (\Exception $e) {
+            return self::CODE[1]['status'];
+        }
+    }
 }

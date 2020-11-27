@@ -1,10 +1,10 @@
 // import './utility';
-// import './repository';
 window.Vue = require('vue');
 
 Vue.component('login', require('./components/Login.vue').default);
-Vue.component('header-component', require('./components/HeaderComponent.vue').default);
+
 Vue.component('footer-component', require('./components/FooterComponent.vue').default);
+Vue.component('sidebar-component', require('./components/SidebarComponent.vue').default);
 
 Vue.component('dash-board', require('./components/DashBoard.vue').default);
 Vue.component('panel-keyword', require('./components/PanelKeyword.vue').default);

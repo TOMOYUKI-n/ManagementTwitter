@@ -28,7 +28,7 @@ class RedirectIfAuthenticated
             return redirect()->to('/login/twitter');
 
         }
-
+        Log::Debug("bbbbbbbbbbbbbb");
         return $next($request);
     }
 }

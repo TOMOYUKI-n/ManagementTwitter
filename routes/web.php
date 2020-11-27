@@ -42,6 +42,9 @@ Route::group(['middleware' => 'auth'], function() {
      * ダッシュボード 画面遷移
      */
     Route::get('/dashboard', 'IndexController@dashboard')->name('index.dashBoard');
+    Route::get('/api/auth/user', 'IndexController@show')->name('index.show');
+    Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
+    
 
     /**
      * 登録済みtwitterアカウントの一覧取得

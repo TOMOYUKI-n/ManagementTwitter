@@ -23,7 +23,14 @@
     color: $color_black;
     //background-color: #eff1f3;
     font-family: font-family;
+    // position: relative;// 
+    // top: 7vh;// 
     @include mq(){
+        width: 100%;
+        display: block;
+    }
+    &-head{
+        position: absolute;
         width: 100%;
         display: block;
     }
