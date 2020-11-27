@@ -48,6 +48,7 @@ class LoginController extends Controller
      */
     public function __construct()
     {
+        Log::Debug('aaaaaaaaaaaaaaaa');
         $this->middleware('guest')->except('logout');
     }
 
@@ -135,4 +136,5 @@ class LoginController extends Controller
             return redirect('/dashboard')->with('flash_message', '予期せぬエラーが発生しました。再度登録しなおしてください');
         }
     }
+
 }

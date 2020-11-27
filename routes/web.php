@@ -42,6 +42,9 @@ Route::group(['middleware' => 'auth'], function() {
      * ダッシュボード 画面遷移
      */
     Route::get('/dashboard', 'IndexController@dashboard')->name('index.dashBoard');
+    Route::get('/api/auth/user', 'IndexController@show')->name('index.show');
+    Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
+    
 
     /**
      * 登録済みtwitterアカウントの一覧取得
@@ -77,17 +80,21 @@ Route::group(['middleware' => 'auth'], function() {
     Route::post('/api/system/running', 'ManagerController@run')->name('system.run');
     Route::post('/api/system/stop', 'ManagerController@stop')->name('system.stop');
 
-    // アカウント一覧画面遷移
-    Route::get('/accountList', function(){ return view('index.accountList'); });
-    // フォローチェック
-    Route::post('/accountList/followcheck', 'AccountController@followCheck');
-    // フォロー用
-    Route::post('/accountList/follows', 'AccountController@follows');
-    // ユーザー情報取得用
-    Route::get('/auth/users', 'AccountController@getUsers');
-    // ユーザーフォロー情報取得用
-    Route::get('/auth/following', 'AccountController@getAuthFollowData');
 
-    // 自動フォロー用
-    Route::post('/accountList/autofollows', 'AccountController@autoFollows');
+    /**
+     * いいね機能関連
+     */
+    Route::get('/api/like/list/{id}','AutoLikeController@show')->name('like.show');
+    Route::post('/api/like/{id}', 'AutoLikeController@add')->name('like.add');
+    Route::put('/api/like/{id}','AutoLikeController@edit')->name('like.edit');
+    Route::post('/api/like/delete/{id}','AutoLikeController@delete')->name('like.delete');
+
+    /**
+     * 予約ツイート関連
+     */
+    Route::get('/api/tweet/list/{id}', 'AutoTweetController@show')->name('tweet.show');
+    Route::post('/api/tweet/{id}', 'AutoTweetController@add')->name('tweet.add');
+    Route::post('/api/tweet/edit/{id}', 'AutoTweetController@edit')->name('tweet.edit');
+    Route::delete('/api/tweet/{id}', 'AutoTweetController@delete')->name('tweet.delete');
+
 });

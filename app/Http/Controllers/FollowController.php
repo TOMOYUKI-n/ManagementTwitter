@@ -31,7 +31,8 @@ class FollowController extends Controller
 
         try {
             $follow_target = FollowTarget::where('twitter_user_id', $id)
-                                // ->whereIn('status', [1, 2, 3])->orderby('created_at', 'desc')
+                                // ->whereIn('status', [1, 2, 3])
+                                // ->orderby('created_at', 'desc')
                                 ->limit(30)
                                 ->with('keyword')->get();
 
@@ -93,8 +94,7 @@ class FollowController extends Controller
      */
     public function delete(Request $request)
     {
-        // Log::debug('$request ======= ');
-        // Log::debug($request);
+
         $twitter_id = $request->twitter_user_id;
         $edit_id = $request->id;
 
@@ -102,12 +102,11 @@ class FollowController extends Controller
 
             $follow_target = FollowTarget::where('id', $edit_id)->first();
             $status_under_making_list = 3;
-    
-            if (!$follow_target) {
-                abort(404);
-            }
+
+            // リスト作成後であれば削除する
             if ($follow_target->status === $status_under_making_list) {
-                // FollowerTarget::where('twitter_user_id', $twitter_id)->delete();
+                FollowerTarget::where('twitter_user_id', $twitter_id)->delete();
+                Log::Debug('削除します');
             }
             $follow_target->delete();
             return self::CODE[0]['status'];

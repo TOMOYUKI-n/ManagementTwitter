@@ -2,15 +2,15 @@
     <div class="p-panel u-color__bg--white">
 
         <div class="p-status">
-            <p v-show="showRunButton" class="p-status__show p-status__sleep" style="background-color: #3335;">{{serviceStatusLabel}}</p>
+            <p v-show="showRunButton" class="p-status__show p-status__sleep">{{serviceStatusLabel}}</p>
             <p v-show="showStopButton" class="p-status__show p-status__active">{{serviceStatusLabel}}</p>
             <button class="c-button c-button__status--on"
-                    @click="runTweetService"
+                    @click="serviceSwitch = true"
                     v-show="showRunButton">
                     <i class="fas fa-power-off c-icon__mr-2"></i>稼働
             </button>
             <button class="c-button c-button__status--off"
-                    @click="stopTweetService"
+                    @click="serviceSwitch = true"
                     v-show="showStopButton">
                     <i class="fas fa-ban c-icon__mr-2"></i>停止
             </button>
@@ -21,7 +21,7 @@
                 <h2 class="p-table__caption">自動ツイートリスト</h2>
                 <p class="p-table__caption__text">※日時を設定してツイートができます</p>
             </div>
-            <button class="c-button c-button--add" @click="newModal = ! newModal">
+            <button class="c-button c-button--add" @click="newModal = !newModal">
                 <i class="c-icon__mr-2 c__color--blue fas fa-plus"></i>
                 ツイートを追加
             </button>
@@ -29,26 +29,26 @@
 
         <table class="p-table">
             <tr class="p-table__head">
-                <th class="p-table__th p-table__th--tweet">ステータス</th>
-                <th class="p-table__th p-table__th--tweet">ツイート内容</th>
-                <th class="p-table__th p-table__th--tweet">時刻</th>
-                <th class="p-table__th p-table__th--tweet">操作</th>
+                <th class="p-table__th p-table__th--tweet">状況</th>
+                <th class="p-table__th p-table__th--tweet">tweet</th>
+                <th class="p-table__th p-table__th--tweet">予約時刻</th>
+                <th class="p-table__th p-table__th--tweet"></th>
             </tr>
 
-            <tr v-for="(autoTweet, index) in autoTweets" :key="autoTweet.id">
-                <td class="p-table__td">{{autoTweet.status_label}}</td>
-                <td class="p-table__td">{{autoTweet.tweet}}</td>
-                <td class="p-table__td">{{autoTweet.japanese_formatted_date}}</td>
+            <tr v-for="(tweet, index) in tweets" :key="tweet.id">
+                <td class="p-table__td">{{tweet.status_label}}</td>
+                <td class="p-table__td">{{tweet.tweet}}</td>
+                <td class="p-table__td">{{tweet.jp_format_date}}</td>
                 <td class="p-table__td">
-                    <div class="p-table__action" v-if="autoTweet.status === 1">
+                    <div class="p-table__action" v-if="tweet.status === 1">
                         <div class="p-table__btn-wrap">
                             <button class="c-button c-button--twitter p-table__button"
-                                    @click="showEditModal(autoTweet, index)"
+                                    @click="showEditModal(tweet, index)"
                             >
                                 <i class="c__color--blue fas fa-pen p-table__test-xs"></i>
                             </button>
                             <button class="c-button c-button--delete p-table__button c-button--delete "
-                                    @click="removeAutoTweet(autoTweet.id, index)"
+                                    @click="remove(tweet, index)"
                             >
                                 <i class="fas fa-trash-alt p-table__test-xs"></i>
                             </button>
@@ -57,7 +57,12 @@
                 </td>
             </tr>
         </table>
-
+        <p v-show="tweetsNum === 0" style="font-size: 14px; margin-top: 8px;">
+            データがありません
+        </p>
+        <p v-show="errorFlg" style="color: red; font-size: 14px; margin-top: 8px;">
+            {{ messageText }}
+        </p>
 
         <div class="p-modal__wrapper">
             <section class="p-modal" v-show="newModal">
@@ -65,26 +70,34 @@
                     <div class="p-modal__cancel u-color__bg--white" @click="newModal = !newModal">
                         <i class="c-icon--gray p-modal__icon fas fa-times"></i>
                     </div>
-                    <form class="p-form" @submit.prevent="addAutoTweet">
+                    <form class="p-form" @submit.prevent="addTweet">
 
-                        <div v-if="addErrors" class="p-form__errors">
-                            <ul v-if="addErrors.date_time">
-                                <li v-for="msg in addErrors.date_time" :key="msg">{{ msg }}</li>
-                            </ul>
-                        </div>
-
-                        <label class="p-form__label" for="add-tweet">ツイート内容 {{addTextCount}}/140 *必須</label>
-                        <textarea class="p-form__item p-form__item--textarea" id="add-tweet"
-                                  rows="5" cols="40" v-model="addForm.tweet" required maxlength="140">
+                        <label class="p-form__label" for="add-tweet">
+                            ツイート内容 {{addTextCount}}/140 *必須
+                        </label>
+                        <textarea
+                            class="p-form__item p-form__item--textarea"
+                            id="add-tweet"
+                            rows="5"
+                            cols="40"
+                            v-model="addForm.tweet"
+                            required
+                            maxlength="140">
                         </textarea>
 
                         <label class="p-form__label">ツイート予定日時 *必須</label>
                         <div class="u-display__flex--left">
-                            <input type="date" class="p-form__date"
-                                   :min="getCurrentYYYYMMDD"
-                                   v-model="addForm.date" required>
-                            <input type="time" class="p-form__date"
-                                   v-model="addForm.time" required>
+                            <input
+                                type="date"
+                                class="p-form__date"
+                                :min="getCurrentDays"
+                                v-model="addForm.date"
+                                required>
+                            <input
+                                type="time"
+                                class="p-form__date"
+                                v-model="addForm.time"
+                                required>
                         </div>
                         <div class="p-form__button">
                             <button type="submit" class="c-button c-button--twitter">追加</button>
@@ -98,27 +111,35 @@
                     <div class="p-modal__cancel u-color__bg--white" @click="editModal = !editModal">
                         <i class="c-icon--gray p-modal__icon fas fa-times"></i>
                     </div>
-                    <form class="p-form" @submit.prevent="editAutoTweet">
+                    <form class="p-form" @submit.prevent="editTweet">
 
-                        <div v-if="editErrors" class="p-form__errors">
-                            <ul v-if="editErrors.date_time">
-                                <li v-for="msg in editErrors.date_time" :key="msg">{{ msg }}</li>
-                            </ul>
-                        </div>
-
-                        <label class="p-form__label" for="edit-tweet">ツイート内容 {{editTextCount}}/140 *必須</label>
-                        <textarea class="p-form__item p-form__item--textarea" id="edit-tweet"
-                                  rows="5" cols="40" v-model="editForm.tweet" required maxlength="140">
+                        <label class="p-form__label" for="edit-tweet">
+                            ツイート内容 {{editTextCount}}/140 *必須
+                        </label>
+                        <textarea
+                            class="p-form__item p-form__item--textarea"
+                            id="edit-tweet"
+                            rows="5"
+                            cols="40"
+                            v-model="editForm.tweet"
+                            required
+                            maxlength="140">
                         </textarea>
 
                         <label class="p-form__label">予定日時 *必須</label>
                         <div class="u-display__flex--left">
-                            <input type="date" class="p-form__date"
-                                   :min="getCurrentYYYYMMDD"
-                                   value="getCurrentYYYYMMDD"
-                                   v-model="editForm.date" required>
-                            <input type="time" class="p-form__date"
-                                   v-model="editForm.time" required>
+                            <input
+                                type="date"
+                                class="p-form__date"
+                                :min="getCurrentDays"
+                                value="getCurrentDays"
+                                v-model="editForm.date"
+                                required>
+                            <input
+                                type="time"
+                                class="p-form__date"
+                                v-model="editForm.time"
+                                required>
                         </div>
                         <div class="p-form__button">
                             <button type="submit" class="c-button c-button--twitter">変更</button>
@@ -127,8 +148,45 @@
                 </div>
             </section>
         </div>
+
+        <section class="p-modal p-modal--opened" v-show="serviceSwitch">
+            <div class="p-modal__contents">
+                <p class="p-form__delete">自動化サービスを利用しますか？</p>
+                <div class="p-form__delete__wrap">
+                    <div type="submit" class="c-button p-form__half-btn width__three" @click="serviceSwitch = false">
+                        <i class="fas fa-times m__r2"></i>
+                        <div>キャンセル</div>
+                    </div>
+                    <div v-show="showRunButton" type="submit" class="c-button p-status__active p-form__half-btn width__three" @click="runTweetService">
+                        <i class="fas fa-check m__r2"></i>
+                        <div>開始する</div>
+                    </div>
+                    <div v-show="showStopButton" type="submit" class="c-button p-status__sleep p-form__half-btn width__three" @click="stopTweetService">
+                        <i class="fas fa-check m__r2"></i>
+                        <div>停止する</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="p-modal p-modal--opened" v-show="deleteOn">
+            <div class="p-modal__contents">
+                <p class="p-form__delete">本当に削除しますか？</p>
+                <div class="p-form__delete__wrap">
+                    <div type="submit" class="c-button p-form__half-btn width__three" @click="deleteOn = false">
+                        <i class="fas fa-times m__r2"></i>
+                        <div>キャンセル</div>
+                    </div>
+                    <div type="submit" class="p-botton__delete  p-form__half-btn width__three" @click="removeTweet">
+                        <i class="fas fa-check m__r2"></i>
+                        <div>削除</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <div class="c-button--add--wrap">
-            <button class="c-button--add--sp" @click="newModal = ! newModal">
+            <button class="c-button--add--sp" @click="newModal = !newModal">
                 <i class="fas fa-plus"></i>
             </button>
         </div>
@@ -137,19 +195,28 @@
 
 <script>
     import { filterWords, targetAccountList, manegementServiceStatus } from "../repository"
-
+    import { message } from '../message';
+    import axios from "axios";
     export default {
         data() {
             return {
                 page: 5,
-                autoTweets: [],
+                twitter_id: 0,
+                errorFlg: false,
+                messageText: '',
+                serviceSwitch: false,
+                deleteOn: false,
+                deleteIndex: 0,
+                deleteItem: [],
+                tweets: [],
+                tweetsNum: 0,
                 newModal: false,
                 editModal: false,
                 editIndex: null,
                 serviceStatus: null,
                 serviceStatusLabel: null,
-                addErrors: null,
-                editErrors: null,
+                // addErrors: null,
+                // editErrors: null,
                 addForm: {
                     tweet: '',
                     date: '',
@@ -164,129 +231,135 @@
         },
         computed: {
             /**
-             * 新規作成フォームでTWEETの文字数をカウントする
+             * 新規登録時 ツイートの文字数をカウントする
              */
             addTextCount: function () {
-                return this.addForm.tweet.length
+                return this.addForm.tweet.length;
             },
             /**
-             * 編集フォームでTWEETの文字数をカウントする
+             * 編集時 ツイートの文字数をカウントする
              */
             editTextCount: function () {
-                return this.editForm.tweet.length
+                return this.editForm.tweet.length;
             },
             /**
              * 現在の日付をYYYY-MM-DD形式で取得する
              */
-            getCurrentYYYYMMDD: function () {
-                const date = new Date()
-                const year = date.getFullYear()
-                const month = ("00" + (date.getMonth() + 1)).slice(-2)
-                const day = ("00" + date.getDate()).slice(-2)
-                return [year, month, day].join("-")
+            getCurrentDays: function () {
+                const date = new Date();
+                const year = date.getFullYear();
+                const month = ("00" + (date.getMonth() + 1)).slice(-2);
+                const day = ("00" + date.getDate()).slice(-2);
+                return [year, month, day].join("-");
             },
             showRunButton() {
-                return this.serviceStatus === 1 || this.serviceStatus === 3
+                return this.serviceStatus === 1 || this.serviceStatus === 3;
             },
             showStopButton() {
-                return this.serviceStatus === 2 || this.serviceStatus === 3
+                return this.serviceStatus === 2 || this.serviceStatus === 3;
             },
         },
         methods: {
             /**
              * APIを使用して登録した自動ツイート一覧を取得する
              */
-            async fetchAutoTweets() {
-                // const response = await axios.get('/api/tweet')
-                // if (response.status !== OK) {
-                //     this.$store.commit('error/setCode', response.status)
-                //     return false
-                // }
-                // this.autoTweets = response.data
+            async fetchTweets() {
+                const response = await axios.get(`/api/tweet/list/${this.twitter_id}`);
+                if (response.status !== 200 || response.data === 500) {
+                    this.errorFlg = true;
+                    this.messageText = message.notGetData;
+                }
+                else {
+                    this.tweetsNum = response.data[1];
+                    this.tweets = response.data[0];
+                }
             },
             /**
              * APIを使用して自動ツイートを新規登録する
              */
-            async addAutoTweet() {
-                // this.clearErrors()
-                // const response = await axios.post('/api/tweet', this.addForm)
-
-                // if (response.status === UNPROCESSABLE_ENTRY) {
-                //     this.addErrors = response.data.errors
-                //     return false
-                // }
-                // this.resetAddForm()
-                // if (response.status !== CREATED) {
-                //     this.$store.commit('error/setCode', response.status)
-                //     return false
-                // }
-                // const addTweet = response.data;
-                // this.autoTweets.push(addTweet)
-                // this.newModal = false
+            async addTweet() {
+                const response = await axios.post(`/api/tweet/${this.twitter_id}`, this.addForm);
+                if (response.status !== 200 || response.data === 500) {
+                    this.newModal = false;
+                    this.errorFlg = true;
+                    this.messageText = message.notUpdate;
+                }
+                if (response.data === 200) {
+                    this.newModal = false;
+                    // 再描画
+                    await this.fetchTweets();
+                }
             },
 
             /**
              * APIを使用して自動ツイートを編集する
              */
-            async editAutoTweet() {
-                // this.clearErrors()
-                // const response = await axios.put(`/api/tweet/${this.editForm.id}`, this.editForm)
-
-                // if (response.status === UNPROCESSABLE_ENTRY) {
-                //     this.editErrors = response.data.errors
-                //     return false
-                // }
-                // if (response.status !== OK) {
-                //     this.$store.commit('error/setCode', response.status)
-                //     return false
-                // }
-                // this.autoTweets.splice(this.editIndex, 1, response.data)
-                // this.resetEditForm()
+            async editTweet() {
+                const response = await axios.post(`/api/tweet/edit/${this.twitter_id}`, this.editForm);
+                if (response.status !== 200 || response.data === 500) {
+                    this.errorFlg = true;
+                    this.messageText = message.notGetData;
+                    this.resetEditForm();
+                }
+                if (response.data === 200) {
+                    // 再描画
+                    this.resetEditForm();
+                    await this.fetchTweets();
+                }
             },
-
             /**
              * 自動ツイート編集用のモーダルフォームを表示する
              * 表示した際に、自動ツイートのデータをフォームに入力しておく
              */
-            showEditModal(autoTweet, index) {
-                this.editModal = true
-                this.editForm.id = autoTweet.id
-                this.editForm.tweet = autoTweet.tweet
-                this.editForm.date = this.getYYYYMMDD(autoTweet.formatted_date)
-                this.editForm.time = this.getHHMM(autoTweet.formatted_date)
-                this.editIndex = index
+            showEditModal(tweet, index) {
+                this.editModal = true;
+                this.editForm.id = tweet.id;
+                this.editForm.tweet = tweet.tweet;
+                this.editForm.date = this.formatter(tweet.format_date);
+                this.editForm.time = this.getHHMM(tweet.format_date);
+                this.editIndex = index;
             },
-
+            /**
+             * 削除モーダル表示、indexを取得
+             */
+            remove(item, index) {
+                this.deleteOn = true;
+                this.deleteIndex = index;
+                this.deleteItem = item;
+            },
             /**
              * APIを使用して自動ツイートを削除する
              */
-            async removeAutoTweet(id, index) {
-                // const response = await axios.delete(`/api/tweet/${id}`)
-                // if (response.status !== OK) {
-                //     this.$store.commit('error/setCode', response.status)
-                //     return false
-                // }
-
-                this.autoTweets.splice(index, 1)
+            async removeTweet() {
+                const response = await axios.delete(`/api/tweet/${this.deleteItem.id}`);
+                if (response.status !== 200 || response.data === 500) {
+                    this.errorFlg = true;
+                    this.messageText = message.notGetData;
+                    this.deleteOn = false;
+                }
+                if (response.data === 200) {
+                    this.deleteOn = false;
+                    this.tweets.splice(this.deleteIndex, 1);
+                    // 再描画
+                    await this.fetchTweets();
+                }
             },
             /**
              * Datetime型をYYYY-MM-DD形式に変換する
-             * @param formatted_date
-             * @returns {string}
              */
-            getYYYYMMDD(formatted_date) {
-                const date = new Date(formatted_date)
-                const year = date.getFullYear()
-                const month = ("00" + (date.getMonth() + 1)).slice(-2)
-                const day = ("00" + date.getDate()).slice(-2)
-                return [year, month, day].join("-")
+            formatter(format_date) {
+                const date = new Date(format_date);
+                const year = date.getFullYear();
+                const month = ("00" + (date.getMonth() + 1)).slice(-2);
+                const day = ("00" + date.getDate()).slice(-2);
+                return [year, month, day].join("-");
             },
 
             /**
              * Datetime型をHH:MMの形式に変換する
              */
-            getHHMM(formatted_date) {
-                const date = new Date(formatted_date)
+            getHHMM(format_date) {
+                const date = new Date(format_date)
                 const hours = ("00" + date.getHours()).slice(-2)
                 const minutes = ("00" + date.getMinutes()).slice(-2)
                 return [hours, minutes].join(":")
@@ -295,69 +368,70 @@
              * 新規登録フォームのリセットを行う
              */
             resetAddForm() {
-                this.addForm.tweet = ''
-                this.addForm.date = ''
-                this.addForm.time = '00:00'
+                this.addForm.tweet = '';
+                this.addForm.date = '';
+                this.addForm.time = '00:00';
             },
             /**
              * 編集フォームのリセットを行う
              */
             resetEditForm() {
-                this.editModal = false
-                this.editForm.id = null
-                this.editForm.tweet = ''
-                this.editForm.date = ''
-                this.editForm.time = ''
-                this.editIndex = null
+                this.editModal = false;
+                this.editForm.id = null;
+                this.editForm.tweet = '';
+                this.editForm.date = '';
+                this.editForm.time = '';
+                this.editIndex = null;
             },
 
             /**
              * APIを使用して自動ツイートのサービスステータスを取得する
              */
             async fetchServiceStatus() {
-                // const response = await axios.get('/api/system/status')
-                // if (response.status !== OK) {
-                //     this.$store.commit('error/setCode', response.status)
-                //     return false
-                // }
-                // this.serviceStatus = response.data.auto_tweet_status
-                // this.serviceStatusLabel = response.data.status_labels.auto_tweet
-                this.serviceStatus = 1;
-                this.serviceStatusLabel = 'サービス停止中';
+                const response = await axios.get(`/api/system/status/${this.twitter_id}`);
+                if (response.status !== 200) {
+                    this.errorFlg = true;
+                    this.messageText = message.notGetData;
+                }
+                else {
+                    this.serviceSwitch = false;
+                    this.serviceStatus = response.data.auto_tweet_status;
+                    this.serviceStatusLabel = response.data.status_labels.auto_tweet;
+                }
             },
 
             /**
              * 自動ツイートサービスを稼働状態に変更する
              */
             async runTweetService() {
-                // const serviceType = 4
-                // const data = {type: serviceType}
-                // const response = await axios.post('/api/system/run', data)
-                // if (response.status !== OK) {
-                //     this.$store.commit('error/setCode', response.status)
-                //     return false
-                // }
-                // this.serviceStatus = response.data.auto_tweet_status
-                // this.serviceStatusLabel = response.data.status_labels.auto_tweet
-                this.serviceStatus = 2;
-                this.serviceStatusLabel = 'サービス稼働中';
+                const serviceType = 4;
+                const data = {type: serviceType, twitter_id: this.twitter_id};
+                const response = await axios.post('/api/system/running', data);
+                if (response.data === 500 || response.status !== 200) {
+                    this.errorFlg = true;
+                    this.messageText = message.notUpdate;
+                    this.serviceSwitch = false;
+                }
+                else{
+                    await this.fetchServiceStatus();
+                }
             },
 
             /**
              * 自動ツイートサービスを停止状態にする
              */
             async stopTweetService() {
-                // const serviceType = 4
-                // const data = {type: serviceType}
-                // const response = await axios.post('/api/system/stop', data)
-                // if (response.status !== OK) {
-                //     this.$store.commit('error/setCode', response.status)
-                //     return false
-                // }
-                // this.serviceStatus = response.data.auto_tweet_status
-                // this.serviceStatusLabel = response.data.status_labels.auto_tweet
-                this.serviceStatus = 1;
-                this.serviceStatusLabel = 'サービス停止中';
+                const serviceType = 4;
+                const data = {type: serviceType, twitter_id: this.twitter_id};
+                const response = await axios.post('/api/system/stop', data);
+                if (response.data === 500 || response.status !== 200) {
+                    this.errorFlg = true;
+                    this.messageText = message.notUpdate;
+                    this.serviceSwitch = false;
+                }
+                else{
+                    await this.fetchServiceStatus();
+                }
             },
             /**
              * フォームのエラーメッセージをクリアする
@@ -371,12 +445,21 @@
              */
             getCurrentPage() {
                 localStorage.setItem('page', this.page);
+            },
+            /**
+             * localstorageから現在使用しているtwitter_userのidを取得する
+             */
+            async getCurrentTwitterId() {
+                const storage = JSON.parse(localStorage.getItem('loginTwitterAccount'));
+                this.twitter_id = storage.id;
+                // console.log(this.twitter_id);
             }
         },
-        created() {
-            this.fetchAutoTweets()
-            this.fetchServiceStatus()
-            this.getCurrentPage();
+        async created() {
+            await this.getCurrentPage();
+            await this.getCurrentTwitterId();
+            await this.fetchServiceStatus();
+            await this.fetchTweets();
         },
     }
 

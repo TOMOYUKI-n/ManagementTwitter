@@ -133,12 +133,6 @@ img {
   }
 }
 
-.u-display__flex--left {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
 .page-enter {
   transform: translate(10%, 0);
   opacity: 0;
@@ -191,32 +185,6 @@ img {
   display: none;
 }
 
-.t-dashboard_panel-enter {
-  transform: translate(0);
-  opacity: 0;
-}
-
-.t-dashboard_panel-enter-to {
-  opacity: 1;
-}
-
-.t-dashboard_panel-enter-active {
-  transition: all 0.7s 0s ease;
-}
-
-.t-dashboard_panel-leave {
-  transform: translate(0);
-  opacity: 1;
-}
-
-.t-dashboard_panel-leave-to {
-  opacity: 0;
-}
-
-.t-dashboard_panel-leave-active {
-  display: none;
-}
-
 @media screen and (max-width: 960px) {
   footer {
     font-size: 17px;
@@ -232,7 +200,6 @@ img {
 }
 @media screen and (max-width: 960px) {
   .p-footer {
-    display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     font-size: 13px;
@@ -248,8 +215,9 @@ img {
 }
 @media screen and (max-width: 960px) {
   .p-footer__copyright {
+    position: relative;
+    top: 0px;
     font-size: 13px;
-    text-align: center;
     margin-top: 4px;
   }
 }
@@ -260,8 +228,9 @@ img {
 }
 @media screen and (max-width: 960px) {
   .p-footer__info {
+    position: relative;
+    top: 0px;
     font-size: 14px;
-    margin: 4px 16px 16px;
   }
 }
 .p-footer__menu {
@@ -272,7 +241,7 @@ img {
 }
 @media screen and (max-width: 960px) {
   .p-footer__list {
-    margin: 0px 4px;
+    margin: 8px 0px;
   }
 }
 .p-footer__href {
@@ -291,6 +260,7 @@ img {
 
 .l-navbar__main-wrap {
   width: 100%;
+  display: flex;
   justify-content: space-between;
   background: #1976D2;
   font-size: 1.4rem;
@@ -324,11 +294,18 @@ img {
 }
 .l-navbar__section {
   box-sizing: border-box;
+  display: block;
+  position: absolute;
+  right: 0px;
+  margin-right: 8px;
 }
 .l-navbar__list {
   font-size: 16px;
   display: inline-block;
   margin-right: 16px;
+}
+.l-navbar__list:hover {
+  cursor: pointer;
 }
 @media screen and (max-width: 960px) {
   .l-navbar__list {
@@ -422,6 +399,11 @@ img {
     width: 100%;
     display: block;
   }
+}
+.l-base-head {
+  position: absolute;
+  width: 100%;
+  display: block;
 }
 
 .l-main-container {
@@ -815,6 +797,8 @@ img {
     width: 100%;
     padding: 20px;
     margin: 2.5%;
+    position: relative;
+    top: -50px;
   }
 }
 .p-modal__cancel {
@@ -836,7 +820,24 @@ img {
     display: block;
   }
 }
-.p-board__sidebar {
+.p-board__sidebar-sp {
+  display: none;
+}
+@media screen and (max-width: 960px) {
+  .p-board__sidebar-sp {
+    display: none;
+  }
+  .p-board__sidebar-sp.active {
+    width: 100%;
+    color: #fff;
+    background-color: #333;
+    min-height: 93vh;
+    display: block;
+    transform: translateX(0px);
+    transition: all 0.5s ease-in-out;
+  }
+}
+.p-board__sidebar-pc {
   width: 20%;
   color: #fff;
   background-color: #333;
@@ -844,7 +845,7 @@ img {
   display: grid;
 }
 @media screen and (max-width: 960px) {
-  .p-board__sidebar {
+  .p-board__sidebar-pc {
     display: none;
   }
 }
@@ -885,6 +886,7 @@ img {
   .p-board__body {
     width: 100%;
     display: block;
+    position: fixed;
   }
 }
 @media screen and (max-width: 960px) {
@@ -922,6 +924,54 @@ img {
     background: rgba(57, 157, 224, 0.2);
   }
 }
+.side-enter {
+  opacity: 0;
+}
+
+.side-enter-to {
+  opacity: 1;
+}
+
+.side-enter-active {
+  transition: all 0.7s 0s ease;
+}
+
+.side-leave {
+  opacity: 1;
+}
+
+.side-leave-to {
+  opacity: 0;
+}
+
+.side-leave-active {
+  transition: all 0.2s 0s ease;
+}
+
+.t-dashboard_panel-enter {
+  opacity: 0;
+}
+
+.t-dashboard_panel-enter-to {
+  opacity: 1;
+}
+
+.t-dashboard_panel-enter-active {
+  transition: all 0.7s 0s ease;
+}
+
+.t-dashboard_panel-leave {
+  opacity: 1;
+}
+
+.t-dashboard_panel-leave-to {
+  opacity: 0;
+}
+
+.t-dashboard_panel-leave-active {
+  display: none;
+}
+
 .p-login__inputError {
   color: red;
   font-size: 13px;
@@ -1582,6 +1632,11 @@ img {
   border: 1px solid #3335;
   border-radius: 5px;
 }
+@media screen and (max-width: 960px) {
+  .p-form__date {
+    width: 100%;
+  }
+}
 .p-form__button {
   text-align: right;
   transition: 0.3s;
@@ -1683,4 +1738,15 @@ img {
 
 .u-color__bg--white {
   background: #fff;
+}
+
+.u-display__flex--left {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+@media screen and (max-width: 960px) {
+  .u-display__flex--left {
+    display: block;
+  }
 }

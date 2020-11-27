@@ -13,7 +13,7 @@ nav{
     &__main-wrap{
         width: 100%;
         // height: 7vh;
-        // display: grid;
+        display: flex;
         justify-content: space-between;
         background: #1976D2;
         font-size: 1.4rem;
@@ -43,11 +43,18 @@ nav{
     }
     &__section{
         box-sizing: border-box;
+        display: block;
+        position: absolute;
+        right: 0px;
+        margin-right: 8px;
     }
     &__list{
         font-size: 16px;
         display: inline-block;
         margin-right: 16px;
+        &:hover{
+            cursor: pointer;
+        }
         @include mq(){
             margin: 20px auto;
         }

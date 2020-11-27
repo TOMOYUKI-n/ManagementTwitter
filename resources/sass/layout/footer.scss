@@ -13,7 +13,7 @@ footer{
 .p-footer{
     font-size: 12px;
     @include mq(){
-        display: flex;
+        //display: flex;
         flex-direction: column;
         flex-wrap: wrap;
         font-size: 13px;
@@ -26,8 +26,10 @@ footer{
         position: relative;
         top: 50px;
         @include mq(){
+            position: relative;
+            top: 0px;
             font-size: 13px;
-            text-align: center;
+            //text-align: center;
             margin-top: 4px;
         }
     }
@@ -36,8 +38,10 @@ footer{
         position: relative;
         top: 50px;
         @include mq(){
+            position: relative;
+            top: 0px;
             font-size: 14px;
-            margin: 4px 16px 16px;
+            //margin: 4px 16px 16px;
         }
     }
     &__menu{
@@ -46,7 +50,7 @@ footer{
     &__list{
         margin-top: 8px;
         @include mq(){
-            margin: 0px 4px;
+            margin: 8px 0px;
         }
     }
     &__href{

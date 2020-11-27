@@ -1,7 +1,8 @@
 <?php
 
 namespace App;
-
+use App\Notifications\PasswordResetNotification;
+use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -43,6 +44,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+   
+    //メソッドのオーバーライド
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new PasswordResetNotification($token));
+    }
 
     /**
      * twitter_usersテーブル
@@ -74,5 +81,21 @@ class User extends Authenticatable
     public function systemManagers()
     {
         return $this->hasMany('App\SystemManages', 'user_id');
+    }
+
+    /**
+     * likesテーブル
+     */
+    public function likes()
+    {
+        return $this->hasMany('App\Like', 'user_id');
+    }
+
+    /**
+     * tweetsテーブル
+     */
+    public function tweets()
+    {
+        return $this->hasMany('App\Tweet', 'user_id');
     }
 }

@@ -13,5 +13,6 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(twitterUserSeeder::class);
         $this->call(ManagementSeeder::class);
+        $this->call(LikesSeeder::class);
     }
 }

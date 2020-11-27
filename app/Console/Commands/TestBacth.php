@@ -13,6 +13,7 @@ use Carbon\Carbon;
 use App\Keyword;
 use App\TwitterUser;
 use App\Management;
+use App\Tweet;
 
 class TestBacth extends Command
 {
@@ -47,8 +48,21 @@ class TestBacth extends Command
      */
     public function handle()
     {
+        // $tweets = Tweet::where('twitter_user_id', 6044)->whereDate('date', '>', '2020-11-18 00:16:49')->orderBy('date')->get();
+        // $tweet_num = Tweet::where('twitter_user_id', 6044)->whereDate('date', '>', '2020-11-18 00:16:49')->orderBy('date')->count();
+        // Log::Debug($tweet_num);
+        // var_dump($tweets);
 
-        $system_manager = Management::where('twitter_user_id', 113477987)->first();
-        var_dump($system_manager);
+        // $d = '2020-11-18 00:16:00';
+        // $date = new \DateTime($d);
+        
+        // $able = $date->format('Y-m-d H:i');
+        // Log::debug($able);
+        $tweet = new Tweet();
+        $tweet->user_id = 1;
+        $tweet->twitter_user_id = 6044;
+        $tweet->tweet = 'サクナヒメからお米がどれだけつくるのが大変なのかわかった気がする';
+        $tweet->date = '2020-11-30 00:10';
+        $tweet->save();
     }
 }

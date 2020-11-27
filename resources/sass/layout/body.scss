@@ -37,77 +37,51 @@
         }
     }
 }
-  
-.u-display__flex--left{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
 
-  //page
+//page
 .page-enter {
     transform: translate(10%, 0);
     opacity: 0;
-  }
-  .page-enter-to {
+}
+.page-enter-to {
     opacity: 1;
-  }
-  .page-enter-active {
+}
+.page-enter-active {
     transition: all .7s 0s ease;
-  }
-  .page-leave {
+}
+.page-leave {
     transform: translate(0, 0);
     opacity: 1;
-  }
-  .page-leave-to {
+}
+.page-leave-to {
     transform: translate(-10%, 0);
     opacity: 0;
-  }
-  .page-leave-active {
+}
+.page-leave-active {
     transition: all .3s 0s ease;
-  }
-  
-  
-  
-  // t-del
-  .t-del-enter {
-   opacity: 0;
-  }
-  .t-del-enter-to {
-   opacity: 1;
-  }
-  .t-del-enter-active {
-   transition: all .5s 0s ease-out;
-  }
-  .t-del-leave {
-    opacity: 1;
-  }
-  .t-del-leave-to {
+}
+
+
+
+// t-del
+.t-del-enter {
     opacity: 0;
-  }
-  .t-del-leave-active {
+}
+.t-del-enter-to {
+    opacity: 1;
+}
+.t-del-enter-active {
+    transition: all .5s 0s ease-out;
+}
+.t-del-leave {
+    opacity: 1;
+}
+.t-del-leave-to {
+    opacity: 0;
+}
+.t-del-leave-active {
     transition: all 0s 0s;
     display: none;
-  }
+}
   
-  // dashboard-panel
-  .t-dashboard_panel-enter {
-    transform: translate(0);
-    opacity: 0;
-  }
-  .t-dashboard_panel-enter-to {
-    opacity: 1;
-  }
-  .t-dashboard_panel-enter-active {
-    transition: all .7s 0s ease;
-  }
-  .t-dashboard_panel-leave {
-    transform: translate(0);
-    opacity: 1;
-  }
-  .t-dashboard_panel-leave-to {
-    opacity: 0;
-  }
-  .t-dashboard_panel-leave-active {
-    display: none;
-  }
+
