@@ -1,19 +1,32 @@
 <?php
 
 namespace App\Console\Commands;
-
+use Carbon\Carbon;
+use App\User;
+use App\Keyword;
+use App\TwitterUser;
+use App\Management;
+use App\Tweet;
+use App\FollowTarget;
+use App\FollowerTarget;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\CompleteAutoFollow;
 use Abraham\TwitterOAuth\TwitterOAuth;
-use App\User;
-use Carbon\Carbon;
-use App\Keyword;
-use App\TwitterUser;
-use App\Management;
-use App\Tweet;
+use App\Http\Components\ApiHandle;
+use App\Http\Components\FollowService;
+
+// アカウント凍結mail class
+// use App\Mail\SuspendedTwitterAccount;
+use App\Mail\StopTwitterAccountMail;
+
+// API上限時 mail class
+// use App\Mail\ExceededLimit;
+use App\Mail\LimitApiMail;
 
 class TestBacth extends Command
 {
@@ -48,21 +61,13 @@ class TestBacth extends Command
      */
     public function handle()
     {
-        // $tweets = Tweet::where('twitter_user_id', 6044)->whereDate('date', '>', '2020-11-18 00:16:49')->orderBy('date')->get();
-        // $tweet_num = Tweet::where('twitter_user_id', 6044)->whereDate('date', '>', '2020-11-18 00:16:49')->orderBy('date')->count();
-        // Log::Debug($tweet_num);
-        // var_dump($tweets);
+        $manager = Management::find(11)->with('user')->first();
+        $twitter_user = TwitterUser::find(113477987)->first();
+        Log::Debug("manager", [$manager]);
+        Log::Debug("twitter_user", [$twitter_user]);
+        $user = $manager->user;
+        Log::Debug("user", [$user]);
+        Mail::to($user)->send(new CompleteAutoFollow($user, $twitter_user));
 
-        // $d = '2020-11-18 00:16:00';
-        // $date = new \DateTime($d);
-        
-        // $able = $date->format('Y-m-d H:i');
-        // Log::debug($able);
-        $tweet = new Tweet();
-        $tweet->user_id = 1;
-        $tweet->twitter_user_id = 6044;
-        $tweet->tweet = 'サクナヒメからお米がどれだけつくるのが大変なのかわかった気がする';
-        $tweet->date = '2020-11-30 00:10';
-        $tweet->save();
     }
 }

@@ -4,13 +4,13 @@
 
     <div class="p-board__wrap">
         <!-- sp -->
-        <div class="p-board__sidebar-sp js_toggle" key="side">
+        <div class="p-board__sidebar-sp js_toggle">
             <sidebar-component　@change-page="change" @twitter-id="setId" />
             <footer-component />
         </div>
 
         <!-- pc -->
-        <div class="p-board__sidebar-pc" key="side">
+        <div class="p-board__sidebar-pc">
             <sidebar-component　@change-page="change" @twitter-id="setId" />
             <footer-component />
         </div>

@@ -7646,7 +7646,7 @@ var render = function() {
     _c("div", { staticClass: "p-board__wrap" }, [
       _c(
         "div",
-        { key: "side", staticClass: "p-board__sidebar-sp js_toggle" },
+        { staticClass: "p-board__sidebar-sp js_toggle" },
         [
           _c("sidebar-component", {
             on: { "change-page": _vm.change, "twitter-id": _vm.setId }
@@ -7659,7 +7659,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "div",
-        { key: "side", staticClass: "p-board__sidebar-pc" },
+        { staticClass: "p-board__sidebar-pc" },
         [
           _c("sidebar-component", {
             on: { "change-page": _vm.change, "twitter-id": _vm.setId }
@@ -9899,9 +9899,7 @@ var staticRenderFns = [
         _vm._v("いいね条件")
       ]),
       _vm._v(" "),
-      _c("th", { staticClass: "p-table__th p-table__th--like" }, [
-        _vm._v("操作")
-      ])
+      _c("th", { staticClass: "p-table__th p-table__th--like" })
     ])
   },
   function() {
