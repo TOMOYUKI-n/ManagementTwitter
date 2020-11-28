@@ -181,8 +181,7 @@ return [
         /**
          * my twitter app
          */
-        App\Providers\TwitterApiServiceProvider::class,
-        App\Providers\FollowServiceProvider::class,
+
     ],
 
     /*

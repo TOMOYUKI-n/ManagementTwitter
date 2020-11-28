@@ -15,11 +15,18 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\SuspendedTwitterAccount;
-use App\Mail\ExceededLimit;
+use App\Mail\CompleteAutoFollow;
 use Abraham\TwitterOAuth\TwitterOAuth;
 use App\Http\Components\ApiHandle;
 use App\Http\Components\FollowService;
+
+// アカウント凍結mail class
+// use App\Mail\SuspendedTwitterAccount;
+use App\Mail\StopTwitterAccountMail;
+
+// API上限時 mail class
+// use App\Mail\ExceededLimit;
+use App\Mail\LimitApiMail;
 
 class TestBacth extends Command
 {
@@ -47,27 +54,6 @@ class TestBacth extends Command
         parent::__construct();
     }
 
-
-    // API URL
-    const ApiFollowersList = 'followers/list';
-    const ApiFollow = 'friendships/create';
-
-    // フォロー回数を決めるのに使用
-    const IntervalHours = 2;
-    const ApiPerDay = 24 / self::IntervalHours;
-
-    // フォロワー数に応じた一日のフォロー上限数 FOLLOW_RATE_PER_DAY
-    const FollowLimmitPerDay = [
-        "100" => 20,
-        "500" => 24,
-        "1000" => 40,
-        "1500" => 50,
-        "2000" => 50,
-        "3000" => 50,
-    ];
-    // フォロー上限MAX
-    const FollowLimitMax = 50;
-
     /**
      * Execute the console command.
      *
@@ -75,10 +61,13 @@ class TestBacth extends Command
      */
     public function handle()
     {
-        $manager = Management::find($management_id)->with('user')->first();
-        $twitter_user = TwitterUser::find($twitter_user_id)->first();
+        $manager = Management::find(11)->with('user')->first();
+        $twitter_user = TwitterUser::find(113477987)->first();
+        Log::Debug("manager", [$manager]);
+        Log::Debug("twitter_user", [$twitter_user]);
         $user = $manager->user;
-        Mail::to($user)->send(new CompleteFollow($user, $twitter_user));
+        Log::Debug("user", [$user]);
+        Mail::to($user)->send(new CompleteAutoFollow($user, $twitter_user));
 
     }
 }

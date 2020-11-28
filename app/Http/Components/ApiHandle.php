@@ -3,8 +3,8 @@
 namespace App\Http\Components;
 
 use Abraham\TwitterOAuth\TwitterOAuth;
-// use App\Mail\ExceededLimit;
-// use App\Mail\SuspendedTwitterAccount;
+use App\Mail\ExceededLimit;
+use App\Mail\SuspendedTwitterAccount;
 use App\Management;
 use App\TwitterUser;
 use Illuminate\Support\Facades\Mail;

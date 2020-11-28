@@ -5,14 +5,15 @@ use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\SuspendedTwitterAccount;
-use App\Mail\ExceededLimit;
 use App\Http\Components\ApiHandle;
 use App\Http\Components\FollowService;
 use App\Management;
 use App\TwitterUser;
 use App\FollowsRepository;
 use App\FollowerTarget;
+use App\Mail\CompleteAutoFollow;
+use App\Mail\StopTwitterAccountMail;
+use App\Mail\LimitApiMail;
 
 class AutoFollowBatch extends Command
 {
@@ -61,9 +62,10 @@ class AutoFollowBatch extends Command
     const FollowLimitMax = 50;
 
     /**
-     * フォロワーターゲットリストを作成して自動フォローを行う。
+     * 自動フォローを行う
+     * フォロワーターゲットリスト用の処理は別ファイルに記述.
+     * 
      * フォロー後にフォロワーターゲットリストからフォローヒストリーにデータをコピーする。
-     * @return mixed
      */
     public function handle()
     {
@@ -77,28 +79,28 @@ class AutoFollowBatch extends Command
         foreach ($running_list as $item) {
             $management_id = $item->id;
             $twitter_user_id = $item->twitter_user_id;
-            // Log::Debug("management_id : ", [$management_id]);
-            // Log::Debug("twitter_user_id : ", [$twitter_user_id]);
+            Log::Debug("management_id : ", [$management_id]);
+            Log::Debug("twitter_user_id : ", [$twitter_user_id]);
 
-            // /**
-            //  * ターゲットリストの作成
-            //  */
-            // // 最後に作成されたフォロワーターゲットリストのcursorカラムを見て
-            // // フォロワーターゲットリストを作る必要があるかないかを判定する
-            // $follower_target_list_latest = FollowerTarget::where("twitter_user_id", $twitter_user_id)->latest()->first();
+            /**
+             * ターゲットリストの作成
+             */
+            // 最後に作成されたフォロワーターゲットリストのcursorカラムを見て
+            // フォロワーターゲットリストを作る必要があるかないかを判定する
+            $follower_target_list_latest = FollowerTarget::where("twitter_user_id", $twitter_user_id)->latest()->first();
 
-            // if (!empty($follower_target_list_latest)) {
-            //     $follower_cursor = $follower_target_list_latest->cursor;
-            // }
-            // else {
-            //     $follower_cursor = null;
-            // }
-            // Log::Debug("cursor : ", [$follower_cursor]);
+            if (!empty($follower_target_list_latest)) {
+                $follower_cursor = $follower_target_list_latest->cursor;
+            }
+            else {
+                $follower_cursor = null;
+            }
+            Log::Debug("cursor : ", [$follower_cursor]);
 
-            // // フォロワーターゲットリストが未作成、作成途中の場合はリストを作成する
-            // if (is_null($follower_cursor) || $follower_cursor !== "0") {
-            //     $this->makeFollowerTargetList($management_id, $twitter_user_id, $follower_cursor);
-            // }
+            // フォロワーターゲットリストが未作成、作成途中の場合はリストを作成する
+            if (is_null($follower_cursor) || $follower_cursor !== "0") {
+                $this->makeFollowerTargetList($management_id, $twitter_user_id, $follower_cursor);
+            }
 
             /**
              * ここから自動フォロー処理

@@ -15,10 +15,7 @@ use App\FollowTarget;
 use App\UnfollowsRepository;
 
 /**
- * TwitterAPIを実行するクラス
- * TwitterAPIがエラーになった場合のハンドリングも行う
- * Class TwitterApi
- * @package App\Http\Components
+ * フォロワーターゲットリストを作成するクラス
  */
 class FollowService
 {
