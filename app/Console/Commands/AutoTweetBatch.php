@@ -41,8 +41,8 @@ class AutoTweetBatch extends Command
         // 1分ごとにチェック
         for($i = 0; $i < 9; $i++){
             Log::Debug("AutoTweet:".$i."回目実行");
-            //auto_follow_statusが稼動中のステータスになっているレコードを取得する
-            $running_list = Management::where("auto_follow_status", Management::RUNNING)->get();
+            // auto_tweet_statusが稼動中のステータスになっているレコードを取得する
+            $running_list = Management::where("auto_tweet_status", Management::RUNNING)->get();
 
             foreach ($running_list as $item) {
                 $management_id = $item->id;
