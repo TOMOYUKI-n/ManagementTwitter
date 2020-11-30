@@ -2704,7 +2704,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
      */
     showEditModal: function showEditModal(followTarget, index) {
       this.editModal = true;
-      this.editForm.id = followTarget.twitter_user_id;
+      this.editForm.id = followTarget.id;
       this.editForm.account_user_name = followTarget.account_user_name;
       this.editForm.keyword_id = followTarget.keyword_id;
       this.editIndex = index;
@@ -2723,7 +2723,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context4.prev = _context4.next) {
               case 0:
                 _context4.next = 2;
-                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.put("/api/follow/".concat(_this4.editForm.id), _this4.editForm);
+                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.put("/api/follow/edit", _this4.editForm);
 
               case 2:
                 response = _context4.sent;
@@ -2849,7 +2849,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 2:
                 response = _context6.sent;
 
-                // console.log(response);
                 if (response.status !== 200) {
                   _this6.errorFlg = true;
                   _this6.messageText = _message__WEBPACK_IMPORTED_MODULE_2__["message"].notGetData;
@@ -3318,24 +3317,33 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 2:
                 response = _context3.sent;
 
-                if (!(response.status !== 200 || response.data === 500)) {
-                  _context3.next = 8;
+                if (response.status !== 200 || response.data === 500) {
+                  _this3.errorFlg = true;
+                  _this3.messageText = _message__WEBPACK_IMPORTED_MODULE_3__["message"].notGetData;
+                  _this3.editModal = false;
+                }
+
+                if (!(response.data === 404)) {
+                  _context3.next = 10;
                   break;
                 }
 
                 _this3.errorFlg = true;
-                _this3.messageText = _message__WEBPACK_IMPORTED_MODULE_3__["message"].notGetData;
-                _context3.next = 11;
+                _this3.messageText = _message__WEBPACK_IMPORTED_MODULE_3__["message"].notAllowedToChangeKeyword;
+                _this3.editModal = false;
+                _context3.next = 14;
                 break;
 
-              case 8:
-                _context3.next = 10;
+              case 10:
+                _context3.next = 12;
                 return _this3.fetchKeywords();
 
-              case 10:
+              case 12:
                 _this3.resetEditForm();
 
-              case 11:
+                _this3.errorFlg = false;
+
+              case 14:
               case "end":
                 return _context3.stop();
             }
@@ -4922,7 +4930,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 2:
                 response = _context.sent;
 
-                // console.log(response);
                 if (response.status !== 200) {
                   _this.errorFlg = true;
                   _this.messageText = _message__WEBPACK_IMPORTED_MODULE_1__["message"].notGetData;
@@ -8052,23 +8059,26 @@ var render = function() {
             _c("td", { staticClass: "p-table__td" }, [
               _c("div", { staticClass: "p-table__action" }, [
                 _c("div", { staticClass: "p-table__btn-wrap" }, [
-                  _c(
-                    "button",
-                    {
-                      staticClass: "c-button c-button--twitter p-table__button",
-                      on: {
-                        click: function($event) {
-                          return _vm.showEditModal(followTarget, index)
-                        }
-                      }
-                    },
-                    [
-                      _c("i", {
-                        staticClass:
-                          "c__color--blue fas fa-pen p-table__test-xs"
-                      })
-                    ]
-                  ),
+                  followTarget.status_label !== "リスト作成済"
+                    ? _c(
+                        "button",
+                        {
+                          staticClass:
+                            "c-button c-button--twitter p-table__button",
+                          on: {
+                            click: function($event) {
+                              return _vm.showEditModal(followTarget, index)
+                            }
+                          }
+                        },
+                        [
+                          _c("i", {
+                            staticClass:
+                              "c__color--blue fas fa-pen p-table__test-xs"
+                          })
+                        ]
+                      )
+                    : _vm._e(),
                   _vm._v(" "),
                   _c(
                     "button",
@@ -24252,7 +24262,8 @@ var message = {
   disConnect: '接続ができませんでした。再度実行してください。',
   notGetData: 'データが取得できませんでした。再度時間を置いて更新してください。',
   notDelete: '正常に通信することができませんでした。画面を再度更新してください。',
-  notUpdate: '更新できませんでした。時間を置いて再度更新してください。'
+  notUpdate: '更新できませんでした。時間を置いて再度更新してください。',
+  notAllowedToChangeKeyword: '既に自動フォロー機能にてご利用されておりますので、変更はできません。'
 };
 
 /***/ }),
@@ -24308,85 +24319,37 @@ var loginUserInfo = [{
  */
 
 var twitterAccount = [{
-  id: 6044,
-  screen_name: 'tomo',
-  name: 'tomo',
+  id: 1,
+  screen_name: 'cryptodev14',
+  name: 'cryptodev14',
   thumbnail: '',
   follows: 500,
   followers: 3400
 }, {
-  id: 12425,
-  screen_name: 'Nayeli Stracke',
-  name: 'Nayeli Stracke',
-  thumbnail: '',
-  follows: 400,
-  followers: 300
-}, {
-  id: 59319,
-  screen_name: 'Mrs. Meagan Mraz',
-  name: 'Mrs. Meagan Mraz',
-  thumbnail: '',
-  follows: 550,
-  followers: 30
-}, {
-  id: 63407,
-  screen_name: 'Fabiola Feest',
-  name: 'Fabiola Feest',
-  thumbnail: '',
-  follows: 343,
-  followers: 340
-}, {
-  id: 86713,
-  screen_name: 'Aliza Beier',
-  name: 'Aliza Beier',
-  thumbnail: '',
-  follows: 5,
-  followers: 34
-}, {
-  id: 92887,
-  screen_name: 'Annamae Cummerata',
-  name: 'Annamae Cummerata',
-  thumbnail: '',
-  follows: 1100,
-  followers: 5000
-}, {
-  id: 711157,
-  screen_name: 'Jaunita Upton IV',
-  name: 'Jaunita Upton IV',
-  thumbnail: '',
-  follows: 11900,
-  followers: 3000
-}, {
-  id: 5240583,
-  screen_name: 'Dr. Milford Grant',
-  name: 'Dr. Milford Grant',
-  thumbnail: '',
-  follows: 22,
-  followers: 567
-}, {
-  id: 113477983,
-  screen_name: 'Elody Halvorson',
-  name: 'Elody Halvorson',
-  thumbnail: '',
-  follows: 33,
-  followers: 5543
-}, {
-  id: 113477987,
+  id: 2,
   screen_name: 'tomozo01v',
   name: 'tomozo01v',
   thumbnail: '',
-  follows: 112,
-  followers: 322
-}];
+  follows: 400,
+  followers: 300
+} // {id: 59319, screen_name: 'Mrs. Meagan Mraz', name: 'Mrs. Meagan Mraz', thumbnail: '', follows: 550, followers: 30},
+// {id: 63407, screen_name: 'Fabiola Feest', name: 'Fabiola Feest', thumbnail: '', follows: 343, followers: 340},
+// {id: 86713, screen_name: 'Aliza Beier', name: 'Aliza Beier', thumbnail: '', follows: 5, followers: 34},
+// {id: 92887, screen_name: 'Annamae Cummerata', name: 'Annamae Cummerata', thumbnail: '', follows: 1100, followers: 5000},
+// {id: 711157, screen_name: 'Jaunita Upton IV', name: 'Jaunita Upton IV', thumbnail: '', follows: 11900, followers: 3000},
+// {id: 5240583, screen_name: 'Dr. Milford Grant', name: 'Dr. Milford Grant', thumbnail: '', follows: 22, followers: 567},
+// {id: 113477983, screen_name: 'Elody Halvorson', name: 'Elody Halvorson', thumbnail: '', follows: 33, followers: 5543},
+// {id: 113477987, screen_name: 'tomozo01v', name: 'tomozo01v', thumbnail: '', follows: 112, followers: 322},
+];
 /**
  * 切り替えたアカウントでtwitter APIを利用する際に取得が必要
  * twitter_users_tableの中身
  */
 
 var twitterUsersTable = [{
-  id: 4,
+  id: 1,
   user_id: 1,
-  token: 'tomozo01v',
+  token: 'test',
   token_secret: 'token_secret_xxxhhskjosekjag'
 }];
 /**

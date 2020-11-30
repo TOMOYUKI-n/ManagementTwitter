@@ -49,7 +49,6 @@
              */
             async fetchServiceStatus() {
                 const response = await axios.get(`/api/system/status/${this.twitter_id}`);
-                // console.log(response);
                 if (response.status !== 200) {
                     this.errorFlg = true;
                     this.messageText = message.notGetData;

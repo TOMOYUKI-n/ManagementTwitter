@@ -209,11 +209,18 @@
                 if (response.status !== 200 || response.data === 500) {
                     this.errorFlg = true;
                     this.messageText = message.notGetData;
+                    this.editModal = false;
+                }
+                if (response.data === 404) {
+                    this.errorFlg = true;
+                    this.messageText = message.notAllowedToChangeKeyword;
+                    this.editModal = false;
                 }
                 else {
                     // 一覧を更新
                     await this.fetchKeywords();
                     this.resetEditForm();
+                    this.errorFlg = false;
                 }
             },
             /**
