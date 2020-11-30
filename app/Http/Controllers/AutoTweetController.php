@@ -33,13 +33,13 @@ class AutoTweetController extends Controller
 
             $before_days = Carbon::now()->addDay(-7);
             $tweets = Tweet::where('twitter_user_id', $twitter_user_id)
-                                // ->whereDate('date', '>', $before_days)
-                                // ->orderBy('date')
+                                ->whereDate('date', '>', $before_days)
+                                ->orderBy('date')
                                 ->get();
 
             $tweets_num = Tweet::where('twitter_user_id', $twitter_user_id)
-                                // ->whereDate('date', '>', $before_days)
-                                // ->orderBy('date')
+                                ->whereDate('date', '>', $before_days)
+                                ->orderBy('date')
                                 ->count();
             return array($tweets, $tweets_num);
         }
@@ -57,12 +57,11 @@ class AutoTweetController extends Controller
         $d = $request->date;
         $t = $request->time;
         $s = ' ';
+        $twitter_user_id = $id;
+        $date_time = $d.$s.$t;
+        $user_id = Auth::id();
 
         try {
-            $twitter_user_id = $id;
-            $date_time = $d.$s.$t;
-            $user_id = Auth::id();
-
             $tweet = new Tweet();
             $tweet->user_id = $user_id;
             $tweet->twitter_user_id = $twitter_user_id;

@@ -69,7 +69,7 @@ Route::group(['middleware' => 'auth'], function() {
      */
     Route::get('/api/follow/list/{id}', 'FollowController@list')->name('follow.list');
     Route::post('/api/follow/{id}', 'FollowController@add')->name('follow.add');
-    Route::put('/api/follow/{id}', 'FollowController@edit')->name('follow.edit');
+    Route::put('/api/follow/edit', 'FollowController@edit')->name('follow.edit');
     Route::post('/api/follow/delete/{id}', 'FollowController@delete')->name('follow.delete');
 
 

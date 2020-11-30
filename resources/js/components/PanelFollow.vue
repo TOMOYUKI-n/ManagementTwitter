@@ -43,7 +43,7 @@
                 <td class="p-table__td">
                     <div class="p-table__action">
                         <div class="p-table__btn-wrap">
-                            <button class="c-button c-button--twitter p-table__button"
+                            <button v-if="followTarget.status_label !== 'リスト作成済'" class="c-button c-button--twitter p-table__button"
                                     @click="showEditModal(followTarget, index)"
                             >
                                 <i class="c__color--blue fas fa-pen p-table__test-xs"></i>
@@ -116,7 +116,7 @@
                         </select>
 
                         <div class="p-form__button">
-                            <button type="submit" class="c-button c-button--twitter">編集</button>
+                            <button type="submit" class="c-button c-button--twitter" >編集</button>
                         </div>
                     </form>
                 </div>
@@ -259,7 +259,7 @@
              */
             showEditModal(followTarget, index) {
                 this.editModal = true;
-                this.editForm.id = followTarget.twitter_user_id;
+                this.editForm.id = followTarget.id;
                 this.editForm.account_user_name = followTarget.account_user_name;
                 this.editForm.keyword_id = followTarget.keyword_id;
                 this.editIndex = index;
@@ -268,7 +268,7 @@
              * フォーローターゲットを編集する
              */
             async editFollowTarget() {
-                const response = await axios.put(`/api/follow/${this.editForm.id}`, this.editForm);
+                const response = await axios.put(`/api/follow/edit`, this.editForm);
                 if (response.status !== 200 || response.data === 500) {
                     this.errorFlg = true;
                     this.messageText = message.notGetData;
@@ -326,7 +326,7 @@
              */
             async fetchServiceStatus() {
                 const response = await axios.get(`/api/system/status/${this.twitter_id}`);
-                // console.log(response);
+
                 if (response.status !== 200) {
                     this.errorFlg = true;
                     this.messageText = message.notGetData;

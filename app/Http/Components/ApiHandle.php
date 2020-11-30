@@ -3,12 +3,12 @@
 namespace App\Http\Components;
 
 use Abraham\TwitterOAuth\TwitterOAuth;
-use App\Mail\ExceededLimit;
-use App\Mail\SuspendedTwitterAccount;
 use App\Management;
 use App\TwitterUser;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Log;
+use App\Mail\StopTwitterAccountMail;
+use App\Mail\LimitApiMail;
 
 /**
  * TwitterAPIを実行するクラス
@@ -19,10 +19,10 @@ use Illuminate\Support\Facades\Log;
 class ApiHandle
 {
     //APIエラーコード
-    const ERROR_CODE_NOTFOUND = 34;
+    const ERROR_CODE_NOTFOUND = 34; //指定されたリソースが見つかりませんでした
     const ERROR_CODE_NOUSER = 50;
     const ERROR_CODE_SUSPENDED = 63;
-    const ERROR_CODE_LIMIT_EXCEEDED = 88;
+    const ERROR_CODE_LIMIT_EXCEEDED = 88; // このリソースのリクエスト制限が、現在の速度制限枠の上限に達しました。
 
     const CredentialApi = 'account/verify_credentials';
     const UsersShowApi = 'users/show';
@@ -39,7 +39,9 @@ class ApiHandle
         $config = config('twitter');
         $Twitter_connection = new TwitterOAuth($config['api_key'], $config['secret_key'], $access_token, $access_token_secret);
 
+        // タイムアウトエラーが発生した場合のデフォルトタイム変更
         $Twitter_connection->setTimeouts(3, 15);
+
         //POST API実行
         if ($method === 'POST') {
             $twitter_api_result = $Twitter_connection->post($url, $options);
@@ -72,15 +74,17 @@ class ApiHandle
                     //すべてのサービスを停止
                     Management::stopAllServices($management_id);
                     //メールで凍結を通知
-                    //self::sendMail($management_id, $twitter_user_id, self::ERROR_CODE_SUSPENDED);
                     Log::Debug("メールで凍結を通知");
+                    self::sendMail($management_id, $twitter_user_id, self::ERROR_CODE_SUSPENDED);
+
                     return true;
                 }
                 //レート制限時の処理
                 if ($error->code === self::ERROR_CODE_LIMIT_EXCEEDED) {
                     //メールでレート制限を通知
-                    // self::sendMail($management_id, $twitter_user_id, self::ERROR_CODE_LIMIT_EXCEEDED);
                     Log::Debug("メールでレート制限を通知");
+                    self::sendMail($management_id, $twitter_user_id, self::ERROR_CODE_LIMIT_EXCEEDED);
+
                     return true;
                 }
                 //ページがない場合の処理
@@ -112,10 +116,10 @@ class ApiHandle
 
         if ($mail_type === self::ERROR_CODE_SUSPENDED) {
             //凍結の場合のメール送信
-            Mail::to($user)->send(new SuspendedTwitterAccount($user, $twitter_user));
+            Mail::to($user)->send(new StopTwitterAccountMail($user, $twitter_user));
         } else if ($mail_type === self::ERROR_CODE_LIMIT_EXCEEDED) {
             //API制限の場合のメール送信
-            Mail::to($user)->send(new ExceededLimit($user, $twitter_user));
+            Mail::to($user)->send(new LimitApiMail($user, $twitter_user));
         }
     }
 

@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Keyword;
+use App\TwitterUser;
+use App\FollowTarget;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
-use App\TwitterUser;
 
 class KeywordController extends Controller
 {
@@ -18,7 +19,8 @@ class KeywordController extends Controller
      */
     const CODE = [
         0 => ["status" => 200],
-        1 => ["status" => 500]
+        1 => ["status" => 500],
+        2 => ["status" => 404],
     ];
 
     /**
@@ -92,16 +94,29 @@ class KeywordController extends Controller
      */
     public function edit(int $id, Request $request)
     {
-        try {
-            $update = Auth::user()->keywords()->where('id', $id)->first();
-            $update->type = $request->type;
-            $update->word = $request->word;
-            $update->remove = $request->remove;
-            $update->save();
-            return self::CODE[0]['status'];
+
+        /**
+         * リスト作成中、リスト作成済みのキーワードを変更されると表示データの整合性が取れない
+         * そのためfollow_targetsテーブルで使用されているkeyword_idの場合は変更せずエラーを返す
+         */
+        $check_exist = FollowTarget::where('keyword_id', $id)->whereIn('status', [3])->exists();
+        Log::Debug("キーワードidを使用しているリストの確認");
+        if($check_exist){
+            return self::CODE[2]['status'];
         }
-        catch (\Exception $e) {
-            return self::CODE[1]['status'];
+        else {
+            try {
+                Log::Debug("キーワードidを使用していないのでキーワードを変更");
+                $update = Auth::user()->keywords()->where('id', $id)->first();
+                $update->type = $request->type;
+                $update->word = $request->word;
+                $update->remove = $request->remove;
+                $update->save();
+                return self::CODE[0]['status'];
+            }
+            catch (\Exception $e) {
+                return self::CODE[1]['status'];
+            }
         }
     }
 

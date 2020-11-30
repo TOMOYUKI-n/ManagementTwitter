@@ -49,7 +49,7 @@ class AutoFollowBatch extends Command
     const IntervalHours = 2;
     const ApiPerDay = 24 / self::IntervalHours;
 
-    // フォロワー数に応じた一日のフォロー上限数 FOLLOW_RATE_PER_DAY
+    // フォロワー数に応じた一日のフォロー上限数
     const FollowLimmitPerDay = [
         "100" => 20,
         "500" => 24,
@@ -63,7 +63,7 @@ class AutoFollowBatch extends Command
 
     /**
      * 自動フォローを行う
-     * フォロワーターゲットリスト用の処理は別ファイルに記述.
+     * フォロワーターゲットリスト用の処理は量が多いため別ファイルに記述.
      * 
      * フォロー後にフォロワーターゲットリストからフォローヒストリーにデータをコピーする。
      */
@@ -99,7 +99,7 @@ class AutoFollowBatch extends Command
 
             // フォロワーターゲットリストが未作成、作成途中の場合はリストを作成する
             if (is_null($follower_cursor) || $follower_cursor !== "0") {
-                $this->makeFollowerTargetList($management_id, $twitter_user_id, $follower_cursor);
+                FollowService::makeFollowerTargetList($management_id, $twitter_user_id, $follower_cursor);
             }
 
             /**
@@ -162,8 +162,7 @@ class AutoFollowBatch extends Command
         $target_quantity = FollowerTarget::where("twitter_user_id", $twitter_user_id)->count();
         if($target_quantity === 0){
             Log::Debug("フォローワーターゲットのフォローが完了しました");
-            // self::sendMail($management_id, $twitter_user_id);
-            Log::Debug("mail send!!!!");
+            self::sendMail($management_id, $twitter_user_id);
         }
         Log::Debug("フォロー完了 =========");
     }
@@ -179,7 +178,7 @@ class AutoFollowBatch extends Command
         $manager = Management::find($management_id)->with('user')->first();
         $twitter_user = TwitterUser::find($twitter_user_id)->first();
         $user = $manager->user;
-        Mail::to($user)->send(new CompleteFollow($user, $twitter_user));
+        Mail::to($user)->send(new CompleteAutoFollow($user, $twitter_user));
     }
 
 

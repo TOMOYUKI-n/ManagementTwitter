@@ -11,6 +11,7 @@ use Abraham\TwitterOAuth\TwitterOAuth;
 use App\User;
 use App\TwitterUser;
 use App\FollowTarget;
+use App\FollowerTarget;
 
 class FollowController extends Controller
 {
@@ -31,8 +32,8 @@ class FollowController extends Controller
 
         try {
             $follow_target = FollowTarget::where('twitter_user_id', $id)
-                                // ->whereIn('status', [1, 2, 3])
-                                // ->orderby('created_at', 'desc')
+                                ->whereIn('status', [1, 2, 3])
+                                ->orderby('created_at', 'desc')
                                 ->limit(30)
                                 ->with('keyword')->get();
 
@@ -66,17 +67,14 @@ class FollowController extends Controller
 
     /**
      * フォローターゲット情報を修正する
-     * @param int twitter_user_id
+     * @param request id (follow_target id) , account_user_name, keyword_id
      */
     public function edit(Request $request)
     {
-        // Log::debug('$request ======= ');
+        Log::debug('フォローターゲット情報を修正する');
         // Log::debug($request);
         try {
-            $follow_target = FollowTarget::where('id', $request->keyword_id)->with('keyword')->first();
-            if (!$follow_target) {
-                abort(404);
-            }
+            $follow_target = FollowTarget::where('id', $request->id)->with('keyword')->first();
             $follow_target->keyword_id = $request->keyword_id;
             $follow_target->account_user_name = $request->account_user_name;
             $follow_target->save();

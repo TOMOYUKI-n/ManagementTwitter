@@ -48,26 +48,22 @@ class FollowService
         if ($follow_target->status === $waiting_status) {
             $follow_target->status = $under_creating_status;
             Log::debug("リスト作成中のステータスを変更");
-            Log::debug($follow_target);
             $follow_target->save();
         }
 
         $keyword = $follow_target->keyword;
         $target_screen = $follow_target->account_user_name;
         Log::debug("keywordとtarget_screenを表示");
-        Log::debug($keyword);
-        Log::debug($target_screen);
 
         //API認証用のツイッターユーザー情報を取得
         $twitter_user = TwitterUser::where('id', $twitter_user_id)->first();
         Log::debug("API認証用のツイッターユーザー情報を取得");
-        Log::debug($twitter_user);
 
         do {
             // APIでフォロワーのリストを取得
             $api_result = self::fetchGetFollowerListApi($twitter_user, $target_screen, $cursor);
             // エラーがあれば検索終了
-            Log::debug('api_result', [$api_result]);
+
             $flg_skip_to_next_user = ApiHandle::handleApiError($api_result, $management_id, $twitter_user_id);
             Log::Debug("flg_skip_to_next_user", [$flg_skip_to_next_user]);
             if ($flg_skip_to_next_user === true) {
@@ -115,15 +111,15 @@ class FollowService
         }
 
         Log::info("useTwitterApi パラメータ");
-        Log::Debug($token);
-        Log::Debug($token_secret);
-        Log::Debug($param);
+        // Log::Debug($token);
+        // Log::Debug($token_secret);
+        // Log::Debug($param);
 
         //API呼び出し
         $response_json = ApiHandle::useTwitterApi('GET', self::ApiFollowersList,
             $param, $token, $token_secret);
 
-        Log::info('###API フォロワーリスト取得完了');
+        Log::Debug('###API フォロワーリスト取得完了');
 
         return $response_json;
     }
@@ -136,11 +132,11 @@ class FollowService
      */
     public static function addToFollowerTargetList($api_result, $keyword, $twitter_user_id)
     {
-        Log::info('####フォロワーターゲットリスト作成開始');
-        Log::debug('####keyword: ', [$keyword->merged_word]);
+        Log::Debug('####フォロワーターゲットリスト作成開始');
+        // Log::debug('####keyword: ', [$keyword->merged_word]);
         foreach ($api_result->users as $user) {
             $description = $user->description;
-            Log::debug('####description: ', [$description]);
+            // Log::debug('####description: ', [$description]);
 
             //日本語プロフィールかチェック
             if (!self::isJapaneseProfile($description)) {
@@ -174,29 +170,6 @@ class FollowService
         }
         Log::info('####フォロワーターゲットリスト作成完了');
     }
-
-
-    // /**
-    //  * その時点でのフォロー上限回数を取得する
-    //  * 1日の上限÷1日の実行回数
-    //  * @param $management_id
-    //  * @param $twitter_user_id
-    //  * @return int
-    //  */
-    // public static function getFollowLimit($management_id, $twitter_user_id)
-    // {
-    //     $followers = self::getTwitterFollowerNum($management_id, $twitter_user_id);
-
-    //     //該当するフォロワー数と対応したレートを返す
-    //     foreach (self::FollowLimmitPerDay as $rate => $limit) {
-    //         if ((int)$rate >= (int)$followers) {
-    //             return (int)($limit / self::API_PER_A_DAY);
-    //         }
-    //     }
-
-    //     //上限のレートを返す
-    //     return (int)(self::FOLLOW_RATE_MAX / self::API_PER_A_DAY);
-    // }
 
     /**
      * twitterのフォロワー数を取得する
@@ -312,8 +285,8 @@ class FollowService
     public static function isInUnfollowHistories($user, $twitter_user_id)
     {
         Log::Debug("UnfollowsRepository");
-        Log::Debug([$user]);
-        Log::Debug([$twitter_user_id]);
+        // Log::Debug([$user]);
+        // Log::Debug([$twitter_user_id]);
         $unfollow_list = UnfollowsRepository::where('twitter_user_id', $twitter_user_id)->where('twitter_id', $user->id_str)->first();
         if (is_null($unfollow_list)){
             return false;
