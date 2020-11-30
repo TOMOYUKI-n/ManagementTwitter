@@ -38,40 +38,46 @@ class AutoTweetBatch extends Command
         Log::Debug('AutoTweet : 開始');
         Log::Debug('=====================================================================');
 
-        //auto_follow_statusが稼動中のステータスになっているレコードを取得する
-        $running_list = Management::where("auto_follow_status", Management::RUNNING)->get();
+        // 1分ごとにチェック
+        for($i = 0; $i < 9; $i++){
+            Log::Debug("AutoTweet:".$i."回目実行");
+            //auto_follow_statusが稼動中のステータスになっているレコードを取得する
+            $running_list = Management::where("auto_follow_status", Management::RUNNING)->get();
 
-        foreach ($running_list as $item) {
-            $management_id = $item->id;
-            $twitter_user_id =  $item->twitter_user_id;
-            Log::Debug('#management_id : ', [$management_id]);
-            Log::Debug('#twitter_user_id : ' , [$twitter_user_id]);
+            foreach ($running_list as $item) {
+                $management_id = $item->id;
+                $twitter_user_id =  $item->twitter_user_id;
+                Log::Debug('#management_id : ', [$management_id]);
+                Log::Debug('#twitter_user_id : ' , [$twitter_user_id]);
 
-            //ユーザーごとの自動ツイート配列を取得する
-            $auto_tweets_list = Tweet::where('twitter_user_id', $twitter_user_id)->where('status', 1)->with('twitterUser')->get();
+                //ユーザーごとの自動ツイート配列を取得する
+                $auto_tweets_list = Tweet::where('twitter_user_id', $twitter_user_id)->where('status', 1)->with('twitterUser')->get();
 
-            foreach ($auto_tweets_list as $auto_tweet) {
-                Log::Debug('##自動ツイート開始');
-                //投稿予定時刻なら自動ツイート
-                if (self::checkSubmitDateIsNowDate($auto_tweet)) {
-                    //API実行
-                    $api_result = self::fetchTweetApi($auto_tweet);
-                    //APIエラーの場合の処理と判定
-                    $flg_skip_to_next_user = ApiHandle::handleApiError($api_result, $management_id, $twitter_user_id);
-                    if ($flg_skip_to_next_user === true) {
-                        break;
+                foreach ($auto_tweets_list as $auto_tweet) {
+                    Log::Debug('##自動ツイート開始');
+                    // 投稿予定時刻なら自動ツイート
+                    if (self::checkSubmitDateIsNowDate($auto_tweet)) {
+                        //API実行
+                        $api_result = self::fetchTweetApi($auto_tweet);
+                        //APIエラーの場合の処理と判定
+                        $flg_skip_to_next_user = ApiHandle::handleApiError($api_result, $management_id, $twitter_user_id);
+                        if ($flg_skip_to_next_user === true) {
+                            break;
+                        }
+                        //ツイート完了のメールを送信
+                        Log::Debug('##自動ツイート完了メール送信');
+                        self::sendMail($management_id, $twitter_user_id, $auto_tweet);
+                        self::changeStatusTweeted($auto_tweet);
+                        Log::Debug('##自動ツイート完了');
                     }
-                    //ツイート完了のメールを送信
-                    Log::Debug('##自動ツイート完了メール送信');
-                    self::sendMail($management_id, $twitter_user_id, $auto_tweet);
-                    self::changeStatusTweeted($auto_tweet);
-                    Log::Debug('##自動ツイート完了');
-
                 }
             }
-
+            // 60秒分sleepする
+            sleep(60);
+            // 再度実行
+            Log::Debug('再実行');
+            // $i = 9になり、次が10分目の場合は処理終了
         }
-
         Log::Debug('=====================================================================');
         Log::Debug('AutoTweet : 終了');
         Log::Debug('=====================================================================');
@@ -134,7 +140,7 @@ class AutoTweetBatch extends Command
      */
     private function checkSubmitDateIsNowDate($auto_tweet)
     {
-        $submit_date = Carbon::create($auto_tweet->submit_date)->format('Y-m-d H:i');
+        $submit_date = Carbon::create($auto_tweet->date)->format('Y-m-d H:i');
         $now_date = Carbon::now()->format('Y-m-d H:i');
         Log::debug('###現在時間: ', [$now_date]);
         Log::debug('###ツイート予定時間: ', [$submit_date]);
