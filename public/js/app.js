@@ -4890,6 +4890,30 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -4899,6 +4923,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       twitter_id: 0,
       errorFlg: false,
       messageText: '',
+      serviceSwitch: false,
       serviceStatus: null,
       serviceStatusLabel: null
     };
@@ -4934,6 +4959,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   _this.errorFlg = true;
                   _this.messageText = _message__WEBPACK_IMPORTED_MODULE_1__["message"].notGetData;
                 } else {
+                  _this.serviceSwitch = false;
                   _this.serviceStatus = response.data.auto_unfollow_status;
                   _this.serviceStatusLabel = response.data.status_labels.auto_unfollow;
                 }
@@ -4950,34 +4976,96 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     /**
      * APIを使用して自動アンフォローを実行状態にする
      */
-    // async runUnFollowService() {
-    //     const serviceType = 2;
-    //     const data = {type: serviceType, twitter_id: this.twitter_id};
-    //     const response = await axios.post('/api/system/running', data);
-    //     if (response.data === 500 || response.status !== 200) {
-    //         this.errorFlg = true;
-    //         this.messageText = message.notUpdate;
-    //     }
-    //     else{
-    //         await this.fetchServiceStatus();
-    //     }
-    // },
+    runUnFollowService: function runUnFollowService() {
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        var serviceType, data, response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                serviceType = 2;
+                data = {
+                  type: serviceType,
+                  twitter_id: _this2.twitter_id
+                };
+                _context2.next = 4;
+                return axios__WEBPACK_IMPORTED_MODULE_2___default.a.post('/api/system/running', data);
+
+              case 4:
+                response = _context2.sent;
+
+                if (!(response.data === 500 || response.status !== 200)) {
+                  _context2.next = 11;
+                  break;
+                }
+
+                _this2.errorFlg = true;
+                _this2.messageText = _message__WEBPACK_IMPORTED_MODULE_1__["message"].notUpdate;
+                _this2.serviceSwitch = false;
+                _context2.next = 13;
+                break;
+
+              case 11:
+                _context2.next = 13;
+                return _this2.fetchServiceStatus();
+
+              case 13:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
+    },
 
     /**
      * APIを使用して自動アンフォローを停止状態にする
      */
-    // async stopUnFollowService() {
-    //     const serviceType = 2;
-    //     const data = {type: serviceType, twitter_id: this.twitter_id};
-    //     const response = await axios.post('/api/system/stop', data);
-    //     if (response.data === 500 || response.status !== 200) {
-    //         this.errorFlg = true;
-    //         this.messageText = message.notUpdate;
-    //     }
-    //     else{
-    //         await this.fetchServiceStatus();
-    //     }
-    // },
+    stopUnFollowService: function stopUnFollowService() {
+      var _this3 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+        var serviceType, data, response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                serviceType = 2;
+                data = {
+                  type: serviceType,
+                  twitter_id: _this3.twitter_id
+                };
+                _context3.next = 4;
+                return axios__WEBPACK_IMPORTED_MODULE_2___default.a.post('/api/system/stop', data);
+
+              case 4:
+                response = _context3.sent;
+
+                if (!(response.data === 500 || response.status !== 200)) {
+                  _context3.next = 11;
+                  break;
+                }
+
+                _this3.errorFlg = true;
+                _this3.messageText = _message__WEBPACK_IMPORTED_MODULE_1__["message"].notUpdate;
+                _this3.serviceSwitch = false;
+                _context3.next = 13;
+                break;
+
+              case 11:
+                _context3.next = 13;
+                return _this3.fetchServiceStatus();
+
+              case 13:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
+      }))();
+    },
 
     /**
      * localstorageから現在のページを保存する
@@ -4990,51 +5078,51 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
      * localstorageから現在使用しているtwitter_userのidを取得する
      */
     getCurrentTwitterId: function getCurrentTwitterId() {
-      var _this2 = this;
+      var _this4 = this;
 
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
         var storage;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
           while (1) {
-            switch (_context2.prev = _context2.next) {
+            switch (_context4.prev = _context4.next) {
               case 0:
                 storage = JSON.parse(localStorage.getItem('loginTwitterAccount'));
-                _this2.twitter_id = storage.id;
+                _this4.twitter_id = storage.id;
 
               case 2:
               case "end":
-                return _context2.stop();
+                return _context4.stop();
             }
           }
-        }, _callee2);
+        }, _callee4);
       }))();
     }
   },
   created: function created() {
-    var _this3 = this;
+    var _this5 = this;
 
-    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
         while (1) {
-          switch (_context3.prev = _context3.next) {
+          switch (_context5.prev = _context5.next) {
             case 0:
-              _context3.next = 2;
-              return _this3.getCurrentTwitterId();
+              _context5.next = 2;
+              return _this5.getCurrentTwitterId();
 
             case 2:
-              _context3.next = 4;
-              return _this3.getCurrentPage();
+              _context5.next = 4;
+              return _this5.getCurrentPage();
 
             case 4:
-              _context3.next = 6;
-              return _this3.fetchServiceStatus();
+              _context5.next = 6;
+              return _this5.fetchServiceStatus();
 
             case 6:
             case "end":
-              return _context3.stop();
+              return _context5.stop();
           }
         }
-      }, _callee3);
+      }, _callee5);
     }))();
   }
 });
@@ -10744,6 +10832,54 @@ var render = function() {
           staticClass: "p-status__show p-status__active"
         },
         [_vm._v(_vm._s(_vm.serviceStatusLabel))]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          directives: [
+            {
+              name: "show",
+              rawName: "v-show",
+              value: _vm.showRunButton,
+              expression: "showRunButton"
+            }
+          ],
+          staticClass: "c-button c-button__status--on",
+          on: {
+            click: function($event) {
+              _vm.serviceSwitch = true
+            }
+          }
+        },
+        [
+          _c("i", { staticClass: "fas fa-power-off c-icon__mr-2" }),
+          _vm._v("稼働\n        ")
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          directives: [
+            {
+              name: "show",
+              rawName: "v-show",
+              value: _vm.showStopButton,
+              expression: "showStopButton"
+            }
+          ],
+          staticClass: "c-button c-button__status--off",
+          on: {
+            click: function($event) {
+              _vm.serviceSwitch = true
+            }
+          }
+        },
+        [
+          _c("i", { staticClass: "fas fa-ban c-icon__mr-2" }),
+          _vm._v("停止\n        ")
+        ]
       )
     ]),
     _vm._v(" "),
@@ -10760,7 +10896,95 @@ var render = function() {
           attrs: { src: "/images/working.png" }
         })
       ])
-    ])
+    ]),
+    _vm._v(" "),
+    _c(
+      "section",
+      {
+        directives: [
+          {
+            name: "show",
+            rawName: "v-show",
+            value: _vm.serviceSwitch,
+            expression: "serviceSwitch"
+          }
+        ],
+        staticClass: "p-modal p-modal--opened"
+      },
+      [
+        _c("div", { staticClass: "p-modal__contents" }, [
+          _c("p", { staticClass: "p-form__delete" }, [
+            _vm._v("自動化サービスを利用しますか？")
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "p-form__delete__wrap" }, [
+            _c(
+              "div",
+              {
+                staticClass: "c-button p-form__half-btn width__three",
+                attrs: { type: "submit" },
+                on: {
+                  click: function($event) {
+                    _vm.serviceSwitch = false
+                  }
+                }
+              },
+              [
+                _c("i", { staticClass: "fas fa-times m__r2" }),
+                _vm._v(" "),
+                _c("div", [_vm._v("キャンセル")])
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                directives: [
+                  {
+                    name: "show",
+                    rawName: "v-show",
+                    value: _vm.showRunButton,
+                    expression: "showRunButton"
+                  }
+                ],
+                staticClass:
+                  "c-button p-status__active p-form__half-btn width__three",
+                attrs: { type: "submit" },
+                on: { click: _vm.runUnFollowService }
+              },
+              [
+                _c("i", { staticClass: "fas fa-check m__r2" }),
+                _vm._v(" "),
+                _c("div", [_vm._v("開始する")])
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                directives: [
+                  {
+                    name: "show",
+                    rawName: "v-show",
+                    value: _vm.showStopButton,
+                    expression: "showStopButton"
+                  }
+                ],
+                staticClass:
+                  "c-button p-status__sleep p-form__half-btn width__three",
+                attrs: { type: "submit" },
+                on: { click: _vm.stopUnFollowService }
+              },
+              [
+                _c("i", { staticClass: "fas fa-check m__r2" }),
+                _vm._v(" "),
+                _c("div", [_vm._v("停止する")])
+              ]
+            )
+          ])
+        ])
+      ]
+    )
   ])
 }
 var staticRenderFns = []

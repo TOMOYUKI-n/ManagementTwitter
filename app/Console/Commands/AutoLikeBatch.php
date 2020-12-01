@@ -28,11 +28,11 @@ class AutoLikeBatch extends Command
     const ApiFavorites = 'favorites/create';
 
     // API上限 900/1日
-    const ApiRatePerDay = 240; //API_REQUEST_RATE_PER_DAY
-    const ActiveApiPerDay = 24; //DO_API_PER_A_DAY
-    const Interval_hours = 1; //INTERVAL_HOURS
+    const ApiRatePerDay = 240;
+    const ActiveApiPerDay = 24;
 
     /**
+     * heroku 1時間ごとに実行
      * 登録された自動いいねのフィルターワードごとにツイート検索を行う.
      * 検索にヒットしたツイートに対していいねを行う
      * API実行回数を設定して上限回数に達しないように.
@@ -52,18 +52,18 @@ class AutoLikeBatch extends Command
             Log::info('#management_id : ', [$management_id]);
             Log::info('#twitter_user_id : ' , [$twitter_user_id]);
 
-            //ユーザーごとのいいね条件配列を取得
+            // ユーザーごとのいいね条件配列を取得
             $auto_like_list = Like::where('twitter_user_id', $twitter_user_id)
                 ->with('twitterUser', 'keyword')->get();
 
-            $auto_like_list_quantity = count($auto_like_list);
+            $likes_count = count($auto_like_list);
 
             //いいね条件ごとに検索
             foreach ($auto_like_list as $auto_like) {
                 $flg_skip_to_next_user = false;
 
                 //検索にヒットしたツイート配列を取得
-                $api_result = self::fetchGetTweetListApi($auto_like, $auto_like_list_quantity);
+                $api_result = self::fetchGetTweetListApi($auto_like, $likes_count);
                 $flg_skip_to_next_user = ApiHandle::handleApiError($api_result, $management_id, $twitter_user_id);
                 if ($flg_skip_to_next_user === true) {
                     Log::notice('#APIエラーのため次のユーザーにスキップ');
@@ -94,15 +94,15 @@ class AutoLikeBatch extends Command
     /**
      * APIを使用して、フィルターワードで指定されたワードでツイート検索を行う
      * @param $auto_like
-     * @param $auto_like_list_quantity
+     * @param $likes_count
      * @return array|object
      */
-    private function fetchGetTweetListApi($auto_like, $auto_like_list_quantity)
+    private function fetchGetTweetListApi($auto_like, $likes_count)
     {
         Log::info('##API ツイートリスト取得開始');
 
         //APIに必要な変数の用意
-        $count = self::ApiRatePerDay / self::ActiveApiPerDay / $auto_like_list_quantity;
+        $count = self::ApiRatePerDay / self::ActiveApiPerDay / $likes_count;
         $query = $auto_like->keyword->getMergedWordStringForQuery();
         Log::info('##いいねする数: ', [$count]);
         Log::info('##検索クエリ: ', [$query]);

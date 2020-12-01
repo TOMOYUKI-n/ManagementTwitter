@@ -7,6 +7,7 @@ use App\Keyword;
 use App\TwitterUser;
 use App\Management;
 use App\Tweet;
+use App\Like;
 use App\FollowTarget;
 use App\FollowerTarget;
 use Illuminate\Console\Command;
@@ -37,5 +38,7 @@ class TestBacth extends Command
     public function handle()
     {
 
+        $auto_like_list = Like::where('twitter_user_id', 1)->with('twitterUser', 'keyword')->get();
+        Log::Debug([$auto_like_list]);
     }
 }
