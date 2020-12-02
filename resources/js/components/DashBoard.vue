@@ -59,7 +59,16 @@
              */
             setId(account) {
                 this.twitterAccountId = account.id;
-            }
+            },
+            /**
+             * localstorageから現在のページを取得する
+             */
+            getCurrentPage() {
+                localStorage.getItem('page', this.page);
+            },
+        },
+        async created() {
+            await this.getCurrentPage();
         },
     }
 </script>

@@ -80,6 +80,3 @@ export const manegementServiceStatus = [
     }
 ];
 
-/**
- * いいねリスト
- */

@@ -19,10 +19,6 @@
         @guest
         <div class="p-top__account">
             <div class="p-top__register">
-                <a class="p-top__text-xs p-botton__login"
-                    href="{{ url('login/twitter') }}">
-                    {{ __('Twitter Login') }}
-                </a>
                 <a class="p-top__text-xs p-botton__register__top p-top__mt-3"
                     href="{{ route('register') }}">
                     {{ __('Register Free') }}

@@ -40,9 +40,10 @@
                 <td class="p-table__td">{{tweet.tweet}}</td>
                 <td class="p-table__td">{{tweet.jp_format_date}}</td>
                 <td class="p-table__td">
-                    <div class="p-table__action" v-if="tweet.status === 1">
+                    <div class="p-table__action">
                         <div class="p-table__btn-wrap">
                             <button class="c-button c-button--twitter p-table__button"
+                                    v-if="tweet.status === 1"
                                     @click="showEditModal(tweet, index)"
                             >
                                 <i class="c__color--blue fas fa-pen p-table__test-xs"></i>
@@ -215,8 +216,6 @@
                 editIndex: null,
                 serviceStatus: null,
                 serviceStatusLabel: null,
-                // addErrors: null,
-                // editErrors: null,
                 addForm: {
                     tweet: '',
                     date: '',
