@@ -7,6 +7,10 @@ $(function () {
         $('.js_toggle').toggleClass("active");
     });
 
+    $('.js_push_guest').on('click',function (){
+        $('.js_toggle_guest').toggleClass("active");
+    });
+
     $(function(){
         $('.error_message').fadeIn(0.5);
         $('.flash_message__fade').fadeIn(1000);

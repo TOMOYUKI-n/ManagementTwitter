@@ -2147,8 +2147,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -24416,6 +24414,9 @@ var manegementServiceStatus = [{
 $(function () {
   $('.js_push').on('click', function () {
     $('.js_toggle').toggleClass("active");
+  });
+  $('.js_push_guest').on('click', function () {
+    $('.js_toggle_guest').toggleClass("active");
   });
   $(function () {
     $('.error_message').fadeIn(0.5);

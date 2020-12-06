@@ -9,10 +9,17 @@ nav{
         display: none;
     }
 }
+// .p-head{
+//     &__sp--wrap{
+//         display: none;
+//         @include mq() {
+//             display: block;
+//         }
+//     }
+// }
 .l-navbar{
     &__main-wrap{
         width: 100%;
-        // height: 7vh;
         display: flex;
         justify-content: space-between;
         background: #1976D2;
@@ -32,6 +39,7 @@ nav{
     &__sp__d-flex{
         @include mq() {
             display: flex;
+            z-index: 1001;
         }
     }
     &__icon {
@@ -47,6 +55,7 @@ nav{
         position: absolute;
         right: 0px;
         margin-right: 8px;
+        z-index: 1001;
     }
     &__list{
         font-size: 16px;
@@ -122,4 +131,10 @@ nav{
         }
     }
 
+}
+
+.p-guest{
+    &__icon{
+        margin: 32px 0px 40px 32px;
+    }
 }
