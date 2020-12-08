@@ -7774,36 +7774,36 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("footer", { staticClass: "p-footer" }, [
-      _c("div", { staticClass: "p-footer__info" }, [
-        _c("div", { staticClass: "p-footer__menu" }, [
-          _c("div", { staticClass: "p-footer__list" }, [
+    return _c("footer", { staticClass: "l-footer" }, [
+      _c("div", { staticClass: "l-footer__info" }, [
+        _c("div", { staticClass: "l-footer__menu" }, [
+          _c("div", { staticClass: "l-footer__list" }, [
             _c(
               "a",
-              { staticClass: "p-footer__href", attrs: { href: "/contact" } },
+              { staticClass: "l-footer__href", attrs: { href: "/contact" } },
               [_vm._v("お問い合わせ ")]
             )
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "p-footer__list" }, [
+          _c("div", { staticClass: "l-footer__list" }, [
             _c(
               "a",
-              { staticClass: "p-footer__href", attrs: { href: "/term" } },
+              { staticClass: "l-footer__href", attrs: { href: "/term" } },
               [_vm._v("利用規約 ")]
             )
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "p-footer__list" }, [
+          _c("div", { staticClass: "l-footer__list" }, [
             _c(
               "a",
-              { staticClass: "p-footer__href", attrs: { href: "/policy" } },
+              { staticClass: "l-footer__href", attrs: { href: "/policy" } },
               [_vm._v("プライバシーポリシー")]
             )
           ])
         ])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "p-footer__copyright" }, [
+      _c("div", { staticClass: "l-footer__copyright" }, [
         _c("div", [_vm._v("©kamitter2020 kamitter.All Rights Reserved")])
       ])
     ])

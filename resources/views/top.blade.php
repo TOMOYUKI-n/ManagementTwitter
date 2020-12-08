@@ -7,26 +7,14 @@
 
 <div class="l-main__top--wrapper">
     <div class="l-main__top--barner">
-        <div class="animation-area" >
-            <ul class="circles">
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-            </ul>
-        </div>
         <div class="p-top__area--top">
             <div class="p-top__top">
                 <div class="p-top__head ">
                     <div class="p-top__top-message">
-                        <h1 class="p-top__introduction">twitter自動集客ツール</h1>
-                        <p class="u-color__text--white">Kamitterを使えば、アクティブユーザーのみをフォローし、予約ツイートで宣伝、複数のアカウントで集客チャネルとしてTwitterを扱えます。</p>
+                        <h1 class="p-top__title">twitter自動集客ツール</h1>
+                        
+                        <p class="p-top__intro--text">Kamitterを使えば、アクティブユーザーのみをフォローし、予約ツイートで宣伝、複数のアカウントで集客チャネルとしてTwitterを扱えます。</p>
+                        <img class="p-top__img__main" src="{{ asset('/images/twitter.svg') }}" alt="twitter">
                     </div>
                 </div>
                 <div class="p-top__head">
@@ -112,11 +100,23 @@
             <i class="js_push_guest fas fa-times"></i>
         </div>
         <div class="p-board__link p-board__hover">
-            <div class="p-footer__list"><a class="p-footer__href" href="/contact">お問い合わせ </a></div>
-            <div class="p-footer__list"><a class="p-footer__href" href="/term">利用規約 </a></div>
-            <div class="p-footer__list"><a class="p-footer__href" href="/policy">プライバシーポリシー</a></div>
+            <div class="l-footer__list"><a class="p-top__footer-text" href="/contact">お問い合わせ </a></div>
+            <div class="l-footer__list"><a class="p-top__footer-text" href="/term">利用規約 </a></div>
+            <div class="l-footer__list"><a class="p-top__footer-text" href="/policy">プライバシーポリシー</a></div>
         </div>
-        <div class="p-footer__copyright p-footer__href">
+        <div class="l-footer__copyright p-top__footer-text">
+            <div>©kamitter2020 kamitter.All Rights Reserved</div>
+        </div>
+    </div>
+</div>
+<div class="p-top__footer">
+    <div>
+        <div class="p-top__footer-link">
+            <div class="l-footer__list"><a class="p-top__footer-text" href="/contact">お問い合わせ </a></div>
+            <div class="l-footer__list"><a class="p-top__footer-text" href="/term">利用規約 </a></div>
+            <div class="l-footer__list"><a class="p-top__footer-text" href="/policy">プライバシーポリシー</a></div>
+        </div>
+        <div class="p-top__footer-text p-top__pc-footer-text">
             <div>©kamitter2020 kamitter.All Rights Reserved</div>
         </div>
     </div>

@@ -63,4 +63,11 @@ class IndexController extends Controller
             return self::CODE[1]['status'];
         }
     }
+
+    /**
+     * test
+     */
+    public function test() {
+        return view('test');
+    }
 }
