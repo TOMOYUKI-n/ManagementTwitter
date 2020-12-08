@@ -2,39 +2,97 @@
 // TOPページ
 // ============================
 
-.l-main-top-barner{
-    width: 100vw;
-    text-align: center;
-    @include mq(){
+.l-main{
+    &__top--wrapper{
+        // max-height: 1505px;
+        // overflow: hidden;
+        @include mq(){
+            width: 100%;
+            max-height: 2300px;
+            //max-height: none;
+            overflow: hidden;
+        }
+    }
+    &__top--barner{
         width: 100%;
+        text-align: center;
+        @include mq(){
+            width: 100%;
+        }
     }
 }
+
+.js_toggle_guest{
+    display: none;
+    @include mq(){
+        &.active {
+            display: block;
+            width: 100%;
+            height: 100vh;
+            background-color: #238;
+            position: fixed;
+            right: 0px;
+            top: 0px;
+            font-size: 24px;
+            z-index: 1001;
+        }
+    }
+}
+
 .p-top{
     // ============================
     // バナーエリア
     // ============================
+    &__area--top{
+        background: linear-gradient(#1976D5, #1D62F0 ) fixed;
+    }
     &__top{
         box-sizing: border-box;
-        display: block;
-        margin: 0px auto;
+        margin: 0px auto 4% auto;
+        display: flex;
+        max-width: 70%;
+        padding-top: 4%;
+        @include mq(){
+            width: 100%;
+            display: block;
+            margin: 0px;
+            max-width: 100%;
+        }
     }
     &__head{
         margin:0;
+        width: 50%;
+        padding-bottom: 24px;
+        @include mq(){
+            width: 100%;
+            padding-bottom: 24px;
+        }
     }
     &__top-message{
         box-sizing: border-box;
         display: block;
-        border-radius: 6px;
-    }
-    &__introduction{
-        color: $color_black;
-        font-size: 2.4vw;
-        &__2{
+        padding: 32px 12px;
+        text-align: start;
+        @include mq(){
             box-sizing: border-box;
-            position: absolute;
-            top: 60px;
-            left: calc(50%/1.9);
+            display: block;
+            padding: 0px 24px;
+            text-align: center;
         }
+    }
+    &__title{
+        color: #fff;
+        font-size: 2.4vw;
+        padding-bottom: 24px;
+        @include mq(){
+            color: #fff;
+            font-size: 1.5em;
+            padding: 28px 20px;
+        }
+    }
+    &__intro--text{
+        color: #fff;
+        font-size: 1.1vw;
     }
     &__login{
         padding: 10px;
@@ -47,14 +105,18 @@
     // ログインエリア
     // ============================
     &__account{
-        border-radius: 6px;
+        border-radius: 4px;
         box-shadow: 0 2px 4px 0 #b2b5be;
         background-color: #fff;
         box-sizing: border-box;
-        padding: 20px 0;
         width: 320px;
-        height: 280px;
-        margin: 60px auto 0px auto;
+        padding: 32px 12px;
+        margin: auto;
+        @include mq(){
+            box-shadow: none;
+            padding: 0px;
+            width: 90%;
+        }
     }
     &__register, &__login{
         padding: 16px 32px;
@@ -68,6 +130,9 @@
     // ============================
     // 特徴紹介エリア
     // ============================
+    &__area--section{
+        padding: 24px;
+    }
     &__section-container{
         text-align: center;
         margin: 0px 10px;
@@ -79,10 +144,11 @@
         }
     }
     &__section-title{
-        margin: 60px 0px 30px 0px;
+        margin: 0px 0px 30px 0px;
     }
     &__section-wrap{
         display: flex;
+        justify-content: center;
         @include mq(){
             display: block;
         }
@@ -90,10 +156,11 @@
     &__section{
         margin: 0px 10px;
         border-radius: 4px;
-        padding: 12px;
+        padding: 16px;
         background-color: #fff;
         box-shadow: 0 2px 4px 2px #b2b5be33;
         width: calc(100% / 3);
+        box-sizing: border-box;
         @include mq(){
             width: 100%;
             margin: 0px;
@@ -104,10 +171,10 @@
     &__section__text{
         font-size: 14px;
         text-align: left;
-        padding: 0px 12px;
+        padding: 0px 24px 16px;
     }
     &__section__subtitle{
-        padding: 10px;
+        padding: 20px 10px;
     }
     
     // ============================
@@ -115,24 +182,175 @@
     // ============================
     &__img{
         width: 50%;
-        height: auto;
+        height: 50%;
 
         &__main{
             margin: 0;
+            padding: 24px 0px;
+            width: 70%;
+            height: 70%;
         }
-        &__trend{
-            margin:0;
-            border-radius: 6px;
+    }
+    // ============================
+    // その他機能
+    // ============================
+    &__area--other{
+        padding: 24px;
+    }
+    // ============================
+    // footer
+    // ============================
+    &__footer{
+        background: linear-gradient(#05FBFF, #1D62F0 ) fixed;
+        @include mq(){
+            display: none;
         }
-        &__follow{
-            margin:0;
-            border-radius: 6px;
-        }
-        &__news{
-            margin:0;
-            border-radius: 6px;
-        }
+    }
+    &__footer-section{
+        display: flex;
+        justify-content: center;
+    }
+    &__footer-li{
+        font-size: 15px;
+        line-height: 2;
+        margin-right: 16px;
+    }
+    &__footer-cp{
+        padding-bottom: 24px;
+        font-size: 13px;
+    }
+    &__footer-link{
+        padding: 8px 32px;
+    }
+    &__footer-text{
+        color: #fff;
+        font-size: 16px;
+    }
+    &__pc-footer-text{
+        padding: 2px 32px;
+        padding-bottom: 24px;
+    }
+}
+
+// ============================
+// トップのアニメーション
+// ============================
+.animation-area{
+    background: #1976D2;
+    width: 100%;
+    height: 500px;
+}
+
+.circles{
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 500px;
+    overflow: hidden;
+}
+
+.circles li{
+    position: absolute;
+    display: block;
+    list-style: none;
+    width: 20px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    animation: animate 25s linear infinite;
+    bottom: -150px;
+    
+}
+
+.circles li:nth-child(1){
+    left: 25%;
+    width: 80px;
+    height: 80px;
+    animation-delay: 0s;
+}
+
+
+.circles li:nth-child(2){
+    left: 10%;
+    width: 20px;
+    height: 20px;
+    animation-delay: 2s;
+    animation-duration: 12s;
+}
+
+.circles li:nth-child(3){
+    left: 70%;
+    width: 20px;
+    height: 20px;
+    animation-delay: 4s;
+}
+
+.circles li:nth-child(4){
+    left: 40%;
+    width: 60px;
+    height: 60px;
+    animation-delay: 0s;
+    animation-duration: 18s;
+}
+
+.circles li:nth-child(5){
+    left: 65%;
+    width: 20px;
+    height: 20px;
+    animation-delay: 0s;
+}
+
+.circles li:nth-child(6){
+    left: 75%;
+    width: 110px;
+    height: 110px;
+    animation-delay: 3s;
+}
+
+.circles li:nth-child(7){
+    left: 35%;
+    width: 150px;
+    height: 150px;
+    animation-delay: 7s;
+}
+
+.circles li:nth-child(8){
+    left: 50%;
+    width: 25px;
+    height: 25px;
+    animation-delay: 15s;
+    animation-duration: 45s;
+}
+
+.circles li:nth-child(9){
+    left: 20%;
+    width: 15px;
+    height: 15px;
+    animation-delay: 2s;
+    animation-duration: 35s;
+}
+
+.circles li:nth-child(10){
+    left: 85%;
+    width: 150px;
+    height: 150px;
+    animation-delay: 0s;
+    animation-duration: 11s;
+}
+
+
+
+@keyframes animate {
+
+    0%{
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+        border-radius: 0;
+    }
+
+    100%{
+        transform: translateY(-1000px) rotate(720deg);
+        opacity: 0;
+        border-radius: 50%;
     }
 
 }
-

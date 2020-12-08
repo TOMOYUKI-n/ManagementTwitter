@@ -29,13 +29,13 @@
                 <input type="hidden" class="p-login__form" name="body" value="{{ $inputs['body'] }}">
             </div>
 
-            <div class="p-top__login">
-                <button type="submit" name="action" value="back" class="p-login__text p-btn__login">
+            <div class="p-login__button__wrap">
+                <button type="submit" name="action" value="back" class="p-send__text p-send__disable">
                     入力内容修正
                 </button>
             </div>
-            <div class="p-top__login">
-                <button type="submit"  name="action" value="submit"  class="p-login__text p-btn__submit">
+            <div class="p-login__button__wrap">
+                <button type="submit"  name="action" value="submit"  class="p-send__text p-send__button">
                     送信する
                 </button>
             </div>

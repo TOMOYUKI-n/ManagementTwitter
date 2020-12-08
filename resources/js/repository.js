@@ -24,14 +24,6 @@ export const loginUserInfo = [
 export const twitterAccount = [
     {id: 1, screen_name: 'cryptodev14', name: 'cryptodev14', thumbnail: '', follows: 500, followers: 3400 },
     {id: 2, screen_name: 'tomozo01v', name: 'tomozo01v', thumbnail: '', follows: 400, followers: 300},
-    // {id: 59319, screen_name: 'Mrs. Meagan Mraz', name: 'Mrs. Meagan Mraz', thumbnail: '', follows: 550, followers: 30},
-    // {id: 63407, screen_name: 'Fabiola Feest', name: 'Fabiola Feest', thumbnail: '', follows: 343, followers: 340},
-    // {id: 86713, screen_name: 'Aliza Beier', name: 'Aliza Beier', thumbnail: '', follows: 5, followers: 34},
-    // {id: 92887, screen_name: 'Annamae Cummerata', name: 'Annamae Cummerata', thumbnail: '', follows: 1100, followers: 5000},
-    // {id: 711157, screen_name: 'Jaunita Upton IV', name: 'Jaunita Upton IV', thumbnail: '', follows: 11900, followers: 3000},
-    // {id: 5240583, screen_name: 'Dr. Milford Grant', name: 'Dr. Milford Grant', thumbnail: '', follows: 22, followers: 567},
-    // {id: 113477983, screen_name: 'Elody Halvorson', name: 'Elody Halvorson', thumbnail: '', follows: 33, followers: 5543},
-    // {id: 113477987, screen_name: 'tomozo01v', name: 'tomozo01v', thumbnail: '', follows: 112, followers: 322},
 ];
 
 /**
@@ -80,6 +72,3 @@ export const manegementServiceStatus = [
     }
 ];
 
-/**
- * いいねリスト
- */

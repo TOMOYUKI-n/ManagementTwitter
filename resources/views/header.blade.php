@@ -1,14 +1,27 @@
 @section('header')
 
-    <header class="l-navbar__main-wrap" style="z-index: 1000;">
+    <header class="l-navbar__main-wrap">
         <div class="l-navbar__align">
-            <div class="l-navbar__sp__d-flex">
-                <div class="l-navbar__icon">
-                    <i class="fas fa-bars js_push"></i>
+            <div>
+                @guest
+                <div class="l-navbar__sp__d-flex">
+                    <div class="l-navbar__icon">
+                        <i class="fas fa-bars js_push_guest"></i>
+                    </div>
+                    <div class="logo">
+                        <h1><a class="l-navbar__text" href="/">Kamitter</a></h1>
+                    </div>
                 </div>
-                <div class="logo">
-                    <h1><a class="l-navbar__text" href="/">kamitter</a></h1>
+                @else
+                <div class="l-navbar__sp__d-flex">
+                    <div class="l-navbar__icon">
+                        <i class="fas fa-bars js_push"></i>
+                    </div>
+                    <div class="logo">
+                        <h1><a class="l-navbar__text" href="/">kamitter</a></h1>
+                    </div>
                 </div>
+                @endguest
             </div>
             <!--PC-->
             <nav>
@@ -36,7 +49,23 @@
                 </ul>
                 @endguest
             </nav>
+
         </div>
 
     </header>
+    <div class="js_toggle_guest">
+        <div>
+            <div class="p-guest__icon">
+                <i class="js_push_guest fas fa-times"></i>
+            </div>
+            <div class="p-board__link p-board__hover">
+                <div class="l-footer__list"><a class="p-top__footer-text" href="/contact">お問い合わせ </a></div>
+                <div class="l-footer__list"><a class="p-top__footer-text" href="/term">利用規約 </a></div>
+                <div class="l-footer__list"><a class="p-top__footer-text" href="/policy">プライバシーポリシー</a></div>
+            </div>
+            <div class="l-footer__copyright p-top__footer-text">
+                <div>©kamitter2020 kamitter.All Rights Reserved</div>
+            </div>
+        </div>
+    </div>
 @show

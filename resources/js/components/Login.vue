@@ -21,9 +21,7 @@
                 </div>
 
                 <p class="p-login__text">アカウントをお持ちで無い方はこちらから</p>
-                <div class="p-login__button__wrap">
-                    <a class="p-botton__login" @click="twitterLogin">Twitterでログイン</a>
-                </div>
+
                 <div class="p-login__button__wrap" @click="register">
                     <a class="p-botton__register__top">新規登録</a>
                 </div>
@@ -75,9 +73,6 @@ export default {
         },
         register() {
             location.href = "/register";
-        },
-        twitterLogin() {
-            location.href = "/login/twitter";
         },
         passlost() {
             location.href = "/password/reset";

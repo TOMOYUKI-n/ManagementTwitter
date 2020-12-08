@@ -22,7 +22,7 @@
         @include mq(){
             width: 100%;
             margin: 0 auto;
-            padding: 25px $space_l;
+            // padding: 25px $space_l;
         }
     }
     &__title{
@@ -70,6 +70,9 @@
                 content: counter(my-counter)'.';
                 counter-increment: my-counter;
             }
+        }
+        @include mq(){
+            margin-left: 0px;
         }
     }
 

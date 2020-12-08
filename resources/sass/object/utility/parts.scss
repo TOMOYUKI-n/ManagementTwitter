@@ -61,6 +61,12 @@
     &__bg--white{
         background: $color-white;
     }
+    &__text--white{
+        color: #fff;
+    }
+    &__icon{
+        color: #1976D2;
+    }
 }
 
 // モーダルでのパーツなど

@@ -1,7 +1,5 @@
 <template>
 <div>
-
-
     <div class="p-board__wrap">
         <!-- sp -->
         <div class="p-board__sidebar-sp js_toggle">
@@ -59,7 +57,16 @@
              */
             setId(account) {
                 this.twitterAccountId = account.id;
-            }
+            },
+            /**
+             * localstorageから現在のページを取得する
+             */
+            getCurrentPage() {
+                localStorage.getItem('page', this.page);
+            },
+        },
+        async created() {
+            await this.getCurrentPage();
         },
     }
 </script>

@@ -63,4 +63,5 @@ class IndexController extends Controller
             return self::CODE[1]['status'];
         }
     }
+
 }
