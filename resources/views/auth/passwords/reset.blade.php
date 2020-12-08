@@ -10,10 +10,10 @@
             @csrf
             <input type="hidden" name="token" value="{{ $token }}">
             
-            <div class="p-login__inner" style="display: block;">
-                <label for="email" class="p-pass__title">{{ __('E-Mail Address') }}</label>
-                <div>
-                    <input id="email" type="email" class="p-pass__form @error('email') is-invalid @enderror" name="email" value="{{ $email ?? old('email') }}" required autocomplete="email" autofocus>
+            <div class="p-send__section">
+                <label for="email" class="p-send__text">{{ __('E-Mail Address') }}</label>
+                <div class="p-send__inner">
+                    <input id="email" type="email" class="p-send__form @error('email') is-invalid @enderror" name="email" value="{{ $email ?? old('email') }}" required autocomplete="email" autofocus>
                     @error('email')
                         <span class="c-alert__caution2">
                             <strong>{{ $message }}</strong>
@@ -21,10 +21,10 @@
                     @enderror
                 </div>
             </div>
-            <div class="p-login__inner" style="display: block;">
-                <label for="password" class="p-pass__title">{{ __('Password') }}</label>
-                <div>
-                    <input id="password" type="password" class="p-pass__form @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+            <div class="p-send__section">
+                <label for="password" class="p-send__text">{{ __('Password') }}</label>
+                <div class="p-send__inner">
+                    <input id="password" type="password" class="p-send__form @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
                     @error('password')
                         <span class="c-alert__caution2">
                             <strong>{{ $message }}</strong>
@@ -32,14 +32,14 @@
                     @enderror
                 </div>
             </div>
-            <div class="p-login__inner" style="display: block;">
-                <label for="password-confirm" class="p-pass__title">{{ __('Confirm Password') }}</label>
-                <div>
-                    <input id="password-confirm" type="password" class="p-pass__form" name="password_confirmation" required autocomplete="new-password">
+            <div class="p-send__section">
+                <label for="password-confirm" class="p-send__text">{{ __('Confirm Password') }}</label>
+                <div class="p-send__inner">
+                    <input id="password-confirm" type="password" class="p-send__form" name="password_confirmation" required autocomplete="new-password">
                 </div>
             </div>
-            <div class="p-top__login">
-                    <button type="submit" class="p-login__text p-btn__login">
+            <div class="p-login__button__wrap">
+                    <button type="submit" class="p-send__text p-send__button">
                         {{ __('Reset Password') }}
                     </button>
             </div>

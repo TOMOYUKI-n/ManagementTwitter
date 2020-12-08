@@ -6,15 +6,6 @@
             display: block;
         }
     }
-    // &__transition-sp{
-    //     @include mq(){
-    //         &.active {
-    //             opacity: 1;
-    //             transform: translateX(0px);
-    //             transition: all 0.5s ease-in-out;
-    //         }
-    //     }
-    // }
     // sidebar
     &__sidebar-sp{
         display: none;
@@ -58,13 +49,7 @@
         align-items: baseline;
     }
     &__link{
-        cursor: pointer;
         padding: 8px 32px;
-    }
-    &__hover{
-        &:hover{
-            background-color: rgba(5, 121, 216, 0.2);
-        }
     }
     &__mt-8{
         margin-top: 32px;

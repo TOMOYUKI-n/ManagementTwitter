@@ -49,6 +49,12 @@
 // 共通パーツ
 // ============================
 .l-main{
+    &__container{
+        height: 93vh;
+        @include mq(){
+            height: 100%;
+        }
+    }
     &__title{
         font-size: $font-size_l;
         padding: 20px 0px 10px;

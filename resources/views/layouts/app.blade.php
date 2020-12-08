@@ -3,13 +3,13 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="てすと">
-    <meta name="keywords" content="てすと">
+    <meta name="description" content="twitterを利用し、自動で集客を行えるツール">
+    <meta name="keywords" content="twitter 集客 ツール">
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'kamitter') }}</title>
+    <title>{{ config('app.name', 'Kamitter') }}</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -35,21 +35,20 @@
             @include('header')
             
                 <!-- フラッシュメッセージ -->
-                    @if (session('flash_message'))
-                    <div class="flash_message flash_message__fade">
-                        {{ session('flash_message') }}
-                    </div>
-                    @endif
-                    
-                    @if (session('error_message'))
-                    <div class="error_message">
-                        {{ session('error_message') }}
-                    </div>
-                    @endif
+                @if (session('flash_message'))
+                <div class="flash_message flash_message__fade">
+                    {{ session('flash_message') }}
+                </div>
+                @endif
+                
+                @if (session('error_message'))
+                <div class="error_message">
+                    {{ session('error_message') }}
+                </div>
+                @endif
 
             @yield('content')
         </main>
-        {{-- <footer-component /> --}}
     </div>
 
 </body>

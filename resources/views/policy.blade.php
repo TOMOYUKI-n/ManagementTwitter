@@ -6,7 +6,7 @@
         <div class="p-policy__container">
             <h2 class="p-policy__title">プライバシーポリシー</h2>
 
-            <p class="p-policy__text">Crypto Trend
+            <p class="p-policy__text">Kamitter
                 （以下「当サイト」といいます）は、以下のとおり個人情報保護方針を定め、個人情報保護の仕組みを構築し、全従業員に個人情報保護の重要性の認識と取組みを徹底させることにより、個人情報の保護を推進致します。</p>
 
             <h3 class="p-policy__title--sub">個人情報とは</h3>
@@ -105,5 +105,16 @@
 
         </div>
 </div>
-
+<div class="p-top__footer">
+    <div>
+        <div class="p-top__footer-link">
+            <div class="l-footer__list"><a class="p-top__footer-text" href="/contact">お問い合わせ </a></div>
+            <div class="l-footer__list"><a class="p-top__footer-text" href="/term">利用規約 </a></div>
+            <div class="l-footer__list"><a class="p-top__footer-text" href="/policy">プライバシーポリシー</a></div>
+        </div>
+        <div class="p-top__footer-text p-top__pc-footer-text">
+            <div>©kamitter2020 kamitter.All Rights Reserved</div>
+        </div>
+    </div>
+</div>
 @endsection

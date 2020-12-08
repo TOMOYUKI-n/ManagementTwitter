@@ -13,11 +13,6 @@
 
 Auth::routes();
 
-//
-Route::get('/test', 'IndexController@test')->name('test');
-
-
-
 // トップ
 Route::get('/', 'IndexController@top')->name('top');
 // 利用規約への遷移
