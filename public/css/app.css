@@ -882,6 +882,9 @@ img {
 .p-board__link {
   padding: 8px 32px;
 }
+.p-board__label:hover {
+  cursor: pointer;
+}
 .p-board__mt-8 {
   margin-top: 32px;
 }

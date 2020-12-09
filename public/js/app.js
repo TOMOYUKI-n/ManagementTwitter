@@ -11035,9 +11035,14 @@ var render = function() {
               }
             },
             [
-              _c("div", { staticStyle: { "font-size": "14px" } }, [
-                _vm._v(_vm._s(i.label))
-              ])
+              _c(
+                "div",
+                {
+                  staticClass: "p-board__label",
+                  staticStyle: { "font-size": "14px" }
+                },
+                [_vm._v(_vm._s(i.label))]
+              )
             ]
           )
         ])

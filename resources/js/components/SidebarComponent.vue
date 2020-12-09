@@ -44,7 +44,7 @@
             <div v-for="(i, index) in link" :key="index">
                 <div class="p-board__link p-board__hover" @click="emitChange(index)"
                     :class="[currentPage === i.id ? 'is-selected' : '']">
-                    <div style="font-size: 14px;">{{ i.label }}</div>
+                    <div class="p-board__label" style="font-size: 14px;">{{ i.label }}</div>
                 </div>
             </div>
         </div>
