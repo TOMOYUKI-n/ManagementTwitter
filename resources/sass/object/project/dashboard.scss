@@ -51,6 +51,11 @@
     &__link{
         padding: 8px 32px;
     }
+    &__label{
+        &:hover{
+            cursor: pointer;
+        }
+    }
     &__mt-8{
         margin-top: 32px;
     }
