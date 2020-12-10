@@ -80,34 +80,34 @@
              */
             async getAccountInfo() {
                 // test用
-                const storage = await JSON.parse(localStorage.getItem('loginTwitterAccount'));
-                if(storage){
-                    this.account = storage;
-                    const [response] = await twitterAccount.filter(x => x.id === storage.id);
-                    this.loginTwitterUser = response;
-                }
-                else {
-                    const storage = await JSON.parse(localStorage.getItem('authData'));
-                    this.authData = storage.name;
-                }
-                this.$emit('twitter-id',this.loginTwitterUser);
-
-                // 本番用
                 // const storage = await JSON.parse(localStorage.getItem('loginTwitterAccount'));
                 // if(storage){
-                //     const response = await axios.get('/api/twitter/users/' + storage.id);
-                //     if (response.status === 200) {
-                //         this.loginTwitterUser = response.data;
-                //     }
-                //     else {
-                //         this.errorFlg = true;
-                //         this.messageText = message.notGetData;
-                //     }
+                //     this.account = storage;
+                //     const [response] = await twitterAccount.filter(x => x.id === storage.id);
+                //     this.loginTwitterUser = response;
                 // }
                 // else {
                 //     const storage = await JSON.parse(localStorage.getItem('authData'));
                 //     this.authData = storage.name;
                 // }
+                // this.$emit('twitter-id',this.loginTwitterUser);
+
+                // 本番用
+                const storage = await JSON.parse(localStorage.getItem('loginTwitterAccount'));
+                if(storage){
+                    const response = await axios.get('/api/twitter/users/' + storage.id);
+                    if (response.status === 200) {
+                        this.loginTwitterUser = response.data;
+                    }
+                    else {
+                        this.errorFlg = true;
+                        this.messageText = message.notGetData;
+                    }
+                }
+                else {
+                    const storage = await JSON.parse(localStorage.getItem('authData'));
+                    this.authData = storage.name;
+                }
             },
             /**
              * APIで、ログインしているユーザ情報を取得しlocalstorageに保存

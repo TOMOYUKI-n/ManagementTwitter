@@ -50,24 +50,24 @@
              */
             async fetchTwitterUser() {
                 // テスト用
-                const response = await axios.get('/test/twitter/users/getTestInfo/' + this.item.id);
-                const [data] = twitterAccount.filter(x => x.id === response.data[0].id);
-                this.twitter_id = data.id;
-                this.screenName = data.screen_name;
-                this.name = data.name;
-                this.thumbnail = data.thumbnail;
+                // const response = await axios.get('/test/twitter/users/getTestInfo/' + this.item.id);
+                // const [data] = twitterAccount.filter(x => x.id === response.data[0].id);
+                // this.twitter_id = data.id;
+                // this.screenName = data.screen_name;
+                // this.name = data.name;
+                // this.thumbnail = data.thumbnail;
 
-                // const response = await axios.get('/api/twitter/users/' + this.item.id);
-                // if (response.status === 200) {
-                //     this.twitter_id = response.data.twitter_id;
-                //     this.screenName = response.data.screen_name;
-                //     this.name = response.data.name;
-                //     this.thumbnail = response.data.thumbnail;
-                // }
-                // else {
-                //     this.errorFlg = true;
-                //     this.messageText = message.notGetData;
-                // }
+                const response = await axios.get('/api/twitter/users/' + this.item.id);
+                if (response.status === 200) {
+                    this.twitter_id = response.data.twitter_id;
+                    this.screenName = response.data.screen_name;
+                    this.name = response.data.name;
+                    this.thumbnail = response.data.thumbnail;
+                }
+                else {
+                    this.errorFlg = true;
+                    this.messageText = message.notGetData;
+                }
             },
             /**
              * 使用するユーザーが選択された時、localstorageにtwitterIdを保存 => ダッシュボードに遷移
@@ -82,12 +82,6 @@
             changeDeleteFlg() {
                 this.$emit('delUser', { index: this.index, item_id: this.item.id });
             },
-        },
-        computed: {
-            //storeを使ってAPIを実行する際に、APIのステータスを取得する
-            // apiStatus() {
-            //     return this.$store.state.auth.apiStatus
-            // },
         },
         async created() {
             await this.fetchTwitterUser();
