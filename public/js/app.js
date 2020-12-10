@@ -1928,18 +1928,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_3__);
 
 
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
@@ -1997,36 +1985,28 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var response, _twitterAccount$filte, _twitterAccount$filte2, data;
-
+        var response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.get('/test/twitter/users/getTestInfo/' + _this.item.id);
+                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.get('/api/twitter/users/' + _this.item.id);
 
               case 2:
                 response = _context.sent;
-                _twitterAccount$filte = _repository__WEBPACK_IMPORTED_MODULE_1__["twitterAccount"].filter(function (x) {
-                  return x.id === response.data[0].id;
-                }), _twitterAccount$filte2 = _slicedToArray(_twitterAccount$filte, 1), data = _twitterAccount$filte2[0];
-                _this.twitter_id = data.id;
-                _this.screenName = data.screen_name;
-                _this.name = data.name;
-                _this.thumbnail = data.thumbnail; // const response = await axios.get('/api/twitter/users/' + this.item.id);
-                // if (response.status === 200) {
-                //     this.twitter_id = response.data.twitter_id;
-                //     this.screenName = response.data.screen_name;
-                //     this.name = response.data.name;
-                //     this.thumbnail = response.data.thumbnail;
-                // }
-                // else {
-                //     this.errorFlg = true;
-                //     this.messageText = message.notGetData;
-                // }
 
-              case 8:
+                if (response.status === 200) {
+                  _this.twitter_id = response.data.twitter_id;
+                  _this.screenName = response.data.screen_name;
+                  _this.name = response.data.name;
+                  _this.thumbnail = response.data.thumbnail;
+                } else {
+                  _this.errorFlg = true;
+                  _this.messageText = _message__WEBPACK_IMPORTED_MODULE_2__["message"].notGetData;
+                }
+
+              case 4:
               case "end":
                 return _context.stop();
             }
@@ -2070,11 +2050,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         item_id: this.item.id
       });
     }
-  },
-  computed: {//storeを使ってAPIを実行する際に、APIのステータスを取得する
-    // apiStatus() {
-    //     return this.$store.state.auth.apiStatus
-    // },
   },
   created: function created() {
     var _this3 = this;
@@ -2176,6 +2151,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
      */
     setId: function setId(account) {
       this.twitterAccountId = account.id;
+    },
+
+    /**
+     * twitterUserを削除
+     * sidebarを更新して、this.loginTwitterUserを空にする
+     */
+    twitterUserDelete: function twitterUserDelete() {
+      this.twitterAccountId = 0;
     },
 
     /**
@@ -5142,18 +5125,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_3__);
 
 
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
@@ -5242,7 +5213,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var storage, _yield$twitterAccount, _yield$twitterAccount2, response, _storage;
+        var storage, response, _storage;
 
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
@@ -5255,52 +5226,35 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 storage = _context.sent;
 
                 if (!storage) {
-                  _context.next = 13;
+                  _context.next = 10;
                   break;
                 }
 
-                _this.account = storage;
-                _context.next = 7;
-                return _repository__WEBPACK_IMPORTED_MODULE_1__["twitterAccount"].filter(function (x) {
-                  return x.id === storage.id;
-                });
+                _context.next = 6;
+                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.get('/api/twitter/users/' + storage.id);
 
-              case 7:
-                _yield$twitterAccount = _context.sent;
-                _yield$twitterAccount2 = _slicedToArray(_yield$twitterAccount, 1);
-                response = _yield$twitterAccount2[0];
-                _this.loginTwitterUser = response;
-                _context.next = 17;
+              case 6:
+                response = _context.sent;
+
+                if (response.status === 200) {
+                  _this.loginTwitterUser = response.data;
+                } else {
+                  _this.errorFlg = true;
+                  _this.messageText = _message__WEBPACK_IMPORTED_MODULE_2__["message"].notGetData;
+                }
+
+                _context.next = 14;
                 break;
 
-              case 13:
-                _context.next = 15;
+              case 10:
+                _context.next = 12;
                 return JSON.parse(localStorage.getItem('authData'));
 
-              case 15:
+              case 12:
                 _storage = _context.sent;
                 _this.authData = _storage.name;
 
-              case 17:
-                _this.$emit('twitter-id', _this.loginTwitterUser); // 本番用
-                // const storage = await JSON.parse(localStorage.getItem('loginTwitterAccount'));
-                // if(storage){
-                //     const response = await axios.get('/api/twitter/users/' + storage.id);
-                //     if (response.status === 200) {
-                //         this.loginTwitterUser = response.data;
-                //     }
-                //     else {
-                //         this.errorFlg = true;
-                //         this.messageText = message.notGetData;
-                //     }
-                // }
-                // else {
-                //     const storage = await JSON.parse(localStorage.getItem('authData'));
-                //     this.authData = storage.name;
-                // }
-
-
-              case 18:
+              case 14:
               case "end":
                 return _context.stop();
             }
@@ -5510,12 +5464,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 _context.prev = 0;
                 _context.next = 3;
-                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.get('/test/twitter/users/list');
+                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.get('/api/twitter/users/list');
 
               case 3:
                 response = _context.sent;
 
-                //テスト用
+                //const response = await axios.get('/test/twitter/users/list');//テスト用
                 if (response.status === 200) {
                   _this.accounts = response.data.accounts;
                   _this.accountNum = response.data.accounts_num;
@@ -5559,7 +5513,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 res = _context2.sent;
 
                 if (!res) {
-                  _context2.next = 10;
+                  _context2.next = 11;
                   break;
                 }
 
@@ -5568,18 +5522,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 _this2.deleteOn = false; // 再描画
 
-                _context2.next = 8;
+                _this2.$emit('user-delete', _this2.deleteTarget);
+
+                _context2.next = 9;
                 return _this2.fetchTwitterUsers();
 
-              case 8:
-                _context2.next = 12;
+              case 9:
+                _context2.next = 13;
                 break;
 
-              case 10:
+              case 11:
                 _this2.errorFlg = true;
                 _this2.messageText = _message__WEBPACK_IMPORTED_MODULE_2__["message"].notDelete;
 
-              case 12:
+              case 13:
               case "end":
                 return _context2.stop();
             }
@@ -5595,7 +5551,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
     /**
      * TwitterUserIdをlocalstorage,DBから削除する
-     * 正常終了後 -> 
+     * @returns boolean
      */
     deleteTwitterUser: function deleteTwitterUser() {
       var _this3 = this;
@@ -7716,7 +7672,8 @@ var render = function() {
                 _vm.page === 1
                   ? _c("twitter-account", {
                       key: "account",
-                      attrs: { twitterAccountId: _vm.twitterAccountId }
+                      attrs: { twitterAccountId: _vm.twitterAccountId },
+                      on: { "user-delete": _vm.twitterUserDelete }
                     })
                   : _vm._e(),
                 _vm._v(" "),

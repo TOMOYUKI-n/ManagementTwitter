@@ -15,7 +15,7 @@
         <div class="p-board__body">
             <section class="p-board__section">
                 <transition-group name="t-dashboard_panel" tag="div" class="">
-                    <twitter-account key="account" v-if="page === 1" :twitterAccountId="twitterAccountId" />
+                    <twitter-account key="account" v-if="page === 1" :twitterAccountId="twitterAccountId" @user-delete="twitterUserDelete"/>
                     <panel-follow key="follow" v-if="page === 2" />
                     <panel-unfollow key="unfollow" v-if="page === 3" />
                     <panel-like key="like" v-if="page === 4" />
@@ -57,6 +57,13 @@
              */
             setId(account) {
                 this.twitterAccountId = account.id;
+            },
+            /**
+             * twitterUserを削除
+             * sidebarを更新して、this.loginTwitterUserを空にする
+             */
+            twitterUserDelete() {
+                this.twitterAccountId = 0;
             },
             /**
              * localstorageから現在のページを取得する

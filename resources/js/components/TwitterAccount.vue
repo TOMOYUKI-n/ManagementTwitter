@@ -72,8 +72,8 @@
              */
             async fetchTwitterUsers() {
                 try {
-                    // const response = await axios.get('/api/twitter/users/list');
-                    const response = await axios.get('/test/twitter/users/list');//テスト用
+                    const response = await axios.get('/api/twitter/users/list');
+                    //const response = await axios.get('/test/twitter/users/list');//テスト用
                     if (response.status === 200) {
                         this.accounts = response.data.accounts;
                         this.accountNum = response.data.accounts_num;
@@ -96,6 +96,7 @@
                     this.accounts.splice(this.deleteTarget, 1);
                     this.deleteOn = false;
                     // 再描画
+                    this.$emit('user-delete',this.deleteTarget);
                     await this.fetchTwitterUsers();
                 }
                 else{
@@ -111,7 +112,7 @@
             },
             /**
              * TwitterUserIdをlocalstorage,DBから削除する
-             * 正常終了後 -> 
+             * @returns boolean
              */
             async deleteTwitterUser() {
                 const response = await axios.delete(`/api/twitter/users/${this.deleteTargetTwitterId}`)
