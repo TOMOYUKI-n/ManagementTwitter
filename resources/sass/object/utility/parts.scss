@@ -1,4 +1,37 @@
 // ============================
+// パーツなど
+// ============================
+
+.width{
+    &__half{
+        width: 50% !important;
+    }
+    &__three{
+        width: 30% !important;
+    }
+}
+
+.m{
+    &__r2{
+        margin-right: 8px;
+    }
+    &__r3{
+        margin-right: 12px;
+    }
+}
+.c{
+    &__color--blue {
+        color: $color-twitter;
+    }
+}
+
+.p-guest{
+    &__icon{
+        margin: 32px 0px 40px 32px;
+    }
+}
+
+// ============================
 // アラート/メッセージ関連
 // ============================
 
@@ -29,7 +62,6 @@
 }
 .pAccountActive{
     background-color: #fcb901;
-    //background-color: #C5CAE9;
 }
 
 // ============================
@@ -77,4 +109,28 @@
     @include mq() {
         display: block;
     }
+}
+
+// アニメーション
+//page
+.page-enter {
+    transform: translate(10%, 0);
+    opacity: 0;
+}
+.page-enter-to {
+    opacity: 1;
+}
+.page-enter-active {
+    transition: all .7s 0s ease;
+}
+.page-leave {
+    transform: translate(0, 0);
+    opacity: 1;
+}
+.page-leave-to {
+    transform: translate(-10%, 0);
+    opacity: 0;
+}
+.page-leave-active {
+    transition: all .3s 0s ease;
 }

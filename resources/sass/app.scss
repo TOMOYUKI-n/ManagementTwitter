@@ -5,20 +5,22 @@
 @import "foundation/base";
 //layout
 @import "layout/body";
+@import "layout/contents";
 @import "layout/footer";
 @import "layout/header";
 @import "layout/main";
 //component
 @import "object/component/botton";
-@import "object/component/card";
-@import "object/component/panel";
 @import "object/component/modal";
 
 //project
 @import "object/project/dashboard";
+@import "object/project/contents";
+@import "object/project/panel";
+@import "object/project/status";
+
 @import "object/project/login";
 @import "object/project/table";
-@import "object/project/term";
 @import "object/project/policy";
 @import "object/project/password";
 @import "object/project/top";

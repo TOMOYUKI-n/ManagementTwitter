@@ -1,9 +1,13 @@
+// ==================================
+// p-board
+// ==================================
 .p-board{
     &__sp--top{
         @include mq(){
             position: fixed;
             z-index: 2000;
             width: 100%;
+            top: 48px;
         }
     }
     &__wrap{

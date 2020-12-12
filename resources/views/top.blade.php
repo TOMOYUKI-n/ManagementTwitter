@@ -11,9 +11,9 @@
             <div class="p-top__top">
                 <div class="p-top__head ">
                     <div class="p-top__top-message">
-                        <h1 class="p-top__title">twitter自動集客ツール</h1>
+                        <h1 class="p-top__title">神ったー</h1>
                         
-                        <p class="p-top__intro--text">Kamitterを使えば、アクティブユーザーのみをフォローし、予約ツイートで宣伝、複数のアカウントで集客チャネルとしてTwitterを扱えます。</p>
+                        <p class="p-top__intro--text">「神ったー」を使えば、アクティブユーザーのみをフォローし、予約ツイートで宣伝、複数のアカウントで集客チャネルとしてTwitterを扱えます。</p>
                         <img class="p-top__img__main" src="{{ asset('/images/twitter.svg') }}" alt="twitter">
                     </div>
                 </div>

@@ -29,7 +29,7 @@
 <body>
 
     <div id="app"  class="wrapper--main">
-        <main class="l-base">
+        <main class="l-body--base">
             @include('header')
             
                 <!-- フラッシュメッセージ -->

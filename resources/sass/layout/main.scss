@@ -1,7 +1,4 @@
 
-// ============================
-// フッター下部固定用
-// ============================
 .wrapper--main{
     display: flex;
     width: 100%;
@@ -15,42 +12,33 @@
 }
 
 // ============================
-// 読み込むベースの要素
-// ============================
-.l-base{
-    padding: 0;
-    margin: 0;
-    color: $color_black;
-    font-family: font-family;
-    @include mq(){
-        width: 100%;
-        display: block;
-    }
-    &-head{
-        position: absolute;
-        width: 100%;
-        display: block;
-    }
-}
-.l-main-container{
-    width: 100%;
-    text-align: center;
-    min-width: 100%;
-    margin: auto;
-    @include mq(){
-        padding: 0px 0px 20px 0px;
-    }
-
-}
-// ============================
 // 共通パーツ
 // ============================
 .l-main{
-    &__container{
-        height: 93vh;
+    &__top--wrapper{
         @include mq(){
-            height: 93vh;
-            overflow: hidden;
+            width: 100%;
+        }
+    }
+    &__top--barner{
+        width: 100%;
+        text-align: center;
+        @include mq(){
+            width: 100%;
+        }
+    }
+    // 利用規約など
+    &__container{
+        height: 100vh;
+        @include mq(){
+            height: 100vh;
+        }
+    }
+    // 問い合わせ用
+    &__contact{
+        height: calc(100vh - 166px);
+        @include mq(){
+            height: 100vh;
         }
     }
     &__title{
@@ -79,28 +67,5 @@
             width: 100%;
             max-width: 100%;
         }
-    }
-}
-
-.width{
-    &__half{
-        width: 50% !important;
-    }
-    &__three{
-        width: 30% !important;
-    }
-}
-
-.m{
-    &__r2{
-        margin-right: 8px;
-    }
-    &__r3{
-        margin-right: 12px;
-    }
-}
-.c{
-    &__color--blue {
-        color: $color-twitter;
     }
 }

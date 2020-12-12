@@ -133,10 +133,6 @@
     &--add--wrap{
         display: none;
         @include mq(){
-            // display: block;
-            // position: absolute;
-            // right: 0px;
-            // margin: 12px;
             display: block;
             position: absolute;
             right: 20px;
