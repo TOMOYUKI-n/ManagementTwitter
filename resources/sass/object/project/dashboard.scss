@@ -1,4 +1,15 @@
+// ==================================
+// p-board
+// ==================================
 .p-board{
+    &__sp--top{
+        @include mq(){
+            position: fixed;
+            z-index: 2000;
+            width: 100%;
+            top: 48px;
+        }
+    }
     &__wrap{
         width:100%;
         display: flex;
@@ -15,7 +26,7 @@
                 width:100%;
                 color: #fff;
                 background-color: #333;
-                min-height:93vh;
+                height: calc(100vh - 48px);
                 display: block;
                 transform: translateX(0px);
                 transition: all 0.5s ease-in-out;
@@ -23,11 +34,12 @@
         }
     }
     &__sidebar-pc{
+        position: fixed;//
+        top: 48px;//
         width:20%;
         color: #fff;
         background-color: #333;
-        min-height:93vh;
-        display: grid;
+        height: calc(100vh);//
         @include mq(){
             display: none;
         }
@@ -66,11 +78,17 @@
     // body
     &__body{
         width:80%;
-        display: grid;
+        max-height: calc(100vh - 48px);
+        position: fixed;
+        top: 48px;
+        left: 20%;
+        overflow-y: scroll;
         @include mq(){
             width: 100%;
             display: block;
-            position: fixed;
+            position: unset;
+            top: 0;
+            left: 0;
         }
     }
     &__section{

@@ -4,17 +4,15 @@
         <!-- sp -->
         <div class="p-board__sidebar-sp js_toggle">
             <sidebar-component　@change-page="change" @twitter-id="setId" />
-            <footer-component />
         </div>
 
         <!-- pc -->
         <div class="p-board__sidebar-pc">
             <sidebar-component　@change-page="change" @twitter-id="setId" />
-            <footer-component />
         </div>
         <div class="p-board__body">
             <section class="p-board__section">
-                <transition-group name="t-dashboard_panel" tag="div" class="">
+                <transition-group name="t-dashboard_panel" tag="div">
                     <twitter-account key="account" v-if="page === 1" :twitterAccountId="twitterAccountId" @user-delete="twitterUserDelete"/>
                     <panel-follow key="follow" v-if="page === 2" />
                     <panel-unfollow key="unfollow" v-if="page === 3" />
@@ -43,6 +41,7 @@
              * ページ遷移
              */
             change(page){
+                console.log(page);
                 this.page = page;
                 this.isOpen = false;
             },
@@ -65,15 +64,6 @@
             twitterUserDelete() {
                 this.twitterAccountId = 0;
             },
-            /**
-             * localstorageから現在のページを取得する
-             */
-            getCurrentPage() {
-                localStorage.getItem('page', this.page);
-            },
-        },
-        async created() {
-            await this.getCurrentPage();
         },
     }
 </script>

@@ -58,10 +58,10 @@
                 </td>
             </tr>
         </table>
-        <p v-show="tweetsNum === 0" style="font-size: 14px; margin-top: 8px;">
+        <p v-show="tweetsNum === 0" class="p-panel__nodata">
             データがありません
         </p>
-        <p v-show="errorFlg" style="color: red; font-size: 14px; margin-top: 8px;">
+        <p v-show="errorFlg" class="p-panel__error">
             {{ messageText }}
         </p>
 
@@ -101,7 +101,7 @@
                                 required>
                         </div>
                         <div class="p-form__button">
-                            <button type="submit" class="c-button c-button--twitter">追加</button>
+                            <button type="submit" class="c-button c-button--sp c-button--twitter">追加</button>
                         </div>
                     </form>
                 </div>
@@ -143,7 +143,7 @@
                                 required>
                         </div>
                         <div class="p-form__button">
-                            <button type="submit" class="c-button c-button--twitter">変更</button>
+                            <button type="submit" class="c-button c-button--sp c-button--twitter">変更</button>
                         </div>
                     </form>
                 </div>
@@ -178,7 +178,7 @@
                         <i class="fas fa-times m__r2"></i>
                         <div>キャンセル</div>
                     </div>
-                    <div type="submit" class="p-botton__delete  p-form__half-btn width__three" @click="removeTweet">
+                    <div type="submit" class="p-button__delete  p-form__half-btn width__three" @click="removeTweet">
                         <i class="fas fa-check m__r2"></i>
                         <div>削除</div>
                     </div>
@@ -442,7 +442,7 @@
             /**
              * localstorageから現在のページを保存する
              */
-            getCurrentPage() {
+            setCurrentPage() {
                 localStorage.setItem('page', this.page);
             },
             /**
@@ -451,11 +451,10 @@
             async getCurrentTwitterId() {
                 const storage = JSON.parse(localStorage.getItem('loginTwitterAccount'));
                 this.twitter_id = storage.id;
-                // console.log(this.twitter_id);
             }
         },
         async created() {
-            await this.getCurrentPage();
+            await this.setCurrentPage();
             await this.getCurrentTwitterId();
             await this.fetchServiceStatus();
             await this.fetchTweets();

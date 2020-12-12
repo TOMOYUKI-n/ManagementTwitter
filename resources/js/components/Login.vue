@@ -17,13 +17,13 @@
 
                 <!--ボタンエリア-->
                 <div class="p-login__button__wrap">
-                    <a @click="login" class="p-botton__login">ログイン</a>
+                    <a @click="login" class="p-button__login">ログイン</a>
                 </div>
 
-                <p class="p-login__text">アカウントをお持ちで無い方はこちらから</p>
+                <p class="p-login__text--center">アカウントをお持ちで無い方はこちらから</p>
 
                 <div class="p-login__button__wrap" @click="register">
-                    <a class="p-botton__register__top">新規登録</a>
+                    <a class="p-button__register__top">新規登録</a>
                 </div>
 
                 <div class="p-login__button__wrap">

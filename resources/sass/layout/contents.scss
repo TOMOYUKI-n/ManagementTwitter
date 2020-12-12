@@ -1,0 +1,10 @@
+.l-contents{
+    padding: 24px;
+    display: flex;
+    justify-content: center;
+    min-height: calc(100vh - 48px);
+    box-sizing: border-box;
+    @include mq(){
+        padding: 20px;
+    }
+}

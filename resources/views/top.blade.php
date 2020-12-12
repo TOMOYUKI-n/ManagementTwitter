@@ -11,9 +11,9 @@
             <div class="p-top__top">
                 <div class="p-top__head ">
                     <div class="p-top__top-message">
-                        <h1 class="p-top__title">twitter自動集客ツール</h1>
+                        <h1 class="p-top__title">神ったー</h1>
                         
-                        <p class="p-top__intro--text">Kamitterを使えば、アクティブユーザーのみをフォローし、予約ツイートで宣伝、複数のアカウントで集客チャネルとしてTwitterを扱えます。</p>
+                        <p class="p-top__intro--text">「神ったー」を使えば、アクティブユーザーのみをフォローし、予約ツイートで宣伝、複数のアカウントで集客チャネルとしてTwitterを扱えます。</p>
                         <img class="p-top__img__main" src="{{ asset('/images/twitter.svg') }}" alt="twitter">
                     </div>
                 </div>
@@ -22,14 +22,14 @@
                     @guest
                     <div class="p-top__account">
                         <div class="p-top__register">
-                            <a class="p-top__text-xs p-botton__register__top p-top__mt-3"
+                            <a class="p-top__text-xs p-button__register__top p-top__mt-3"
                                 href="{{ route('register') }}">
                                 {{ __('Register Free') }}
                             </a>
                         </div>
                         <div class="p-top__login">
                             <p class="p-top__text-xs">既に会員の方はこちら</p>
-                            <a class="p-top__text-xs p-botton__login p-top__mt-3"
+                            <a class="p-top__text-xs p-button__login p-top__mt-3"
                                 href="{{ route('login') }}">
                                     {{ __('Login') }}
                             </a>

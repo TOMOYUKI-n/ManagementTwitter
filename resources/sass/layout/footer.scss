@@ -1,10 +1,9 @@
 // ============================
-// フッター下部固定用
+// フッター
 // ============================
 footer{
     @include mq(){
         font-size: 17px;
-        margin-bottom: 16px;
         position: fixed;
         width: 100%;
         bottom: 0px;
@@ -12,40 +11,12 @@ footer{
   }
 .l-footer{
     font-size: 12px;
-    @include mq(){
-        //display: flex;
-        flex-direction: column;
-        flex-wrap: wrap;
-        font-size: 13px;
-        justify-content: center;
-        align-items: center;
-    }
+
     &__copyright{
-        box-sizing: border-box;
         margin: 8px 32px;
-        position: relative;
-        top: 50px;
-        @include mq(){
-            position: relative;
-            top: 0px;
-            font-size: 13px;
-            //text-align: center;
-            margin-top: 4px;
-        }
     }
     &__info{
-        margin: 8px 32px;
-        position: relative;
-        top: 50px;
-        @include mq(){
-            position: relative;
-            top: 0px;
-            font-size: 14px;
-            //margin: 4px 16px 16px;
-        }
-    }
-    &__menu{
-        display: grid;
+        margin: 0px 32px 8px 32px;
     }
     &__list{
         margin-top: 8px;

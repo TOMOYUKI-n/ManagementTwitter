@@ -55,9 +55,6 @@
     </header>
     <div class="js_toggle_guest">
         <div>
-            <div class="p-guest__icon">
-                <i class="js_push_guest fas fa-times"></i>
-            </div>
             <div class="p-board__link p-board__hover">
                 <div class="l-footer__list"><a class="p-top__footer-text" href="/contact">お問い合わせ </a></div>
                 <div class="l-footer__list"><a class="p-top__footer-text" href="/term">利用規約 </a></div>

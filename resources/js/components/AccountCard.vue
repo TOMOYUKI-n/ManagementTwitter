@@ -12,7 +12,7 @@
         </div>
         <div>
             <div class="" @click.stop="changeDeleteFlg">
-                <i class="p-botton__trash fas fa-trash-alt"></i>
+                <i class="p-button__trash fas fa-trash-alt"></i>
             </div>
         </div>
     </li>

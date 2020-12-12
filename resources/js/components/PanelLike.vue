@@ -77,7 +77,7 @@
                         </select>
 
                         <div class="p-form__button">
-                            <button type="submit" class="c-button c-button--twitter">追加</button>
+                            <button type="submit" class="c-button c-button--sp c-button--twitter">追加</button>
                         </div>
                     </form>
                 </div>
@@ -100,7 +100,7 @@
                         </select>
 
                         <div class="p-form__button">
-                            <button type="submit" class="c-button c-button--twitter">変更</button>
+                            <button type="submit" class="c-button c-button--sp c-button--twitter">変更</button>
                         </div>
                     </form>
                 </div>
@@ -134,7 +134,7 @@
                             <i class="fas fa-times m__r2"></i>
                             <div>キャンセル</div>
                         </div>
-                        <div type="submit" class="p-botton__delete  p-form__half-btn width__three" @click="removeLike">
+                        <div type="submit" class="p-button__delete  p-form__half-btn width__three" @click="removeLike">
                             <i class="fas fa-check m__r2"></i>
                             <div>削除</div>
                         </div>
@@ -185,12 +185,6 @@
             }
         },
         computed: {
-            /**
-             * フィルターキワードの追加、変更、削除イベントの通知を取得する
-             */
-            // dashChange() {
-            //     return this.$store.state.dashboard.noticeToLike
-            // },
             showRunButton() {
                 return this.serviceStatus === 1 || this.serviceStatus === 3
             },
@@ -229,7 +223,6 @@
              */
             async addLike() {
                 const response = await axios.post(`/api/like/${this.twitter_id}`, this.addForm);
-                // console.log(response);
                 if (response.status !== 200 || response.data === 500) {
                     this.newModal = false;
                     this.errorFlg = true;
@@ -311,7 +304,6 @@
              */
             async fetchServiceStatus() {
                 const response = await axios.get(`/api/system/status/${this.twitter_id}`);
-                // console.log(response);
                 if (response.status !== 200) {
                     this.errorFlg = true;
                     this.messageText = message.notGetData;
@@ -359,7 +351,7 @@
             /**
              * localstorageから現在のページを保存する
              */
-            getCurrentPage() {
+            setCurrentPage() {
                 localStorage.setItem('page', this.page);
             },
             /**
@@ -368,11 +360,10 @@
             async getCurrentTwitterId() {
                 const storage = JSON.parse(localStorage.getItem('loginTwitterAccount'));
                 this.twitter_id = storage.id;
-                // console.log(this.twitter_id);
             }
         },
         async created() {
-            await this.getCurrentPage();
+            await this.setCurrentPage();
             await this.getCurrentTwitterId();
             await this.fetchLikes();
             await this.fetchKeywords();

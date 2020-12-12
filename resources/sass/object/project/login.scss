@@ -12,17 +12,22 @@
     // カバーパーツ
     // ============================
     &__container{
-        max-width: 500px;
         min-width: 350px;
-        margin: 60px auto;
+        margin: 0px auto 0px;
         padding: 30px;
         box-sizing: border-box;
         box-shadow: 0px 4px 8px 2px #b2b5be;
-        font-size: $font-size_xxs;
+        font-size: 0.9rem;
         border-radius: 6px;
+        width: 600px;
+        position: relative;
+        top: 96px;
         @include mq(){
+            min-width: 0px;
             width: 100%;
-            margin: 20px auto;
+            position: relative;
+            top: 48px;
+            margin: 0px auto;
             box-shadow: 0px 0px 0px 0px #b2b5be;
         }
     }
@@ -57,6 +62,14 @@
     &__text{
         padding: 10px;
         margin: 10px;
+        margin-top: 30px;
+        word-break: break-word;
+        text-align: center;
+        @include mq(){
+            width: 100%;
+        }
+    }
+    &__text--center{
         margin-top: 30px;
         word-break: break-word;
         text-align: center;

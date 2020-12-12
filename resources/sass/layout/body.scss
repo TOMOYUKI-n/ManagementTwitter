@@ -1,87 +1,18 @@
-.l-contents{
-    padding: 24px;
-    display: flex;
-    justify-content: center;
-    max-height: 100%;// 追加
-    overflow-y: scroll;// 追加
-    height: 93vh;
-    box-sizing: border-box;
+// ============================
+// 読み込むベースの要素
+// ============================
+.l-body--base{
+    padding: 0;
+    margin: 0;
+    color: $color_black;
+    font-family: font-family;
     @include mq(){
-        padding: 20px;
+        width: 100%;
+        display: block;
+    }
+    &-head{
+        position: absolute;
+        width: 100%;
+        display: block;
     }
 }
-.p-contents {
-    &__area {
-        width: 980px;
-        min-width: 980px;
-        @include mq() {
-            width: 100%;
-            min-width: initial;
-        }
-        &--narrow {
-            width: 450px;
-            min-width: 450px;
-            @include mq(){
-                width: 100%;
-                min-width: initial;
-            }
-        }
-    }
-    &__head {
-        font-size: $font-size_l;
-        text-align: center;
-        margin-bottom: 24px;
-        @include mq(){
-            font-size: $font-size_m;
-            margin-bottom: 30px;
-        }
-    }
-}
-
-//page
-.page-enter {
-    transform: translate(10%, 0);
-    opacity: 0;
-}
-.page-enter-to {
-    opacity: 1;
-}
-.page-enter-active {
-    transition: all .7s 0s ease;
-}
-.page-leave {
-    transform: translate(0, 0);
-    opacity: 1;
-}
-.page-leave-to {
-    transform: translate(-10%, 0);
-    opacity: 0;
-}
-.page-leave-active {
-    transition: all .3s 0s ease;
-}
-
-
-
-// t-del
-.t-del-enter {
-    opacity: 0;
-}
-.t-del-enter-to {
-    opacity: 1;
-}
-.t-del-enter-active {
-    transition: all .5s 0s ease-out;
-}
-.t-del-leave {
-    opacity: 1;
-}
-.t-del-leave-to {
-    opacity: 0;
-}
-.t-del-leave-active {
-    transition: all 0s 0s;
-    display: none;
-}
-  
-

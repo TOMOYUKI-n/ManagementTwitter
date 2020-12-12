@@ -54,7 +54,7 @@
                     </div>
                     <form class="p-form" @submit="addKeyword">
 
-                        <p class="p-form__notion">※複数ワードを指定する際は、「ツイッター 神」のように半角スペースで区切ってください。</p>
+                        <p class="p-form__notion">※複数ワードの場合は、「集客 マーケティング」のように半角スペースで区切ってください。</p>
                         <label class="p-form__label" for="add-keyword">条件タイプ</label>
                         <select class="p-form__select" id="add-keyword" v-model="addForm.type">
                             <option value="1">次のワードを含む</option>
@@ -69,7 +69,7 @@
                                v-model="addForm.remove" maxlength="50">
 
                         <div class="p-form__button">
-                            <button type="submit" class="c-button c-button--twitter">追加</button>
+                            <button type="submit" class="c-button c-button--sp c-button--twitter">追加</button>
                         </div>
                     </form>
                 </div>
@@ -95,9 +95,9 @@
                         <label class="p-form__label" for="edit-remove_keyword">除外ワード</label>
                         <input type="text" class="p-form__item" id="edit-remove_keyword"
                                v-model="editForm.remove" maxlength="50">
-                        <p class="p-form__notion">※複数ワードを指定する際は、「ツイッター 神」のように半角スペースで区切ってください。</p>
+                        <p class="p-form__notion">※複数ワードの場合は、「集客 マーケティング」のように半角スペースで区切ってください。</p>
                         <div class="p-form__button">
-                            <button type="submit" class="c-button c-button--twitter">変更</button>
+                            <button type="submit" class="c-button c-button--sp c-button--twitter">変更</button>
                         </div>
                     </form>
                 </div>
@@ -111,7 +111,7 @@
                             <i class="fas fa-times m__r2"></i>
                             <div>キャンセル</div>
                         </div>
-                        <div type="submit" class="p-botton__delete  p-form__half-btn width__three" @click="removeKeywords">
+                        <div type="submit" class="p-button__delete  p-form__half-btn width__three" @click="removeKeywords">
                             <i class="fas fa-check m__r2"></i>
                             <div>削除</div>
                         </div>
@@ -269,13 +269,13 @@
             /**
              * localstorageから現在のページを保存する
              */
-            getCurrentPage() {
+            setCurrentPage() {
                 localStorage.setItem('page', this.page);
             }
         },
         async created() {
             await this.fetchKeywords();
-            await this.getCurrentPage();
+            await this.setCurrentPage();
         },
     }
 </script>
