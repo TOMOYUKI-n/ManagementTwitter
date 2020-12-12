@@ -88,7 +88,7 @@
                         </select>
 
                         <div class="p-form__button">
-                            <button type="submit" class="c-button c-button--twitter">追加</button>
+                            <button type="submit" class="c-button c-button--sp c-button--twitter">追加</button>
                         </div>
                     </form>
                 </div>
@@ -116,7 +116,7 @@
                         </select>
 
                         <div class="p-form__button">
-                            <button type="submit" class="c-button c-button--twitter" >編集</button>
+                            <button type="submit" class="c-button c-button--sp c-button--twitter" >編集</button>
                         </div>
                     </form>
                 </div>
@@ -150,7 +150,7 @@
                             <i class="fas fa-times m__r2"></i>
                             <div>キャンセル</div>
                         </div>
-                        <div type="submit" class="p-botton__delete  p-form__half-btn width__three" @click="removeFollowTarget">
+                        <div type="submit" class="p-button__delete  p-form__half-btn width__three" @click="removeFollowTarget">
                             <i class="fas fa-check m__r2"></i>
                             <div>削除</div>
                         </div>
@@ -292,7 +292,6 @@
              * フォローターゲットを削除する
              */
             async removeFollowTarget() {
-                // console.log(this.deleteItem);
                 const response = await axios.post(`/api/follow/delete/${this.deleteItem.id}`, this.deleteItem);
                 if (response.status !== 200 || response.data === 500) {
                     this.errorFlg = true;
@@ -372,7 +371,7 @@
             /**
              * localstorageから現在のページを保存する
              */
-            getCurrentPage() {
+            setCurrentPage() {
                 localStorage.setItem('page', this.page);
             },
             /**
@@ -384,7 +383,7 @@
             }
         },
         async created() {
-            await this.getCurrentPage();
+            await this.setCurrentPage();
             await this.getCurrentTwitterId();
             await this.fetchFollowTargets()
             await this.fetchKeywords()

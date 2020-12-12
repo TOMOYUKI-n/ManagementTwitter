@@ -2,12 +2,15 @@
 // c-panel
 // ==================================
 .p-panel {
+    // padding: 24px;
+    // border: 1px solid $color-default-parent;
+    // height: 93vh;
+    // box-sizing: border-box;
+    // max-height: 100%;// 追加
+    // overflow-y: scroll;// 追加
     padding: 24px;
-    border: 1px solid $color-default-parent;
-    height: 93vh;
     box-sizing: border-box;
-    max-height: 100%;// 追加
-    overflow-y: scroll;// 追加
+    height: calc(100vh - 48px);
     @include mq() {
         padding: 12px;
     }

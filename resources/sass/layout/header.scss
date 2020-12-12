@@ -15,8 +15,10 @@ nav{
         display: flex;
         justify-content: space-between;
         background: #1976D2;
-        font-size: 1.4rem;
+        // font-size: 1.4rem;
         align-items: center;
+        // height: 7vh;
+        height: 48px;
         @include mq() {
             padding: 0 $space_s;
             box-sizing: border-box;
@@ -25,8 +27,7 @@ nav{
     &__align{
         display: flex;
         justify-content: space-between;
-        height: 7vh;
-        line-height: 2.2;
+        // line-height: 2.2;
     }
     &__sp__d-flex{
         @include mq() {

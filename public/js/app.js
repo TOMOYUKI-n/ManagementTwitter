@@ -2083,14 +2083,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
 //
 //
 //
@@ -2135,6 +2127,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
      * ページ遷移
      */
     change: function change(page) {
+      console.log(page);
       this.page = page;
       this.isOpen = false;
     },
@@ -2159,33 +2152,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
      */
     twitterUserDelete: function twitterUserDelete() {
       this.twitterAccountId = 0;
-    },
-
-    /**
-     * localstorageから現在のページを取得する
-     */
-    getCurrentPage: function getCurrentPage() {
-      localStorage.getItem('page', this.page);
     }
-  },
-  created: function created() {
-    var _this = this;
-
-    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              _context.next = 2;
-              return _this.getCurrentPage();
-
-            case 2:
-            case "end":
-              return _context.stop();
-          }
-        }
-      }, _callee);
-    }))();
   }
 });
 
@@ -2200,6 +2167,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
 //
 //
 //
@@ -2944,7 +2912,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     /**
      * localstorageから現在のページを保存する
      */
-    getCurrentPage: function getCurrentPage() {
+    setCurrentPage: function setCurrentPage() {
       localStorage.setItem('page', this.page);
     },
 
@@ -2981,7 +2949,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           switch (_context10.prev = _context10.next) {
             case 0:
               _context10.next = 2;
-              return _this10.getCurrentPage();
+              return _this10.setCurrentPage();
 
             case 2:
               _context10.next = 4;
@@ -3409,7 +3377,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     /**
      * localstorageから現在のページを保存する
      */
-    getCurrentPage: function getCurrentPage() {
+    setCurrentPage: function setCurrentPage() {
       localStorage.setItem('page', this.page);
     }
   },
@@ -3426,7 +3394,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
             case 2:
               _context5.next = 4;
-              return _this5.getCurrentPage();
+              return _this5.setCurrentPage();
 
             case 4:
             case "end":
@@ -3647,12 +3615,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     };
   },
   computed: {
-    /**
-     * フィルターキワードの追加、変更、削除イベントの通知を取得する
-     */
-    // dashChange() {
-    //     return this.$store.state.dashboard.noticeToLike
-    // },
     showRunButton: function showRunButton() {
       return this.serviceStatus === 1 || this.serviceStatus === 3;
     },
@@ -3748,7 +3710,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 2:
                 response = _context3.sent;
 
-                // console.log(response);
                 if (response.status !== 200 || response.data === 500) {
                   _this3.newModal = false;
                   _this3.errorFlg = true;
@@ -3923,7 +3884,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 2:
                 response = _context6.sent;
 
-                // console.log(response);
                 if (response.status !== 200) {
                   _this6.errorFlg = true;
                   _this6.messageText = _message__WEBPACK_IMPORTED_MODULE_2__["message"].notGetData;
@@ -4039,7 +3999,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     /**
      * localstorageから現在のページを保存する
      */
-    getCurrentPage: function getCurrentPage() {
+    setCurrentPage: function setCurrentPage() {
       localStorage.setItem('page', this.page);
     },
 
@@ -4056,7 +4016,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context9.prev = _context9.next) {
               case 0:
                 storage = JSON.parse(localStorage.getItem('loginTwitterAccount'));
-                _this9.twitter_id = storage.id; // console.log(this.twitter_id);
+                _this9.twitter_id = storage.id;
 
               case 2:
               case "end":
@@ -4076,7 +4036,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           switch (_context10.prev = _context10.next) {
             case 0:
               _context10.next = 2;
-              return _this10.getCurrentPage();
+              return _this10.setCurrentPage();
 
             case 2:
               _context10.next = 4;
@@ -4763,7 +4723,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     /**
      * localstorageから現在のページを保存する
      */
-    getCurrentPage: function getCurrentPage() {
+    setCurrentPage: function setCurrentPage() {
       localStorage.setItem('page', this.page);
     },
 
@@ -4780,7 +4740,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context8.prev = _context8.next) {
               case 0:
                 storage = JSON.parse(localStorage.getItem('loginTwitterAccount'));
-                _this8.twitter_id = storage.id; // console.log(this.twitter_id);
+                _this8.twitter_id = storage.id;
 
               case 2:
               case "end":
@@ -4800,7 +4760,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           switch (_context9.prev = _context9.next) {
             case 0:
               _context9.next = 2;
-              return _this9.getCurrentPage();
+              return _this9.setCurrentPage();
 
             case 2:
               _context9.next = 4;
@@ -5049,7 +5009,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     /**
      * localstorageから現在のページを保存する
      */
-    getCurrentPage: function getCurrentPage() {
+    setCurrentPage: function setCurrentPage() {
       localStorage.setItem('page', this.page);
     },
 
@@ -5090,7 +5050,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
             case 2:
               _context5.next = 4;
-              return _this5.getCurrentPage();
+              return _this5.setCurrentPage();
 
             case 4:
               _context5.next = 6;
@@ -5320,6 +5280,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   _this3.currentPage = 1;
                 } else {
                   _this3.currentPage = Number(page);
+
+                  _this3.$emit('change-page', _this3.currentPage);
                 }
 
               case 4:
@@ -5593,7 +5555,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     /**
      * localstorageから現在のページを保存する
      */
-    getCurrentPage: function getCurrentPage() {
+    setCurrentPage: function setCurrentPage() {
       localStorage.setItem('page', this.page);
     }
   },
@@ -5616,7 +5578,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               return _this4.fetchTwitterUsers();
 
             case 2:
-              _this4.getCurrentPage();
+              _this4.setCurrentPage();
 
             case 3:
             case "end":
@@ -7604,7 +7566,7 @@ var render = function() {
               }
             }
           },
-          [_c("i", { staticClass: "p-botton__trash fas fa-trash-alt" })]
+          [_c("i", { staticClass: "p-button__trash fas fa-trash-alt" })]
         )
       ])
     ]
@@ -7733,7 +7695,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("footer", { staticClass: "l-footer" }, [
       _c("div", { staticClass: "l-footer__info" }, [
-        _c("div", { staticClass: "l-footer__menu" }, [
+        _c("div", [
           _c("div", { staticClass: "l-footer__list" }, [
             _c(
               "a",
@@ -7857,12 +7819,12 @@ var render = function() {
         _c("div", { staticClass: "p-login__button__wrap" }, [
           _c(
             "a",
-            { staticClass: "p-botton__login", on: { click: _vm.login } },
+            { staticClass: "p-button__login", on: { click: _vm.login } },
             [_vm._v("ログイン")]
           )
         ]),
         _vm._v(" "),
-        _c("p", { staticClass: "p-login__text" }, [
+        _c("p", { staticClass: "p-login__text--center" }, [
           _vm._v("アカウントをお持ちで無い方はこちらから")
         ]),
         _vm._v(" "),
@@ -7870,7 +7832,7 @@ var render = function() {
           "div",
           { staticClass: "p-login__button__wrap", on: { click: _vm.register } },
           [
-            _c("a", { staticClass: "p-botton__register__top" }, [
+            _c("a", { staticClass: "p-button__register__top" }, [
               _vm._v("新規登録")
             ])
           ]
@@ -8546,7 +8508,7 @@ var render = function() {
                 "div",
                 {
                   staticClass:
-                    "p-botton__delete  p-form__half-btn width__three",
+                    "p-button__delete  p-form__half-btn width__three",
                   attrs: { type: "submit" },
                   on: { click: _vm.removeFollowTarget }
                 },
@@ -8623,7 +8585,7 @@ var staticRenderFns = [
       _c(
         "button",
         {
-          staticClass: "c-button c-button--twitter",
+          staticClass: "c-button c-button--sp c-button--twitter",
           attrs: { type: "submit" }
         },
         [_vm._v("追加")]
@@ -8638,7 +8600,7 @@ var staticRenderFns = [
       _c(
         "button",
         {
-          staticClass: "c-button c-button--twitter",
+          staticClass: "c-button c-button--sp c-button--twitter",
           attrs: { type: "submit" }
         },
         [_vm._v("編集")]
@@ -8810,7 +8772,7 @@ var render = function() {
               [
                 _c("p", { staticClass: "p-form__notion" }, [
                   _vm._v(
-                    "※複数ワードを指定する際は、「ツイッター 神」のように半角スペースで区切ってください。"
+                    "※複数ワードの場合は、「集客 マーケティング」のように半角スペースで区切ってください。"
                   )
                 ]),
                 _vm._v(" "),
@@ -9108,7 +9070,7 @@ var render = function() {
                 _vm._v(" "),
                 _c("p", { staticClass: "p-form__notion" }, [
                   _vm._v(
-                    "※複数ワードを指定する際は、「ツイッター 神」のように半角スペースで区切ってください。"
+                    "※複数ワードの場合は、「集客 マーケティング」のように半角スペースで区切ってください。"
                   )
                 ]),
                 _vm._v(" "),
@@ -9161,7 +9123,7 @@ var render = function() {
                 "div",
                 {
                   staticClass:
-                    "p-botton__delete  p-form__half-btn width__three",
+                    "p-button__delete  p-form__half-btn width__three",
                   attrs: { type: "submit" },
                   on: { click: _vm.removeKeywords }
                 },
@@ -9240,7 +9202,7 @@ var staticRenderFns = [
       _c(
         "button",
         {
-          staticClass: "c-button c-button--twitter",
+          staticClass: "c-button c-button--sp c-button--twitter",
           attrs: { type: "submit" }
         },
         [_vm._v("追加")]
@@ -9255,7 +9217,7 @@ var staticRenderFns = [
       _c(
         "button",
         {
-          staticClass: "c-button c-button--twitter",
+          staticClass: "c-button c-button--sp c-button--twitter",
           attrs: { type: "submit" }
         },
         [_vm._v("変更")]
@@ -9827,7 +9789,7 @@ var render = function() {
                 "div",
                 {
                   staticClass:
-                    "p-botton__delete  p-form__half-btn width__three",
+                    "p-button__delete  p-form__half-btn width__three",
                   attrs: { type: "submit" },
                   on: { click: _vm.removeLike }
                 },
@@ -9896,7 +9858,7 @@ var staticRenderFns = [
       _c(
         "button",
         {
-          staticClass: "c-button c-button--twitter",
+          staticClass: "c-button c-button--sp c-button--twitter",
           attrs: { type: "submit" }
         },
         [_vm._v("追加")]
@@ -9911,7 +9873,7 @@ var staticRenderFns = [
       _c(
         "button",
         {
-          staticClass: "c-button c-button--twitter",
+          staticClass: "c-button c-button--sp c-button--twitter",
           attrs: { type: "submit" }
         },
         [_vm._v("変更")]
@@ -10570,7 +10532,7 @@ var render = function() {
             _c(
               "div",
               {
-                staticClass: "p-botton__delete  p-form__half-btn width__three",
+                staticClass: "p-button__delete  p-form__half-btn width__three",
                 attrs: { type: "submit" },
                 on: { click: _vm.removeTweet }
               },
@@ -10644,7 +10606,7 @@ var staticRenderFns = [
       _c(
         "button",
         {
-          staticClass: "c-button c-button--twitter",
+          staticClass: "c-button c-button--sp c-button--twitter",
           attrs: { type: "submit" }
         },
         [_vm._v("追加")]
@@ -10659,7 +10621,7 @@ var staticRenderFns = [
       _c(
         "button",
         {
-          staticClass: "c-button c-button--twitter",
+          staticClass: "c-button c-button--sp c-button--twitter",
           attrs: { type: "submit" }
         },
         [_vm._v("変更")]
@@ -10995,7 +10957,7 @@ var render = function() {
               _c(
                 "div",
                 {
-                  staticClass: "p-board__label",
+                  staticClass: "p-board__label js_push",
                   staticStyle: { "font-size": "14px" }
                 },
                 [_vm._v(_vm._s(i.label))]
@@ -11089,7 +11051,7 @@ var render = function() {
           _c(
             "a",
             {
-              staticClass: "p-botton__account__add",
+              staticClass: "p-button__account__add",
               on: { click: _vm.twitterLogin }
             },
             [_vm._m(1)]
@@ -11164,7 +11126,7 @@ var render = function() {
               _c(
                 "div",
                 {
-                  staticClass: "p-botton__delete p-form__half-btn width__three",
+                  staticClass: "p-button__delete p-form__half-btn width__three",
                   attrs: { type: "submit" },
                   on: {
                     click: function($event) {
@@ -11183,7 +11145,7 @@ var render = function() {
                 "div",
                 {
                   staticClass:
-                    "p-botton__delete  p-form__half-btn width__three",
+                    "p-button__delete  p-form__half-btn width__three",
                   attrs: { type: "submit" },
                   on: { click: _vm.removeCard }
                 },

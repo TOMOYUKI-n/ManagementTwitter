@@ -1,7 +1,7 @@
 // ============================
 // ボタン
 // ============================
-.p-botton{
+.p-button{
     &__register{
         &__top{
             // aタグ
@@ -103,28 +103,12 @@
     @include mq(){
         padding: 8px 16px;
     }
-    &--inverse {
-        background: $color-default;
-        border-color: $color-default;
-        color: $color-white;
-    }   
-  
-    &--cancel {
-        border-color: $color-default;
-        color: $color-default;
+    &--sp{
+        @include mq(){
+            width: 100%;
+        } 
     }
-  
-    &--danger {
-        color: $color-white;
-        border-color: $color-danger;
-        background: $color-danger;
-    }
-    &--success {
-        color: $color-white;
-        border-color: $color-success;
-        background: $color-success;
-    }
-    // 追加したもの
+
     &--twitter {
         color: #333;
         box-shadow: 0 1px 2px #5a5b5e55;
@@ -149,10 +133,14 @@
     &--add--wrap{
         display: none;
         @include mq(){
+            // display: block;
+            // position: absolute;
+            // right: 0px;
+            // margin: 12px;
             display: block;
             position: absolute;
-            right: 0px;
-            margin: 12px;
+            right: 20px;
+            bottom: 44px;
         }
     }
     &--add--sp {
@@ -161,9 +149,10 @@
             border: none;
             padding: 12px;
             border-radius: 50%;
-            height: 40px;
-            width: 40px;
-            line-height: 1.4;
+            height: 56px;
+            width: 56px;
+            font-size: 14px;
+            z-index: 200;
             background-color: #55acee;
             &:hover{
                 color: #fff;

@@ -119,7 +119,7 @@
             /**
              * localstorageから現在のページを保存する
              */
-            getCurrentPage() {
+            setCurrentPage() {
                 localStorage.setItem('page', this.page);
             },
             /**
@@ -132,7 +132,7 @@
         },
         async created() {
             await this.getCurrentTwitterId();
-            await this.getCurrentPage();
+            await this.setCurrentPage();
             await this.fetchServiceStatus();
         }
     }

@@ -22,14 +22,14 @@
                     @guest
                     <div class="p-top__account">
                         <div class="p-top__register">
-                            <a class="p-top__text-xs p-botton__register__top p-top__mt-3"
+                            <a class="p-top__text-xs p-button__register__top p-top__mt-3"
                                 href="{{ route('register') }}">
                                 {{ __('Register Free') }}
                             </a>
                         </div>
                         <div class="p-top__login">
                             <p class="p-top__text-xs">既に会員の方はこちら</p>
-                            <a class="p-top__text-xs p-botton__login p-top__mt-3"
+                            <a class="p-top__text-xs p-button__login p-top__mt-3"
                                 href="{{ route('login') }}">
                                     {{ __('Login') }}
                             </a>

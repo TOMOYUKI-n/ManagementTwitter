@@ -44,7 +44,7 @@
                 </div>
             </div>
             <div class="p-login__button__wrap">
-                <button type="submit" class="p-botton__register__new">
+                <button type="submit" class="p-button__register__new">
                     {{ __('Register') }}
                 </button>
             </div>

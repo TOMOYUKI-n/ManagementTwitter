@@ -1,7 +1,7 @@
 <template>
     <footer class="l-footer">
         <div class="l-footer__info">
-            <div class="l-footer__menu">
+            <div>
                 <div class="l-footer__list"><a class="l-footer__href" href="/contact">お問い合わせ </a></div>
                 <div class="l-footer__list"><a class="l-footer__href" href="/term">利用規約 </a></div>
                 <div class="l-footer__list"><a class="l-footer__href" href="/policy">プライバシーポリシー</a></div>
@@ -11,6 +11,7 @@
             <div>©kamitter2020 kamitter.All Rights Reserved</div>
         </div>
     </footer>
+
 </template>
 <script>
     export default {}
