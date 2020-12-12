@@ -58,10 +58,10 @@
                 </td>
             </tr>
         </table>
-        <p v-show="tweetsNum === 0" style="font-size: 14px; margin-top: 8px;">
+        <p v-show="tweetsNum === 0" class="p-panel__nodata">
             データがありません
         </p>
-        <p v-show="errorFlg" style="color: red; font-size: 14px; margin-top: 8px;">
+        <p v-show="errorFlg" class="p-panel__error">
             {{ messageText }}
         </p>
 

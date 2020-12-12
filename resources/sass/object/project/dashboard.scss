@@ -22,8 +22,6 @@
                 width:100%;
                 color: #fff;
                 background-color: #333;
-                // min-height:93vh;
-                // height: 93vh;
                 height: calc(100vh - 48px);
                 display: block;
                 transform: translateX(0px);
@@ -32,12 +30,12 @@
         }
     }
     &__sidebar-pc{
+        position: fixed;//
+        top: 48px;//
         width:20%;
         color: #fff;
         background-color: #333;
-        // min-height:93vh;
-        min-height: calc(100% - 48px);
-        // display: grid;
+        height: calc(100vh);//
         @include mq(){
             display: none;
         }
@@ -76,12 +74,17 @@
     // body
     &__body{
         width:80%;
-        height: calc(100vh - 48px);
-        // display: grid;
+        max-height: calc(100vh - 48px);
+        position: fixed;
+        top: 48px;
+        left: 20%;
+        overflow-y: scroll;
         @include mq(){
             width: 100%;
             display: block;
-            // position: fixed;
+            position: unset;
+            top: 0;
+            left: 0;
         }
     }
     &__section{

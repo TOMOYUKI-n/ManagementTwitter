@@ -2112,8 +2112,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -5142,6 +5140,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 
@@ -7602,9 +7601,7 @@ var render = function() {
         [
           _c("sidebar-component", {
             on: { "change-page": _vm.change, "twitter-id": _vm.setId }
-          }),
-          _vm._v(" "),
-          _c("footer-component")
+          })
         ],
         1
       ),
@@ -7615,9 +7612,7 @@ var render = function() {
         [
           _c("sidebar-component", {
             on: { "change-page": _vm.change, "twitter-id": _vm.setId }
-          }),
-          _vm._v(" "),
-          _c("footer-component")
+          })
         ],
         1
       ),
@@ -10086,7 +10081,7 @@ var render = function() {
             expression: "tweetsNum === 0"
           }
         ],
-        staticStyle: { "font-size": "14px", "margin-top": "8px" }
+        staticClass: "p-panel__nodata"
       },
       [_vm._v("\n        データがありません\n    ")]
     ),
@@ -10102,7 +10097,7 @@ var render = function() {
             expression: "errorFlg"
           }
         ],
-        staticStyle: { color: "red", "font-size": "14px", "margin-top": "8px" }
+        staticClass: "p-panel__error"
       },
       [_vm._v("\n        " + _vm._s(_vm.messageText) + "\n    ")]
     ),
@@ -10859,116 +10854,135 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", {}, [
-    Object.keys(this.loginTwitterUser).length > 0
-      ? _c("div", { staticClass: "p-board__mp-4" }, [
-          _c("div", { staticClass: "p-board__top" }, [
-            _vm._v(_vm._s(_vm.loginTwitterUser.screen_name))
-          ]),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "p-board__d-flex p-board__top p-board__space-end" },
-            [
-              _c("div", { staticClass: "p-board__mr-2 p-board__text-small" }, [
-                _vm._v("フォロー")
-              ]),
-              _vm._v(" "),
-              _c("div", [
-                _vm._v(
-                  "\n                " +
-                    _vm._s(_vm.loginTwitterUser.follows) +
-                    "\n                "
+  return _c(
+    "div",
+    {},
+    [
+      Object.keys(this.loginTwitterUser).length > 0
+        ? _c("div", { staticClass: "p-board__mp-4" }, [
+            _c("div", { staticClass: "p-board__top" }, [
+              _vm._v(_vm._s(_vm.loginTwitterUser.screen_name))
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "p-board__d-flex p-board__top p-board__space-end"
+              },
+              [
+                _c(
+                  "div",
+                  { staticClass: "p-board__mr-2 p-board__text-small" },
+                  [_vm._v("フォロー")]
                 ),
-                _c("small", { staticClass: "p-board__text-small" }, [
-                  _vm._v("人")
+                _vm._v(" "),
+                _c("div", [
+                  _vm._v(
+                    "\n                " +
+                      _vm._s(_vm.loginTwitterUser.follows) +
+                      "\n                "
+                  ),
+                  _c("small", { staticClass: "p-board__text-small" }, [
+                    _vm._v("人")
+                  ])
                 ])
-              ])
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "p-board__d-flex p-board__top p-board__space-end" },
-            [
-              _c("div", { staticClass: "p-board__mr-2 p-board__text-small" }, [
-                _vm._v("フォロワー")
-              ]),
-              _vm._v(" "),
-              _c("div", [
-                _vm._v(
-                  "\n                " +
-                    _vm._s(_vm.loginTwitterUser.followers) +
-                    "\n                "
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "p-board__d-flex p-board__top p-board__space-end"
+              },
+              [
+                _c(
+                  "div",
+                  { staticClass: "p-board__mr-2 p-board__text-small" },
+                  [_vm._v("フォロワー")]
                 ),
-                _c("small", { staticClass: "p-board__text-small" }, [
-                  _vm._v("人")
+                _vm._v(" "),
+                _c("div", [
+                  _vm._v(
+                    "\n                " +
+                      _vm._s(_vm.loginTwitterUser.followers) +
+                      "\n                "
+                  ),
+                  _c("small", { staticClass: "p-board__text-small" }, [
+                    _vm._v("人")
+                  ])
                 ])
-              ])
-            ]
-          )
-        ])
-      : _vm._e(),
-    _vm._v(" "),
-    _c(
-      "p",
-      {
-        directives: [
-          {
-            name: "show",
-            rawName: "v-show",
-            value: _vm.errorFlg,
-            expression: "errorFlg"
-          }
-        ],
-        staticStyle: { color: "red", "font-size": "14px", "margin-top": "8px" }
-      },
-      [_vm._v("\n        " + _vm._s(_vm.messageText) + "\n    ")]
-    ),
-    _vm._v(" "),
-    Object.keys(this.loginTwitterUser).length === 0
-      ? _c("div", { staticClass: "p-board__mp-4" }, [
-          _c("div", { staticClass: "p-board__top" }, [
-            _vm._v(_vm._s(_vm.authData.name))
-          ]),
-          _vm._v(" "),
-          _vm._m(0),
-          _vm._v(" "),
-          _vm._m(1)
-        ])
-      : _vm._e(),
-    _vm._v(" "),
-    _c(
-      "div",
-      _vm._l(_vm.link, function(i, index) {
-        return _c("div", { key: index }, [
-          _c(
-            "div",
+              ]
+            )
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _c(
+        "p",
+        {
+          directives: [
             {
-              staticClass: "p-board__link p-board__hover",
-              class: [_vm.currentPage === i.id ? "is-selected" : ""],
-              on: {
-                click: function($event) {
-                  return _vm.emitChange(index)
+              name: "show",
+              rawName: "v-show",
+              value: _vm.errorFlg,
+              expression: "errorFlg"
+            }
+          ],
+          staticStyle: {
+            color: "red",
+            "font-size": "14px",
+            "margin-top": "8px"
+          }
+        },
+        [_vm._v("\n        " + _vm._s(_vm.messageText) + "\n    ")]
+      ),
+      _vm._v(" "),
+      Object.keys(this.loginTwitterUser).length === 0
+        ? _c("div", { staticClass: "p-board__mp-4" }, [
+            _c("div", { staticClass: "p-board__top" }, [
+              _vm._v(_vm._s(_vm.authData.name))
+            ]),
+            _vm._v(" "),
+            _vm._m(0),
+            _vm._v(" "),
+            _vm._m(1)
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _c(
+        "div",
+        _vm._l(_vm.link, function(i, index) {
+          return _c("div", { key: index }, [
+            _c(
+              "div",
+              {
+                staticClass: "p-board__link p-board__hover",
+                class: [_vm.currentPage === i.id ? "is-selected" : ""],
+                on: {
+                  click: function($event) {
+                    return _vm.emitChange(index)
+                  }
                 }
-              }
-            },
-            [
-              _c(
-                "div",
-                {
-                  staticClass: "p-board__label js_push",
-                  staticStyle: { "font-size": "14px" }
-                },
-                [_vm._v(_vm._s(i.label))]
-              )
-            ]
-          )
-        ])
-      }),
-      0
-    )
-  ])
+              },
+              [
+                _c(
+                  "div",
+                  {
+                    staticClass: "p-board__label js_push",
+                    staticStyle: { "font-size": "14px" }
+                  },
+                  [_vm._v(_vm._s(i.label))]
+                )
+              ]
+            )
+          ])
+        }),
+        0
+      ),
+      _vm._v(" "),
+      _c("footer-component")
+    ],
+    1
+  )
 }
 var staticRenderFns = [
   function() {

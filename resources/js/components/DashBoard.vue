@@ -4,13 +4,11 @@
         <!-- sp -->
         <div class="p-board__sidebar-sp js_toggle">
             <sidebar-component　@change-page="change" @twitter-id="setId" />
-            <footer-component />
         </div>
 
         <!-- pc -->
         <div class="p-board__sidebar-pc">
             <sidebar-component　@change-page="change" @twitter-id="setId" />
-            <footer-component />
         </div>
         <div class="p-board__body">
             <section class="p-board__section">

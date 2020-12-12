@@ -4,7 +4,6 @@
 footer{
     @include mq(){
         font-size: 17px;
-        // margin-bottom: 16px;
         position: fixed;
         width: 100%;
         bottom: 0px;
@@ -12,6 +11,7 @@ footer{
   }
 .l-footer{
     font-size: 12px;
+
     &__copyright{
         margin: 8px 32px;
     }
