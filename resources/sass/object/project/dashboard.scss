@@ -5,9 +5,11 @@
     &__sp--top{
         @include mq(){
             position: fixed;
-            z-index: 600;
             width: 100%;
             top: 48px;
+            // &.none {
+            //     top: 0px;
+            // }
         }
     }
     &__wrap{
@@ -26,7 +28,8 @@
                 width:100%;
                 color: #fff;
                 background-color: #333;
-                height: calc(100vh - 48px);
+                // height: 100vh;
+                height: calc(100vh - 48px);;
                 display: block;
                 transform: translateX(0px);
                 transition: all 0.5s ease-in-out;

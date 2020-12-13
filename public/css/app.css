@@ -159,7 +159,6 @@ img {
   align-items: center;
   height: 48px;
   position: fixed;
-  z-index: 1000;
 }
 @media screen and (max-width: 960px) {
   .l-navbar__main-wrap {
@@ -452,7 +451,6 @@ img {
 @media screen and (max-width: 960px) {
   .p-board__sp--top {
     position: fixed;
-    z-index: 600;
     width: 100%;
     top: 48px;
   }

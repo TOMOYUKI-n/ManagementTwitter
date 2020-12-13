@@ -13,7 +13,7 @@
         align-items: center;
         height: 48px;
         position: fixed;//
-        z-index: 1000;
+        // z-index: 1000;
         @include mq() {
             padding: 0 $space_s;
             box-sizing: border-box;

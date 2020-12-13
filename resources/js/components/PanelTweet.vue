@@ -314,11 +314,7 @@
                 this.editForm.id = tweet.id;
                 this.editForm.tweet = tweet.tweet;
                 this.editForm.date = this.formatter(tweet.format_date);
-                console.log("date");
-                console.log(this.editForm.date);
                 this.editForm.time = this.getHHMM(tweet.format_date);
-                console.log("time");
-                console.log(this.editForm.time);
                 this.editIndex = index;
                 this.editModal = true;
             },

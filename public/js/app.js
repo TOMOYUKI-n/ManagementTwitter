@@ -4487,11 +4487,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.editForm.id = tweet.id;
       this.editForm.tweet = tweet.tweet;
       this.editForm.date = this.formatter(tweet.format_date);
-      console.log("date");
-      console.log(this.editForm.date);
       this.editForm.time = this.getHHMM(tweet.format_date);
-      console.log("time");
-      console.log(this.editForm.time);
       this.editIndex = index;
       this.editModal = true;
     },
@@ -24340,7 +24336,7 @@ $(function () {
     $('.p-policy__main-container').toggleClass("none");
     $('.l-main__contact').toggleClass("none");
     $('.l-main__top--wrapper').toggleClass("none");
-    $('.l-main__container').toggleClass("none");
+    $('.l-main__container').toggleClass("none"); // $('.p-board__sp--top').toggleClass("none");
   });
   $('.js_push_guest').on('click', function () {
     $('.js_toggle_guest').toggleClass("active");
@@ -24348,7 +24344,7 @@ $(function () {
     $('.p-policy__main-container').toggleClass("none");
     $('.l-main__contact').toggleClass("none");
     $('.l-main__top--wrapper').toggleClass("none");
-    $('.l-main__container').toggleClass("none");
+    $('.l-main__container').toggleClass("none"); // $('.p-board__sp--top').toggleClass("none");
   });
   $(function () {
     $('.error_message').fadeIn(0.5);
