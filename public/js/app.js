@@ -2110,8 +2110,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -7598,68 +7596,64 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("div", { staticClass: "p-board__wrap" }, [
+    _c(
+      "div",
+      { staticClass: "p-board__sidebar-sp js_toggle" },
+      [
+        _c("sidebar-component", {
+          on: { "change-page": _vm.change, "twitter-id": _vm.setId }
+        })
+      ],
+      1
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "p-board__sidebar-pc" },
+      [
+        _c("sidebar-component", {
+          on: { "change-page": _vm.change, "twitter-id": _vm.setId }
+        })
+      ],
+      1
+    ),
+    _vm._v(" "),
+    _c("div", { staticClass: "p-board__body" }, [
       _c(
-        "div",
-        { staticClass: "p-board__sidebar-sp js_toggle" },
+        "section",
+        { staticClass: "p-board__section" },
         [
-          _c("sidebar-component", {
-            on: { "change-page": _vm.change, "twitter-id": _vm.setId }
-          })
+          _c(
+            "transition-group",
+            { attrs: { name: "t-dashboard_panel", tag: "div" } },
+            [
+              _vm.page === 1
+                ? _c("twitter-account", {
+                    key: "account",
+                    attrs: { twitterAccountId: _vm.twitterAccountId },
+                    on: { "user-delete": _vm.twitterUserDelete }
+                  })
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.page === 2 ? _c("panel-follow", { key: "follow" }) : _vm._e(),
+              _vm._v(" "),
+              _vm.page === 3
+                ? _c("panel-unfollow", { key: "unfollow" })
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.page === 4 ? _c("panel-like", { key: "like" }) : _vm._e(),
+              _vm._v(" "),
+              _vm.page === 5 ? _c("panel-tweet", { key: "tweet" }) : _vm._e(),
+              _vm._v(" "),
+              _vm.page === 6
+                ? _c("panel-keyword", { key: "keyword" })
+                : _vm._e()
+            ],
+            1
+          )
         ],
         1
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "p-board__sidebar-pc" },
-        [
-          _c("sidebar-component", {
-            on: { "change-page": _vm.change, "twitter-id": _vm.setId }
-          })
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c("div", { staticClass: "p-board__body" }, [
-        _c(
-          "section",
-          { staticClass: "p-board__section" },
-          [
-            _c(
-              "transition-group",
-              { attrs: { name: "t-dashboard_panel", tag: "div" } },
-              [
-                _vm.page === 1
-                  ? _c("twitter-account", {
-                      key: "account",
-                      attrs: { twitterAccountId: _vm.twitterAccountId },
-                      on: { "user-delete": _vm.twitterUserDelete }
-                    })
-                  : _vm._e(),
-                _vm._v(" "),
-                _vm.page === 2
-                  ? _c("panel-follow", { key: "follow" })
-                  : _vm._e(),
-                _vm._v(" "),
-                _vm.page === 3
-                  ? _c("panel-unfollow", { key: "unfollow" })
-                  : _vm._e(),
-                _vm._v(" "),
-                _vm.page === 4 ? _c("panel-like", { key: "like" }) : _vm._e(),
-                _vm._v(" "),
-                _vm.page === 5 ? _c("panel-tweet", { key: "tweet" }) : _vm._e(),
-                _vm._v(" "),
-                _vm.page === 6
-                  ? _c("panel-keyword", { key: "keyword" })
-                  : _vm._e()
-              ],
-              1
-            )
-          ],
-          1
-        )
-      ])
+      )
     ])
   ])
 }
@@ -24327,10 +24321,12 @@ $(function () {
   $('.js_push').on('click', function () {
     $('.js_toggle').toggleClass("active");
     $('.p-board__body').toggleClass("none");
+    $('.p-policy__main-container').toggleClass("none");
   });
   $('.js_push_guest').on('click', function () {
     $('.js_toggle_guest').toggleClass("active");
     $('.p-board__body').toggleClass("none");
+    $('.p-policy__main-container').toggleClass("none");
   });
   $(function () {
     $('.error_message').fadeIn(0.5);

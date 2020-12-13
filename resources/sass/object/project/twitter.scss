@@ -49,7 +49,7 @@
         height: 50px;
         width: 50px;
         border-radius: 50%;
-        margin-right: 30px;
+        margin-right: 10px;
         float: left;
         @include mq(){
             height: 40px;
@@ -59,9 +59,11 @@
   
     &__ids{
         line-height: 25px;
+        font-size: 13px;
         overflow: auto;
         @include mq(){
             line-height: 20px;
+            font-size: 13px;
         }
     }
   

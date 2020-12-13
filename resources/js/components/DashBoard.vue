@@ -1,6 +1,5 @@
 <template>
 <div>
-    <div class="p-board__wrap">
         <!-- sp -->
         <div class="p-board__sidebar-sp js_toggle">
             <sidebar-component　@change-page="change" @twitter-id="setId" />
@@ -22,7 +21,6 @@
                 </transition-group>
             </section>
         </div>
-    </div>
 </div>
 
 </template>

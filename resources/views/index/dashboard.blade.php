@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div id="app" class="p-board__sp--top">
+<div class="p-board__sp--top">
     <dash-board />
 </div>
 
