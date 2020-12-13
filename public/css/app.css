@@ -351,7 +351,7 @@ img {
 }
 @media screen and (max-width: 960px) {
   .c-button {
-    padding: 8px 16px;
+    padding: 8px;
   }
 }
 @media screen and (max-width: 960px) {
@@ -388,9 +388,9 @@ img {
 @media screen and (max-width: 960px) {
   .c-button--add--wrap {
     display: block;
+    right: calc(100%/2.5);
     position: fixed;
-    right: 20px;
-    bottom: 44px;
+    bottom: 24px;
   }
 }
 @media screen and (max-width: 960px) {
@@ -490,6 +490,7 @@ img {
 }
 .p-board__mp-4 {
   padding: 16px;
+  font-size: 13px;
 }
 .p-board__mr-2 {
   margin-right: 8px;
@@ -705,7 +706,6 @@ img {
   .p-modal__contents {
     width: 100%;
     padding: 20px;
-    margin: 2.5%;
     position: relative;
     top: 0px;
   }
@@ -929,6 +929,7 @@ img {
 @media screen and (max-width: 960px) {
   .p-table {
     letter-spacing: 0;
+    margin-bottom: 84px;
   }
 }
 .p-table__img--wrap {

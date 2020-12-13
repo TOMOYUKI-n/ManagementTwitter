@@ -8,7 +8,7 @@
     padding: 8px 16px;
     cursor: pointer;
     @include mq(){
-        padding: 8px 16px;
+        padding: 8px;
     }
     &--sp{
         @include mq(){
@@ -41,10 +41,9 @@
         display: none;
         @include mq(){
             display: block;
-            // position: absolute;
+            right: calc(100%/2.5);
             position: fixed;
-            right: 20px;
-            bottom: 44px;
+            bottom: 24px;
         }
     }
     &--add--sp {
