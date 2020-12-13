@@ -10960,7 +10960,7 @@ var render = function() {
                   "div",
                   {
                     staticClass: "p-board__label js_push",
-                    staticStyle: { "font-size": "14px" }
+                    staticStyle: { "font-size": "13px" }
                   },
                   [_vm._v(_vm._s(i.label))]
                 )
