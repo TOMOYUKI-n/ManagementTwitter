@@ -11,7 +11,9 @@
                 キーワードを追加
             </button>
         </div>
-
+        <p v-show="errorFlg" style="color: red; font-size: 14px; margin-top: 8px;">
+            {{ messageText }}
+        </p>
         <table class="p-table">
             <tr class="p-table__head">
                 <th class="p-table__th p-table__th--keyword">条件タイプ</th>
@@ -42,9 +44,6 @@
             </tr>
 
         </table>
-        <p v-show="errorFlg" style="color: red; font-size: 14px; margin-top: 8px;">
-            {{ messageText }}
-        </p>
 
         <div class="p-modal__wrapper">
             <section class="p-modal" v-show="newModal">
@@ -69,7 +68,7 @@
                                v-model="addForm.remove" maxlength="50">
 
                         <div class="p-form__button">
-                            <button type="submit" class="c-button c-button--sp c-button--twitter">追加</button>
+                            <button type="submit" class="c-button c-button--sp c-button--twitter c-button__form">追加</button>
                         </div>
                     </form>
                 </div>
@@ -97,7 +96,7 @@
                                v-model="editForm.remove" maxlength="50">
                         <p class="p-form__notion">※複数ワードの場合は、「集客 マーケティング」のように半角スペースで区切ってください。</p>
                         <div class="p-form__button">
-                            <button type="submit" class="c-button c-button--sp c-button--twitter">変更</button>
+                            <button type="submit" class="c-button c-button--sp c-button--twitter c-button__form">変更</button>
                         </div>
                     </form>
                 </div>
@@ -178,16 +177,23 @@
              * 新規キーワードを登録
              */
             async addKeyword() {
+                console.log("this.addForm");
+                console.log(this.addForm);
                 const response = await axios.post('/api/keyword', this.addForm);
                 if (response.status !== 200 || response.data === 500) {
+                    console.log("error====");
+                    console.log(response);
                     this.errorFlg = true;
                     this.messageText = message.notGetData;
                 }
                 else {
                     this.newModal = false;
+                    console.log("success 1");
                     this.resetAddForm();
                     // 一覧を更新
+                    console.log("success 2");
                     this.fetchKeywords();
+                    console.log("success 3");
                 }
             },
             /**

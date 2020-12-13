@@ -3127,7 +3127,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 
 
@@ -3204,25 +3203,34 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                _context2.next = 2;
+                console.log("this.addForm");
+                console.log(_this2.addForm);
+                _context2.next = 4;
                 return axios__WEBPACK_IMPORTED_MODULE_2___default.a.post('/api/keyword', _this2.addForm);
 
-              case 2:
+              case 4:
                 response = _context2.sent;
 
                 if (response.status !== 200 || response.data === 500) {
+                  console.log("error====");
+                  console.log(response);
                   _this2.errorFlg = true;
                   _this2.messageText = _message__WEBPACK_IMPORTED_MODULE_3__["message"].notGetData;
                 } else {
                   _this2.newModal = false;
+                  console.log("success 1");
 
                   _this2.resetAddForm(); // 一覧を更新
 
 
+                  console.log("success 2");
+
                   _this2.fetchKeywords();
+
+                  console.log("success 3");
                 }
 
-              case 4:
+              case 6:
               case "end":
                 return _context2.stop();
             }
@@ -4303,7 +4311,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       addForm: {
         tweet: '',
         date: '',
-        time: '00:00'
+        time: ''
       },
       editForm: {
         tweet: '',
@@ -4473,12 +4481,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
      * 表示した際に、自動ツイートのデータをフォームに入力しておく
      */
     showEditModal: function showEditModal(tweet, index) {
-      this.editModal = true;
       this.editForm.id = tweet.id;
       this.editForm.tweet = tweet.tweet;
       this.editForm.date = this.formatter(tweet.format_date);
+      console.log("date");
+      console.log(this.editForm.date);
       this.editForm.time = this.getHHMM(tweet.format_date);
+      console.log("time");
+      console.log(this.editForm.time);
       this.editIndex = index;
+      this.editModal = true;
     },
 
     /**
@@ -8578,7 +8590,7 @@ var staticRenderFns = [
       _c(
         "button",
         {
-          staticClass: "c-button c-button--sp c-button--twitter",
+          staticClass: "c-button c-button--sp c-button--twitter c-button__form",
           attrs: { type: "submit" }
         },
         [_vm._v("追加")]
@@ -8593,7 +8605,7 @@ var staticRenderFns = [
       _c(
         "button",
         {
-          staticClass: "c-button c-button--sp c-button--twitter",
+          staticClass: "c-button c-button--sp c-button--twitter c-button__form",
           attrs: { type: "submit" }
         },
         [_vm._v("編集")]
@@ -8642,6 +8654,22 @@ var render = function() {
         ]
       )
     ]),
+    _vm._v(" "),
+    _c(
+      "p",
+      {
+        directives: [
+          {
+            name: "show",
+            rawName: "v-show",
+            value: _vm.errorFlg,
+            expression: "errorFlg"
+          }
+        ],
+        staticStyle: { color: "red", "font-size": "14px", "margin-top": "8px" }
+      },
+      [_vm._v("\n        " + _vm._s(_vm.messageText) + "\n    ")]
+    ),
     _vm._v(" "),
     _c(
       "table",
@@ -8708,22 +8736,6 @@ var render = function() {
         })
       ],
       2
-    ),
-    _vm._v(" "),
-    _c(
-      "p",
-      {
-        directives: [
-          {
-            name: "show",
-            rawName: "v-show",
-            value: _vm.errorFlg,
-            expression: "errorFlg"
-          }
-        ],
-        staticStyle: { color: "red", "font-size": "14px", "margin-top": "8px" }
-      },
-      [_vm._v("\n        " + _vm._s(_vm.messageText) + "\n    ")]
     ),
     _vm._v(" "),
     _c("div", { staticClass: "p-modal__wrapper" }, [
@@ -9195,7 +9207,7 @@ var staticRenderFns = [
       _c(
         "button",
         {
-          staticClass: "c-button c-button--sp c-button--twitter",
+          staticClass: "c-button c-button--sp c-button--twitter c-button__form",
           attrs: { type: "submit" }
         },
         [_vm._v("追加")]
@@ -9210,7 +9222,7 @@ var staticRenderFns = [
       _c(
         "button",
         {
-          staticClass: "c-button c-button--sp c-button--twitter",
+          staticClass: "c-button c-button--sp c-button--twitter c-button__form",
           attrs: { type: "submit" }
         },
         [_vm._v("変更")]
@@ -9851,7 +9863,7 @@ var staticRenderFns = [
       _c(
         "button",
         {
-          staticClass: "c-button c-button--sp c-button--twitter",
+          staticClass: "c-button c-button--sp c-button--twitter c-button__form",
           attrs: { type: "submit" }
         },
         [_vm._v("追加")]
@@ -9866,7 +9878,7 @@ var staticRenderFns = [
       _c(
         "button",
         {
-          staticClass: "c-button c-button--sp c-button--twitter",
+          staticClass: "c-button c-button--sp c-button--twitter c-button__form",
           attrs: { type: "submit" }
         },
         [_vm._v("変更")]
@@ -10599,7 +10611,7 @@ var staticRenderFns = [
       _c(
         "button",
         {
-          staticClass: "c-button c-button--sp c-button--twitter",
+          staticClass: "c-button c-button--sp c-button--twitter c-button__form",
           attrs: { type: "submit" }
         },
         [_vm._v("追加")]
@@ -10614,7 +10626,7 @@ var staticRenderFns = [
       _c(
         "button",
         {
-          staticClass: "c-button c-button--sp c-button--twitter",
+          staticClass: "c-button c-button--sp c-button--twitter c-button__form",
           attrs: { type: "submit" }
         },
         [_vm._v("変更")]

@@ -101,7 +101,7 @@
                                 required>
                         </div>
                         <div class="p-form__button">
-                            <button type="submit" class="c-button c-button--sp c-button--twitter">追加</button>
+                            <button type="submit" class="c-button c-button--sp c-button--twitter c-button__form">追加</button>
                         </div>
                     </form>
                 </div>
@@ -143,7 +143,7 @@
                                 required>
                         </div>
                         <div class="p-form__button">
-                            <button type="submit" class="c-button c-button--sp c-button--twitter">変更</button>
+                            <button type="submit" class="c-button c-button--sp c-button--twitter c-button__form">変更</button>
                         </div>
                     </form>
                 </div>
@@ -219,7 +219,7 @@
                 addForm: {
                     tweet: '',
                     date: '',
-                    time: '00:00',
+                    time: '',
                 },
                 editForm: {
                     tweet: '',
@@ -311,12 +311,16 @@
              * 表示した際に、自動ツイートのデータをフォームに入力しておく
              */
             showEditModal(tweet, index) {
-                this.editModal = true;
                 this.editForm.id = tweet.id;
                 this.editForm.tweet = tweet.tweet;
                 this.editForm.date = this.formatter(tweet.format_date);
+                console.log("date");
+                console.log(this.editForm.date);
                 this.editForm.time = this.getHHMM(tweet.format_date);
+                console.log("time");
+                console.log(this.editForm.time);
                 this.editIndex = index;
+                this.editModal = true;
             },
             /**
              * 削除モーダル表示、indexを取得

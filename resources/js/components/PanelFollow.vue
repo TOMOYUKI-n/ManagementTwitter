@@ -88,7 +88,7 @@
                         </select>
 
                         <div class="p-form__button">
-                            <button type="submit" class="c-button c-button--sp c-button--twitter">追加</button>
+                            <button type="submit" class="c-button c-button--sp c-button--twitter c-button__form">追加</button>
                         </div>
                     </form>
                 </div>
@@ -116,7 +116,7 @@
                         </select>
 
                         <div class="p-form__button">
-                            <button type="submit" class="c-button c-button--sp c-button--twitter" >編集</button>
+                            <button type="submit" class="c-button c-button--sp c-button--twitter c-button__form" >編集</button>
                         </div>
                     </form>
                 </div>
