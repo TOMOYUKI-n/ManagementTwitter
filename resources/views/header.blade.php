@@ -18,7 +18,7 @@
                         <i class="fas fa-bars js_push"></i>
                     </div>
                     <div class="logo">
-                        <h1><a class="l-navbar__text" href="/">kamitter</a></h1>
+                        <h1><a class="l-navbar__text" href="/">Kamitter</a></h1>
                     </div>
                 </div>
                 @endguest
