@@ -3,18 +3,20 @@
         <!-- アカウント登録後 -->
         <div class="p-board__mp-4" v-if="Object.keys(this.loginTwitterUser).length > 0">
             <div class="p-board__top">{{ loginTwitterUser.screen_name }}</div>
-            <div class="p-board__d-flex p-board__top p-board__space-end">
-                <div class="p-board__mr-2 p-board__text-small">フォロー</div>
-                <div>
-                    {{ loginTwitterUser.follows }}
-                    <small class="p-board__text-small">人</small>
+            <div class="p-board__plate">
+                <div class="p-board__inner">
+                    <div class="p-board__mr-2 p-board__text-small">フォロー</div>
+                    <div>
+                        {{ loginTwitterUser.follows }}
+                        <small class="p-board__text-small">人</small>
+                    </div>
                 </div>
-            </div>
-            <div class="p-board__d-flex p-board__top p-board__space-end">
-                <div class="p-board__mr-2 p-board__text-small">フォロワー</div>
-                <div>
-                    {{ loginTwitterUser.followers }}
-                    <small class="p-board__text-small">人</small>
+                <div class="p-board__inner">
+                    <div class="p-board__mr-2 p-board__text-small">フォロワー</div>
+                    <div>
+                        {{ loginTwitterUser.followers }}
+                        <small class="p-board__text-small">人</small>
+                    </div>
                 </div>
             </div>
         </div>
@@ -24,18 +26,20 @@
         <!-- 切り替え -->
         <div class="p-board__mp-4" v-if="Object.keys(this.loginTwitterUser).length === 0">
             <div class="p-board__top">{{ authData.name }}</div>
-            <div class="p-board__d-flex p-board__top p-board__space-end">
-                <div class="p-board__mr-2 p-board__text-small">フォロー</div>
-                <div>
-                    ------
-                    <small class="p-board__text-small">人</small>
+            <div class="p-board__plate">
+                <div class="p-board__inner">
+                    <div class="p-board__mr-2 p-board__text-small">フォロー</div>
+                    <div>
+                        ------
+                        <small class="p-board__text-small">人</small>
+                    </div>
                 </div>
-            </div>
-            <div class="p-board__d-flex p-board__top p-board__space-end">
-                <div class="p-board__mr-2 p-board__text-small">フォロワー</div>
-                <div>
-                    ------
-                    <small class="p-board__text-small">人</small>
+                <div class="p-board__inner">
+                    <div class="p-board__mr-2 p-board__text-small">フォロワー</div>
+                    <div>
+                        ------
+                        <small class="p-board__text-small">人</small>
+                    </div>
                 </div>
             </div>
         </div>

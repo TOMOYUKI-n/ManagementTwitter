@@ -10,6 +10,10 @@
             top: 48px;
         }
     }
+    &__sp--toggle{
+        position: relative;
+        top: 68px;
+    }
     &__wrap{
         width:100%;
         display: flex;
@@ -26,7 +30,8 @@
                 width:100%;
                 color: #fff;
                 background-color: #333;
-                height: calc(100vh - 48px);
+                // height: calc(100vh - 48px);
+                height: 100vh;
                 display: block;
                 transform: translateX(0px);
                 transition: all 0.5s ease-in-out;
@@ -44,21 +49,21 @@
             display: none;
         }
     }
-    &__top{
-        margin-top: 8px;
-    }
-    &__d-flex{
-        display: flex;
-    }
     &__mp-4{
         padding: 16px;
     }
     &__mr-2{
         margin-right: 8px;
     }
-    &__space-end{
-        justify-content: space-between;
+    &__inner{
+        width: 50%;
+    }
+    // フォロー フォロワー表示
+    &__plate{
+        justify-content: center;
         align-items: baseline;
+        display: flex;
+        margin-top: 8px;
     }
     &__link{
         padding: 8px 32px;
@@ -86,8 +91,9 @@
         @include mq(){
             width: 100%;
             display: block;
+            max-height: none;
+            top: unset;
             position: unset;
-            top: 0;
             left: 0;
             &.none {
                 display: none;

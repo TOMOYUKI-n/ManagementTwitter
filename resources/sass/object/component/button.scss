@@ -1,0 +1,97 @@
+// ==================================
+// c-button 操作用ボタン
+// ==================================
+.c-button {
+    border: 1px solid $color-default;
+    border-radius: 4px;
+    display: inline-block;
+    padding: 8px 16px;
+    cursor: pointer;
+    @include mq(){
+        padding: 8px 16px;
+    }
+    &--sp{
+        @include mq(){
+            width: 100%;
+        } 
+    }
+
+    &--twitter {
+        color: #333;
+        box-shadow: 0 1px 2px #5a5b5e55;
+        border: none;
+        &:hover{
+            color: #fff;
+            background-color: #333;
+        }
+    }
+    &--add {
+        color: #333;
+        box-shadow: 0 1px 2px #5a5b5e55;
+        border: none;
+        &:hover{
+            color: #fff;
+            background-color: #333;
+        }
+        @include mq(){
+            display: none;
+        }
+    }
+    &--add--wrap{
+        display: none;
+        @include mq(){
+            display: block;
+            // position: absolute;
+            position: fixed;
+            right: 20px;
+            bottom: 44px;
+        }
+    }
+    &--add--sp {
+        @include mq(){
+            box-shadow: 0 1px 2px #5a5b5e55;
+            border: none;
+            padding: 12px;
+            border-radius: 50%;
+            height: 56px;
+            width: 56px;
+            font-size: 14px;
+            z-index: 200;
+            background-color: #55acee;
+            &:hover{
+                color: #fff;
+                background-color: #333;
+            }
+        }
+
+    }
+    &--delete {
+        color: #333;
+        box-shadow: 0 1px 2px #5a5b5e55;
+        border: none;
+        &:hover{
+            background-color: $color-danger;
+        }
+    }
+    &__status{
+        &--on {
+            color: #333;
+            border: none;
+            box-shadow: 0 1px 2px #5a5b5e55;
+            &:hover{
+                color: #fff;
+                background-color: #333;
+            }
+        }
+        &--off {
+            color: #333;
+            border: none;
+            box-shadow: 0 1px 2px #5a5b5e55;
+            &:hover{
+                color: #fff;
+                background-color: #333;
+            }
+        }
+    }
+
+}

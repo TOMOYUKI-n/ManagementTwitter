@@ -3212,7 +3212,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 2:
                 response = _context2.sent;
 
-                if (response.data === 500) {
+                if (response.status !== 200 || response.data === 500) {
                   _this2.errorFlg = true;
                   _this2.messageText = _message__WEBPACK_IMPORTED_MODULE_3__["message"].notGetData;
                 } else {
@@ -5087,6 +5087,10 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
+//
+//
 //
 //
 //
@@ -10864,12 +10868,8 @@ var render = function() {
               _vm._v(_vm._s(_vm.loginTwitterUser.screen_name))
             ]),
             _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass: "p-board__d-flex p-board__top p-board__space-end"
-              },
-              [
+            _c("div", { staticClass: "p-board__plate" }, [
+              _c("div", { staticClass: "p-board__inner" }, [
                 _c(
                   "div",
                   { staticClass: "p-board__mr-2 p-board__text-small" },
@@ -10878,23 +10878,17 @@ var render = function() {
                 _vm._v(" "),
                 _c("div", [
                   _vm._v(
-                    "\n                " +
+                    "\n                    " +
                       _vm._s(_vm.loginTwitterUser.follows) +
-                      "\n                "
+                      "\n                    "
                   ),
                   _c("small", { staticClass: "p-board__text-small" }, [
                     _vm._v("人")
                   ])
                 ])
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass: "p-board__d-flex p-board__top p-board__space-end"
-              },
-              [
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "p-board__inner" }, [
                 _c(
                   "div",
                   { staticClass: "p-board__mr-2 p-board__text-small" },
@@ -10903,16 +10897,16 @@ var render = function() {
                 _vm._v(" "),
                 _c("div", [
                   _vm._v(
-                    "\n                " +
+                    "\n                    " +
                       _vm._s(_vm.loginTwitterUser.followers) +
-                      "\n                "
+                      "\n                    "
                   ),
                   _c("small", { staticClass: "p-board__text-small" }, [
                     _vm._v("人")
                   ])
                 ])
-              ]
-            )
+              ])
+            ])
           ])
         : _vm._e(),
       _vm._v(" "),
@@ -10942,9 +10936,7 @@ var render = function() {
               _vm._v(_vm._s(_vm.authData.name))
             ]),
             _vm._v(" "),
-            _vm._m(0),
-            _vm._v(" "),
-            _vm._m(1)
+            _vm._m(0)
           ])
         : _vm._e(),
       _vm._v(" "),
@@ -10989,39 +10981,29 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "p-board__d-flex p-board__top p-board__space-end" },
-      [
+    return _c("div", { staticClass: "p-board__plate" }, [
+      _c("div", { staticClass: "p-board__inner" }, [
         _c("div", { staticClass: "p-board__mr-2 p-board__text-small" }, [
           _vm._v("フォロー")
         ]),
         _vm._v(" "),
         _c("div", [
-          _vm._v("\n                ------\n                "),
+          _vm._v("\n                    ------\n                    "),
           _c("small", { staticClass: "p-board__text-small" }, [_vm._v("人")])
         ])
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "p-board__d-flex p-board__top p-board__space-end" },
-      [
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "p-board__inner" }, [
         _c("div", { staticClass: "p-board__mr-2 p-board__text-small" }, [
           _vm._v("フォロワー")
         ]),
         _vm._v(" "),
         _c("div", [
-          _vm._v("\n                ------\n                "),
+          _vm._v("\n                    ------\n                    "),
           _c("small", { staticClass: "p-board__text-small" }, [_vm._v("人")])
         ])
-      ]
-    )
+      ])
+    ])
   }
 ]
 render._withStripped = true

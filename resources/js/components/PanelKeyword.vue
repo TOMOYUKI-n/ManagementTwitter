@@ -179,7 +179,7 @@
              */
             async addKeyword() {
                 const response = await axios.post('/api/keyword', this.addForm);
-                if (response.data === 500) {
+                if (response.status !== 200 || response.data === 500) {
                     this.errorFlg = true;
                     this.messageText = message.notGetData;
                 }

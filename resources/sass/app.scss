@@ -10,14 +10,15 @@
 @import "layout/header";
 @import "layout/main";
 //component
-@import "object/component/botton";
-@import "object/component/modal";
+@import "object/component/button";
 
 //project
 @import "object/project/dashboard";
 @import "object/project/contents";
 @import "object/project/panel";
+@import "object/project/modal";
 @import "object/project/status";
+@import "object/project/button";
 
 @import "object/project/login";
 @import "object/project/table";

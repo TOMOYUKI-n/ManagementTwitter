@@ -7,9 +7,6 @@
         width: 80%;
         text-align: center;
         margin: 32px auto 60px;
-        @include mq(){
-            width: 100%;
-        }
     }
 
     &__container{
@@ -19,18 +16,17 @@
         margin-right: auto;
         color: $color_black;
         @include mq(){
-            width: 100%;
             margin: 0 auto;
         }
     }
     &__title{
         margin-top: 0px;
-        font-size: $font-size_m;
+        font-size: 15px;
         padding: 30px;
         &--sub{
             text-align: left;
             margin-top: 30px;
-            font-size: $font-size_xs;
+            font-size: 15px;
             font-weight: bold;
             padding: 10px;
         }
@@ -39,9 +35,7 @@
         box-sizing: border-box;
         text-align: left;
         display: block;
-        font-size: $font-size-base;
-        margin-bottom: 20px;
-        margin-left: 20px;
+        font-size: 12px;
         a{
             display: contents;
             color: $color_border-line;
@@ -57,7 +51,7 @@
         counter-reset: my-counter;
         margin-top: $space_l;
         padding-left: $space_m;
-        font-size: $font-size-base;
+        font-size: 12px;
         margin-left: 40px;
         &__item{
             margin-bottom: $space_m;
@@ -69,6 +63,8 @@
         }
         @include mq(){
             margin-left: 0px;
+            margin-top: 0px;
+            padding-left: 0px;
         }
     }
 
