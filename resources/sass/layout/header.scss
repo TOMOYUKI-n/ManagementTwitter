@@ -4,11 +4,6 @@
 .logo{
     margin-left: 16px;
 }
-nav{
-    @include mq() {
-        display: none;
-    }
-}
 .l-navbar{
     &__main-wrap{
         width: 100%;
@@ -47,7 +42,7 @@ nav{
         position: absolute;
         right: 0px;
         margin-right: 8px;
-        z-index: 1001;
+        z-index: 2001;
     }
     &__list{
         font-size: 16px;
@@ -55,9 +50,6 @@ nav{
         margin-right: 16px;
         &:hover{
             cursor: pointer;
-        }
-        @include mq(){
-            margin: 20px auto;
         }
     }
     &__text{

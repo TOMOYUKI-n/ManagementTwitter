@@ -89,6 +89,9 @@
             position: unset;
             top: 0;
             left: 0;
+            &.none {
+                display: none;
+            }
         }
     }
     &__section{
