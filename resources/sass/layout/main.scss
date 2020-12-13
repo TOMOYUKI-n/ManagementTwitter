@@ -35,6 +35,9 @@
         height: 100vh;
         @include mq(){
             height: 100vh;
+            &.none {
+                display: none;
+            }
         }
     }
     // 問い合わせ用

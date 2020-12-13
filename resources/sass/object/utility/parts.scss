@@ -6,23 +6,10 @@
     display: none;
     @include mq(){
         &.active {
-            // display: block;
-            // width: 100%;
-            // height: 100vh;
-            // background-color: #333;
-            // position: fixed;//
-            // right: 0px;//
-            // top: 48px;//
-            // font-size: 24px;//
-            // z-index: 1001;//
-            // padding-top: 30px;//
             display: block;
             width: 100%;
-            // height: 100vh;
             height: calc(100vh - 48px);
             background-color: #333;
-            // position: relative;
-            // top: 48px;
             font-size: 13px;
         }
     }
