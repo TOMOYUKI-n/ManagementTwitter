@@ -13,10 +13,11 @@
         align-items: center;
         height: 48px;
         position: fixed;//
-        z-index: 2001;
+        z-index: 1000;
         @include mq() {
             padding: 0 $space_s;
             box-sizing: border-box;
+            position: unset;//
         }
     }
     &__align{
@@ -26,7 +27,7 @@
     &__sp__d-flex{
         @include mq() {
             display: flex;
-            z-index: 1001;
+            // z-index: 300;
         }
     }
     &__icon {
@@ -42,7 +43,7 @@
         position: absolute;
         right: 0px;
         margin-right: 8px;
-        z-index: 2001;
+        // z-index: 500;
     }
     &__list{
         font-size: 13px;
@@ -67,7 +68,7 @@
         width: 100%;
         height: 100vh;
         background-color:#f3f3f3;
-        z-index: 2;
+        z-index: 300;
         transition: all 0.5s ease-in-out;
         position: fixed;
         right: 0px;

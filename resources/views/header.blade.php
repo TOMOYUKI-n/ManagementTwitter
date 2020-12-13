@@ -15,7 +15,7 @@
                 @else
                 <div class="l-navbar__sp__d-flex">
                     <div class="l-navbar__icon">
-                        <i class="fas fa-bars js_push"></i>
+                        <i class="fas fa-bars js_push-sidebar"></i>
                     </div>
                     <div class="logo">
                         <h1><a class="l-navbar__text" href="/">Kamitter</a></h1>
@@ -33,7 +33,7 @@
                     @endif
                 </ul>
                 @else
-                <ul class="l-navbar__section ">
+                <ul class="l-navbar__section">
                     <li class="l-navbar__list"><a class="l-navbar__text" href="/dashboard"><p><i class="fas fa-home"></i></p></a></li>
                     <li class="l-navbar__list">
                         <a class="l-navbar__text" href="{{ route('logout') }}"
@@ -49,7 +49,6 @@
                 </ul>
                 @endguest
             </nav>
-
         </div>
 
     </header>
@@ -67,10 +66,10 @@
         </div>
     </div>
     @else
-    <div class="p-board__sidebar-sp js_toggle">
+    <div class="p-board__sidebar-sp js_open-navi">
         <div class="">
             <div class="p-board__link p-board__hover">
-                <div class="l-footer__list"><a class="p-top__footer-text" href="/contact">お問い合わせ </a></div>
+                <div class="l-footer__list"><a class="p-top__footer-text" href="/contact">問い合わせ </a></div>
                 <div class="l-footer__list"><a class="p-top__footer-text" href="/term">利用規約 </a></div>
                 <div class="l-footer__list"><a class="p-top__footer-text" href="/policy">プライバシーポリシー</a></div>
             </div>

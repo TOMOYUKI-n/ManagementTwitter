@@ -18,6 +18,9 @@
     &__top--wrapper{
         @include mq(){
             width: 100%;
+            &.none {
+                display: none;
+            }
         }
     }
     &__top--barner{
@@ -36,9 +39,10 @@
     }
     // 問い合わせ用
     &__contact{
-        height: calc(100vh - 166px);
+        height: calc(100vh - 161px);
         @include mq(){
-            height: 100vh;
+            // height: 100vh;
+            height: calc(100vh - 48px);
             &.none {
                 display: none;
             }

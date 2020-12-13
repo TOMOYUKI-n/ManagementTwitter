@@ -5,7 +5,7 @@
     &__sp--top{
         @include mq(){
             position: fixed;
-            z-index: 2000;
+            z-index: 600;
             width: 100%;
             top: 48px;
         }
@@ -17,7 +17,7 @@
             display: block;
         }
     }
-    // sidebar
+    // sidebar index順序 navbar > open-sidebar > open-navi > modal
     &__sidebar-sp{
         display: none;
         @include mq(){
@@ -26,14 +26,14 @@
                 width:100%;
                 color: #fff;
                 background-color: #333;
-                // height: calc(100vh - 48px);
-                height: 100vh;
+                height: calc(100vh - 48px);
                 display: block;
                 transform: translateX(0px);
                 transition: all 0.5s ease-in-out;
             }
         }
     }
+
     &__sidebar-pc{
         position: fixed;//
         top: 48px;//
@@ -88,7 +88,7 @@
         @include mq(){
             width: 100%;
             display: block;
-            max-height: none;
+            // max-height: none;
             top: unset;
             position: unset;
             left: 0;

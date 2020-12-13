@@ -159,12 +159,13 @@ img {
   align-items: center;
   height: 48px;
   position: fixed;
-  z-index: 2001;
+  z-index: 1000;
 }
 @media screen and (max-width: 960px) {
   .l-navbar__main-wrap {
     padding: 0 5px;
     box-sizing: border-box;
+    position: unset;
   }
 }
 .l-navbar__align {
@@ -174,7 +175,6 @@ img {
 @media screen and (max-width: 960px) {
   .l-navbar__sp__d-flex {
     display: flex;
-    z-index: 1001;
   }
 }
 .l-navbar__icon {
@@ -192,7 +192,6 @@ img {
   position: absolute;
   right: 0px;
   margin-right: 8px;
-  z-index: 2001;
 }
 .l-navbar__list {
   font-size: 13px;
@@ -215,7 +214,7 @@ img {
     width: 100%;
     height: 100vh;
     background-color: #f3f3f3;
-    z-index: 2;
+    z-index: 300;
     transition: all 0.5s ease-in-out;
     position: fixed;
     right: 0px;
@@ -282,6 +281,9 @@ img {
   .l-main__top--wrapper {
     width: 100%;
   }
+  .l-main__top--wrapper.none {
+    display: none;
+  }
 }
 .l-main__top--barner {
   width: 100%;
@@ -301,11 +303,11 @@ img {
   }
 }
 .l-main__contact {
-  height: calc(100vh - 166px);
+  height: calc(100vh - 161px);
 }
 @media screen and (max-width: 960px) {
   .l-main__contact {
-    height: 100vh;
+    height: calc(100vh - 48px);
   }
   .l-main__contact.none {
     display: none;
@@ -446,7 +448,7 @@ img {
 @media screen and (max-width: 960px) {
   .p-board__sp--top {
     position: fixed;
-    z-index: 2000;
+    z-index: 600;
     width: 100%;
     top: 48px;
   }
@@ -471,7 +473,7 @@ img {
     width: 100%;
     color: #fff;
     background-color: #333;
-    height: 100vh;
+    height: calc(100vh - 48px);
     display: block;
     transform: translateX(0px);
     transition: all 0.5s ease-in-out;
@@ -530,7 +532,6 @@ img {
   .p-board__body {
     width: 100%;
     display: block;
-    max-height: none;
     top: unset;
     position: unset;
     left: 0;
@@ -657,6 +658,7 @@ img {
 .p-panel {
   padding: 24px;
   box-sizing: border-box;
+  height: 100vh;
 }
 @media screen and (max-width: 960px) {
   .p-panel {
@@ -683,7 +685,7 @@ img {
   bottom: 0;
   left: 20%;
   overflow-y: auto;
-  z-index: 200;
+  z-index: 100;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -713,7 +715,7 @@ img {
 }
 .p-modal__cancel {
   position: absolute;
-  z-index: 201;
+  z-index: 101;
   right: 16px;
   top: 8px;
 }
@@ -1672,11 +1674,9 @@ img {
   .js_toggle_guest.active {
     display: block;
     width: 100%;
-    height: 100vh;
+    height: calc(100vh - 48px);
     background-color: #333;
-    position: relative;
-    top: 48px;
-    font-size: px;
+    font-size: 13px;
   }
 }
 

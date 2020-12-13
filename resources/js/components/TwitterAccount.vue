@@ -131,7 +131,7 @@
              */
             setCurrentPage() {
                 localStorage.setItem('page', this.page);
-            }
+            },
         },
         computed: {
             //TwitterUserアカウントを追加するボタンの非表示フラグ

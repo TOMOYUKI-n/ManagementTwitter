@@ -4,7 +4,8 @@
 .p-panel {
     padding: 24px;
     box-sizing: border-box;
-    //height: calc(100vh - 48px);
+    // height: calc(100vh - 48px);
+    height: 100vh;
     @include mq() {
         padding: 12px;
     }

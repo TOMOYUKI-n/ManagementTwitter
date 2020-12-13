@@ -1,7 +1,7 @@
 <template>
 <div>
         <!-- sp -->
-        <div class="p-board__sidebar-sp js_toggle">
+        <div class="p-board__sidebar-sp js_open-sidebar">
             <sidebar-component　@change-page="change" @twitter-id="setId" />
         </div>
 
@@ -12,7 +12,10 @@
         <div class="p-board__body">
             <section class="p-board__section">
                 <transition-group name="t-dashboard_panel" tag="div">
-                    <twitter-account key="account" v-if="page === 1" :twitterAccountId="twitterAccountId" @user-delete="twitterUserDelete"/>
+                    <twitter-account key="account" v-if="page === 1" 
+                        :twitterAccountId="twitterAccountId"
+                        @user-delete="twitterUserDelete"
+                    />
                     <panel-follow key="follow" v-if="page === 2" />
                     <panel-unfollow key="unfollow" v-if="page === 3" />
                     <panel-like key="like" v-if="page === 4" />
@@ -31,7 +34,7 @@
             return {
                 page: 1,
                 isOpen: false,
-                twitterAccountId: {}
+                twitterAccountId: {},
             }
         },
         methods: {

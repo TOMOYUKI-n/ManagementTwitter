@@ -2110,6 +2110,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -7610,7 +7613,7 @@ var render = function() {
   return _c("div", [
     _c(
       "div",
-      { staticClass: "p-board__sidebar-sp js_toggle" },
+      { staticClass: "p-board__sidebar-sp js_open-sidebar" },
       [
         _c("sidebar-component", {
           on: { "change-page": _vm.change, "twitter-id": _vm.setId }
@@ -10965,7 +10968,7 @@ var render = function() {
                 _c(
                   "div",
                   {
-                    staticClass: "p-board__label js_push",
+                    staticClass: "p-board__label js_push-sidebar",
                     staticStyle: { "font-size": "13px" }
                   },
                   [_vm._v(_vm._s(i.label))]
@@ -24330,11 +24333,13 @@ var manegementServiceStatus = [{
  * ナビゲーションの切り替え
  */
 $(function () {
-  $('.js_push').on('click', function () {
-    $('.js_toggle').toggleClass("active");
+  $('.js_push-sidebar').on('click', function () {
+    $('.js_open-sidebar').toggleClass("active");
+    $('.js_open-navi').toggleClass("active");
     $('.p-board__body').toggleClass("none");
     $('.p-policy__main-container').toggleClass("none");
     $('.l-main__contact').toggleClass("none");
+    $('.l-main__top--wrapper').toggleClass("none");
   });
   $('.js_push_guest').on('click', function () {
     $('.js_toggle_guest').toggleClass("active");
