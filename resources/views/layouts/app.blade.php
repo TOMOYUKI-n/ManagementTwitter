@@ -2,7 +2,7 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, height=device-height initial-scale=1">
     <meta name="description" content="twitterを利用し、自動で集客を行えるツール">
     <meta name="keywords" content="twitter 集客 ツール">
 
