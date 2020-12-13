@@ -307,6 +307,9 @@ img {
   .l-main__contact {
     height: 100vh;
   }
+  .l-main__contact.none {
+    display: none;
+  }
 }
 .l-main__title {
   font-size: 18px;

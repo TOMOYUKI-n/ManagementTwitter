@@ -53,7 +53,8 @@
         </div>
 
     </header>
-    <div class="p-board__sidebar-sp js_toggle js_toggle_guest">
+    @guest
+    <div class="p-board__sidebar-sp js_toggle_guest">
         <div class="">
             <div class="p-board__link p-board__hover">
                 <div class="l-footer__list"><a class="p-top__footer-text" href="/contact">お問い合わせ </a></div>
@@ -65,4 +66,18 @@
             </div>
         </div>
     </div>
+    @else
+    <div class="p-board__sidebar-sp js_toggle">
+        <div class="">
+            <div class="p-board__link p-board__hover">
+                <div class="l-footer__list"><a class="p-top__footer-text" href="/contact">お問い合わせ </a></div>
+                <div class="l-footer__list"><a class="p-top__footer-text" href="/term">利用規約 </a></div>
+                <div class="l-footer__list"><a class="p-top__footer-text" href="/policy">プライバシーポリシー</a></div>
+            </div>
+            <div class="l-footer__copyright p-top__footer-text">
+                <div>©kamitter2020 kamitter.All Rights Reserved</div>
+            </div>
+        </div>
+    </div>
+    @endguest
 @show
