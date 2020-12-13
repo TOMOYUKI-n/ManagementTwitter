@@ -10,10 +10,6 @@
             top: 48px;
         }
     }
-    &__sp--toggle{
-        position: relative;
-        top: 68px;
-    }
     &__wrap{
         width:100%;
         display: flex;
@@ -67,7 +63,7 @@
         margin-top: 8px;
     }
     &__link{
-        padding: 8px 32px;
+        padding: 4px 32px;
     }
     &__label{
         &:hover{

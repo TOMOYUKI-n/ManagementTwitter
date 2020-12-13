@@ -49,7 +49,7 @@
         border: 1px solid $color-default-parent;
         border-radius: 5px;
         @include mq() {
-            width: 100%;
+            width: 100% !important;
         }
         
     }
@@ -70,19 +70,19 @@
         font-weight: 100;
         padding: 10px;
         box-sizing: border-box;
-        margin-bottom: 30px;
+        margin-bottom: 20px;
         line-height: 25px;
         border: 1px solid $color-default-parent;
         border-radius: 5px;
         @include mq(){
-            font-size: $font-size_default;
+            font-size: 13px;
             line-height: 20px;
         }
     }
   
     &__notion {
         font-size: 13px;
-        padding: 8px 0px 32px;
+        padding: 8px 0px 20px;
     }
 
     &__delete {

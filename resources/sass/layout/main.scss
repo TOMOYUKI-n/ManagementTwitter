@@ -39,6 +39,9 @@
         height: calc(100vh - 166px);
         @include mq(){
             height: 100vh;
+            &.none {
+                display: none;
+            }
         }
     }
     &__title{
