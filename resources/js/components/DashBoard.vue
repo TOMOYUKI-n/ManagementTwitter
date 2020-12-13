@@ -64,8 +64,8 @@
              */
             twitterUserDelete() {
                 this.twitterAccountId = 0;
-            },
-        },
+            }
+        }
     }
 </script>
 <style lang="scss" scoped>

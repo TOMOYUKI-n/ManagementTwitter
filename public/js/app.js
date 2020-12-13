@@ -2285,6 +2285,7 @@ __webpack_require__.r(__webpack_exports__);
     getLoginData: function getLoginData() {
       var loginData = localStorage.getItem("loginData");
       var loginArray = JSON.parse(loginData);
+      if (loginArray.email === null) return;
       this.email = loginArray.email;
       this.password = loginArray.password;
     }
@@ -8772,7 +8773,15 @@ var render = function() {
             _vm._v(" "),
             _c(
               "form",
-              { staticClass: "p-form", on: { submit: _vm.addKeyword } },
+              {
+                staticClass: "p-form",
+                on: {
+                  submit: function($event) {
+                    $event.preventDefault()
+                    return _vm.addKeyword($event)
+                  }
+                }
+              },
               [
                 _c("p", { staticClass: "p-form__notion" }, [
                   _vm._v(

@@ -51,7 +51,7 @@
                     <div class="p-modal__cancel u-color__bg--white" @click="newModal = !newModal">
                         <i class="c-icon--gray p-modal__icon fas fa-times"></i>
                     </div>
-                    <form class="p-form" @submit="addKeyword">
+                    <form class="p-form" @submit.prevent="addKeyword">
 
                         <p class="p-form__notion">※複数ワードの場合は、「集客 マーケティング」のように半角スペースで区切ってください。</p>
                         <label class="p-form__label" for="add-keyword">条件タイプ</label>
