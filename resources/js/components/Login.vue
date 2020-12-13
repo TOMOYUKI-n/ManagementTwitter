@@ -86,6 +86,7 @@ export default {
         getLoginData() {
             const loginData = localStorage.getItem("loginData");
             const loginArray = JSON.parse(loginData);
+            if(loginArray.email === null) return;
             this.email = loginArray.email;
             this.password = loginArray.password;
         },
