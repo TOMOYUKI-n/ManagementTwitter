@@ -18,7 +18,7 @@
         <div>
             <p class="p-table__caption__text">※アンフォロー機能はフォロワーが5000人以内になると、自動的に停止します。</p>
             <div class="p-table__img--wrap">
-                <img class="p-table__img--small" :src="'/images/working.png'">
+                <img class="p-table__img--small" :src="'/images/tasks.svg'">
             </div>
         </div>
 

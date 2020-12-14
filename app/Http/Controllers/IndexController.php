@@ -56,7 +56,7 @@ class IndexController extends Controller
     public function show()
     {
         try {
-            $users = Auth::User()->first();
+            $users = Auth::User();
             return $users;
         }
         catch (\Exception $e) {

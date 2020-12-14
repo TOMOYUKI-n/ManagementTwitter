@@ -110,8 +110,8 @@ class ApiHandle
      */
     public static function sendMail($management_id, $twitter_user_id, $mail_type = 0)
     {
-        $system_manager = Management::find($management_id)->with('user')->first();
-        $twitter_user = TwitterUser::find($twitter_user_id)->first();
+        $system_manager = Management::where('id', $management_id)->with('user')->first();
+        $twitter_user = TwitterUser::where('id', $twitter_user_id)->first();
         $user = $system_manager->user;
 
         if ($mail_type === self::ERROR_CODE_SUSPENDED) {
