@@ -55,12 +55,12 @@
     }
 
     &__sidebar-pc{
-        position: fixed;//
-        top: 48px;//
+        position: fixed;
+        top: 48px;
         width:20%;
         color: #fff;
         background-color: #333;
-        height: calc(100vh);//
+        height: calc(100vh);
         @include mq(){
             display: none;
         }

@@ -37,21 +37,12 @@ class TestBacth extends Command
 {
     protected $signature = "command:testbatch";
     protected $description = "test用";
-    public function __construct() { parent::__construct(); }
+    public function __construct() { 
+        parent::__construct();
+    }
 
     public function handle()
     {
-        $system_manager = Management::find(3)->with('user')->first();
-        Log::Debug("system_manager");
-        Log::Debug([$system_manager]);
 
-        $twitter_user = TwitterUser::find(4)->first();
-        Log::Debug("twitter_user");
-        Log::Debug([$twitter_user]);
-
-        $user = $system_manager->user;
-        Log::Debug("user");
-        Log::Debug([$user]);
-        // Mail::to($user)->send(new CompleteAutoTweet($user, $twitter_user, $auto_tweet));
     }
 }

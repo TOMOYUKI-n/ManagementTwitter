@@ -12,6 +12,7 @@
 */
 
 Auth::routes();
+Route::get('/test', 'IndexController@test')->name('test');
 
 // トップ
 Route::get('/', 'IndexController@top')->name('top');

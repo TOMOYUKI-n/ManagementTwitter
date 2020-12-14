@@ -52,7 +52,7 @@ class AutoTweetBatch extends Command
 
                 //ユーザーごとの自動ツイート配列を取得する
                 $auto_tweets_list = Tweet::where('twitter_user_id', $twitter_user_id)->where('status', 1)->with('twitterUser')->get();
-
+                
                 foreach ($auto_tweets_list as $auto_tweet) {
                     Log::Debug('##自動ツイート開始');
                     // 投稿予定時刻なら自動ツイート
@@ -91,9 +91,16 @@ class AutoTweetBatch extends Command
      */
     private function sendMail($management_id, $twitter_user_id, $auto_tweet)
     {
-        $system_manager = Management::find($management_id)->with('user')->first();
-        $twitter_user = TwitterUser::find($twitter_user_id)->first();
+        Log::Debug('## mail =================');
+        Log::Debug('#management_id : ', [$management_id]);
+        Log::Debug('#twitter_user_id : ' , [$twitter_user_id]);
+
+        $system_manager = Management::where('id', $management_id)->with('user')->first();
+        $twitter_user = TwitterUser::where('id', $twitter_user_id)->first();
         $user = $system_manager->user;
+        Log::Debug('## mail check=================');
+        Log::Debug('#twitter_user : ', [$twitter_user]);
+        Log::Debug('#user : ' , [$user]);
         Mail::to($user)->send(new CompleteAutoTweet($user, $twitter_user, $auto_tweet));
     }
 

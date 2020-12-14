@@ -3,26 +3,25 @@
 // ============================
 footer{
     @include mq(){
-        font-size: 17px;
-        // position: fixed;
+        font-size: $font-size_m;
         width: 100%;
         bottom: 0px;
     }
   }
 .l-footer{
-    font-size: 12px;
+    font-size: $font-size_xs;
 
     &__copyright{
-        margin: 8px 32px;
-        font-size: 10px;
+        margin: $space_2 $space_8;
+        font-size: $font-size_2s;
     }
     &__info{
-        margin: 0px 32px 8px 32px;
+        margin: 0px $space_8 $space_2 $space_8;
     }
     &__list{
-        margin-top: 8px;
+        margin-top: $space_2;
         @include mq(){
-            margin: 8px 0px;
+            margin: $space_2 0px;
         }
     }
     &__href{

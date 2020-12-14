@@ -9,6 +9,8 @@
     @include mq(){
         width: 100%;
         display: block;
+        height: 100vh;//
+        overflow: hidden;//
     }
     &-head{
         position: absolute;

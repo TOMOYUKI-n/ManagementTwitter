@@ -175,8 +175,8 @@ class AutoFollowBatch extends Command
      */
     private function sendMail($management_id, $twitter_user_id)
     {
-        $manager = Management::find($management_id)->with('user')->first();
-        $twitter_user = TwitterUser::find($twitter_user_id)->first();
+        $manager = Management::where('id', $management_id)->with('user')->first();
+        $twitter_user = TwitterUser::where('id', $twitter_user_id)->first();
         $user = $manager->user;
         Mail::to($user)->send(new CompleteAutoFollow($user, $twitter_user));
     }

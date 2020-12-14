@@ -10746,7 +10746,7 @@ var render = function() {
       _c("div", { staticClass: "p-table__img--wrap" }, [
         _c("img", {
           staticClass: "p-table__img--small",
-          attrs: { src: "/images/working.png" }
+          attrs: { src: "/images/tasks.svg" }
         })
       ])
     ]),

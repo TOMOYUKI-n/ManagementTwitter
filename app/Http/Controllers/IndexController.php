@@ -56,12 +56,20 @@ class IndexController extends Controller
     public function show()
     {
         try {
-            $users = Auth::User()->first();
+            $users = Auth::User();
             return $users;
         }
         catch (\Exception $e) {
             return self::CODE[1]['status'];
         }
+    }
+
+    /**
+     * test描画
+     */
+    public function test()
+    {
+        return view('test');
     }
 
 }
