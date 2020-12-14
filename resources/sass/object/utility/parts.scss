@@ -70,7 +70,7 @@
 .flash_message{
     padding: 15px;
     background-color: rgba(56, 108, 250, 0.61);
-    color: $white;
+    color: $color-white;
     text-align: center;
     display: block;
 }
@@ -81,12 +81,12 @@
     color: $color-black;
     text-align: center;
     display: block;
-    font-size: $font-size_min;
+    font-size: $font-size_xs;
 }
 
 .isFollowedColor{
     background-color: #386cfa9c;
-    color: $white;
+    color: $color-white;
     border: none;
     &:focus {
         outline:0;

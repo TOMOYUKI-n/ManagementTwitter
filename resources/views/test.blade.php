@@ -6,9 +6,8 @@
 <div class="l-main__container">
     <div class="p-login__container">
 
-        <form method="POST" action="{{ route('password.update') }}">
+        <form method="POST">
             @csrf
-            <input type="hidden" name="token" value="{{ $token }}">
             
             <div class="p-send__section">
                 <label for="email" class="p-send__text">{{ __('E-Mail Address') }}</label>

@@ -54,12 +54,12 @@
         text-align: left;
         display: block;
         counter-reset: my-counter;
-        margin-top: $space_l;
-        padding-left: $space_m;
+        margin-top: $space_4;
+        padding-left: $space_2;
         font-size: 12px;
         margin-left: 40px;
         &__item{
-            margin-bottom: $space_m;
+            margin-bottom: $space_2;
             line-height: 1.8;
             &::before{
                 content: counter(my-counter)'.';

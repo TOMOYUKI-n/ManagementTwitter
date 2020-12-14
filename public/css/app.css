@@ -52,7 +52,7 @@ table {
 html, body {
   width: 100%;
   color: #333;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 1.6;
   font-family: "Crimson Text", "\30D2\30E9\30AE\30CE\89D2\30B4\30B7\30C3\30AF   Pro", "Hiragino Kaku Gothic Pro", "Noto Sans JP", sans-serif;
   -webkit-text-size-adjust: 100%;
@@ -96,6 +96,8 @@ img {
   .l-body--base {
     width: 100%;
     display: block;
+    height: 100vh;
+    overflow: hidden;
   }
 }
 .l-body--base-head {
@@ -119,7 +121,7 @@ img {
 
 @media screen and (max-width: 960px) {
   footer {
-    font-size: 17px;
+    font-size: 16px;
     width: 100%;
     bottom: 0px;
   }
@@ -162,7 +164,7 @@ img {
 }
 @media screen and (max-width: 960px) {
   .l-navbar__main-wrap {
-    padding: 0 5px;
+    padding: 0 4px;
     box-sizing: border-box;
     position: unset;
   }
@@ -1021,7 +1023,7 @@ img {
 }
 @media screen and (max-width: 960px) {
   .p-table__head {
-    font-size: 16px;
+    font-size: 14px;
   }
 }
 .p-table__th {
@@ -1152,13 +1154,13 @@ img {
   text-align: left;
   display: block;
   counter-reset: my-counter;
-  margin-top: 15px;
-  padding-left: 10px;
+  margin-top: 16px;
+  padding-left: 8px;
   font-size: 12px;
   margin-left: 40px;
 }
 .p-policy__list__item {
-  margin-bottom: 10px;
+  margin-bottom: 8px;
   line-height: 1.8;
 }
 .p-policy__list__item::before {
@@ -1170,24 +1172,6 @@ img {
     margin-left: 0px;
     margin-top: 0px;
     padding-left: 0px;
-  }
-}
-
-.p-pass__container {
-  max-width: 500px;
-  min-width: 350px;
-  margin: 60px auto;
-  padding: 30px;
-  box-sizing: border-box;
-  box-shadow: 0px 4px 8px 2px #b2b5be;
-  font-size: 0.9rem;
-  border-radius: 6px;
-}
-@media screen and (max-width: 960px) {
-  .p-pass__container {
-    width: 100%;
-    margin: 20px auto;
-    box-shadow: 0px 0px 0px 0px #b2b5be;
   }
 }
 
@@ -1552,7 +1536,7 @@ img {
 }
 @media screen and (max-width: 960px) {
   .p-form__item {
-    font-size: 16px;
+    font-size: 14px;
     line-height: 20px;
     margin-bottom: 15px;
   }
@@ -1614,7 +1598,7 @@ img {
   padding: 8px 0px 20px;
 }
 .p-form__delete {
-  font-size: 16px;
+  font-size: 14px;
   text-align: center;
 }
 .p-form__delete__wrap {
@@ -1666,18 +1650,18 @@ img {
   margin-top: 30px;
   word-break: break-word;
   text-align: center;
+  font-size: 13px;
 }
 .p-send__form {
   display: block;
   width: 100%;
   padding: 4px 12px;
-  font-size: 16px;
+  font-size: 13px;
   line-height: 1.6;
   color: #495057;
   border: 1px solid #ced4da;
   border-radius: 4px;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-  margin: 4px;
 }
 .p-send__section {
   display: block;
@@ -1750,7 +1734,7 @@ img {
   color: #111111;
   text-align: center;
   display: block;
-  font-size: 13px;
+  font-size: 12px;
 }
 
 .isFollowedColor {

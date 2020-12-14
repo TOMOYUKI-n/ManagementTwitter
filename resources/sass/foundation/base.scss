@@ -8,31 +8,31 @@ html, body {
     line-height: 1.6;
     font-family: $font-family;
     text-size-adjust: 100%;
-  }
+}
   
-  .l-body{
+.l-body{
     margin: 0;
     display: flex;
     flex-flow: column;
     min-height: 100vh;
-  }
+}
   
-  .l-main{
+.l-main{
     flex: 1;
-  }
+}
   
-  p, a {
+p, a {
     font-smoothing: antialiased;
-  }
+}
   
-  a {
+a {
     color: $color-default;
     text-decoration: none;
     transition: .3s;
-  }
+}
   
   
-  img {
+img {
     width: 100%;
     vertical-align: bottom;
-  }
+}

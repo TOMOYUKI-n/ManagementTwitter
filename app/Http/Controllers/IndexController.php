@@ -64,4 +64,12 @@ class IndexController extends Controller
         }
     }
 
+    /**
+     * test描画
+     */
+    public function test()
+    {
+        return view('test');
+    }
+
 }

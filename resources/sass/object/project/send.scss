@@ -30,18 +30,18 @@
         margin-top: 30px;
         word-break: break-word;
         text-align: center;
+        font-size: 13px;
     }
     &__form{
         display: block;
         width: 100%;
         padding: 4px 12px;
-        font-size: 16px;
+        font-size: 13px;
         line-height: 1.6;
         color: #495057;
         border: 1px solid #ced4da;
         border-radius: 4px;
         transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-        margin: 4px;
     }
     &__section{
         display: block;

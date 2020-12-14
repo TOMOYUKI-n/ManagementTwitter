@@ -75,7 +75,7 @@
         box-sizing: border-box;
         font-size: 14px;
         @include mq() {
-            font-size: $font-size_s;
+            font-size: $font-size_xs;
             padding: 5px;
         }
         &--follow {
