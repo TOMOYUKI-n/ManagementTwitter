@@ -177,23 +177,16 @@
              * 新規キーワードを登録
              */
             async addKeyword() {
-                console.log("this.addForm");
-                console.log(this.addForm);
                 const response = await axios.post('/api/keyword', this.addForm);
                 if (response.status !== 200 || response.data === 500) {
-                    console.log("error====");
-                    console.log(response);
                     this.errorFlg = true;
                     this.messageText = message.notGetData;
                 }
                 else {
                     this.newModal = false;
-                    console.log("success 1");
                     this.resetAddForm();
                     // 一覧を更新
-                    console.log("success 2");
                     this.fetchKeywords();
-                    console.log("success 3");
                 }
             },
             /**
@@ -242,7 +235,6 @@
              */
             async removeKeywords() {
                 const response = await axios.delete(`/api/keyword/${this.deleteItem}`);
-                console.log(response);
                 if (response.status !== 200 || response.data === 500) {
                     this.errorFlg = true;
                     this.messageText = message.notGetData;

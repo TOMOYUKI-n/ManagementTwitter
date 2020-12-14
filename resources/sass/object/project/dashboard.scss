@@ -28,6 +28,23 @@
                 width:100%;
                 color: #fff;
                 background-color: #333;
+                height: 100vh;
+                // height: calc(100vh - 48px);;
+                display: block;
+                transform: translateX(0px);
+                transition: all 0.5s ease-in-out;
+            }
+        }
+    }
+
+    &__navi-sp{
+        display: none;
+        @include mq(){
+            display: none;
+            &.active {
+                width:100%;
+                color: #fff;
+                background-color: #333;
                 // height: 100vh;
                 height: calc(100vh - 48px);;
                 display: block;

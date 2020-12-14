@@ -475,6 +475,23 @@ img {
     width: 100%;
     color: #fff;
     background-color: #333;
+    height: 100vh;
+    display: block;
+    transform: translateX(0px);
+    transition: all 0.5s ease-in-out;
+  }
+}
+.p-board__navi-sp {
+  display: none;
+}
+@media screen and (max-width: 960px) {
+  .p-board__navi-sp {
+    display: none;
+  }
+  .p-board__navi-sp.active {
+    width: 100%;
+    color: #fff;
+    background-color: #333;
     height: calc(100vh - 48px);
     display: block;
     transform: translateX(0px);

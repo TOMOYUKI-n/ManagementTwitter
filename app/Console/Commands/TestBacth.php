@@ -26,6 +26,7 @@ use App\Http\Components\FollowService;
 use App\Mail\StopTwitterAccountMail;
 use App\Mail\LimitApiMail;
 use App\Http\Components\Utility;
+use App\Mail\CompleteAutoTweet;
 // URL
 const ApiTweet = "accounts/";
 
@@ -40,21 +41,17 @@ class TestBacth extends Command
 
     public function handle()
     {
-        $twitter_user_id = 1;
-        Log::info("検査テーブルにユーザーがいれば検査する");
-        $unfollow_detect_record = UnfollowDetect::where('twitter_user_id', $twitter_user_id)->first();
-        Log::info([$unfollow_detect_record]);
+        $system_manager = Management::find(3)->with('user')->first();
+        Log::Debug("system_manager");
+        Log::Debug([$system_manager]);
 
-        if (is_null($unfollow_detect_record)) {
-            $follow_repository = FollowsRepository::where('twitter_user_id', $twitter_user_id)
-                ->select('twitter_user_id', 'twitter_id')->get()->toArray();
+        $twitter_user = TwitterUser::find(4)->first();
+        Log::Debug("twitter_user");
+        Log::Debug([$twitter_user]);
 
-            data_fill($follow_repository, '*.created_at', Carbon::now()->format('Y-m-d H:i:s'));
-            data_fill($follow_repository, '*.updated_at', Carbon::now()->format('Y-m-d H:i:s'));
-            UnfollowDetect::insert($follow_repository);
-        }
-
-        $unfollow_detect = UnfollowDetect::where('twitter_user_id', $twitter_user_id)->get();
-        Log::info([$unfollow_detect]);
+        $user = $system_manager->user;
+        Log::Debug("user");
+        Log::Debug([$user]);
+        // Mail::to($user)->send(new CompleteAutoTweet($user, $twitter_user, $auto_tweet));
     }
 }

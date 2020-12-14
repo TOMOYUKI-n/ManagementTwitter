@@ -69,7 +69,7 @@
         </div>
     </div>
     @else
-    <div class="p-board__sidebar-sp js_open-navi">
+    <div class="p-board__navi-sp js_open-navi">
         <div class="">
             <div class="p-board__link p-board__hover">
                 <div class="l-footer__list"><a class="p-top__footer-text" href="/contact">問い合わせ </a></div>

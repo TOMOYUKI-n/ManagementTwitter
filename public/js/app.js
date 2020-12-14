@@ -3207,34 +3207,25 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                console.log("this.addForm");
-                console.log(_this2.addForm);
-                _context2.next = 4;
+                _context2.next = 2;
                 return axios__WEBPACK_IMPORTED_MODULE_2___default.a.post('/api/keyword', _this2.addForm);
 
-              case 4:
+              case 2:
                 response = _context2.sent;
 
                 if (response.status !== 200 || response.data === 500) {
-                  console.log("error====");
-                  console.log(response);
                   _this2.errorFlg = true;
                   _this2.messageText = _message__WEBPACK_IMPORTED_MODULE_3__["message"].notGetData;
                 } else {
                   _this2.newModal = false;
-                  console.log("success 1");
 
                   _this2.resetAddForm(); // 一覧を更新
 
 
-                  console.log("success 2");
-
                   _this2.fetchKeywords();
-
-                  console.log("success 3");
                 }
 
-              case 6:
+              case 4:
               case "end":
                 return _context2.stop();
             }
@@ -3334,25 +3325,24 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 2:
                 response = _context4.sent;
-                console.log(response);
 
                 if (!(response.status !== 200 || response.data === 500)) {
-                  _context4.next = 10;
+                  _context4.next = 9;
                   break;
                 }
 
                 _this4.errorFlg = true;
                 _this4.messageText = _message__WEBPACK_IMPORTED_MODULE_3__["message"].notGetData;
                 _this4.deleteOn = false;
-                _context4.next = 13;
+                _context4.next = 12;
                 break;
 
-              case 10:
+              case 9:
                 _this4.deleteOn = false;
-                _context4.next = 13;
+                _context4.next = 12;
                 return _this4.fetchKeywords();
 
-              case 13:
+              case 12:
               case "end":
                 return _context4.stop();
             }
