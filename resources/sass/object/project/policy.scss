@@ -6,7 +6,7 @@
     &__main-container{
         width: 80%;
         text-align: center;
-        margin: 32px auto 60px;
+        margin: 0px auto 48px;
         @include mq(){
             &.none {
                 display: none;

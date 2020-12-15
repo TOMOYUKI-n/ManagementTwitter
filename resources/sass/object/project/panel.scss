@@ -17,4 +17,9 @@
         font-size: 14px;
         margin-top: 8px;
     }
+    &__back{
+        @include mq() {
+            height: calc(100vh - 48px);
+        }
+    }
 }

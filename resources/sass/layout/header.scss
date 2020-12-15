@@ -2,7 +2,7 @@
 // ヘッダー　PC用
 // ============================
 .logo{
-    margin-left: 16px;
+    margin-left: $space_4;
 }
 .l-navbar{
     &__main-wrap{
@@ -11,9 +11,8 @@
         justify-content: space-between;
         background: #1976D2;
         align-items: center;
-        height: 48px;
-        position: fixed;//
-        // z-index: 1000;
+        height: $space_12;
+        position: fixed;
         @include mq() {
             padding: 0 $space_1;
             box-sizing: border-box;
@@ -27,7 +26,6 @@
     &__sp__d-flex{
         @include mq() {
             display: flex;
-            // z-index: 300;
         }
     }
     &__icon {
@@ -35,7 +33,7 @@
         cursor: pointer;
         @include mq(){
             display: block;
-            margin-left: 16px;
+            margin-left: $space_4;
         }
     }
     &__section{
@@ -43,13 +41,12 @@
         display: block;
         position: absolute;
         right: 0px;
-        margin-right: 8px;
-        // z-index: 500;
+        margin-right: $space_2;
     }
     &__list{
-        font-size: 13px;
+        font-size: $font-size_s;
         display: inline-block;
-        margin-right: 16px;
+        margin-right: $space_4;
         &:hover{
             cursor: pointer;
         }
@@ -83,29 +80,29 @@
             transition: all 0.5s ease-in-out;
         }
         &__pa-5{
-            padding: 20px;
+            padding: $space_5;
         }
         &__menu{
-            font-size: 16px;
+            font-size: $space_4;
             &__list{
                 box-sizing: border-box;
                 border-bottom: 1px solid #555;
-                padding: 12px 20px;
+                padding: $space_3 $space_5;
             }
         }
         &__text-black{
             color: #333 !important;
         }
         &__pa25{
-            padding: 8px 20px 8px;
+            padding: $space_2 $space_5 $space_2;
         }
         &__copy{
-            font-size: 14px;
+            font-size: $font-size_default;
             word-break: break-word;
-            padding: 0px 20px;
+            padding: 0px $space_5;
         }
         &__text__sm{
-            font-size: 14px;
+            font-size: $font-size_default;
         }
 
 

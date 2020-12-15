@@ -160,7 +160,8 @@
     // footer
     // ============================
     &__footer{
-        background: linear-gradient(#05FBFF, #1D62F0 ) fixed;
+        background: linear-gradient(#05FBFF, #1D62F0) fixed;
+        width: 100%;
         @include mq(){
             display: none;
         }
@@ -188,5 +189,12 @@
     &__pc-footer-text{
         padding: 2px 32px;
         padding-bottom: 24px;
+    }
+    &__footer--position{
+        position: fixed;
+        bottom: 0;
+        @include mq(){
+            display: none;
+        }
     }
 }

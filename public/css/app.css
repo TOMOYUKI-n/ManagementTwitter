@@ -310,7 +310,7 @@ img {
   }
 }
 .l-main__contact {
-  height: calc(100vh - 161px);
+  height: calc(100vh - 60px);
 }
 @media screen and (max-width: 960px) {
   .l-main__contact {
@@ -476,7 +476,7 @@ img {
     display: block;
     transform: translateX(0px);
     transition: all 0.5s ease-in-out;
-    position: fixed;
+    position: absolute;
     top: 48px;
   }
 }
@@ -695,6 +695,11 @@ img {
   font-size: 14px;
   margin-top: 8px;
 }
+@media screen and (max-width: 960px) {
+  .p-panel__back {
+    height: calc(100vh - 48px);
+  }
+}
 
 .p-modal {
   background: #3335;
@@ -870,15 +875,15 @@ img {
 }
 .p-login__container {
   min-width: 350px;
-  margin: 0px auto 0px;
+  margin: 60px auto 0px;
   padding: 30px;
   box-sizing: border-box;
   box-shadow: 0px 4px 8px 2px #b2b5be;
   font-size: 0.9rem;
   border-radius: 6px;
-  width: 600px;
+  width: 500px;
   position: relative;
-  top: 96px;
+  top: 48px;
 }
 @media screen and (max-width: 960px) {
   .p-login__container {
@@ -1013,9 +1018,9 @@ img {
 }
 @media screen and (max-width: 960px) {
   .p-table__button {
-    margin-bottom: 3px;
-    min-width: 30px;
-    max-height: 30px;
+    min-width: 28px;
+    max-height: 28px;
+    margin: 2px;
   }
 }
 .p-table__head {
@@ -1107,7 +1112,7 @@ img {
 .p-policy__main-container {
   width: 80%;
   text-align: center;
-  margin: 32px auto 60px;
+  margin: 0px auto 48px;
 }
 @media screen and (max-width: 960px) {
   .p-policy__main-container.none {
@@ -1332,6 +1337,7 @@ img {
 }
 .p-top__footer {
   background: linear-gradient(#05FBFF, #1D62F0) fixed;
+  width: 100%;
 }
 @media screen and (max-width: 960px) {
   .p-top__footer {
@@ -1361,6 +1367,15 @@ img {
 .p-top__pc-footer-text {
   padding: 2px 32px;
   padding-bottom: 24px;
+}
+.p-top__footer--position {
+  position: fixed;
+  bottom: 0;
+}
+@media screen and (max-width: 960px) {
+  .p-top__footer--position {
+    display: none;
+  }
 }
 
 .p-verify__container {
@@ -1672,6 +1687,9 @@ img {
 .p-send__inner {
   display: flex;
   align-items: baseline;
+}
+.p-send__margin {
+  margin: 12px 0px;
 }
 
 .js_toggle_guest {
