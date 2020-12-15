@@ -9,8 +9,11 @@
     @include mq(){
         width: 100%;
         display: block;
-        height: 100vh;//
-        overflow: hidden;//
+        height: 100%;
+        // naviの場合
+        &.active {
+            height: calc(100vh - 48px);
+        }
     }
     &-head{
         position: absolute;
