@@ -166,7 +166,7 @@ img {
   .l-navbar__main-wrap {
     padding: 0 4px;
     box-sizing: border-box;
-    position: unset;
+    position: static;
   }
 }
 .l-navbar__align {
@@ -452,7 +452,7 @@ img {
 
 @media screen and (max-width: 960px) {
   .p-board__sp--top {
-    position: fixed;
+    position: absolute;
     width: 100%;
     top: 48px;
   }
@@ -477,7 +477,7 @@ img {
     width: 100%;
     color: #fff;
     background-color: #333;
-    height: 100vh;
+    height: calc(100vh - 48px);
     display: block;
     transform: translateX(0px);
     transition: all 0.5s ease-in-out;
@@ -494,7 +494,7 @@ img {
     width: 100%;
     color: #fff;
     background-color: #333;
-    height: calc(100vh - 48px);
+    height: 100%;
     display: block;
     transform: translateX(0px);
     transition: all 0.5s ease-in-out;
@@ -547,15 +547,14 @@ img {
   position: fixed;
   top: 48px;
   left: 20%;
-  overflow-y: scroll;
 }
 @media screen and (max-width: 960px) {
   .p-board__body {
     width: 100%;
     height: 100%;
     display: block;
-    position: unset;
-    top: unset;
+    position: static;
+    top: 0;
     left: 0;
   }
   .p-board__body.none {
@@ -966,7 +965,7 @@ img {
   margin-top: 100px;
 }
 .p-table__img--small {
-  max-width: 400px;
+  width: 50%;
 }
 .p-table__title {
   margin-bottom: 20px;
@@ -1015,6 +1014,8 @@ img {
 @media screen and (max-width: 960px) {
   .p-table__button {
     margin-bottom: 3px;
+    min-width: 30px;
+    max-height: 30px;
   }
 }
 .p-table__head {
@@ -1598,7 +1599,7 @@ img {
   padding: 8px 0px 20px;
 }
 .p-form__delete {
-  font-size: 14px;
+  font-size: 13px;
   text-align: center;
 }
 .p-form__delete__wrap {
@@ -1612,6 +1613,7 @@ img {
   align-items: center;
   margin-right: 8px;
   justify-content: center;
+  font-size: 12px;
 }
 .p-form__errors {
   color: #EF5350;

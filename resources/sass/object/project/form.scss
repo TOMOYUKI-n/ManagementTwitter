@@ -75,18 +75,18 @@
         border: 1px solid $color-default-parent;
         border-radius: 5px;
         @include mq(){
-            font-size: 13px;
+            font-size: $font-size_s;
             line-height: 20px;
         }
     }
   
     &__notion {
-        font-size: 13px;
+        font-size: $font-size_s;
         padding: 8px 0px 20px;
     }
 
     &__delete {
-        font-size: $font-size_default;
+        font-size: $font-size_s;
         text-align: center;
         &__wrap{
             box-sizing: border-box;
@@ -101,6 +101,7 @@
         align-items: center;
         margin-right: 8px;
         justify-content: center;
+        font-size: $font-size_xs;
     }
   
     &__errors {
