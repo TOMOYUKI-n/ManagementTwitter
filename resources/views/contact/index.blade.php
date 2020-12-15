@@ -14,7 +14,7 @@
                     </span>
                 @enderror
             </div>
-            <div class="p-send__inner">
+            <div class="p-send__inner p-send__margin">
                 <input id="title" type="text" class="p-send__form @error('title') is-invalid @enderror" name="title" value="{{ old('title') }}" placeholder="タイトル"　required>
                 @error('title')
                     <span class="p-login__inputError">
@@ -39,7 +39,7 @@
         </form>
     </div>
 </div>
-<div class="p-top__footer">
+<div class="p-top__footer p-top__footer--position">
     <div>
         <div class="p-top__footer-link">
             <div class="l-footer__list"><a class="p-top__footer-text" href="/contact">お問い合わせ </a></div>

@@ -10653,7 +10653,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "p-panel" }, [
+  return _c("div", { staticClass: "p-panel p-panel__back" }, [
     _c("div", { staticClass: "p-status" }, [
       _c(
         "p",

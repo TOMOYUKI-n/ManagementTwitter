@@ -1,5 +1,5 @@
 <template>
-    <div class="p-panel">
+    <div class="p-panel p-panel__back">
 
         <div class="p-status">
             <p v-show="showRunButton" class="p-status__show p-status__sleep">{{serviceStatusLabel}}</p>
