@@ -96,8 +96,10 @@ img {
   .l-body--base {
     width: 100%;
     display: block;
-    height: 100vh;
-    overflow: hidden;
+    height: 100%;
+  }
+  .l-body--base.active {
+    height: calc(100vh - 48px);
   }
 }
 .l-body--base-head {
@@ -450,13 +452,6 @@ img {
   background-color: #333;
 }
 
-@media screen and (max-width: 960px) {
-  .p-board__sp--top {
-    position: absolute;
-    width: 100%;
-    top: 48px;
-  }
-}
 .p-board__wrap {
   width: 100%;
   display: flex;
@@ -481,6 +476,8 @@ img {
     display: block;
     transform: translateX(0px);
     transition: all 0.5s ease-in-out;
+    position: fixed;
+    top: 48px;
   }
 }
 .p-board__navi-sp {
@@ -494,7 +491,7 @@ img {
     width: 100%;
     color: #fff;
     background-color: #333;
-    height: 100%;
+    height: calc(100vh - 48px);
     display: block;
     transform: translateX(0px);
     transition: all 0.5s ease-in-out;
@@ -511,6 +508,9 @@ img {
 @media screen and (max-width: 960px) {
   .p-board__sidebar-pc {
     display: none;
+    position: static;
+    top: 0;
+    height: 100%;
   }
 }
 .p-board__mp-4 {
