@@ -17,7 +17,7 @@
         @include mq() {
             padding: 0 $space_1;
             box-sizing: border-box;
-            position: unset;//
+            position: static;
         }
     }
     &__align{
