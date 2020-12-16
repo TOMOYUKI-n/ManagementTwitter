@@ -5,26 +5,26 @@
     width: 100%;
   
     &__label {
-        font-size: 13px;
+        font-size: $font-size_s;
         display: block;
-        margin-bottom: 5px;
+        margin-bottom: $space_1;
     }
   
     &__item {
-        font-size: 13px;
+        font-size: $font-size_s;
         width: 100%;
-        height: 40px;
+        height: $space_10;
         font-weight: 100;
-        padding: 10px;
+        padding: $space_2;
         box-sizing: border-box;
-        margin-bottom: 30px;
-        line-height: 25px;
-        border: 1px solid $color-default-parent;
-        border-radius: 5px;
+        margin-bottom: $space_7;
+        line-height: $space_6;
+        border: 1px solid $color_black5;
+        border-radius: 4px;
         @include mq() {
               font-size: $font-size_default;
-              line-height: 20px;
-              margin-bottom: 15px;
+              line-height: $space_5;
+              margin-bottom: $space_4;
         }
   
         &--date {
@@ -38,16 +38,16 @@
     }
   
     &__date {
-        font-size: 13px;
+        font-size: $font-size_s;
         width: 45%;
-        height: 40px;
+        height: $space_10;
         font-weight: 100;
-        padding: 10px;
+        padding: $space_2;
         box-sizing: border-box;
-        margin-bottom: 30px;
-        line-height: 25px;
-        border: 1px solid $color-default-parent;
-        border-radius: 5px;
+        margin-bottom: $space_7;
+        line-height: $space_6;
+        border: 1px solid $color_black5;
+        border-radius: 4px;
         @include mq() {
             width: 100% !important;
         }
@@ -65,24 +65,24 @@
   
     &__select {
         width: 100%;
-        font-size: 13px;
-        height: 40px;
+        font-size: $font-size_s;
+        height: $space_10;
         font-weight: 100;
-        padding: 10px;
+        padding: $space_2;
         box-sizing: border-box;
-        margin-bottom: 20px;
-        line-height: 25px;
-        border: 1px solid $color-default-parent;
-        border-radius: 5px;
+        margin-bottom: $space_5;
+        line-height: $space_6;
+        border: 1px solid $color_black5;
+        border-radius: 4px;
         @include mq(){
             font-size: $font-size_s;
-            line-height: 20px;
+            line-height: $space_5;
         }
     }
   
     &__notion {
         font-size: $font-size_s;
-        padding: 8px 0px 20px;
+        padding: $space_2 0px $space_5;
     }
 
     &__delete {
@@ -90,7 +90,7 @@
         text-align: center;
         &__wrap{
             box-sizing: border-box;
-            margin-top: 28px;
+            margin-top: $space_7;
             display: flex;
             justify-content: center;
         }
@@ -99,17 +99,17 @@
     &__half-btn {
         display: flex;
         align-items: center;
-        margin-right: 8px;
+        margin-right: $space_2;
         justify-content: center;
         font-size: $font-size_xs;
     }
   
     &__errors {
         color: $color-danger;
-        padding: 10px;
-        margin-bottom: 20px;
+        padding: $space_2;
+        margin-bottom: $space_5;
         border: 1px solid $color-danger;
-        border-radius: 5px;
+        border-radius: 4px;
         list-style: none;
     }
 }

@@ -5,11 +5,11 @@
     &__register{
         &__top{
             // aタグ
-            background-color: #FFA726;
-            box-shadow: 0 1px 4px #5a5b5e;
+            background-color: $color_orange;
+            box-shadow: 0 1px 4px $color_shadow;
             border-radius: 4px;
             width: 100%;
-            padding: 12px 16px;
+            padding: $space_3 $space_4;
             display: inline-block;
             text-align: center;
             box-sizing: border-box;
@@ -18,11 +18,11 @@
             }
         }
         &__new{
-            background-color: #FFA726;
-            box-shadow: 0 1px 4px #5a5b5e;
+            background-color: $color_orange;
+            box-shadow: 0 1px 4px $color_shadow;
             border-radius: 4px;
             width: 100%;
-            padding: 12px 16px;
+            padding: $space_3 $space_4;
             border: none;
             box-sizing: border-box;
             &:hover{
@@ -32,11 +32,11 @@
     }
     &__login{
         // aタグ
-        background-color: #2196F3;
-        box-shadow: 0 1px 4px #5a5b5e;
+        background-color: $color_sky;
+        box-shadow: 0 1px 4px $color_shadow;
         border-radius: 4px;
         width: 100%;
-        padding: 12px 16px;
+        padding: $space_3 $space_4;
         display: inline-block;
         text-align: center;
         box-sizing: border-box;
@@ -47,15 +47,15 @@
     &__account{
         &__add{
             // aタグ
-            background-color: #fff;
-            box-shadow: 0 1px 4px #5a5b5e;
+            background-color: $color-white;
+            box-shadow: 0 1px 4px $color_shadow;
             border-radius: 4px;
             width: 100%;
-            padding: 12px 16px;
+            padding: $space_3 $space_4;
             display: inline-block;
             text-align: center;
             box-sizing: border-box;
-            font-size: 13px;
+            font-size: $font-size_s;
             &:hover{
                 cursor: pointer;
             }
@@ -63,31 +63,31 @@
     }
     &__trash{
         // iタグ
-        background-color: #fff;
-        box-shadow: 0 1px 4px #5a5b5e;
+        background-color: $color-white;
+        box-shadow: 0 1px 4px $color_shadow;
         border-radius: 4px;
         width: 100%;
-        padding: 12px 16px;
+        padding: $space_3 $space_4;
         display: inline-block;
         text-align: center;
         box-sizing: border-box;
         &:hover{
-            background-color: rgba(250, 56, 56, 0.61);
+            background-color: $color_alert;
             cursor: pointer;
         }
     }
     &__delete{
         // divタグ
-        background-color: #EF5350;
-        box-shadow: 0 1px 4px #5a5b5e;
+        background-color: $color-danger;
+        box-shadow: 0 1px 4px $color_shadow;
         border-radius: 4px;
         width: 100%;
-        padding: 12px 16px;
+        padding: $space_3 $space_4;
         display: inline-block;
         text-align: center;
         box-sizing: border-box;
         &:hover{
-            background-color: rgba(250, 56, 56, 0.61);
+            background-color: $color_alert;
             cursor: pointer;
         }
     }

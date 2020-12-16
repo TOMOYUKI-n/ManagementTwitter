@@ -3,24 +3,24 @@
 // ==================================
 .p-twitter {
     width: 100%;
-    margin-top: 24px;
-    margin-bottom: 24px;
+    margin-top: $space_6;
+    margin-bottom: $space_6;
     &__card {
         overflow: hidden;
         transition: 0.5s;
-        padding: 4px;
+        padding: $space_1;
         border-radius: 4px;
         margin-bottom: 1px;
-        box-shadow: 0 0px 2px #999;
+        box-shadow: 0 0px 2px $color-gray;
         display: flex;
         justify-content: space-between;
         align-items: center;
         @include mq(){
-              height: 60px;
+              height: $space_15;
         }
   
         &:hover {
-            background-color: rgba(104, 177, 250, 0.1);;
+            background-color: $color_black_hover;
             cursor: pointer;
             @include mq(){
                 transform: initial;
@@ -45,25 +45,25 @@
     }
   
     &__img{
-        background: $color-brown-parent;
-        height: 50px;
-        width: 50px;
+        background: $color-brown;
+        height: $space_12;
+        width: $space_12;
         border-radius: 50%;
-        margin-right: 10px;
+        margin-right: $space_2;
         float: left;
         @include mq(){
-            height: 40px;
-            width: 40px;
+            height: $space_10;
+            width: $space_10;
         }
     }
   
     &__ids{
         line-height: 25px;
-        font-size: 13px;
+        font-size: $font-size_s;
         overflow: auto;
         @include mq(){
             line-height: 20px;
-            font-size: 13px;
+            font-size: $font-size_s;
         }
     }
   

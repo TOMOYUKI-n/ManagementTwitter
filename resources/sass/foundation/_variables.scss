@@ -1,17 +1,45 @@
 // ==============================
 // 変数
 // ==============================
+$color_orange: #FFA726;
 
-$color-default: #333;
-$color-default-parent: #3335;
-$color-brown: #63513b;
-$color-brown-parent: #63513b63;
-$color-white: #fff;
-$color-twitter: #55acee;
-$color-icon-gray: #6c757d;
+$color_green: #74d456;
+
+$color_blue_light: #9cccf1;
+$color_blue_light2: #55acee;
+$color_blue_light3: #05FBFF;
+$color_sky: #2196F3;
+$color_blue: #1976D2;
+$color_blue2: #386cfa9c;
+$color_blue3: #1D62F0;
+$color_blue4: #1976D5;
+
+$color-brown: #63513b63;
+$color_alert: #fa38389c;
 $color-danger: #EF5350;
-$color_black: #111111;
-$color_border-line: #253858;
+$color-error: red;
+
+$color-white: #fff;
+$color-white2: #f3f3f3;
+$color-white3: #f4f4f4;
+$color-white4: #ced4da;
+$color-white5: #f4f5f6;
+
+$color-gray: #999;
+$color-gray_icon: #6c757d;
+
+$color_black: #333;
+$color_black2: #24292e;
+$color_black3: #495057;
+$color_black4: #333f;
+$color_black5: #3335;
+$color_black6: #b2b5be33;
+
+$color_shadow: #5a5b5e;
+$color_shadow_verify: #b2b5be;
+$color_border_verify: #eeeeee;
+
+$color_black_hover: rgba(104, 177, 250, 0.1);
 
 $font-size_xxs: 0.9rem;
 $font-size_2s: 10px;
@@ -37,5 +65,11 @@ $space_12: 48px;
 $space_13: 52px;
 $space_14: 56px;
 $space_15: 60px;
+$space_16: 64px;
+$space_17: 68px;
+$space_18: 72px;
+$space_19: 76px;
+$space_20: 80px;
+$space_21: 84px;
 
 $font-family: 'Crimson Text', "ヒラギノ角ゴシック Pro", "Hiragino Kaku Gothic Pro", 'Noto Sans JP', sans-serif;

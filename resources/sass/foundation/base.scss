@@ -3,7 +3,7 @@
 // ==================================
 html, body {
     width: 100%;
-    color: $color-default;
+    color: $color_black;
     font-size: $font-size_default;
     line-height: 1.6;
     font-family: $font-family;
@@ -26,7 +26,7 @@ p, a {
 }
   
 a {
-    color: $color-default;
+    color: $color_black;
     text-decoration: none;
     transition: .3s;
 }

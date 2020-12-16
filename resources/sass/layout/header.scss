@@ -9,7 +9,7 @@
         width: 100%;
         display: flex;
         justify-content: space-between;
-        background: #1976D2;
+        background: $color_blue;
         align-items: center;
         height: $space_12;
         position: fixed;
@@ -65,7 +65,7 @@
         display: block;
         width: 100%;
         height: 100vh;
-        background-color:#f3f3f3;
+        background-color: $color-white2;
         z-index: 300;
         transition: all 0.5s ease-in-out;
         position: fixed;
@@ -86,12 +86,12 @@
             font-size: $space_4;
             &__list{
                 box-sizing: border-box;
-                border-bottom: 1px solid #555;
+                border-bottom: 1px solid $color_black;
                 padding: $space_3 $space_5;
             }
         }
         &__text-black{
-            color: #333 !important;
+            color: $color_black !important;
         }
         &__pa25{
             padding: $space_2 $space_5 $space_2;

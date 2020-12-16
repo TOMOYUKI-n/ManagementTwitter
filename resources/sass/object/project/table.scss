@@ -7,7 +7,7 @@
     box-sizing: border-box;
     @include mq() {
         letter-spacing: 0;
-        margin-bottom: 84px;
+        margin-bottom: $space_21;
     }
   
     &__img--wrap {
@@ -18,7 +18,7 @@
         width: 50%;
     }
     &__title {
-        margin-bottom: 20px;
+        margin-bottom: $space_5;
         width: 100%;
         display: flex;
         justify-content: space-between;
@@ -44,12 +44,12 @@
             width: 50%;
         }
         &__text {
-            font-size: 12px;
+            font-size: $font-size_m;
             @include mq() {
-                font-size: 12px;
+                font-size: $font-size_m;
                 text-align: left;
-                margin-top: 12px;
-                margin-bottom: 12px;
+                margin-top: $space_3;
+                margin-bottom: $space_3;
             }
         }
     }
@@ -72,13 +72,13 @@
     }
   
     &__th {
-        padding: 8px 12px;
-        border-bottom: 1px solid #3335;
+        padding: $space_2 $space_3;
+        border-bottom: 1px solid $color_black5;
         box-sizing: border-box;
-        font-size: 14px;
+        font-size: $font-size_default;
         @include mq() {
             font-size: $font-size_xs;
-            padding: 5px;
+            padding: $space_1;
         }
         &--follow {
             &:nth-child(1), &:nth-child(2) {
@@ -131,18 +131,18 @@
     }
   
     &__td {
-        padding: 4px 12px;
-        border-bottom: 1px solid #3335;
-        font-size: 13px;
+        padding: $space_1 $space_3;
+        border-bottom: 1px solid $color_black5;
+        font-size: $font-size_s;
         @include mq() {
-            font-size: 12px;
-            padding: 4px;
+            font-size: $font-size_xs;
+            padding: $space_1;
             word-break: break-word;
-            border-bottom: 1px solid #3335;
+            border-bottom: 1px solid $color_black5;
         }
     }
     &__test-xs {
-        font-size: 12px;
+        font-size: $font-size_xs;
     }
     &__action {
         text-align: end;

@@ -3,11 +3,11 @@
 // ============================
 .p-send{
     &__button{
-        background-color: #2196F3;
-        box-shadow: 0 1px 4px #5a5b5e;
+        background-color: $color_sky;
+        box-shadow: 0 1px $space_1 $color_shadow;
         border-radius: 4px;
         width: 100%;
-        padding: 12px 16px;
+        padding: $space_3 $space_4;
         border: none;
         box-sizing: border-box;
         &:hover{
@@ -16,10 +16,10 @@
     }
     &__disable{
         background-color: #b9bbbd;
-        box-shadow: 0 1px 4px #5a5b5e;
+        box-shadow: 0 1px $space_1 $color_shadow;
         border-radius: 4px;
         width: 100%;
-        padding: 12px 16px;
+        padding: $space_3 $space_4;
         border: none;
         box-sizing: border-box;
         &:hover{
@@ -27,31 +27,31 @@
         }
     }
     &__text{
-        margin-top: 30px;
+        margin-top: $space_7;
         word-break: break-word;
         text-align: center;
-        font-size: 13px;
+        font-size: $font-size_s;
     }
     &__form{
         display: block;
         width: 100%;
-        padding: 4px 12px;
-        font-size: 13px;
+        padding: $space_1 $space_3;
+        font-size: $font-size_s;
         line-height: 1.6;
-        color: #495057;
-        border: 1px solid #ced4da;
+        color: $color_black3;
+        border: 1px solid $color-white4;
         border-radius: 4px;
         transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
     }
     &__section{
         display: block;
-        margin-top: 12px;
+        margin-top: $space_3;
     }
     &__inner{
         display: flex;
         align-items: baseline;
     }
     &__margin{
-        margin: 12px 0px;
+        margin: $space_3 0px;
     }
 }

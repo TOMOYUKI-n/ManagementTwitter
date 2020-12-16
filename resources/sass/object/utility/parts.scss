@@ -9,8 +9,8 @@
             display: block;
             width: 100%;
             height: calc(100vh - 48px);
-            background-color: #333;
-            font-size: 13px;
+            background-color: $color_black;
+            font-size: $font-size_s;
         }
     }
 }
@@ -26,21 +26,21 @@
 
 .m{
     &__r2{
-        margin-right: 8px;
+        margin-right: $space_2;
     }
     &__r3{
-        margin-right: 12px;
+        margin-right: $space_3;
     }
 }
 .c{
     &__color--blue {
-        color: $color-twitter;
+        color: $color_blue_light2;
     }
 }
 
 .p-guest{
     &__icon{
-        margin: 32px 0px 40px 32px;
+        margin: $space_8 0px $space_10 $space_8;
     }
 }
 
@@ -49,17 +49,17 @@
 // ==================================
 .c-icon {
     &__twitter {
-        color: $color-twitter;
+        color: $color_blue_light2;
     }
     &--gray{
-        color: $color-icon-gray;
+        color: $color-gray_icon;
     }
     &--white{
         color: $color-white;
     }
     // 余白
     &__mr-2{
-        margin-right: 8px;
+        margin-right: $space_2;
     }
 }
 
@@ -68,16 +68,16 @@
 // ============================
 
 .flash_message{
-    padding: 15px;
-    background-color: rgba(56, 108, 250, 0.61);
+    padding: $space_4;
+    background-color: $color_blue2;
     color: $color-white;
     text-align: center;
     display: block;
 }
 
 .error_message{
-    padding: 15px;
-    background-color: rgba(250, 56, 56, 0.61);
+    padding: $space_4;
+    background-color: $color_alert;
     color: $color-black;
     text-align: center;
     display: block;
@@ -85,7 +85,7 @@
 }
 
 .isFollowedColor{
-    background-color: #386cfa9c;
+    background-color: $color_blue2;
     color: $color-white;
     border: none;
     &:focus {
@@ -93,7 +93,7 @@
     }
 }
 .pAccountActive{
-    background-color: #fcb901;
+    background-color: $color_orange;
 }
 
 // ============================
@@ -101,22 +101,22 @@
 // ============================
 .c-alert{
     &__caution1{
-        color: red !important;
+        color: $color-error !important;
         line-height: 1.2;
     }
     &__caution2{
-        color: red !important;
+        color: $color-error !important;
         line-height: 1.2;
-        margin-bottom: 20px;
+        margin-bottom: $space_5;
     }
     &__caution3{
         line-height: 1.2;
-        margin-top: 80px;
+        margin-top: $space_20;
     }
     &__success{
         color: #386cfa9c;
         line-height: 1.2;
-        margin-bottom: 20px;
+        margin-bottom: $space_5;
     }
 }
 
@@ -126,10 +126,10 @@
         background: $color-white;
     }
     &__text--white{
-        color: #fff;
+        color: $color-white;
     }
     &__icon{
-        color: #1976D2;
+        color: $color_blue;
     }
 }
 

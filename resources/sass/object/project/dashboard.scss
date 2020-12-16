@@ -26,8 +26,8 @@
             display: none;
             &.active {
                 width:100%;
-                color: #fff;
-                background-color: #333;
+                color: $color-white;
+                background-color: $color_black;
                 // height: 100vh;
                 height: calc(100vh - 48px);;
                 display: block;
@@ -36,7 +36,7 @@
                 //
                 // position: fixed;
                 position: absolute;
-                top: 48px;
+                top: $space_12;
             }
         }
     }
@@ -47,8 +47,8 @@
             display: none;
             &.active {
                 width:100%;
-                color: #fff;
-                background-color: #333;
+                color: $color-white;
+                background-color: $color_black;
                 // height: 100%;
                 height: calc(100vh - 48px);
                 display: block;
@@ -60,10 +60,10 @@
 
     &__sidebar-pc{
         position: fixed;
-        top: 48px;
-        width:20%;
-        color: #fff;
-        background-color: #333;
+        top: $space_12;
+        width: 20%;
+        color: $color-white;
+        background-color: $color_black;
         height: calc(100vh);
         @include mq(){
             display: none;
@@ -74,11 +74,11 @@
         }
     }
     &__mp-4{
-        padding: 16px;
-        font-size: 13px;
+        padding: $space_4;
+        font-size: $font-size_s;
     }
     &__mr-2{
-        margin-right: 8px;
+        margin-right: $space_2;
     }
     &__inner{
         width: 50%;
@@ -88,10 +88,10 @@
         justify-content: center;
         align-items: baseline;
         display: flex;
-        margin-top: 8px;
+        margin-top: $space_2;
     }
     &__link{
-        padding: 4px 32px;
+        padding: $space_1 $space_8;
     }
     &__label{
         &:hover{
@@ -99,18 +99,18 @@
         }
     }
     &__mt-8{
-        margin-top: 32px;
+        margin-top: $space_8;
     }
     &__text-small{
-        font-size: 13px;
+        font-size: $font-size_s;
     }
 
     // body
     &__body{
-        width:80%;
+        width: 80%;
         max-height: calc(100vh - 48px);
         position: fixed;
-        top: 48px;
+        top: $space_12;
         left: 20%;
         @include mq(){
             width: 100%;
