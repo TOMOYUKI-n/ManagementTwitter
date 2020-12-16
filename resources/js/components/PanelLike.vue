@@ -21,7 +21,7 @@
                 <h2 class="p-table__caption">自動いいねリスト</h2>
                 <p class="p-table__caption__text">※キーワードを設定することで、該当するツイートに自動でいいねを送ります。</p>
             </div>
-            <button class="c-button c-button--add" @click="newModal = !newModal">
+            <button v-show="!nothingAccountFlg" class="c-button c-button--add" @click="newModal = !newModal">
                 <i class="c-icon__mr-2 c__color--blue fas fa-plus"></i>
                 自動いいねの設定を追加
             </button>
@@ -162,6 +162,7 @@
                 page: 4,
                 twitter_id: 0,
                 errorFlg: false,
+                nothingAccountFlg: false,
                 messageText: '',
                 serviceSwitch: false,
                 deleteOn: false,
@@ -359,7 +360,13 @@
              */
             async getCurrentTwitterId() {
                 const storage = JSON.parse(localStorage.getItem('loginTwitterAccount'));
-                this.twitter_id = storage.id;
+                if(storage){
+                    this.twitter_id = storage.id;
+                }else{
+                    this.errorFlg = true;
+                    this.nothingAccountFlg = true;
+                    this.messageText = message.needSelectAccount;
+                }
             }
         },
         async created() {

@@ -21,7 +21,7 @@
                 <h2 class="p-table__caption">自動ツイートリスト</h2>
                 <p class="p-table__caption__text">※日時を設定してツイートができます</p>
             </div>
-            <button class="c-button c-button--add" @click="newModal = !newModal">
+            <button v-show="!nothingAccountFlg" class="c-button c-button--add" @click="newModal = !newModal">
                 <i class="c-icon__mr-2 c__color--blue fas fa-plus"></i>
                 ツイートを追加
             </button>
@@ -204,6 +204,7 @@
                 page: 5,
                 twitter_id: 0,
                 errorFlg: false,
+                nothingAccountFlg: false,
                 messageText: '',
                 serviceSwitch: false,
                 deleteOn: false,
@@ -450,7 +451,13 @@
              */
             async getCurrentTwitterId() {
                 const storage = JSON.parse(localStorage.getItem('loginTwitterAccount'));
-                this.twitter_id = storage.id;
+                if(storage){
+                    this.twitter_id = storage.id;
+                }else{
+                    this.errorFlg = true;
+                    this.nothingAccountFlg = true;
+                    this.messageText = message.needSelectAccount;
+                }
             }
         },
         async created() {

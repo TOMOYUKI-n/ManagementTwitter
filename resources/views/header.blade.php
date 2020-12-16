@@ -39,7 +39,6 @@
                         <a class="l-navbar__text" href="{{ route('logout') }}"
                             onclick ="event.preventDefault();
                             document.getElementById('logout-form').submit();
-                            localStorage.removeItem('loginData');
                             localStorage.removeItem('loginTwitterAccount');
                             localStorage.removeItem('authData');">
                             <p><i class="fas fa-sign-out-alt"></i></p>
@@ -72,7 +71,7 @@
     <div class="p-board__navi-sp js_open-navi">
         <div class="">
             <div class="p-board__link p-board__hover">
-                <div class="l-footer__list"><a class="p-top__footer-text" href="/contact">問い合わせ </a></div>
+                <div class="l-footer__list"><a class="p-top__footer-text" href="/contact">お問い合わせ </a></div>
                 <div class="l-footer__list"><a class="p-top__footer-text" href="/term">利用規約 </a></div>
                 <div class="l-footer__list"><a class="p-top__footer-text" href="/policy">プライバシーポリシー</a></div>
             </div>

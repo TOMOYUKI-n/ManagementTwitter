@@ -42,7 +42,6 @@
              * ページ遷移
              */
             change(page){
-                console.log(page);
                 this.page = page;
                 this.isOpen = false;
             },

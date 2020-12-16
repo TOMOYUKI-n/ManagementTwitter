@@ -2126,7 +2126,6 @@ __webpack_require__.r(__webpack_exports__);
      * ページ遷移
      */
     change: function change(page) {
-      console.log(page);
       this.page = page;
       this.isOpen = false;
     },
@@ -2498,6 +2497,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       page: 2,
       twitter_id: 0,
       errorFlg: false,
+      nothingAccountFlg: false,
       messageText: '',
       serviceSwitch: false,
       deleteOn: false,
@@ -2929,7 +2929,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context9.prev = _context9.next) {
               case 0:
                 storage = JSON.parse(localStorage.getItem('loginTwitterAccount'));
-                _this9.twitter_id = storage.id;
+
+                if (storage) {
+                  _this9.twitter_id = storage.id;
+                } else {
+                  _this9.errorFlg = true;
+                  _this9.nothingAccountFlg = true;
+                  _this9.messageText = _message__WEBPACK_IMPORTED_MODULE_2__["message"].needSelectAccount;
+                }
 
               case 2:
               case "end":
@@ -3590,6 +3597,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       page: 4,
       twitter_id: 0,
       errorFlg: false,
+      nothingAccountFlg: false,
       messageText: '',
       serviceSwitch: false,
       deleteOn: false,
@@ -4014,7 +4022,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context9.prev = _context9.next) {
               case 0:
                 storage = JSON.parse(localStorage.getItem('loginTwitterAccount'));
-                _this9.twitter_id = storage.id;
+
+                if (storage) {
+                  _this9.twitter_id = storage.id;
+                } else {
+                  _this9.errorFlg = true;
+                  _this9.nothingAccountFlg = true;
+                  _this9.messageText = _message__WEBPACK_IMPORTED_MODULE_2__["message"].needSelectAccount;
+                }
 
               case 2:
               case "end":
@@ -4290,6 +4305,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       page: 5,
       twitter_id: 0,
       errorFlg: false,
+      nothingAccountFlg: false,
       messageText: '',
       serviceSwitch: false,
       deleteOn: false,
@@ -4738,7 +4754,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context8.prev = _context8.next) {
               case 0:
                 storage = JSON.parse(localStorage.getItem('loginTwitterAccount'));
-                _this8.twitter_id = storage.id;
+
+                if (storage) {
+                  _this8.twitter_id = storage.id;
+                } else {
+                  _this8.errorFlg = true;
+                  _this8.nothingAccountFlg = true;
+                  _this8.messageText = _message__WEBPACK_IMPORTED_MODULE_2__["message"].needSelectAccount;
+                }
 
               case 2:
               case "end":
@@ -5309,11 +5332,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
             case 2:
               _context4.next = 4;
-              return _this4.getAccountInfo();
+              return _this4.setLoginData();
 
             case 4:
               _context4.next = 6;
-              return _this4.setLoginData();
+              return _this4.getAccountInfo();
 
             case 6:
             case "end":
@@ -7955,6 +7978,14 @@ var render = function() {
       _c(
         "button",
         {
+          directives: [
+            {
+              name: "show",
+              rawName: "v-show",
+              value: !_vm.nothingAccountFlg,
+              expression: "!nothingAccountFlg"
+            }
+          ],
           staticClass: "c-button c-button--add",
           on: {
             click: function($event) {
@@ -9338,6 +9369,14 @@ var render = function() {
       _c(
         "button",
         {
+          directives: [
+            {
+              name: "show",
+              rawName: "v-show",
+              value: !_vm.nothingAccountFlg,
+              expression: "!nothingAccountFlg"
+            }
+          ],
           staticClass: "c-button c-button--add",
           on: {
             click: function($event) {
@@ -9994,6 +10033,14 @@ var render = function() {
       _c(
         "button",
         {
+          directives: [
+            {
+              name: "show",
+              rawName: "v-show",
+              value: !_vm.nothingAccountFlg,
+              expression: "!nothingAccountFlg"
+            }
+          ],
           staticClass: "c-button c-button--add",
           on: {
             click: function($event) {
@@ -10937,7 +10984,7 @@ var render = function() {
       Object.keys(this.loginTwitterUser).length === 0
         ? _c("div", { staticClass: "p-board__mp-4" }, [
             _c("div", { staticClass: "p-board__top" }, [
-              _vm._v(_vm._s(_vm.authData.name))
+              _vm._v(_vm._s(_vm.authData) + "様")
             ]),
             _vm._v(" "),
             _vm._m(0)
@@ -24154,7 +24201,8 @@ var message = {
   notGetData: 'データが取得できませんでした。再度時間を置いて更新してください。',
   notDelete: '正常に通信することができませんでした。画面を再度更新してください。',
   notUpdate: '更新できませんでした。時間を置いて再度更新してください。',
-  notAllowedToChangeKeyword: '既に自動フォロー機能にてご利用されておりますので、変更はできません。'
+  notAllowedToChangeKeyword: '既に自動フォロー機能にてご利用されておりますので、変更はできません。',
+  needSelectAccount: '「アカウント登録」からTwitterアカウントを選択してください。'
 };
 
 /***/ }),

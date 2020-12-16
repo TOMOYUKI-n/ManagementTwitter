@@ -100,7 +100,7 @@
 
             <h3 class="p-policy__title--sub">お問い合わせ</h3>
             <p class="p-policy__text">
-                当サイトの個人情報の取扱いに関するお問い合わせは<a href="/contact">お問い合わせフォーム</a>よりご連絡ください。
+                当サイトの個人情報の取扱いに関するお問い合わせは<a class="p-policy__text--link" href="/contact">お問い合わせフォーム</a>よりご連絡ください。
             </p>
 
         </div>

@@ -6,6 +6,7 @@
     border-radius: 4px;
     display: inline-block;
     padding: $space_2 $space_4;
+    box-sizing: border-box;
     cursor: pointer;
     @include mq(){
         padding: $space_2;
