@@ -6,7 +6,7 @@
     &__main-container{
         width: 80%;
         text-align: center;
-        margin: 0px auto 48px;
+        margin: 0px auto $space_12;
         @include mq(){
             &.none {
                 display: none;
@@ -26,28 +26,21 @@
     }
     &__title{
         margin-top: 0px;
-        font-size: 15px;
-        padding: 30px;
+        font-size: $font-size_m;
+        padding: $space_8;
         &--sub{
             text-align: left;
-            margin-top: 30px;
-            font-size: 15px;
+            margin-top: $space_8;
+            font-size: $font-size_default;
             font-weight: bold;
-            padding: 10px;
+            padding: $space_3;
         }
     }
     &__text{
         box-sizing: border-box;
         text-align: left;
         display: block;
-        font-size: 12px;
-        a{
-            display: contents;
-            color: $color_border-line;
-            font-weight: 600;
-            margin: 0px 5px;
-        }
-
+        font-size: $font-size_xs;
     }
     &__list{
         box-sizing: border-box;
@@ -56,8 +49,8 @@
         counter-reset: my-counter;
         margin-top: $space_4;
         padding-left: $space_2;
-        font-size: 12px;
-        margin-left: 40px;
+        font-size: $space_3;
+        margin-left: $space_10;
         &__item{
             margin-bottom: $space_2;
             line-height: 1.8;

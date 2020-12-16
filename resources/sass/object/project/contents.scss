@@ -19,12 +19,12 @@
         }
     }
     &__head {
-        font-size: 14px;
+        font-size: $font-size_default;
         text-align: center;
-        margin-bottom: 24px;
+        margin-bottom: $space_6;
         @include mq(){
             font-size: $font-size_m;
-            margin-bottom: 30px;
+            margin-bottom: $space_8;
         }
     }
 }

@@ -4,30 +4,28 @@
 
 .p-login{
     &__inputError{
-        color: red;
-        font-size: 13px;
+        color: $color-error;
+        font-size: $font-size_s;
         text-align: center;
     }
-    // ============================
-    // カバーパーツ
-    // ============================
+
     &__container{
         min-width: 350px;
-        margin: 60px auto 0px;
-        padding: 30px;
+        margin: $space_15 auto 0px;
+        padding: $space_7;
         box-sizing: border-box;
-        box-shadow: 0px 4px 8px 2px #b2b5be;
-        font-size: 0.9rem;
-        border-radius: 6px;
+        box-shadow: 0px $space_1 $space_2 2px #b2b5be;
+        font-size: $font-size_xxs;
+        border-radius: 4px;
         width: 500px;
         position: relative;
-        top: 48px;
+        top: $space_12;
         @include mq(){
             min-width: 0px;
             width: 100%;
             position: relative;
             // position: fixed;
-            top: 48px;
+            top: $space_12;
             margin: 0px auto;
             box-shadow: 0px 0px 0px 0px #b2b5be;
         }
@@ -36,59 +34,59 @@
     // フォーム部分 入力エリア
     // ============================
     &__inner{
-        margin-top: 10px;
+        margin-top: $space_3;
         display: flex;
         align-items: baseline;
     }
     &__form{
         display: block;
         width: 100%;
-        padding: 4px 12px;
-        font-size: 16px;
+        padding: $space_1 $space_3;
+        font-size: $font-size_m;
         line-height: 1.6;
-        color: #495057;
-        border: 1px solid #ced4da;
-        border-radius: 4px;
+        color: $color_black3;
+        border: 1px solid $color-white4;
+        border-radius: $space_1;
         transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-        margin: 4px 0px 4px 12px;
+        margin: $space_1 0px $space_1 $space_3;
     }
     // ============================
     // フォーム部分 ログインエリア
     // ============================
     &__button__wrap{
         box-sizing: border-box;
-        font-size: 13px;
-        margin-top: 16px;
+        font-size: $font-size_s;
+        margin-top: $font-size_m;
     }
 
     &__text{
-        padding: 10px;
-        margin: 10px;
-        margin-top: 30px;
+        padding: $space_3;
+        margin: $space_3;
+        margin-top: $space_8;
         word-break: break-word;
         text-align: center;
-        font-size: 13px;
+        font-size: $font-size_s;
         @include mq(){
             width: 100%;
         }
     }
     &__text--center{
-        margin-top: 30px;
+        margin-top: $space_8;
         word-break: break-word;
         text-align: center;
-        font-size: 13px;
+        font-size: $font-size_s;
         @include mq(){
             width: 100%;
         }
     }
     &__forgot{
-        padding: 10px;
-        margin: 10px;
-        margin-top: 30px;
+        padding: $space_3;
+        margin: $space_3;
+        margin-top: $space_8;
         word-break: break-word;
         text-align: center;
         font-weight: bold;
-        color: #386cfa9c !important;
+        color: $color_blue2 !important;
         &:hover{
             cursor: pointer;
         }

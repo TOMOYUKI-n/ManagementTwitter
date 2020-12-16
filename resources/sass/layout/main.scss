@@ -4,7 +4,7 @@
     width: 100%;
     height: 100%;
     flex-direction: column;
-    background: #f4f4f4;
+    background: $color-white3;
     @include mq(){
         width: 100%;
         height: 100%;
@@ -54,29 +54,17 @@
     }
     &__title{
         font-size: $font-size_l;
-        padding: 20px 0px 10px;
+        padding: $space_5 0px $space_3;
         text-align: center;
-        color: #24292e;
+        color: $color_black2;
         @include mq(){
-            font-size: 1.3rem;
+            font-size: $font-size_m;
         }
         &__text{
             display: inline-block;
             @include mq(){
                 display: inline-block;
             }
-        }
-    }
-    &__function-head{
-        width: 90%;
-        margin: 0px auto;
-        padding: 10px 40px;
-        text-align: center;
-        max-width: 980px;
-        @include mq(){
-            padding: 15px;
-            width: 100%;
-            max-width: 100%;
         }
     }
 }

@@ -2,20 +2,20 @@
 // panel
 // ==================================
 .p-panel {
-    padding: 24px;
+    padding: $space_6;
     box-sizing: border-box;
     height: 100%;
     @include mq() {
-        padding: 12px;
+        padding: $space_3;
     }
     &__nodata{
-        font-size: 14px;
-        margin-top: 8px;
+        font-size: $font-size_default;
+        margin-top: $space_2;
     }
     &__error{
         color: red;
-        font-size: 14px;
-        margin-top: 8px;
+        font-size: $font-size_default;
+        margin-top: $space_2;
     }
     &__back{
         @include mq() {

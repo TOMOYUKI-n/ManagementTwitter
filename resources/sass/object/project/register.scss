@@ -4,20 +4,20 @@
 
 .p-regist{
     &__caution{
-        font-size: 12px;
-        margin-top: 16px;
+        font-size: $font-size_xs;
+        margin-top: $space_4;
     }
     &__form{
         display: block;
         width: 100%;
-        padding: 4px 12px;
-        font-size: 16px;
+        padding: $space_1 $space_3;
+        font-size: $space_4;
         line-height: 1.6;
-        color: #495057;
-        border: 1px solid #ced4da;
+        color: $color_black3;
+        border: 1px solid $color-white4;
         border-radius: 4px;
         transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-        margin: 4px 12px;
+        margin: $space_1 $space_3;
     }
 }
 // ============================
@@ -26,17 +26,17 @@
 
 .p-contact{
     &__wrap{
-        margin-bottom: 10px;
+        margin-bottom: $space_3;
     }
     &__title{
         width: 100%;
-        padding: 0.375rem 0.75rem;
+        padding: $space_4 $space_4;
     }
     &__inner{
-        margin-bottom: 12px;
+        margin-bottom: $space_3;
     }
     &__text{
-        padding: 8px;
+        padding: $space_2;
         border: 1px solid #999;
         opacity: 0.8;
         border-radius: 4px;

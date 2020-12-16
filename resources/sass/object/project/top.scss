@@ -3,7 +3,7 @@
 // ============================
 .p-top{
     &__area--top{
-        background: linear-gradient(#1976D5, #1D62F0 ) fixed;
+        background: linear-gradient($color_blue4, $color_blue3 ) fixed;
     }
     &__top{
         box-sizing: border-box;
@@ -21,40 +21,40 @@
     &__head{
         margin:0;
         width: 50%;
-        padding-bottom: 24px;
+        padding-bottom: $space_6;
         @include mq(){
             width: 100%;
-            padding-bottom: 24px;
+            padding-bottom: $space_6;
         }
     }
     &__top-message{
         box-sizing: border-box;
         display: block;
-        padding: 32px 12px;
+        padding: $space_8 $space_3;
         text-align: start;
         @include mq(){
             box-sizing: border-box;
             display: block;
-            padding: 0px 24px;
+            padding: 0px $space_6;
             text-align: center;
         }
     }
     &__title{
-        color: #fff;
-        font-size: 2.4vw;
-        padding-bottom: 24px;
+        color: $color-white;
+        font-size: $font-size_l;
+        padding-bottom: $space_6;
         @include mq(){
-            color: #fff;
-            font-size: 1.5em;
-            padding: 28px 20px;
+            color: $color-white;
+            font-size: $font-size_m;
+            padding: $space_7 $space_5;
         }
     }
     &__intro--text{
-        color: #fff;
-        font-size: 13px;
+        color: $color-white;
+        font-size: $font-size_s;
     }
     &__login{
-        padding: 10px;
+        padding: $space_3;
         display: block;
         box-sizing: border-box;
         text-align: center;
@@ -69,7 +69,7 @@
         background-color: #fff;
         box-sizing: border-box;
         width: 320px;
-        padding: 32px 12px;
+        padding: $space_8 $space_3;
         margin: auto;
         @include mq(){
             box-shadow: none;
@@ -78,32 +78,32 @@
         }
     }
     &__register, &__login{
-        padding: 16px 32px;
+        padding: $space_4 $space_8;
     }
     &__text-xs{
-        font-size: 13px;
+        font-size: $font-size_s;
     }
     &__mt-3{
-        margin-top: 12px;
+        margin-top: $space_3;
     }
     // ============================
     // 特徴紹介エリア
     // ============================
     &__area--section{
-        padding: 24px;
+        padding: $space_6;
     }
     &__section-container{
         text-align: center;
-        margin: 0px 10px;
+        margin: 0px $space_3;
         @include mq(){
             width: 100%;
             margin: 0px;
-            margin-bottom: 64px;
+            margin-bottom: $space_16;
 
         }
     }
     &__section-title{
-        margin: 0px 0px 30px 0px;
+        margin: 0px 0px $space_7 0px;
     }
     &__section-wrap{
         display: flex;
@@ -113,27 +113,27 @@
         }
     }
     &__section{
-        margin: 0px 10px;
+        margin: 0px $space_3;
         border-radius: 4px;
-        padding: 16px;
-        background-color: #fff;
-        box-shadow: 0 2px 4px 2px #b2b5be33;
+        padding: $space_4;
+        background-color: $color-white;
+        box-shadow: 0 2px 4px 2px $color_black6;
         width: calc(100% / 3);
         box-sizing: border-box;
         @include mq(){
             width: 100%;
             margin: 0px;
-            margin-bottom: 12px;
+            margin-bottom: $space_3;
             box-sizing: border-box;
         }
     }
     &__section__text{
-        font-size: 14px;
+        font-size: $font-size_default;
         text-align: left;
-        padding: 0px 24px 16px;
+        padding: 0px $space_6 $space_4;
     }
     &__section__subtitle{
-        padding: 20px 10px;
+        padding: $space_5 $space_3;
     }
     
     // ============================
@@ -145,7 +145,7 @@
 
         &__main{
             margin: 0;
-            padding: 24px 0px;
+            padding: $space_6 0px;
             width: 70%;
             height: 70%;
         }
@@ -154,13 +154,13 @@
     // その他機能
     // ============================
     &__area--other{
-        padding: 24px;
+        padding: $space_6;
     }
     // ============================
     // footer
     // ============================
     &__footer{
-        background: linear-gradient(#05FBFF, #1D62F0) fixed;
+        background: linear-gradient($color_blue_light3, $color_blue3) fixed;
         width: 100%;
         @include mq(){
             display: none;
@@ -171,24 +171,24 @@
         justify-content: center;
     }
     &__footer-li{
-        font-size: 15px;
+        font-size: $font-size_default;
         line-height: 2;
-        margin-right: 16px;
+        margin-right: $space_4;
     }
     &__footer-cp{
-        padding-bottom: 24px;
-        font-size: 13px;
+        padding-bottom: $space_6;
+        font-size: $font-size_s;
     }
     &__footer-link{
-        padding: 8px 32px;
+        padding: $space_2 $space_8;
     }
     &__footer-text{
         color: #fff;
-        font-size: 13px;
+        font-size: $font-size_s;
     }
     &__pc-footer-text{
-        padding: 2px 32px;
-        padding-bottom: 24px;
+        padding: 2px $space_8;
+        padding-bottom: $space_6;
     }
     &__footer--position{
         position: fixed;
