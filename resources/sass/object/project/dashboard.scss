@@ -2,15 +2,8 @@
 // p-board
 // ==================================
 .p-board{
-    &__sp--top{
-        @include mq(){
-            //position: absolute;
-            //width: 100%;
-            //top: 48px;
-            // &.none {
-            //     top: 0px;
-            // }
-        }
+    &__top{
+        font-size: $font-size_s;
     }
     &__wrap{
         width:100%;
@@ -112,11 +105,13 @@
         position: fixed;
         top: $space_12;
         left: 20%;
+        overflow-y: scroll;
         @include mq(){
             width: 100%;
             height: 100%;
             display: block;
             position: static;
+            overflow: unset;
             top: 0;
             left: 0;
             &.none {

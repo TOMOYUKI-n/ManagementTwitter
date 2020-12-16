@@ -25,7 +25,7 @@
         </p>
         <!-- 切り替え -->
         <div class="p-board__mp-4" v-if="Object.keys(this.loginTwitterUser).length === 0">
-            <div class="p-board__top">{{ authData.name }}</div>
+            <div class="p-board__top">{{ authData }}様</div>
             <div class="p-board__plate">
                 <div class="p-board__inner">
                     <div class="p-board__mr-2 p-board__text-small">フォロー</div>
@@ -84,20 +84,6 @@
              * APIで名前とフォロー人数を取得する
              */
             async getAccountInfo() {
-                // test用
-                // const storage = await JSON.parse(localStorage.getItem('loginTwitterAccount'));
-                // if(storage){
-                //     this.account = storage;
-                //     const [response] = await twitterAccount.filter(x => x.id === storage.id);
-                //     this.loginTwitterUser = response;
-                // }
-                // else {
-                //     const storage = await JSON.parse(localStorage.getItem('authData'));
-                //     this.authData = storage.name;
-                // }
-                // this.$emit('twitter-id',this.loginTwitterUser);
-
-                // 本番用
                 const storage = await JSON.parse(localStorage.getItem('loginTwitterAccount'));
                 if(storage){
                     const response = await axios.get('/api/twitter/users/' + storage.id);
@@ -144,8 +130,8 @@
         },
         async created() {
             await this.getCurrentPage();
-            await this.getAccountInfo();
             await this.setLoginData();
+            await this.getAccountInfo();
         }
     }
 </script>

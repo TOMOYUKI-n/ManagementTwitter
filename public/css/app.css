@@ -345,6 +345,7 @@ img {
   border-radius: 4px;
   display: inline-block;
   padding: 8px 16px;
+  box-sizing: border-box;
   cursor: pointer;
 }
 @media screen and (max-width: 960px) {
@@ -438,6 +439,9 @@ img {
   background-color: #333;
 }
 
+.p-board__top {
+  font-size: 13px;
+}
 .p-board__wrap {
   width: 100%;
   display: flex;
@@ -533,6 +537,7 @@ img {
   position: fixed;
   top: 48px;
   left: 20%;
+  overflow-y: scroll;
 }
 @media screen and (max-width: 960px) {
   .p-board__body {
@@ -540,6 +545,7 @@ img {
     height: 100%;
     display: block;
     position: static;
+    overflow: unset;
     top: 0;
     left: 0;
   }
@@ -692,7 +698,7 @@ img {
   height: 100vh;
   width: 80%;
   position: fixed;
-  top: 7vh;
+  top: 48px;
   right: 0;
   bottom: 0;
   left: 20%;
@@ -989,11 +995,11 @@ img {
   }
 }
 .p-table__caption__text {
-  font-size: 16px;
+  font-size: 13px;
 }
 @media screen and (max-width: 960px) {
   .p-table__caption__text {
-    font-size: 16px;
+    font-size: 13px;
     text-align: left;
     margin-top: 12px;
     margin-bottom: 12px;
@@ -1007,6 +1013,9 @@ img {
     min-width: 28px;
     max-height: 28px;
     margin: 2px;
+    max-width: 28px;
+    min-height: 28px;
+    box-sizing: border-box;
   }
 }
 .p-table__head {
@@ -1098,11 +1107,12 @@ img {
 .p-policy__main-container {
   width: 80%;
   text-align: center;
-  margin: 0px auto 48px;
+  margin: 48px auto 48px;
 }
 @media screen and (max-width: 960px) {
   .p-policy__main-container.none {
     display: none;
+    margin: 0px auto 48px;
   }
 }
 .p-policy__container {
@@ -1134,6 +1144,11 @@ img {
   text-align: left;
   display: block;
   font-size: 12px;
+}
+.p-policy__text--link {
+  color: #1D62F0;
+  font-weight: bold;
+  padding: 0px 4px;
 }
 .p-policy__list {
   box-sizing: border-box;

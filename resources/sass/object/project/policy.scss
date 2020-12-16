@@ -6,10 +6,11 @@
     &__main-container{
         width: 80%;
         text-align: center;
-        margin: 0px auto $space_12;
+        margin: $space_12 auto $space_12;
         @include mq(){
             &.none {
                 display: none;
+                margin: 0px auto $space_12;
             }
         }
     }
@@ -41,6 +42,11 @@
         text-align: left;
         display: block;
         font-size: $font-size_xs;
+    }
+    &__text--link{
+        color: $color_blue3;
+        font-weight: bold;
+        padding: 0px $space_1;
     }
     &__list{
         box-sizing: border-box;

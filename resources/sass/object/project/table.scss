@@ -44,9 +44,9 @@
             width: 50%;
         }
         &__text {
-            font-size: $font-size_m;
+            font-size: $font-size_s;
             @include mq() {
-                font-size: $font-size_m;
+                font-size: $font-size_s;
                 text-align: left;
                 margin-top: $space_3;
                 margin-bottom: $space_3;
@@ -60,6 +60,9 @@
             min-width: 28px;
             max-height: 28px;
             margin: 2px;
+            max-width: 28px;
+            min-height: 28px;
+            box-sizing: border-box;
         }
     }
   
