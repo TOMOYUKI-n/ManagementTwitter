@@ -29,6 +29,10 @@
             color: $color-white;
             background-color: $color_black;
         }
+        @include mq(){
+            position: relative;
+            top: 4px;
+        }
     }
     &--add {
         color: $color_black;
@@ -75,6 +79,10 @@
         border: none;
         &:hover{
             background-color: $color-danger;
+        }
+        @include mq(){
+            position: relative;
+            top: 4px;
         }
     }
     &__status{

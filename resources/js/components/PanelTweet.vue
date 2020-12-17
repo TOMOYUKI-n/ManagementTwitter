@@ -287,6 +287,7 @@
                 if (response.data === 200) {
                     this.newModal = false;
                     // 再描画
+                    this.resetAddForm();
                     await this.fetchTweets();
                 }
             },
