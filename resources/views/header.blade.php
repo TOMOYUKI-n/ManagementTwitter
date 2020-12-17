@@ -38,9 +38,7 @@
                     <li class="l-navbar__list">
                         <a class="l-navbar__text" href="{{ route('logout') }}"
                             onclick ="event.preventDefault();
-                            document.getElementById('logout-form').submit();
-                            localStorage.removeItem('loginTwitterAccount');
-                            localStorage.removeItem('authData');">
+                            document.getElementById('logout-form').submit();">
                             <p><i class="fas fa-sign-out-alt"></i></p>
                         </a>
 

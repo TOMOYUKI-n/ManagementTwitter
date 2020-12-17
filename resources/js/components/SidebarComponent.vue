@@ -68,6 +68,7 @@
                 authData: {},
                 loginTwitterUser: {},
                 errorFlg: false,
+                authLoginCheck: false,
                 messageText: '',
             }
         },
@@ -80,24 +81,16 @@
                 this.$emit('change-page',this.currentPage);
             },
             /**
-             * 使用するaccountIdをlocalstorageから取得
-             * APIで名前とフォロー人数を取得する
+             * localstorageに現在のページを取得する
              */
-            async getAccountInfo() {
-                const storage = await JSON.parse(localStorage.getItem('loginTwitterAccount'));
-                if(storage){
-                    const response = await axios.get('/api/twitter/users/' + storage.id);
-                    if (response.status === 200) {
-                        this.loginTwitterUser = response.data;
-                    }
-                    else {
-                        this.errorFlg = true;
-                        this.messageText = message.notGetData;
-                    }
+            async getCurrentPage() {
+                const page = await localStorage.getItem('page');
+                if(page === null){
+                    this.currentPage = 1;  
                 }
                 else {
-                    const storage = await JSON.parse(localStorage.getItem('authData'));
-                    this.authData = storage.name;
+                    this.currentPage = Number(page);
+                    this.$emit('change-page',this.currentPage);
                 }
             },
             /**
@@ -110,21 +103,48 @@
                     this.messageText = message.notGetData;
                 }
                 else {
-                    this.authData = response.data;
-                    localStorage.setItem('authData',JSON.stringify(response.data));
+                    const pastAuthData = await JSON.parse(localStorage.getItem('authData'));
+                    if(pastAuthData){
+                        const authEmail = pastAuthData.email;
+                        const login = await JSON.parse(localStorage.getItem('loginData'));
+                        const loginEmail = login.email;
+                        // 過去の認証済ユーザーとログインユーザーが一致しているか
+                        if (loginEmail === authEmail) {
+                            this.authLoginCheck = true;
+                        }else {
+                            this.authLoginCheck = false;
+                        }
+                        localStorage.setItem('authData',JSON.stringify(response.data));
+                    }else{
+                        localStorage.setItem('authData',JSON.stringify(response.data));
+                    }
                 }
             },
             /**
-             * localstorageに現在のページを取得する
+             * 使用するaccountIdをlocalstorageから取得
+             * APIで名前とフォロー人数を取得する
              */
-            async getCurrentPage() {
-                const page = await localStorage.getItem('page');
-                if(page === null){
-                    this.currentPage = 1;  
-                }
-                else {
-                    this.currentPage = Number(page);
-                    this.$emit('change-page',this.currentPage);
+            async getAccountInfo() {
+                if(this.authLoginCheck){
+                    const storage = await JSON.parse(localStorage.getItem('loginTwitterAccount'));
+                    if(storage){
+                        const response = await axios.get('/api/twitter/users/' + storage.id);
+                        if (response.status === 200) {
+                            this.loginTwitterUser = response.data;
+                        }
+                        else {
+                            this.errorFlg = true;
+                            this.messageText = message.notGetData;
+                        }
+                    }
+                    else {
+                        const storage = await JSON.parse(localStorage.getItem('authData'));
+                        this.authData = storage.name;
+                    }
+                }else{
+                    localStorage.removeItem('loginTwitterAccount');
+                    const storage = await JSON.parse(localStorage.getItem('authData'));
+                    this.authData = storage.name;
                 }
             },
         },

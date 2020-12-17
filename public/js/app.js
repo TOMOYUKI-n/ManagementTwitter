@@ -4423,16 +4423,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 }
 
                 if (!(response.data === 200)) {
-                  _context2.next = 8;
+                  _context2.next = 9;
                   break;
                 }
 
                 _this2.newModal = false; // 再描画
 
-                _context2.next = 8;
+                _this2.resetAddForm();
+
+                _context2.next = 9;
                 return _this2.fetchTweets();
 
-              case 8:
+              case 9:
               case "end":
                 return _context2.stop();
             }
@@ -5179,6 +5181,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       authData: {},
       loginTwitterUser: {},
       errorFlg: false,
+      authLoginCheck: false,
       messageText: ''
     };
   },
@@ -5192,55 +5195,32 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
 
     /**
-     * 使用するaccountIdをlocalstorageから取得
-     * APIで名前とフォロー人数を取得する
+     * localstorageに現在のページを取得する
      */
-    getAccountInfo: function getAccountInfo() {
+    getCurrentPage: function getCurrentPage() {
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var storage, response, _storage;
-
+        var page;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return JSON.parse(localStorage.getItem('loginTwitterAccount'));
+                return localStorage.getItem('page');
 
               case 2:
-                storage = _context.sent;
+                page = _context.sent;
 
-                if (!storage) {
-                  _context.next = 10;
-                  break;
-                }
-
-                _context.next = 6;
-                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.get('/api/twitter/users/' + storage.id);
-
-              case 6:
-                response = _context.sent;
-
-                if (response.status === 200) {
-                  _this.loginTwitterUser = response.data;
+                if (page === null) {
+                  _this.currentPage = 1;
                 } else {
-                  _this.errorFlg = true;
-                  _this.messageText = _message__WEBPACK_IMPORTED_MODULE_2__["message"].notGetData;
+                  _this.currentPage = Number(page);
+
+                  _this.$emit('change-page', _this.currentPage);
                 }
 
-                _context.next = 14;
-                break;
-
-              case 10:
-                _context.next = 12;
-                return JSON.parse(localStorage.getItem('authData'));
-
-              case 12:
-                _storage = _context.sent;
-                _this.authData = _storage.name;
-
-              case 14:
+              case 4:
               case "end":
                 return _context.stop();
             }
@@ -5256,7 +5236,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-        var response;
+        var response, pastAuthData, authEmail, login, loginEmail;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
@@ -5267,15 +5247,50 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 2:
                 response = _context2.sent;
 
-                if (response.status !== 200 || response.data === 500) {
-                  _this2.errorFlg = true;
-                  _this2.messageText = _message__WEBPACK_IMPORTED_MODULE_2__["message"].notGetData;
-                } else {
-                  _this2.authData = response.data;
-                  localStorage.setItem('authData', JSON.stringify(response.data));
+                if (!(response.status !== 200 || response.data === 500)) {
+                  _context2.next = 8;
+                  break;
                 }
 
-              case 4:
+                _this2.errorFlg = true;
+                _this2.messageText = _message__WEBPACK_IMPORTED_MODULE_2__["message"].notGetData;
+                _context2.next = 22;
+                break;
+
+              case 8:
+                _context2.next = 10;
+                return JSON.parse(localStorage.getItem('authData'));
+
+              case 10:
+                pastAuthData = _context2.sent;
+
+                if (!pastAuthData) {
+                  _context2.next = 21;
+                  break;
+                }
+
+                authEmail = pastAuthData.email;
+                _context2.next = 15;
+                return JSON.parse(localStorage.getItem('loginData'));
+
+              case 15:
+                login = _context2.sent;
+                loginEmail = login.email; // 過去の認証済ユーザーとログインユーザーが一致しているか
+
+                if (loginEmail === authEmail) {
+                  _this2.authLoginCheck = true;
+                } else {
+                  _this2.authLoginCheck = false;
+                }
+
+                localStorage.setItem('authData', JSON.stringify(response.data));
+                _context2.next = 22;
+                break;
+
+              case 21:
+                localStorage.setItem('authData', JSON.stringify(response.data));
+
+              case 22:
               case "end":
                 return _context2.stop();
             }
@@ -5285,32 +5300,73 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
 
     /**
-     * localstorageに現在のページを取得する
+     * 使用するaccountIdをlocalstorageから取得
+     * APIで名前とフォロー人数を取得する
      */
-    getCurrentPage: function getCurrentPage() {
+    getAccountInfo: function getAccountInfo() {
       var _this3 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
-        var page;
+        var storage, response, _storage, _storage2;
+
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
-                _context3.next = 2;
-                return localStorage.getItem('page');
-
-              case 2:
-                page = _context3.sent;
-
-                if (page === null) {
-                  _this3.currentPage = 1;
-                } else {
-                  _this3.currentPage = Number(page);
-
-                  _this3.$emit('change-page', _this3.currentPage);
+                if (!_this3.authLoginCheck) {
+                  _context3.next = 17;
+                  break;
                 }
 
-              case 4:
+                _context3.next = 3;
+                return JSON.parse(localStorage.getItem('loginTwitterAccount'));
+
+              case 3:
+                storage = _context3.sent;
+
+                if (!storage) {
+                  _context3.next = 11;
+                  break;
+                }
+
+                _context3.next = 7;
+                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.get('/api/twitter/users/' + storage.id);
+
+              case 7:
+                response = _context3.sent;
+
+                if (response.status === 200) {
+                  _this3.loginTwitterUser = response.data;
+                } else {
+                  _this3.errorFlg = true;
+                  _this3.messageText = _message__WEBPACK_IMPORTED_MODULE_2__["message"].notGetData;
+                }
+
+                _context3.next = 15;
+                break;
+
+              case 11:
+                _context3.next = 13;
+                return JSON.parse(localStorage.getItem('authData'));
+
+              case 13:
+                _storage = _context3.sent;
+                _this3.authData = _storage.name;
+
+              case 15:
+                _context3.next = 22;
+                break;
+
+              case 17:
+                localStorage.removeItem('loginTwitterAccount');
+                _context3.next = 20;
+                return JSON.parse(localStorage.getItem('authData'));
+
+              case 20:
+                _storage2 = _context3.sent;
+                _this3.authData = _storage2.name;
+
+              case 22:
               case "end":
                 return _context3.stop();
             }
