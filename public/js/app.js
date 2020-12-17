@@ -8757,7 +8757,7 @@ var render = function() {
         _vm._l(_vm.keywords, function(keyword, index) {
           return _c("tr", { key: index }, [
             _c("td", { staticClass: "p-table__td" }, [
-              _vm._v(_vm._s(keyword.type))
+              _vm._v(_vm._s(keyword.type_label))
             ]),
             _vm._v(" "),
             _c("td", { staticClass: "p-table__td" }, [
@@ -9279,9 +9279,7 @@ var staticRenderFns = [
         _vm._v("除外ワード")
       ]),
       _vm._v(" "),
-      _c("th", { staticClass: "p-table__th p-table__th--keyword" }, [
-        _vm._v("操作")
-      ])
+      _c("th", { staticClass: "p-table__th p-table__th--keyword" })
     ])
   },
   function() {

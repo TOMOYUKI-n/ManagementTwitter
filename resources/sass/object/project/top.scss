@@ -41,7 +41,7 @@
     }
     &__title{
         color: $color-white;
-        font-size: $font-size_l;
+        font-size: $font-size_2l;
         padding-bottom: $space_6;
         @include mq(){
             color: $color-white;
@@ -51,7 +51,7 @@
     }
     &__intro--text{
         color: $color-white;
-        font-size: $font-size_s;
+        font-size: $font-size_default;
     }
     &__login{
         padding: $space_3;

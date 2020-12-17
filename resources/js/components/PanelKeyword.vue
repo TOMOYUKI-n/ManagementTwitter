@@ -19,10 +19,10 @@
                 <th class="p-table__th p-table__th--keyword">条件タイプ</th>
                 <th class="p-table__th p-table__th--keyword">キーワード</th>
                 <th class="p-table__th p-table__th--keyword">除外ワード</th>
-                <th class="p-table__th p-table__th--keyword">操作</th>
+                <th class="p-table__th p-table__th--keyword"></th>
             </tr>
             <tr v-for="(keyword, index) in keywords" :key="index">
-                <td class="p-table__td">{{keyword.type}}</td>
+                <td class="p-table__td">{{keyword.type_label}}</td>
                 <td class="p-table__td">{{keyword.word}}</td>
                 <td class="p-table__td">{{keyword.remove}}</td>
                 <td class="p-table__td">
