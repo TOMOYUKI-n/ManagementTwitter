@@ -40,9 +40,16 @@ class Keyword extends Model
      */
     public function user()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo('App\User', 'user_id');
     }
 
+    /**
+     * リレーションシップ - automatic_likesテーブル
+     */
+    public function likes()
+    {
+        return $this->hasMany('App\Like', 'keyword_id');
+    }
 
     /**
      * アクセサ - type_label

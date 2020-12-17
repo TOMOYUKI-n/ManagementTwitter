@@ -1003,11 +1003,11 @@ img {
 @media screen and (max-width: 960px) {
   .p-table__caption {
     font-size: 16px;
-    width: 50%;
+    width: 100%;
   }
 }
 .p-table__caption__text {
-  font-size: 13px;
+  font-size: 12px;
 }
 @media screen and (max-width: 960px) {
   .p-table__caption__text {
@@ -1043,7 +1043,7 @@ img {
   padding: 8px 12px;
   border-bottom: 1px solid #3335;
   box-sizing: border-box;
-  font-size: 14px;
+  font-size: 12px;
 }
 @media screen and (max-width: 960px) {
   .p-table__th {
@@ -1075,14 +1075,32 @@ img {
 .p-table__th--like:nth-child(2) {
   width: 30%;
 }
-.p-table__th--tweet:nth-child(1), .p-table__th--tweet:nth-child(4) {
-  width: 20%;
+.p-table__th--tweet:nth-child(1) {
+  width: 10%;
+}
+@media screen and (max-width: 960px) {
+  .p-table__th--tweet:nth-child(1) {
+    width: 20%;
+  }
+}
+.p-table__th--tweet:nth-child(2) {
+  width: 40%;
 }
 .p-table__th--tweet:nth-child(3) {
   width: 25%;
 }
-.p-table__th--tweet:nth-child(2) {
-  width: 35%;
+@media screen and (max-width: 960px) {
+  .p-table__th--tweet:nth-child(3) {
+    width: 30%;
+  }
+}
+.p-table__th--tweet:nth-child(4) {
+  width: 20%;
+}
+@media screen and (max-width: 960px) {
+  .p-table__th--tweet:nth-child(4) {
+    width: 20%;
+  }
 }
 .p-table__th--keyword:nth-child(1) {
   width: 20%;
@@ -1090,8 +1108,18 @@ img {
 .p-table__th--keyword:nth-child(2), .p-table__th--keyword:nth-child(3) {
   width: 30%;
 }
+@media screen and (max-width: 960px) {
+  .p-table__th--keyword:nth-child(2), .p-table__th--keyword:nth-child(3) {
+    width: 40%;
+  }
+}
 .p-table__th--keyword:nth-child(4) {
   width: 20%;
+}
+@media screen and (max-width: 960px) {
+  .p-table__th--keyword:nth-child(4) {
+    width: 20%;
+  }
 }
 .p-table__td {
   padding: 4px 12px;
@@ -1100,7 +1128,7 @@ img {
 }
 @media screen and (max-width: 960px) {
   .p-table__td {
-    font-size: 12px;
+    font-size: 11px;
     padding: 4px;
     word-break: break-word;
     border-bottom: 1px solid #3335;
@@ -1233,7 +1261,7 @@ img {
 }
 .p-top__title {
   color: #fff;
-  font-size: 18px;
+  font-size: 20px;
   padding-bottom: 24px;
 }
 @media screen and (max-width: 960px) {
@@ -1245,7 +1273,7 @@ img {
 }
 .p-top__intro--text {
   color: #fff;
-  font-size: 13px;
+  font-size: 14px;
 }
 .p-top__login {
   padding: 12px;
