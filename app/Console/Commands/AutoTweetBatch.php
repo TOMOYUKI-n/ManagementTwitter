@@ -40,7 +40,7 @@ class AutoTweetBatch extends Command
 
         // 1分ごとにチェック
         for($i = 0; $i < 9; $i++){
-            Log::Debug("AutoTweet:".$i."回目実行");
+            Log::Debug("AutoTweet:".$i."分目実行");
             // auto_tweet_statusが稼動中のステータスになっているレコードを取得する
             $running_list = Management::where("auto_tweet_status", Management::RUNNING)->get();
 
@@ -72,11 +72,12 @@ class AutoTweetBatch extends Command
                     }
                 }
             }
-            // 60秒分sleepする
-            sleep(60);
-            // 再度実行
-            Log::Debug('再実行');
             // $i = 9になり、次が10分目の場合は処理終了
+            if($i === 9){
+                sleep(0);
+            }else{
+                sleep(60);
+            }
         }
         Log::Debug('=====================================================================');
         Log::Debug('AutoTweet : 終了');

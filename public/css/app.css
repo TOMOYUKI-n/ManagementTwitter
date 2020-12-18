@@ -550,6 +550,7 @@ img {
   top: 48px;
   left: 20%;
   overflow-y: scroll;
+  height: 100%;
 }
 @media screen and (max-width: 960px) {
   .p-board__body {

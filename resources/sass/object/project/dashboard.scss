@@ -106,6 +106,7 @@
         top: $space_12;
         left: 20%;
         overflow-y: scroll;
+        height: 100%;
         @include mq(){
             width: 100%;
             height: 100%;
