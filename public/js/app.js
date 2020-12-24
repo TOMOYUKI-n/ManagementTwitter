@@ -2488,6 +2488,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2497,8 +2503,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       page: 2,
       twitter_id: 0,
       errorFlg: false,
+      inputErrorFlg: false,
       nothingAccountFlg: false,
       messageText: '',
+      messageInputText: '',
       serviceSwitch: false,
       deleteOn: false,
       deleteIndex: 0,
@@ -2599,6 +2607,21 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
 
     /**
+     * 新規登録時のバリデーション
+     */
+    validate: function validate(name) {
+      // 初期化
+      this.inputErrorFlg = false;
+      this.messageInputText = '';
+
+      if (name.indexOf('@') !== -1 || name.indexOf('＠') !== -1) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+
+    /**
      * 新規フォローターゲットを追加する
      */
     addFollowTarget: function addFollowTarget() {
@@ -2610,10 +2633,21 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
-                _context3.next = 2;
+                if (!_this3.validate(_this3.addForm.account_user_name)) {
+                  _context3.next = 5;
+                  break;
+                }
+
+                _this3.inputErrorFlg = true;
+                _this3.messageInputText = _message__WEBPACK_IMPORTED_MODULE_2__["message"].noAtMark;
+                _context3.next = 16;
+                break;
+
+              case 5:
+                _context3.next = 7;
                 return axios__WEBPACK_IMPORTED_MODULE_3___default.a.post("/api/follow/".concat(_this3.twitter_id), _this3.addForm);
 
-              case 2:
+              case 7:
                 response = _context3.sent;
 
                 if (response.status !== 200) {
@@ -2622,7 +2656,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 }
 
                 if (!(response.data === 200)) {
-                  _context3.next = 11;
+                  _context3.next = 16;
                   break;
                 }
 
@@ -2630,14 +2664,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 _this3.newModal = false; // 再描画
 
-                _context3.next = 9;
+                _context3.next = 14;
                 return _this3.fetchFollowTargets();
 
-              case 9:
-                _context3.next = 11;
+              case 14:
+                _context3.next = 16;
                 return _this3.fetchKeywords();
 
-              case 11:
+              case 16:
               case "end":
                 return _context3.stop();
             }
@@ -2670,10 +2704,21 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context4.prev = _context4.next) {
               case 0:
-                _context4.next = 2;
+                if (!_this4.validate(_this4.editForm.account_user_name)) {
+                  _context4.next = 5;
+                  break;
+                }
+
+                _this4.inputErrorFlg = true;
+                _this4.messageInputText = _message__WEBPACK_IMPORTED_MODULE_2__["message"].noAtMark;
+                _context4.next = 15;
+                break;
+
+              case 5:
+                _context4.next = 7;
                 return axios__WEBPACK_IMPORTED_MODULE_3___default.a.put("/api/follow/edit", _this4.editForm);
 
-              case 2:
+              case 7:
                 response = _context4.sent;
 
                 if (response.status !== 200 || response.data === 500) {
@@ -2682,21 +2727,21 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 }
 
                 if (!(response.data === 200)) {
-                  _context4.next = 9;
+                  _context4.next = 14;
                   break;
                 }
 
-                _context4.next = 7;
+                _context4.next = 12;
                 return _this4.fetchFollowTargets();
 
-              case 7:
-                _context4.next = 9;
+              case 12:
+                _context4.next = 14;
                 return _this4.fetchKeywords();
 
-              case 9:
+              case 14:
                 _this4.resetEditForm();
 
-              case 10:
+              case 15:
               case "end":
                 return _context4.stop();
             }
@@ -8215,7 +8260,29 @@ var render = function() {
                     staticClass: "p-form__label",
                     attrs: { for: "add-target" }
                   },
-                  [_vm._v("ターゲット名 *必須")]
+                  [_vm._v("ターゲット名(@は不要) *必須")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "p",
+                  {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value: _vm.inputErrorFlg,
+                        expression: "inputErrorFlg"
+                      }
+                    ],
+                    staticStyle: { color: "red", "font-size": "13px" }
+                  },
+                  [
+                    _vm._v(
+                      "\n                        " +
+                        _vm._s(_vm.messageInputText) +
+                        "\n                    "
+                    )
+                  ]
                 ),
                 _vm._v(" "),
                 _c("input", {
@@ -8366,7 +8433,29 @@ var render = function() {
                 _c(
                   "label",
                   { staticClass: "p-form__label", attrs: { for: "account" } },
-                  [_vm._v("アカウント名 *必須")]
+                  [_vm._v("ターゲット名(@は不要) *必須")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "p",
+                  {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value: _vm.inputErrorFlg,
+                        expression: "inputErrorFlg"
+                      }
+                    ],
+                    staticStyle: { color: "red", "font-size": "13px" }
+                  },
+                  [
+                    _vm._v(
+                      "\n                        " +
+                        _vm._s(_vm.messageInputText) +
+                        "\n                    "
+                    )
+                  ]
                 ),
                 _vm._v(" "),
                 _c("input", {
@@ -8407,7 +8496,7 @@ var render = function() {
                     staticClass: "p-form__label",
                     attrs: { for: "keyword_id" }
                   },
-                  [_vm._v("抽出キーワードの選択 *必須")]
+                  [_vm._v("フォロー条件の選択 *必須")]
                 ),
                 _vm._v(" "),
                 _c(
@@ -9463,7 +9552,8 @@ var render = function() {
                   _c(
                     "button",
                     {
-                      staticClass: "c-button c-button--twitter p-table__button",
+                      staticClass:
+                        "c-button c-button--like--edit p-table__button",
                       on: {
                         click: function($event) {
                           return _vm.showEditModal(like)
@@ -9482,7 +9572,7 @@ var render = function() {
                     "button",
                     {
                       staticClass:
-                        "c-button c-button--delete p-table__button c-button--delete ",
+                        "c-button c-button--like--delete p-table__button",
                       on: {
                         click: function($event) {
                           return _vm.remove(like, index)
@@ -24256,7 +24346,8 @@ var message = {
   notDelete: '正常に通信することができませんでした。画面を再度更新してください。',
   notUpdate: '更新できませんでした。時間を置いて再度更新してください。',
   notAllowedToChangeKeyword: '既に自動フォロー機能にてご利用されておりますので、変更はできません。',
-  needSelectAccount: '「アカウント登録」からTwitterアカウントを選択してください。'
+  needSelectAccount: '「アカウント登録」からTwitterアカウントを選択してください。',
+  noAtMark: '@は記入しなくても大丈夫です。'
 };
 
 /***/ }),

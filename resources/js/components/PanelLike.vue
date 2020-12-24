@@ -38,12 +38,12 @@
                 <td class="p-table__td">
                     <div class="p-table__action">
                         <div class="p-table__btn-wrap">
-                            <button class="c-button c-button--twitter p-table__button"
+                            <button class="c-button c-button--like--edit p-table__button"
                                     @click="showEditModal(like)"
                             >
                                 <i class="c__color--blue fas fa-pen p-table__test-xs"></i>
                             </button>
-                            <button class="c-button c-button--delete p-table__button c-button--delete "
+                            <button class="c-button c-button--like--delete p-table__button"
                                     @click="remove(like, index)"
                             >
                                 <i class="fas fa-trash-alt p-table__test-xs"></i>

@@ -74,7 +74,10 @@
                     <form class="p-form" @submit.prevent="addFollowTarget">
 
                         <p class="p-form__notion">※条件のキーワードは、「キーワード登録」から登録することができます。</p>
-                        <label class="p-form__label" for="add-target">ターゲット名 *必須</label>
+                        <label class="p-form__label" for="add-target">ターゲット名(@は不要) *必須</label>
+                        <p v-show="inputErrorFlg" style="color: red; font-size: 13px;">
+                            {{ messageInputText }}
+                        </p>
                         <input type="text" class="p-form__item" id="add-account"
                                v-model="addForm.account_user_name" required maxlength="15" placeholder="例) kamitter_1234">
 
@@ -103,11 +106,14 @@
 
                         <p class="p-form__notion">※キーワードは、「キーワード登録」から登録してください。</p>
 
-                        <label class="p-form__label" for="account">アカウント名 *必須</label>
+                        <label class="p-form__label" for="account">ターゲット名(@は不要) *必須</label>
+                        <p v-show="inputErrorFlg" style="color: red; font-size: 13px;">
+                            {{ messageInputText }}
+                        </p>
                         <input type="text" class="p-form__item" id="account"
                                v-model="editForm.account_user_name" required maxlength="15" placeholder="例) kamitter_1234">
 
-                        <label class="p-form__label" for="keyword_id">抽出キーワードの選択 *必須</label>
+                        <label class="p-form__label" for="keyword_id">フォロー条件の選択 *必須</label>
                         <select class="p-form__select" id="keyword_id"
                                 v-model="editForm.keyword_id"
                                 required
@@ -179,8 +185,10 @@
                 page: 2,
                 twitter_id: 0,
                 errorFlg: false,
+                inputErrorFlg: false,
                 nothingAccountFlg: false,
                 messageText: '',
+                messageInputText: '',
                 serviceSwitch: false,
                 deleteOn: false,
                 deleteIndex: 0,
@@ -238,20 +246,41 @@
                 this.keywords = response.data;
             },
             /**
+             * 新規登録時のバリデーション
+             */
+            validate(name) {
+                // 初期化
+                this.inputErrorFlg = false;
+                this.messageInputText = '';
+                
+                if(name.indexOf('@') !== -1 || name.indexOf('＠') !== -1) {
+                    return true;
+                } else {
+                    return false;
+                }
+            },
+            /**
              * 新規フォローターゲットを追加する
              */
             async addFollowTarget() {
-                const response = await axios.post(`/api/follow/${this.twitter_id}`, this.addForm);
-                if (response.status !== 200) {
-                    this.errorFlg = true;
-                    this.messageText = message.notUpdate;
-                }
-                if (response.data === 200) {
-                    this.resetAddForm();
-                    this.newModal = false;
-                    // 再描画
-                    await this.fetchFollowTargets();
-                    await this.fetchKeywords();
+                // @が文字列に含まれている場合エラーにする
+                if(this.validate(this.addForm.account_user_name)) {
+                    this.inputErrorFlg = true;
+                    this.messageInputText = message.noAtMark;
+                } else {
+                    // 問題なければAPIで追加
+                    const response = await axios.post(`/api/follow/${this.twitter_id}`, this.addForm);
+                    if (response.status !== 200) {
+                        this.errorFlg = true;
+                        this.messageText = message.notUpdate;
+                    }
+                    if (response.data === 200) {
+                        this.resetAddForm();
+                        this.newModal = false;
+                        // 再描画
+                        await this.fetchFollowTargets();
+                        await this.fetchKeywords();
+                    }
                 }
             },
             /**
@@ -269,17 +298,22 @@
              * フォーローターゲットを編集する
              */
             async editFollowTarget() {
-                const response = await axios.put(`/api/follow/edit`, this.editForm);
-                if (response.status !== 200 || response.data === 500) {
-                    this.errorFlg = true;
-                    this.messageText = message.notGetData;
+                if(this.validate(this.editForm.account_user_name)) {
+                    this.inputErrorFlg = true;
+                    this.messageInputText = message.noAtMark;
+                } else {
+                    const response = await axios.put(`/api/follow/edit`, this.editForm);
+                    if (response.status !== 200 || response.data === 500) {
+                        this.errorFlg = true;
+                        this.messageText = message.notGetData;
+                    }
+                    if (response.data === 200) {
+                        // 再描画
+                        await this.fetchFollowTargets();
+                        await this.fetchKeywords();
+                    }
+                    this.resetEditForm();
                 }
-                if (response.data === 200) {
-                    // 再描画
-                    await this.fetchFollowTargets();
-                    await this.fetchKeywords();
-                }
-                this.resetEditForm();
             },
             /**
              * 削除モーダル表示、indexを取得
