@@ -5,5 +5,7 @@ export const message = {
     notUpdate: '更新できませんでした。時間を置いて再度更新してください。',
     notAllowedToChangeKeyword: '既に自動フォロー機能にてご利用されておりますので、変更はできません。',
     needSelectAccount: '「アカウント登録」からTwitterアカウントを選択してください。',
-    noAtMark: '@は記入しなくても大丈夫です。'
+    noAtMark: '@は記入しなくても大丈夫です。',
+    noTargetAccount: 'ターゲットアカウントを登録してください。',
+    noFiveMinutesTimer: 'ツイートは現在時刻の５分後から可能となります。',
 };
