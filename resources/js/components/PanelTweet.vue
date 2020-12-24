@@ -72,7 +72,7 @@
                         <i class="c-icon--gray p-modal__icon fas fa-times"></i>
                     </div>
                     <form class="p-form" @submit.prevent="addTweet">
-
+                        <p v-show="modalErrorFlg" class="p-panel__error">{{ messageModalText }}</p>
                         <label class="p-form__label" for="add-tweet">
                             ツイート内容 {{addTextCount}}/140 *必須
                         </label>
@@ -86,7 +86,7 @@
                             maxlength="140">
                         </textarea>
 
-                        <label class="p-form__label">ツイート予定日時 *必須</label>
+                        <label class="p-form__label">予定日時 *必須(5分後から投稿可能です)</label>
                         <div class="u-display__flex--left">
                             <input
                                 type="date"
@@ -113,7 +113,7 @@
                         <i class="c-icon--gray p-modal__icon fas fa-times"></i>
                     </div>
                     <form class="p-form" @submit.prevent="editTweet">
-
+                        <p v-show="modalErrorFlg" class="p-panel__error">{{ messageModalText }}</p>
                         <label class="p-form__label" for="edit-tweet">
                             ツイート内容 {{editTextCount}}/140 *必須
                         </label>
@@ -127,7 +127,7 @@
                             maxlength="140">
                         </textarea>
 
-                        <label class="p-form__label">予定日時 *必須</label>
+                        <label class="p-form__label">予定日時 *必須(5分後から投稿可能です)</label>
                         <div class="u-display__flex--left">
                             <input
                                 type="date"
@@ -204,8 +204,10 @@
                 page: 5,
                 twitter_id: 0,
                 errorFlg: false,
+                modalErrorFlg: false,
                 nothingAccountFlg: false,
                 messageText: '',
+                messageModalText: '',
                 serviceSwitch: false,
                 deleteOn: false,
                 deleteIndex: 0,
@@ -219,8 +221,8 @@
                 serviceStatusLabel: null,
                 addForm: {
                     tweet: '',
-                    date: '',
-                    time: '',
+                    date: this.formatter(new Date()),
+                    time: this.getHHMM(new Date()),
                 },
                 editForm: {
                     tweet: '',
@@ -275,20 +277,45 @@
                 }
             },
             /**
+             * 5分後の時刻でないと入力できないように制限
+             */
+            async validateTime(args) {
+                // 選択した時刻をDate型へ変換
+                const timer = args.date + ' ' +args.time;
+                const info = Date.parse(timer);
+
+                // Date形式で5分後の時刻を取得
+                const afterFiveDate = new Date(+new Date() + (5 * 60 * 1000));
+                const options = {year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", second: "2-digit"};
+                afterFiveDate.toLocaleDateString("ja-JP", options);
+                const afterInfo = Date.parse(afterFiveDate);
+                
+                // 5分以上間を開けているか判定
+                return info > afterInfo ? true:false;
+            },
+            /**
              * APIを使用して自動ツイートを新規登録する
              */
             async addTweet() {
-                const response = await axios.post(`/api/tweet/${this.twitter_id}`, this.addForm);
-                if (response.status !== 200 || response.data === 500) {
-                    this.newModal = false;
-                    this.errorFlg = true;
-                    this.messageText = message.notUpdate;
+                // 5分後の制限
+                const checked = await this.validateTime(this.addForm);
+                if (checked) {
+                    const response = await axios.post(`/api/tweet/${this.twitter_id}`, this.addForm);
+                    if (response.status !== 200 || response.data === 500) {
+                        this.newModal = false;
+                        this.errorFlg = true;
+                        this.messageText = message.notUpdate;
+                    }
+                    if (response.data === 200) {
+                        this.newModal = false;
+                        // 再描画
+                        this.resetAddForm();
+                        await this.fetchTweets();
+                    }
                 }
-                if (response.data === 200) {
-                    this.newModal = false;
-                    // 再描画
-                    this.resetAddForm();
-                    await this.fetchTweets();
+                else {
+                    this.modalErrorFlg = true;
+                    this.messageModalText = message.noFiveMinutesTimer;
                 }
             },
 
@@ -370,8 +397,8 @@
              */
             resetAddForm() {
                 this.addForm.tweet = '';
-                this.addForm.date = '';
-                this.addForm.time = '00:00';
+                this.addForm.date = this.formatter(new Date());
+                this.addForm.time = this.getHHMM(new Date());
             },
             /**
              * 編集フォームのリセットを行う
@@ -380,8 +407,8 @@
                 this.editModal = false;
                 this.editForm.id = null;
                 this.editForm.tweet = '';
-                this.editForm.date = '';
-                this.editForm.time = '';
+                this.editForm.date = this.formatter(new Date());
+                this.editForm.time = this.getHHMM(new Date());
                 this.editIndex = null;
             },
 
@@ -470,3 +497,5 @@
     }
 
 </script>
+<style lang="scss" scoped>
+</style>

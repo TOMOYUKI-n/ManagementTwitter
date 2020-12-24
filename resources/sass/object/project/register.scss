@@ -5,8 +5,15 @@
 .p-regist{
     &__caution{
         font-size: $font-size_xs;
-        margin-top: $space_4;
+        // margin-right: $space_3;
+        // margin-left: $space_3;
+        position: relative;
+        top: $space_3;
     }
+    // &__setting--margin{
+    //     margin-right: $space_3;
+    //     margin-left: $space_3;
+    // }
     &__form{
         display: block;
         width: 100%;
@@ -18,6 +25,10 @@
         border-radius: 4px;
         transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
         margin: $space_1 $space_3;
+    }
+    &__inner{
+        margin-top: $space_3;
+        align-items: baseline;
     }
 }
 // ============================

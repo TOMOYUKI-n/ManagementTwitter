@@ -34,6 +34,15 @@
             top: 4px;
         }
     }
+    &--like--edit {
+        color: $color_black;
+        box-shadow: 0 1px 2px $color_shadow;
+        border: none;
+        &:hover{
+            color: $color-white;
+            background-color: $color_black;
+        }
+    }
     &--add {
         color: $color_black;
         box-shadow: 0 1px 2px $color_shadow;
@@ -83,6 +92,14 @@
         @include mq(){
             position: relative;
             top: 4px;
+        }
+    }
+    &--like--delete {
+        color: $color_black;
+        box-shadow: 0 1px 2px $color_shadow;
+        border: none;
+        &:hover{
+            background-color: $color-danger;
         }
     }
     &__status{

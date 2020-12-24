@@ -52,7 +52,7 @@ table {
 html, body {
   width: 100%;
   color: #333;
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.6;
   font-family: "Crimson Text", "\30D2\30E9\30AE\30CE\89D2\30B4\30B7\30C3\30AF   Pro", "Hiragino Kaku Gothic Pro", "Noto Sans JP", sans-serif;
   -webkit-text-size-adjust: 100%;
@@ -130,11 +130,11 @@ img {
 }
 
 .l-footer {
-  font-size: 12px;
+  font-size: 13px;
 }
 .l-footer__copyright {
   margin: 8px 32px;
-  font-size: 10px;
+  font-size: 11px;
 }
 .l-footer__info {
   margin: 0px 32px 8px 32px;
@@ -198,7 +198,7 @@ img {
   margin-right: 8px;
 }
 .l-navbar__list {
-  font-size: 13px;
+  font-size: 14px;
   display: inline-block;
   margin-right: 16px;
 }
@@ -250,12 +250,12 @@ img {
     padding: 8px 20px 8px;
   }
   .l-header__sp__copy {
-    font-size: 14px;
+    font-size: 15px;
     word-break: break-word;
     padding: 0px 20px;
   }
   .l-header__sp__text__sm {
-    font-size: 14px;
+    font-size: 15px;
   }
 }
 .l-header__sp__form {
@@ -376,6 +376,15 @@ img {
     top: 4px;
   }
 }
+.c-button--like--edit {
+  color: #333;
+  box-shadow: 0 1px 2px #5a5b5e;
+  border: none;
+}
+.c-button--like--edit:hover {
+  color: #fff;
+  background-color: #333;
+}
 .c-button--add {
   color: #333;
   box-shadow: 0 1px 2px #5a5b5e;
@@ -409,7 +418,7 @@ img {
     border-radius: 50%;
     height: 56px;
     width: 56px;
-    font-size: 14px;
+    font-size: 15px;
     z-index: 200;
     background-color: #55acee;
   }
@@ -432,6 +441,14 @@ img {
     top: 4px;
   }
 }
+.c-button--like--delete {
+  color: #333;
+  box-shadow: 0 1px 2px #5a5b5e;
+  border: none;
+}
+.c-button--like--delete:hover {
+  background-color: #EF5350;
+}
 .c-button__status--on {
   color: #333;
   border: none;
@@ -452,7 +469,7 @@ img {
 }
 
 .p-board__top {
-  font-size: 13px;
+  font-size: 14px;
 }
 .p-board__wrap {
   width: 100%;
@@ -517,7 +534,7 @@ img {
 }
 .p-board__mp-4 {
   padding: 16px;
-  font-size: 13px;
+  font-size: 14px;
 }
 .p-board__mr-2 {
   margin-right: 8px;
@@ -541,7 +558,7 @@ img {
   margin-top: 32px;
 }
 .p-board__text-small {
-  font-size: 13px;
+  font-size: 14px;
 }
 .p-board__body {
   width: 80%;
@@ -670,7 +687,7 @@ img {
   }
 }
 .p-contents__head {
-  font-size: 14px;
+  font-size: 15px;
   text-align: center;
   margin-bottom: 24px;
 }
@@ -692,12 +709,12 @@ img {
   }
 }
 .p-panel__nodata {
-  font-size: 14px;
+  font-size: 15px;
   margin-top: 8px;
 }
 .p-panel__error {
   color: red;
-  font-size: 14px;
+  font-size: 15px;
   margin-top: 8px;
 }
 @media screen and (max-width: 960px) {
@@ -709,12 +726,12 @@ img {
 .p-modal {
   background: #3335;
   height: 100vh;
-  width: 80%;
+  width: 100%;
   position: fixed;
   top: 48px;
   right: 0;
   bottom: 0;
-  left: 20%;
+  left: 0;
   overflow-y: auto;
   z-index: 100;
   display: flex;
@@ -785,10 +802,10 @@ img {
   background-color: #333f;
   border: 1px solid #74d456;
   color: #74d456;
-  font-size: 13px;
+  font-size: 14px;
 }
 .p-status__sleep {
-  font-size: 13px;
+  font-size: 14px;
   background-color: #3335;
 }
 
@@ -839,7 +856,7 @@ img {
   display: inline-block;
   text-align: center;
   box-sizing: border-box;
-  font-size: 13px;
+  font-size: 14px;
 }
 .p-button__account__add:hover {
   cursor: pointer;
@@ -875,7 +892,7 @@ img {
 
 .p-login__inputError {
   color: red;
-  font-size: 13px;
+  font-size: 14px;
   text-align: center;
 }
 .p-login__container {
@@ -919,7 +936,7 @@ img {
 }
 .p-login__button__wrap {
   box-sizing: border-box;
-  font-size: 13px;
+  font-size: 14px;
   margin-top: 16px;
 }
 .p-login__text {
@@ -928,7 +945,7 @@ img {
   margin-top: 32px;
   word-break: break-word;
   text-align: center;
-  font-size: 13px;
+  font-size: 14px;
 }
 @media screen and (max-width: 960px) {
   .p-login__text {
@@ -939,7 +956,7 @@ img {
   margin-top: 32px;
   word-break: break-word;
   text-align: center;
-  font-size: 13px;
+  font-size: 14px;
 }
 @media screen and (max-width: 960px) {
   .p-login__text--center {
@@ -1008,11 +1025,11 @@ img {
   }
 }
 .p-table__caption__text {
-  font-size: 12px;
+  font-size: 13px;
 }
 @media screen and (max-width: 960px) {
   .p-table__caption__text {
-    font-size: 13px;
+    font-size: 14px;
     text-align: left;
     margin-top: 12px;
     margin-bottom: 12px;
@@ -1037,18 +1054,18 @@ img {
 }
 @media screen and (max-width: 960px) {
   .p-table__head {
-    font-size: 14px;
+    font-size: 15px;
   }
 }
 .p-table__th {
   padding: 8px 12px;
   border-bottom: 1px solid #3335;
   box-sizing: border-box;
-  font-size: 12px;
+  font-size: 13px;
 }
 @media screen and (max-width: 960px) {
   .p-table__th {
-    font-size: 12px;
+    font-size: 13px;
     padding: 4px;
   }
 }
@@ -1064,6 +1081,9 @@ img {
   .p-table__th--follow:nth-child(3) {
     width: 50%;
   }
+}
+.p-table__th--follow:nth-child(4) {
+  width: 20%;
 }
 @media screen and (max-width: 960px) {
   .p-table__th--follow:nth-child(4) {
@@ -1125,18 +1145,18 @@ img {
 .p-table__td {
   padding: 4px 12px;
   border-bottom: 1px solid #3335;
-  font-size: 13px;
+  font-size: 14px;
 }
 @media screen and (max-width: 960px) {
   .p-table__td {
-    font-size: 11px;
+    font-size: 13px;
     padding: 4px;
     word-break: break-word;
     border-bottom: 1px solid #3335;
   }
 }
 .p-table__test-xs {
-  font-size: 12px;
+  font-size: 13px;
 }
 .p-table__action {
   text-align: end;
@@ -1176,7 +1196,7 @@ img {
 .p-policy__title--sub {
   text-align: left;
   margin-top: 32px;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: bold;
   padding: 12px;
 }
@@ -1184,7 +1204,7 @@ img {
   box-sizing: border-box;
   text-align: left;
   display: block;
-  font-size: 12px;
+  font-size: 13px;
 }
 .p-policy__text--link {
   color: #1D62F0;
@@ -1274,7 +1294,7 @@ img {
 }
 .p-top__intro--text {
   color: #fff;
-  font-size: 14px;
+  font-size: 15px;
 }
 .p-top__login {
   padding: 12px;
@@ -1302,7 +1322,7 @@ img {
   padding: 16px 32px;
 }
 .p-top__text-xs {
-  font-size: 13px;
+  font-size: 14px;
 }
 .p-top__mt-3 {
   margin-top: 12px;
@@ -1351,7 +1371,7 @@ img {
   }
 }
 .p-top__section__text {
-  font-size: 14px;
+  font-size: 15px;
   text-align: left;
   padding: 0px 24px 16px;
 }
@@ -1385,20 +1405,20 @@ img {
   justify-content: center;
 }
 .p-top__footer-li {
-  font-size: 14px;
+  font-size: 15px;
   line-height: 2;
   margin-right: 16px;
 }
 .p-top__footer-cp {
   padding-bottom: 24px;
-  font-size: 13px;
+  font-size: 14px;
 }
 .p-top__footer-link {
   padding: 8px 32px;
 }
 .p-top__footer-text {
   color: #fff;
-  font-size: 13px;
+  font-size: 14px;
 }
 .p-top__pc-footer-text {
   padding: 2px 32px;
@@ -1454,8 +1474,9 @@ img {
 }
 
 .p-regist__caution {
-  font-size: 12px;
-  margin-top: 16px;
+  font-size: 13px;
+  position: relative;
+  top: 12px;
 }
 .p-regist__form {
   display: block;
@@ -1468,6 +1489,10 @@ img {
   border-radius: 4px;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   margin: 4px 12px;
+}
+.p-regist__inner {
+  margin-top: 12px;
+  align-items: baseline;
 }
 
 .p-contact__wrap {
@@ -1553,13 +1578,13 @@ img {
 }
 .p-twitter__ids {
   line-height: 25px;
-  font-size: 13px;
+  font-size: 14px;
   overflow: auto;
 }
 @media screen and (max-width: 960px) {
   .p-twitter__ids {
     line-height: 20px;
-    font-size: 13px;
+    font-size: 14px;
   }
 }
 .p-twitter__text__bold {
@@ -1570,12 +1595,12 @@ img {
   width: 100%;
 }
 .p-form__label {
-  font-size: 13px;
+  font-size: 14px;
   display: block;
   margin-bottom: 4px;
 }
 .p-form__item {
-  font-size: 13px;
+  font-size: 14px;
   width: 100%;
   height: 40px;
   font-weight: 100;
@@ -1588,7 +1613,7 @@ img {
 }
 @media screen and (max-width: 960px) {
   .p-form__item {
-    font-size: 14px;
+    font-size: 15px;
     line-height: 20px;
     margin-bottom: 16px;
   }
@@ -1601,7 +1626,7 @@ img {
   letter-spacing: 0.05em;
 }
 .p-form__date {
-  font-size: 13px;
+  font-size: 14px;
   width: 45%;
   height: 40px;
   font-weight: 100;
@@ -1629,7 +1654,7 @@ img {
 }
 .p-form__select {
   width: 100%;
-  font-size: 13px;
+  font-size: 14px;
   height: 40px;
   font-weight: 100;
   padding: 8px;
@@ -1641,16 +1666,16 @@ img {
 }
 @media screen and (max-width: 960px) {
   .p-form__select {
-    font-size: 13px;
+    font-size: 14px;
     line-height: 20px;
   }
 }
 .p-form__notion {
-  font-size: 13px;
+  font-size: 14px;
   padding: 8px 0px 20px;
 }
 .p-form__delete {
-  font-size: 13px;
+  font-size: 14px;
   text-align: center;
 }
 .p-form__delete__wrap {
@@ -1664,7 +1689,7 @@ img {
   align-items: center;
   margin-right: 8px;
   justify-content: center;
-  font-size: 12px;
+  font-size: 13px;
 }
 .p-form__errors {
   color: #EF5350;
@@ -1703,14 +1728,13 @@ img {
   margin-top: 28px;
   word-break: break-word;
   text-align: center;
-  font-size: 13px;
+  font-size: 14px;
 }
 .p-send__form {
   display: block;
   width: 100%;
-  padding: 4px 12px;
-  font-size: 13px;
-  line-height: 1.6;
+  font-size: 14px;
+  line-height: 2;
   color: #495057;
   border: 1px solid #ced4da;
   border-radius: 4px;
@@ -1721,7 +1745,6 @@ img {
   margin-top: 12px;
 }
 .p-send__inner {
-  display: flex;
   align-items: baseline;
 }
 .p-send__margin {
@@ -1737,7 +1760,7 @@ img {
     width: 100%;
     height: calc(100vh - 48px);
     background-color: #333;
-    font-size: 13px;
+    font-size: 14px;
   }
 }
 
@@ -1790,7 +1813,7 @@ img {
   color: #333;
   text-align: center;
   display: block;
-  font-size: 12px;
+  font-size: 13px;
 }
 
 .isFollowedColor {

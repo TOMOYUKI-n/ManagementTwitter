@@ -101,6 +101,7 @@
                 }
             }
             &:nth-child(4) {
+                width: 20%;
                 @include mq() {
                     width: 20%;
                 }
@@ -161,7 +162,7 @@
         border-bottom: 1px solid $color_black5;
         font-size: $font-size_s;
         @include mq() {
-            font-size: $font-size_vs;
+            font-size: $font-size_xs;
             padding: $space_1;
             word-break: break-word;
             border-bottom: 1px solid $color_black5;
