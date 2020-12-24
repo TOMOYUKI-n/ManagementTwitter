@@ -4471,8 +4471,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 // 選択した時刻をDate型へ変換
                 timer = args.date + ' ' + args.time;
-                info = Date.parse(timer); // const selectDatetime = new Date(info);
-                // Date形式で5分後の時刻を取得
+                info = Date.parse(timer); // Date形式で5分後の時刻を取得
 
                 afterFiveDate = new Date(+new Date() + 5 * 60 * 1000);
                 options = {
@@ -4616,7 +4615,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.editForm.date = this.formatter(tweet.format_date);
       this.editForm.time = this.getHHMM(tweet.format_date);
       this.editIndex = index;
-      this.editModal = true; // console.log(tweet.format_date);
+      this.editModal = true;
     },
 
     /**

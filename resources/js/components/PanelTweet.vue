@@ -283,7 +283,6 @@
                 // 選択した時刻をDate型へ変換
                 const timer = args.date + ' ' +args.time;
                 const info = Date.parse(timer);
-                // const selectDatetime = new Date(info);
 
                 // Date形式で5分後の時刻を取得
                 const afterFiveDate = new Date(+new Date() + (5 * 60 * 1000));
@@ -347,7 +346,6 @@
                 this.editForm.time = this.getHHMM(tweet.format_date);
                 this.editIndex = index;
                 this.editModal = true;
-                // console.log(tweet.format_date);
             },
             /**
              * 削除モーダル表示、indexを取得
