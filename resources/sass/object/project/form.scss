@@ -91,7 +91,8 @@
             box-sizing: border-box;
             margin-top: $space_7;
             display: flex;
-            justify-content: center;
+            // justify-content: center;
+            justify-content: space-around;
         }
     }
 

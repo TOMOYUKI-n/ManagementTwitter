@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
+use Illuminate\Support\Facades\Log;
 
 class ForgotPasswordController extends Controller
 {
@@ -39,6 +40,11 @@ class ForgotPasswordController extends Controller
         $response = $this->broker()->sendResetLink(
             $request->only('email')
         );
-        return back()->with('status', 'パスワード再設定用のURLをメールで送りました。');
+        if ($response === 'passwords.sent') {
+            return back()->with('status', 'パスワード再設定用のURLをメールで送りました。');
+        }
+        else {
+            return back()->withErrors(['email' => trans($response)]);
+        }
     }
 }
