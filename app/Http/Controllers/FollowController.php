@@ -72,7 +72,6 @@ class FollowController extends Controller
     public function edit(Request $request)
     {
         Log::debug('フォローターゲット情報を修正する');
-        // Log::debug($request);
         try {
             $follow_target = FollowTarget::where('id', $request->id)->with('keyword')->first();
             $follow_target->keyword_id = $request->keyword_id;

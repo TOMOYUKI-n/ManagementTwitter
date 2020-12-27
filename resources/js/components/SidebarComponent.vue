@@ -57,7 +57,7 @@
 </template>
 
 <script>
-    import { linkParam, twitterAccount } from "../repository";
+    import { linkParam } from "../repository";
     import { message } from '../message';
     import axios from "axios";
     export default {

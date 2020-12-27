@@ -92,16 +92,9 @@ class AutoTweetBatch extends Command
      */
     private function sendMail($management_id, $twitter_user_id, $auto_tweet)
     {
-        Log::Debug('## mail =================');
-        Log::Debug('#management_id : ', [$management_id]);
-        Log::Debug('#twitter_user_id : ' , [$twitter_user_id]);
-
         $system_manager = Management::where('id', $management_id)->with('user')->first();
         $twitter_user = TwitterUser::where('id', $twitter_user_id)->first();
         $user = $system_manager->user;
-        Log::Debug('## mail check=================');
-        Log::Debug('#twitter_user : ', [$twitter_user]);
-        Log::Debug('#user : ' , [$user]);
         Mail::to($user)->send(new CompleteAutoTweet($user, $twitter_user, $auto_tweet));
     }
 

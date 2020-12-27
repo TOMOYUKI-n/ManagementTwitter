@@ -130,7 +130,6 @@
 </template>
 
 <script>
-    import { filterWords } from "../repository"
     import axios from "axios";
     import { message } from '../message';
     export default {

@@ -90,7 +90,6 @@ export default {
                         for (let key in responseErrors) {
                             errorsData[key] = responseErrors[key][0];
                         }
-                        console.log(responseErrors);
                         this.errors = errorsData;
                     }
                 );

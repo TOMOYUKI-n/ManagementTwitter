@@ -19,7 +19,6 @@
 </template>
 
 <script>
-    import { twitterAccount } from '../repository'
     import { message } from '../message';
     import axios from "axios";
     export default {
@@ -49,14 +48,6 @@
              * TwitterUserのユーザ情報を1件取得する
              */
             async fetchTwitterUser() {
-                // テスト用
-                // const response = await axios.get('/test/twitter/users/getTestInfo/' + this.item.id);
-                // const [data] = twitterAccount.filter(x => x.id === response.data[0].id);
-                // this.twitter_id = data.id;
-                // this.screenName = data.screen_name;
-                // this.name = data.name;
-                // this.thumbnail = data.thumbnail;
-
                 const response = await axios.get('/api/twitter/users/' + this.item.id);
                 if (response.status === 200) {
                     this.twitter_id = response.data.twitter_id;

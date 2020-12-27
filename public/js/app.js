@@ -1922,10 +1922,9 @@ module.exports = {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _repository__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../repository */ "./resources/js/repository.js");
-/* harmony import */ var _message__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../message */ "./resources/js/message.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _message__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../message */ "./resources/js/message.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -1952,7 +1951,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -1991,7 +1989,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.get('/api/twitter/users/' + _this.item.id);
+                return axios__WEBPACK_IMPORTED_MODULE_2___default.a.get('/api/twitter/users/' + _this.item.id);
 
               case 2:
                 response = _context.sent;
@@ -2003,7 +2001,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   _this.thumbnail = response.data.thumbnail;
                 } else {
                   _this.errorFlg = true;
-                  _this.messageText = _message__WEBPACK_IMPORTED_MODULE_2__["message"].notGetData;
+                  _this.messageText = _message__WEBPACK_IMPORTED_MODULE_1__["message"].notGetData;
                 }
 
               case 4:
@@ -2286,7 +2284,6 @@ __webpack_require__.r(__webpack_exports__);
             errorsData[key] = responseErrors[key][0];
           }
 
-          console.log(responseErrors);
           _this.errors = errorsData;
         });
       }
@@ -2342,10 +2339,9 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _repository__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../repository */ "./resources/js/repository.js");
-/* harmony import */ var _message__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../message */ "./resources/js/message.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _message__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../message */ "./resources/js/message.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -2534,7 +2530,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 
 
-
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2589,14 +2584,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.get("/api/follow/list/".concat(_this.twitter_id));
+                return axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("/api/follow/list/".concat(_this.twitter_id));
 
               case 2:
                 response = _context.sent;
 
                 if (response.status !== 200 || response.data === 500) {
                   _this.errorFlg = true;
-                  _this.messageText = _message__WEBPACK_IMPORTED_MODULE_2__["message"].notGetData;
+                  _this.messageText = _message__WEBPACK_IMPORTED_MODULE_1__["message"].notGetData;
                 } else {
                   _this.followTargets = response.data;
                 }
@@ -2623,14 +2618,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context2.prev = _context2.next) {
               case 0:
                 _context2.next = 2;
-                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.get('/api/keyword');
+                return axios__WEBPACK_IMPORTED_MODULE_2___default.a.get('/api/keyword');
 
               case 2:
                 response = _context2.sent;
 
                 if (response.status !== 200) {
                   _this2.errorFlg = true;
-                  _this2.messageText = _message__WEBPACK_IMPORTED_MODULE_2__["message"].notGetData;
+                  _this2.messageText = _message__WEBPACK_IMPORTED_MODULE_1__["message"].notGetData;
                 }
 
                 _this2.keywords = response.data;
@@ -2677,20 +2672,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 }
 
                 _this3.modalErrorFlg = true;
-                _this3.messageModalText = _message__WEBPACK_IMPORTED_MODULE_2__["message"].noAtMark;
+                _this3.messageModalText = _message__WEBPACK_IMPORTED_MODULE_1__["message"].noAtMark;
                 _context3.next = 16;
                 break;
 
               case 5:
                 _context3.next = 7;
-                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.post("/api/follow/".concat(_this3.twitter_id), _this3.addForm);
+                return axios__WEBPACK_IMPORTED_MODULE_2___default.a.post("/api/follow/".concat(_this3.twitter_id), _this3.addForm);
 
               case 7:
                 response = _context3.sent;
 
                 if (response.status !== 200) {
                   _this3.errorFlg = true;
-                  _this3.messageText = _message__WEBPACK_IMPORTED_MODULE_2__["message"].notUpdate;
+                  _this3.messageText = _message__WEBPACK_IMPORTED_MODULE_1__["message"].notUpdate;
                 }
 
                 if (!(response.data === 200)) {
@@ -2748,20 +2743,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 }
 
                 _this4.modalErrorFlg = true;
-                _this4.messageModalText = _message__WEBPACK_IMPORTED_MODULE_2__["message"].noAtMark;
+                _this4.messageModalText = _message__WEBPACK_IMPORTED_MODULE_1__["message"].noAtMark;
                 _context4.next = 15;
                 break;
 
               case 5:
                 _context4.next = 7;
-                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.put("/api/follow/edit", _this4.editForm);
+                return axios__WEBPACK_IMPORTED_MODULE_2___default.a.put("/api/follow/edit", _this4.editForm);
 
               case 7:
                 response = _context4.sent;
 
                 if (response.status !== 200 || response.data === 500) {
                   _this4.errorFlg = true;
-                  _this4.messageText = _message__WEBPACK_IMPORTED_MODULE_2__["message"].notGetData;
+                  _this4.messageText = _message__WEBPACK_IMPORTED_MODULE_1__["message"].notGetData;
                 }
 
                 if (!(response.data === 200)) {
@@ -2810,14 +2805,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context5.prev = _context5.next) {
               case 0:
                 _context5.next = 2;
-                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.post("/api/follow/delete/".concat(_this5.deleteItem.id), _this5.deleteItem);
+                return axios__WEBPACK_IMPORTED_MODULE_2___default.a.post("/api/follow/delete/".concat(_this5.deleteItem.id), _this5.deleteItem);
 
               case 2:
                 response = _context5.sent;
 
                 if (response.status !== 200 || response.data === 500) {
                   _this5.errorFlg = true;
-                  _this5.messageText = _message__WEBPACK_IMPORTED_MODULE_2__["message"].notGetData;
+                  _this5.messageText = _message__WEBPACK_IMPORTED_MODULE_1__["message"].notGetData;
                   _this5.deleteOn = false;
                 }
 
@@ -2875,14 +2870,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context6.prev = _context6.next) {
               case 0:
                 _context6.next = 2;
-                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.get("/api/system/status/".concat(_this6.twitter_id));
+                return axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("/api/system/status/".concat(_this6.twitter_id));
 
               case 2:
                 response = _context6.sent;
 
                 if (response.status !== 200) {
                   _this6.errorFlg = true;
-                  _this6.messageText = _message__WEBPACK_IMPORTED_MODULE_2__["message"].notGetData;
+                  _this6.messageText = _message__WEBPACK_IMPORTED_MODULE_1__["message"].notGetData;
                 } else {
                   _this6.serviceSwitch = false;
                   _this6.serviceStatus = response.data.auto_follow_status;
@@ -2916,7 +2911,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 }
 
                 _this7.modalErrorFlg = true;
-                _this7.messageModalText = _message__WEBPACK_IMPORTED_MODULE_2__["message"].noTargetAccount;
+                _this7.messageModalText = _message__WEBPACK_IMPORTED_MODULE_1__["message"].noTargetAccount;
                 _context7.next = 18;
                 break;
 
@@ -2927,7 +2922,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   twitter_id: _this7.twitter_id
                 };
                 _context7.next = 9;
-                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.post('/api/system/running', data);
+                return axios__WEBPACK_IMPORTED_MODULE_2___default.a.post('/api/system/running', data);
 
               case 9:
                 response = _context7.sent;
@@ -2938,7 +2933,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 }
 
                 _this7.errorFlg = true;
-                _this7.messageText = _message__WEBPACK_IMPORTED_MODULE_2__["message"].notUpdate;
+                _this7.messageText = _message__WEBPACK_IMPORTED_MODULE_1__["message"].notUpdate;
                 _this7.serviceSwitch = false;
                 _context7.next = 18;
                 break;
@@ -2974,7 +2969,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   twitter_id: _this8.twitter_id
                 };
                 _context8.next = 4;
-                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.post('/api/system/stop', data);
+                return axios__WEBPACK_IMPORTED_MODULE_2___default.a.post('/api/system/stop', data);
 
               case 4:
                 response = _context8.sent;
@@ -2985,7 +2980,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 }
 
                 _this8.errorFlg = true;
-                _this8.messageText = _message__WEBPACK_IMPORTED_MODULE_2__["message"].notUpdate;
+                _this8.messageText = _message__WEBPACK_IMPORTED_MODULE_1__["message"].notUpdate;
                 _this8.serviceSwitch = false;
                 _context8.next = 13;
                 break;
@@ -3029,7 +3024,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 } else {
                   _this9.errorFlg = true;
                   _this9.nothingAccountFlg = true;
-                  _this9.messageText = _message__WEBPACK_IMPORTED_MODULE_2__["message"].needSelectAccount;
+                  _this9.messageText = _message__WEBPACK_IMPORTED_MODULE_1__["message"].needSelectAccount;
                 }
 
               case 2:
@@ -3091,10 +3086,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _repository__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../repository */ "./resources/js/repository.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _message__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../message */ "./resources/js/message.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _message__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../message */ "./resources/js/message.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -3234,7 +3228,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 
 
-
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -3275,14 +3268,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return axios__WEBPACK_IMPORTED_MODULE_2___default.a.get('/api/keyword');
+                return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('/api/keyword');
 
               case 2:
                 response = _context.sent;
 
                 if (response.status !== 200 || response.data === 500) {
                   _this.errorFlg = true;
-                  _this.messageText = _message__WEBPACK_IMPORTED_MODULE_3__["message"].notGetData;
+                  _this.messageText = _message__WEBPACK_IMPORTED_MODULE_2__["message"].notGetData;
                 } else {
                   _this.keywords = response.data;
                 }
@@ -3309,14 +3302,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context2.prev = _context2.next) {
               case 0:
                 _context2.next = 2;
-                return axios__WEBPACK_IMPORTED_MODULE_2___default.a.post('/api/keyword', _this2.addForm);
+                return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/api/keyword', _this2.addForm);
 
               case 2:
                 response = _context2.sent;
 
                 if (response.status !== 200 || response.data === 500) {
                   _this2.errorFlg = true;
-                  _this2.messageText = _message__WEBPACK_IMPORTED_MODULE_3__["message"].notGetData;
+                  _this2.messageText = _message__WEBPACK_IMPORTED_MODULE_2__["message"].notGetData;
                 } else {
                   _this2.newModal = false;
 
@@ -3360,14 +3353,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context3.prev = _context3.next) {
               case 0:
                 _context3.next = 2;
-                return axios__WEBPACK_IMPORTED_MODULE_2___default.a.put("/api/keyword/".concat(_this3.editForm.id), _this3.editForm);
+                return axios__WEBPACK_IMPORTED_MODULE_1___default.a.put("/api/keyword/".concat(_this3.editForm.id), _this3.editForm);
 
               case 2:
                 response = _context3.sent;
 
                 if (response.status !== 200 || response.data === 500) {
                   _this3.errorFlg = true;
-                  _this3.messageText = _message__WEBPACK_IMPORTED_MODULE_3__["message"].notGetData;
+                  _this3.messageText = _message__WEBPACK_IMPORTED_MODULE_2__["message"].notGetData;
                   _this3.editModal = false;
                 }
 
@@ -3377,7 +3370,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 }
 
                 _this3.errorFlg = true;
-                _this3.messageText = _message__WEBPACK_IMPORTED_MODULE_3__["message"].notAllowedToChangeKeyword;
+                _this3.messageText = _message__WEBPACK_IMPORTED_MODULE_2__["message"].notAllowedToChangeKeyword;
                 _this3.editModal = false;
                 _context3.next = 14;
                 break;
@@ -3422,7 +3415,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context4.prev = _context4.next) {
               case 0:
                 _context4.next = 2;
-                return axios__WEBPACK_IMPORTED_MODULE_2___default.a["delete"]("/api/keyword/".concat(_this4.deleteItem));
+                return axios__WEBPACK_IMPORTED_MODULE_1___default.a["delete"]("/api/keyword/".concat(_this4.deleteItem));
 
               case 2:
                 response = _context4.sent;
@@ -3433,7 +3426,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 }
 
                 _this4.errorFlg = true;
-                _this4.messageText = _message__WEBPACK_IMPORTED_MODULE_3__["message"].notGetData;
+                _this4.messageText = _message__WEBPACK_IMPORTED_MODULE_2__["message"].notGetData;
                 _this4.deleteOn = false;
                 _context4.next = 12;
                 break;
@@ -3518,10 +3511,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _repository__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../repository */ "./resources/js/repository.js");
-/* harmony import */ var _message__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../message */ "./resources/js/message.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _message__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../message */ "./resources/js/message.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -3684,7 +3676,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 
 
-
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -3736,14 +3727,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.get("/api/like/list/".concat(_this.twitter_id));
+                return axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("/api/like/list/".concat(_this.twitter_id));
 
               case 2:
                 response = _context.sent;
 
                 if (response.status !== 200 || response.data === 500) {
                   _this.errorFlg = true;
-                  _this.messageText = _message__WEBPACK_IMPORTED_MODULE_2__["message"].notGetData;
+                  _this.messageText = _message__WEBPACK_IMPORTED_MODULE_1__["message"].notGetData;
                 } else {
                   _this.likes = response.data;
                 }
@@ -3770,14 +3761,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context2.prev = _context2.next) {
               case 0:
                 _context2.next = 2;
-                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.get('/api/keyword');
+                return axios__WEBPACK_IMPORTED_MODULE_2___default.a.get('/api/keyword');
 
               case 2:
                 response = _context2.sent;
 
                 if (response.status !== 200) {
                   _this2.errorFlg = true;
-                  _this2.messageText = _message__WEBPACK_IMPORTED_MODULE_2__["message"].notGetData;
+                  _this2.messageText = _message__WEBPACK_IMPORTED_MODULE_1__["message"].notGetData;
                 }
 
                 _this2.keywords = response.data;
@@ -3805,7 +3796,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context3.prev = _context3.next) {
               case 0:
                 _context3.next = 2;
-                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.post("/api/like/".concat(_this3.twitter_id), _this3.addForm);
+                return axios__WEBPACK_IMPORTED_MODULE_2___default.a.post("/api/like/".concat(_this3.twitter_id), _this3.addForm);
 
               case 2:
                 response = _context3.sent;
@@ -3813,7 +3804,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 if (response.status !== 200 || response.data === 500) {
                   _this3.newModal = false;
                   _this3.errorFlg = true;
-                  _this3.messageText = _message__WEBPACK_IMPORTED_MODULE_2__["message"].notUpdate;
+                  _this3.messageText = _message__WEBPACK_IMPORTED_MODULE_1__["message"].notUpdate;
                 }
 
                 if (!(response.data === 200)) {
@@ -3862,14 +3853,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context4.prev = _context4.next) {
               case 0:
                 _context4.next = 2;
-                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.put("/api/like/".concat(_this4.twitter_id), _this4.editForm);
+                return axios__WEBPACK_IMPORTED_MODULE_2___default.a.put("/api/like/".concat(_this4.twitter_id), _this4.editForm);
 
               case 2:
                 response = _context4.sent;
 
                 if (response.status !== 200 || response.data === 500) {
                   _this4.errorFlg = true;
-                  _this4.messageText = _message__WEBPACK_IMPORTED_MODULE_2__["message"].notGetData;
+                  _this4.messageText = _message__WEBPACK_IMPORTED_MODULE_1__["message"].notGetData;
 
                   _this4.resetEditForm();
                 }
@@ -3920,14 +3911,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context5.prev = _context5.next) {
               case 0:
                 _context5.next = 2;
-                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.post("/api/like/delete/".concat(_this5.twitter_id), _this5.deleteItem);
+                return axios__WEBPACK_IMPORTED_MODULE_2___default.a.post("/api/like/delete/".concat(_this5.twitter_id), _this5.deleteItem);
 
               case 2:
                 response = _context5.sent;
 
                 if (response.status !== 200 || response.data === 500) {
                   _this5.errorFlg = true;
-                  _this5.messageText = _message__WEBPACK_IMPORTED_MODULE_2__["message"].notGetData;
+                  _this5.messageText = _message__WEBPACK_IMPORTED_MODULE_1__["message"].notGetData;
                   _this5.deleteOn = false;
                 }
 
@@ -3979,14 +3970,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context6.prev = _context6.next) {
               case 0:
                 _context6.next = 2;
-                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.get("/api/system/status/".concat(_this6.twitter_id));
+                return axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("/api/system/status/".concat(_this6.twitter_id));
 
               case 2:
                 response = _context6.sent;
 
                 if (response.status !== 200) {
                   _this6.errorFlg = true;
-                  _this6.messageText = _message__WEBPACK_IMPORTED_MODULE_2__["message"].notGetData;
+                  _this6.messageText = _message__WEBPACK_IMPORTED_MODULE_1__["message"].notGetData;
                 } else {
                   _this6.serviceSwitch = false;
                   _this6.serviceStatus = response.data.auto_like_status;
@@ -4020,7 +4011,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   twitter_id: _this7.twitter_id
                 };
                 _context7.next = 4;
-                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.post('/api/system/running', data);
+                return axios__WEBPACK_IMPORTED_MODULE_2___default.a.post('/api/system/running', data);
 
               case 4:
                 response = _context7.sent;
@@ -4031,7 +4022,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 }
 
                 _this7.errorFlg = true;
-                _this7.messageText = _message__WEBPACK_IMPORTED_MODULE_2__["message"].notUpdate;
+                _this7.messageText = _message__WEBPACK_IMPORTED_MODULE_1__["message"].notUpdate;
                 _this7.serviceSwitch = false;
                 _context7.next = 13;
                 break;
@@ -4067,7 +4058,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   twitter_id: _this8.twitter_id
                 };
                 _context8.next = 4;
-                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.post('/api/system/stop', data);
+                return axios__WEBPACK_IMPORTED_MODULE_2___default.a.post('/api/system/stop', data);
 
               case 4:
                 response = _context8.sent;
@@ -4078,7 +4069,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 }
 
                 _this8.errorFlg = true;
-                _this8.messageText = _message__WEBPACK_IMPORTED_MODULE_2__["message"].notUpdate;
+                _this8.messageText = _message__WEBPACK_IMPORTED_MODULE_1__["message"].notUpdate;
                 _this8.serviceSwitch = false;
                 _context8.next = 13;
                 break;
@@ -4122,7 +4113,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 } else {
                   _this9.errorFlg = true;
                   _this9.nothingAccountFlg = true;
-                  _this9.messageText = _message__WEBPACK_IMPORTED_MODULE_2__["message"].needSelectAccount;
+                  _this9.messageText = _message__WEBPACK_IMPORTED_MODULE_1__["message"].needSelectAccount;
                 }
 
               case 2:
@@ -4184,10 +4175,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _repository__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../repository */ "./resources/js/repository.js");
-/* harmony import */ var _message__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../message */ "./resources/js/message.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _message__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../message */ "./resources/js/message.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -4390,7 +4380,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -4472,14 +4465,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.get("/api/tweet/list/".concat(_this.twitter_id));
+                return axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("/api/tweet/list/".concat(_this.twitter_id));
 
               case 2:
                 response = _context.sent;
 
                 if (response.status !== 200 || response.data === 500) {
                   _this.errorFlg = true;
-                  _this.messageText = _message__WEBPACK_IMPORTED_MODULE_2__["message"].notGetData;
+                  _this.messageText = _message__WEBPACK_IMPORTED_MODULE_1__["message"].notGetData;
                 } else {
                   _this.tweetsNum = response.data[1];
                   _this.tweets = response.data[0];
@@ -4545,7 +4538,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 }
 
                 _context3.next = 6;
-                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.post("/api/tweet/".concat(_this2.twitter_id), _this2.addForm);
+                return axios__WEBPACK_IMPORTED_MODULE_2___default.a.post("/api/tweet/".concat(_this2.twitter_id), _this2.addForm);
 
               case 6:
                 response = _context3.sent;
@@ -4553,7 +4546,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 if (response.status !== 200 || response.data === 500) {
                   _this2.newModal = false;
                   _this2.errorFlg = true;
-                  _this2.messageText = _message__WEBPACK_IMPORTED_MODULE_2__["message"].notUpdate;
+                  _this2.messageText = _message__WEBPACK_IMPORTED_MODULE_1__["message"].notUpdate;
                 }
 
                 if (!(response.data === 200)) {
@@ -4574,7 +4567,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 15:
                 _this2.modalErrorFlg = true;
-                _this2.messageModalText = _message__WEBPACK_IMPORTED_MODULE_2__["message"].noFiveMinutesTimer;
+                _this2.messageModalText = _message__WEBPACK_IMPORTED_MODULE_1__["message"].noFiveMinutesTimer;
 
               case 17:
               case "end":
@@ -4609,14 +4602,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 }
 
                 _context4.next = 6;
-                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.post("/api/tweet/edit/".concat(_this3.twitter_id), _this3.editForm);
+                return axios__WEBPACK_IMPORTED_MODULE_2___default.a.post("/api/tweet/edit/".concat(_this3.twitter_id), _this3.editForm);
 
               case 6:
                 response = _context4.sent;
 
                 if (response.status !== 200 || response.data === 500) {
                   _this3.errorFlg = true;
-                  _this3.messageText = _message__WEBPACK_IMPORTED_MODULE_2__["message"].notGetData;
+                  _this3.messageText = _message__WEBPACK_IMPORTED_MODULE_1__["message"].notGetData;
 
                   _this3.resetEditForm();
                 }
@@ -4638,7 +4631,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 14:
                 _this3.modalErrorFlg = true;
-                _this3.messageModalText = _message__WEBPACK_IMPORTED_MODULE_2__["message"].noFiveMinutesTimer;
+                _this3.messageModalText = _message__WEBPACK_IMPORTED_MODULE_1__["message"].noFiveMinutesTimer;
 
               case 16:
               case "end":
@@ -4684,14 +4677,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context5.prev = _context5.next) {
               case 0:
                 _context5.next = 2;
-                return axios__WEBPACK_IMPORTED_MODULE_3___default.a["delete"]("/api/tweet/".concat(_this4.deleteItem.id));
+                return axios__WEBPACK_IMPORTED_MODULE_2___default.a["delete"]("/api/tweet/".concat(_this4.deleteItem.id));
 
               case 2:
                 response = _context5.sent;
 
                 if (response.status !== 200 || response.data === 500) {
                   _this4.errorFlg = true;
-                  _this4.messageText = _message__WEBPACK_IMPORTED_MODULE_2__["message"].notGetData;
+                  _this4.messageText = _message__WEBPACK_IMPORTED_MODULE_1__["message"].notGetData;
                   _this4.deleteOn = false;
                 }
 
@@ -4742,7 +4735,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
      * 初期値に5分後をセットする
      */
     setAfterFiveTime: function setAfterFiveTime() {
-      var afterFiveTime = new Date(+new Date() + 5 * 60 * 1000);
+      var afterFiveTime = new Date(+new Date() + 6 * 60 * 1000);
       var hours = ("00" + afterFiveTime.getHours()).slice(-2);
       var minutes = ("00" + afterFiveTime.getMinutes()).slice(-2);
       return [hours, minutes].join(":");
@@ -4754,7 +4747,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     resetAddForm: function resetAddForm() {
       this.addForm.tweet = '';
       this.addForm.date = this.formatter(new Date());
-      this.addForm.time = this.getHHMM(new Date());
+      this.addForm.time = this.setAfterFiveTime();
     },
 
     /**
@@ -4782,14 +4775,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context6.prev = _context6.next) {
               case 0:
                 _context6.next = 2;
-                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.get("/api/system/status/".concat(_this5.twitter_id));
+                return axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("/api/system/status/".concat(_this5.twitter_id));
 
               case 2:
                 response = _context6.sent;
 
                 if (response.status !== 200) {
                   _this5.errorFlg = true;
-                  _this5.messageText = _message__WEBPACK_IMPORTED_MODULE_2__["message"].notGetData;
+                  _this5.messageText = _message__WEBPACK_IMPORTED_MODULE_1__["message"].notGetData;
                 } else {
                   _this5.serviceSwitch = false;
                   _this5.serviceStatus = response.data.auto_tweet_status;
@@ -4823,7 +4816,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   twitter_id: _this6.twitter_id
                 };
                 _context7.next = 4;
-                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.post('/api/system/running', data);
+                return axios__WEBPACK_IMPORTED_MODULE_2___default.a.post('/api/system/running', data);
 
               case 4:
                 response = _context7.sent;
@@ -4834,7 +4827,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 }
 
                 _this6.errorFlg = true;
-                _this6.messageText = _message__WEBPACK_IMPORTED_MODULE_2__["message"].notUpdate;
+                _this6.messageText = _message__WEBPACK_IMPORTED_MODULE_1__["message"].notUpdate;
                 _this6.serviceSwitch = false;
                 _context7.next = 13;
                 break;
@@ -4870,7 +4863,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   twitter_id: _this7.twitter_id
                 };
                 _context8.next = 4;
-                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.post('/api/system/stop', data);
+                return axios__WEBPACK_IMPORTED_MODULE_2___default.a.post('/api/system/stop', data);
 
               case 4:
                 response = _context8.sent;
@@ -4881,7 +4874,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 }
 
                 _this7.errorFlg = true;
-                _this7.messageText = _message__WEBPACK_IMPORTED_MODULE_2__["message"].notUpdate;
+                _this7.messageText = _message__WEBPACK_IMPORTED_MODULE_1__["message"].notUpdate;
                 _this7.serviceSwitch = false;
                 _context8.next = 13;
                 break;
@@ -4933,7 +4926,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 } else {
                   _this8.errorFlg = true;
                   _this8.nothingAccountFlg = true;
-                  _this8.messageText = _message__WEBPACK_IMPORTED_MODULE_2__["message"].needSelectAccount;
+                  _this8.messageText = _message__WEBPACK_IMPORTED_MODULE_1__["message"].needSelectAccount;
                 }
 
               case 2:
@@ -4943,6 +4936,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }
         }, _callee9);
       }))();
+    },
+    closeModal: function closeModal() {
+      this.newModal = false;
+      this.editModal = false;
+      this.modalErrorFlg = false;
+      this.resetAddForm();
     }
   },
   created: function created() {
@@ -5588,10 +5587,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _repository__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../repository */ "./resources/js/repository.js");
-/* harmony import */ var _message__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../message */ "./resources/js/message.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _message__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../message */ "./resources/js/message.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -5647,7 +5645,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 
 
-
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     twitterAccountId: 0
@@ -5679,12 +5676,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 _context.prev = 0;
                 _context.next = 3;
-                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.get('/api/twitter/users/list');
+                return axios__WEBPACK_IMPORTED_MODULE_2___default.a.get('/api/twitter/users/list');
 
               case 3:
                 response = _context.sent;
 
-                //const response = await axios.get('/test/twitter/users/list');//テスト用
                 if (response.status === 200) {
                   _this.accounts = response.data.accounts;
                   _this.accountNum = response.data.accounts_num;
@@ -5697,7 +5693,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _context.prev = 7;
                 _context.t0 = _context["catch"](0);
                 _this.errorFlg = true;
-                _this.messageText = _message__WEBPACK_IMPORTED_MODULE_2__["message"].notGetData;
+                _this.messageText = _message__WEBPACK_IMPORTED_MODULE_1__["message"].notGetData;
 
               case 11:
               case "end":
@@ -5748,7 +5744,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 11:
                 _this2.errorFlg = true;
-                _this2.messageText = _message__WEBPACK_IMPORTED_MODULE_2__["message"].notDelete;
+                _this2.messageText = _message__WEBPACK_IMPORTED_MODULE_1__["message"].notDelete;
 
               case 13:
               case "end":
@@ -5778,7 +5774,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context3.prev = _context3.next) {
               case 0:
                 _context3.next = 2;
-                return axios__WEBPACK_IMPORTED_MODULE_3___default.a["delete"]("/api/twitter/users/".concat(_this3.deleteTargetTwitterId));
+                return axios__WEBPACK_IMPORTED_MODULE_2___default.a["delete"]("/api/twitter/users/".concat(_this3.deleteTargetTwitterId));
 
               case 2:
                 response = _context3.sent;
@@ -10540,11 +10536,7 @@ var render = function() {
               "div",
               {
                 staticClass: "p-modal__cancel u-color__bg--white",
-                on: {
-                  click: function($event) {
-                    _vm.newModal = !_vm.newModal
-                  }
-                }
+                on: { click: _vm.closeModal }
               },
               [
                 _c("i", {
@@ -10662,7 +10654,11 @@ var render = function() {
                       }
                     ],
                     staticClass: "p-form__date",
-                    attrs: { type: "time", required: "" },
+                    attrs: {
+                      type: "time",
+                      min: _vm.setAfterFiveTime(),
+                      required: ""
+                    },
                     domProps: { value: _vm.addForm.time },
                     on: {
                       input: function($event) {
@@ -24618,7 +24614,7 @@ var message = {
   needSelectAccount: '「アカウント登録」からTwitterアカウントを選択してください。',
   noAtMark: '@は記入しなくても大丈夫です。',
   noTargetAccount: 'ターゲットアカウントを登録してください。',
-  noFiveMinutesTimer: 'ツイートは現在時刻の５分後から可能となります。'
+  noFiveMinutesTimer: 'ツイートは現在時刻の５分後以降から可能となります。'
 };
 
 /***/ }),
@@ -24627,19 +24623,13 @@ var message = {
 /*!************************************!*\
   !*** ./resources/js/repository.js ***!
   \************************************/
-/*! exports provided: linkParam, loginUserInfo, twitterAccount, twitterUsersTable, filterWords, targetAccountList, manegementServiceStatus */
+/*! exports provided: linkParam */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "linkParam", function() { return linkParam; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "loginUserInfo", function() { return loginUserInfo; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "twitterAccount", function() { return twitterAccount; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "twitterUsersTable", function() { return twitterUsersTable; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "filterWords", function() { return filterWords; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "targetAccountList", function() { return targetAccountList; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "manegementServiceStatus", function() { return manegementServiceStatus; });
-// UI作成時のテストデータ
+// link パラメータ
 var linkParam = [{
   id: 1,
   label: 'アカウント登録'
@@ -24658,125 +24648,6 @@ var linkParam = [{
 }, {
   id: 6,
   label: 'キーワード登録'
-}];
-/**
- * Authで取得する情報
- * user
- */
-
-var loginUserInfo = [{
-  id: 1,
-  name: 'tomo'
-}];
-/**
- * twitterのアカウント情報
- * twitterAPIレスポンス結果
- */
-
-var twitterAccount = [{
-  id: 1,
-  screen_name: 'cryptodev14',
-  name: 'cryptodev14',
-  thumbnail: '',
-  follows: 500,
-  followers: 3400
-}, {
-  id: 2,
-  screen_name: 'tomozo01v',
-  name: 'tomozo01v',
-  thumbnail: '',
-  follows: 400,
-  followers: 300
-}];
-/**
- * 切り替えたアカウントでtwitter APIを利用する際に取得が必要
- * twitter_users_tableの中身
- */
-
-var twitterUsersTable = [{
-  id: 1,
-  user_id: 1,
-  token: 'test',
-  token_secret: 'token_secret_xxxhhskjosekjag'
-}];
-/**
- * キーワード登録内容 (フォロワーサーチといいねで使用)
- * filter_wordsの中身
- */
-
-var filterWords = [{
-  id: 1,
-  word: 'フリーランス JavaScript Laravel フリーランス JavaScript Laravel',
-  type: 'AND'
-}, {
-  id: 2,
-  word: '事業経営 WEB プログラミング',
-  type: 'AND'
-}, {
-  id: 3,
-  word: '個人事業 個人経営',
-  type: 'OR'
-}, {
-  id: 4,
-  word: 'webライター',
-  type: 'NOT'
-}];
-/**
- * ターゲットアカウントリスト情報
- * target_accountsの中身
- */
-
-var targetAccountList = [{
-  id: 1,
-  user_id: 1,
-  twitter_user_id: 1000037652727401,
-  status: 1,
-  target: 'pokepokehoihoi',
-  filter_word: filterWords[0]
-}, {
-  id: 2,
-  user_id: 1,
-  twitter_user_id: 1000037652727401,
-  status: 2,
-  target: 'インフルえんさーA',
-  filter_word: filterWords[1]
-}, {
-  id: 3,
-  user_id: 1,
-  twitter_user_id: 1000037652727402,
-  status: 3,
-  target: 'じじ',
-  filter_word: filterWords[2]
-}, {
-  id: 4,
-  user_id: 1,
-  twitter_user_id: 1000037652727402,
-  status: 1,
-  target: 'じじ',
-  filter_word: filterWords[3]
-}];
-/**
- * 自動化サービスの実施状況
- * serviceManagersの中身
- * defalult 1 false 停止 : 0 true 実行
- */
-
-var manegementServiceStatus = [{
-  id: 1,
-  user_id: 1,
-  twitter_user_id: 1000037652727401,
-  auto_follow_status: 1,
-  auto_unfollow_status: 1,
-  auto_like_status: 1,
-  auto_tweet_status: 1
-}, {
-  id: 2,
-  user_id: 1,
-  twitter_user_id: 1000037652727402,
-  auto_follow_status: 0,
-  auto_unfollow_status: 0,
-  auto_like_status: 0,
-  auto_tweet_status: 0
 }];
 
 /***/ }),
@@ -24799,7 +24670,7 @@ $(function () {
     $('.p-policy__main-container').toggleClass("none");
     $('.l-main__contact').toggleClass("none");
     $('.l-main__top--wrapper').toggleClass("none");
-    $('.l-main__container').toggleClass("none"); // $('.p-board__sp--top').toggleClass("none");
+    $('.l-main__container').toggleClass("none");
   });
   $('.js_push_guest').on('click', function () {
     $('.js_toggle_guest').toggleClass("active");
@@ -24807,7 +24678,7 @@ $(function () {
     $('.p-policy__main-container').toggleClass("none");
     $('.l-main__contact').toggleClass("none");
     $('.l-main__top--wrapper').toggleClass("none");
-    $('.l-main__container').toggleClass("none"); // $('.p-board__sp--top').toggleClass("none");
+    $('.l-main__container').toggleClass("none");
   });
   $(function () {
     $('.error_message').fadeIn(0.5);

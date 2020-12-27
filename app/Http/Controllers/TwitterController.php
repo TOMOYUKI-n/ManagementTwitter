@@ -32,7 +32,6 @@ class TwitterController extends Controller
         try {
             $accounts = TwitterUser::where('user_id', $user_id)->get();
             $accounts_num = TwitterUser::where('user_id', $user_id)->count();
-            Log::Debug($accounts);
         }
         catch (\Exception $e) {
             return self::CODE[1]['status'];
@@ -51,7 +50,6 @@ class TwitterController extends Controller
         try {
             $accounts = TwitterUser::where('user_id', $user_id)->get();
             $accounts_num = TwitterUser::where('user_id', $user_id)->count();
-            Log::Debug($accounts);
         }
         catch (\Exception $e) {
             return self::CODE[1]['status'];
@@ -81,7 +79,6 @@ class TwitterController extends Controller
      */
     public function getInfo(int $id)
     {
-        Log::Debug($id);
         $twitter_user = TwitterUser::where('id', '=', $id)->first();
         // 存在しないユーザーを取得した場合 404
         if (is_null($twitter_user)){
@@ -111,7 +108,6 @@ class TwitterController extends Controller
                 'follows' => $api_request->friends_count,
                 'followers' => $api_request->followers_count,
             ];
-            Log::Debug($twitter_users_data);
             return $twitter_users_data;
         }
         catch (\Exception $e){

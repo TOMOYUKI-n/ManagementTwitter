@@ -74,8 +74,6 @@ class Utility
         //id100件を含んだ配列をさらに新たな配列に格納する
         $users_id_strings_chunk = array_chunk($user_id_strings, 100);
 
-        Log::Debug("users_id_strings_chunk");
-        Log::Debug([$users_id_strings_chunk]);
         foreach ($users_id_strings_chunk as $user_id_string) {
             //id100件の配列を , カンマで接続した文字列に変換する
             $users_string_list[] = implode(',', $user_id_string);

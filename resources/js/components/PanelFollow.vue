@@ -179,7 +179,6 @@
 </template>
 
 <script>
-    import { filterWords, targetAccountList, manegementServiceStatus } from "../repository"
     import { message } from '../message';
     import axios from "axios";
     export default {

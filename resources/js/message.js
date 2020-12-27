@@ -7,5 +7,5 @@ export const message = {
     needSelectAccount: '「アカウント登録」からTwitterアカウントを選択してください。',
     noAtMark: '@は記入しなくても大丈夫です。',
     noTargetAccount: 'ターゲットアカウントを登録してください。',
-    noFiveMinutesTimer: 'ツイートは現在時刻の５分後から可能となります。',
+    noFiveMinutesTimer: 'ツイートは現在時刻の５分後以降から可能となります。',
 };

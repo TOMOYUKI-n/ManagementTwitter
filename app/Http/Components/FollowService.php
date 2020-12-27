@@ -111,9 +111,6 @@ class FollowService
         }
 
         Log::info("useTwitterApi パラメータ");
-        // Log::Debug($token);
-        // Log::Debug($token_secret);
-        // Log::Debug($param);
 
         //API呼び出し
         $response_json = ApiHandle::useTwitterApi('GET', self::ApiFollowersList,
@@ -133,11 +130,9 @@ class FollowService
     public static function addToFollowerTargetList($api_result, $keyword, $twitter_user_id)
     {
         Log::Debug('####フォロワーターゲットリスト作成開始');
-        // Log::debug('####keyword: ', [$keyword->merged_word]);
+
         foreach ($api_result->users as $user) {
             $description = $user->description;
-            // Log::debug('####description: ', [$description]);
-
             //日本語プロフィールかチェック
             if (!self::isJapaneseProfile($description)) {
                 Log::debug('####日本人バリデーション');
@@ -284,9 +279,7 @@ class FollowService
      */
     public static function isInUnfollowHistories($user, $twitter_user_id)
     {
-        Log::Debug("UnfollowsRepository");
-        // Log::Debug([$user]);
-        // Log::Debug([$twitter_user_id]);
+
         $unfollow_list = UnfollowsRepository::where('twitter_user_id', $twitter_user_id)->where('twitter_id', $user->id_str)->first();
         if (is_null($unfollow_list)){
             return false;
@@ -303,7 +296,6 @@ class FollowService
     public static function isFollowedWithin30Days($user, $twitter_user_id)
     {
         $before_30days = Carbon::now()->addDay(-30);
-        Log::Debug($before_30days);
         $follow_list = FollowsRepository::where('twitter_user_id', $twitter_user_id)
             ->where('twitter_id', $user->id_str)
             ->whereDate('created_at', '>', $before_30days)->first();
