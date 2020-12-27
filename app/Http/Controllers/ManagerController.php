@@ -25,7 +25,7 @@ class ManagerController extends Controller
      */
     public function run(Request $request)
     {
-        // Log::Debug($request);
+
         try {
             $system_manager = Management::where('twitter_user_id', $request->twitter_id)->first();
 
@@ -54,10 +54,7 @@ class ManagerController extends Controller
      * 特定のTwitterUserが利用中の管理状態を取得
      */
     public function show(int $id)
-    {
-        Log::Debug('request');
-        Log::Debug($id);
-        
+    {        
         try {
             $system_manager = Management::where('twitter_user_id', $id)->first();
             return $system_manager;
@@ -74,7 +71,6 @@ class ManagerController extends Controller
      */
     public function stop(Request $request)
     {
-        // Log::Debug($request);
         try {
             $system_manager = Management::where('twitter_user_id', $request->twitter_id)->first();
 

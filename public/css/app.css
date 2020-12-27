@@ -758,7 +758,7 @@ img {
     width: 100%;
     padding: 20px;
     position: relative;
-    top: 0px;
+    top: -10px;
   }
 }
 .p-modal__cancel {
@@ -974,6 +974,12 @@ img {
 }
 .p-login__forgot:hover {
   cursor: pointer;
+}
+.p-login__disabled {
+  background: #3333 !important;
+}
+.p-login__disabled:hover {
+  cursor: inherit;
 }
 
 .p-table {
@@ -1682,7 +1688,7 @@ img {
   box-sizing: border-box;
   margin-top: 28px;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
 }
 .p-form__half-btn {
   display: flex;

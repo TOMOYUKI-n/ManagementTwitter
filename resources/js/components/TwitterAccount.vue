@@ -46,8 +46,6 @@
 </template>
 
 <script>
-
-    import { twitterAccount } from '../repository';
     import { message } from '../message';
     import axios from "axios";
     export default {
@@ -73,7 +71,6 @@
             async fetchTwitterUsers() {
                 try {
                     const response = await axios.get('/api/twitter/users/list');
-                    //const response = await axios.get('/test/twitter/users/list');//テスト用
                     if (response.status === 200) {
                         this.accounts = response.data.accounts;
                         this.accountNum = response.data.accounts_num;

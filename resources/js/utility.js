@@ -12,7 +12,6 @@ $(function () {
         $('.l-main__contact').toggleClass("none");
         $('.l-main__top--wrapper').toggleClass("none");
         $('.l-main__container').toggleClass("none");
-        // $('.p-board__sp--top').toggleClass("none");
     });
 
     $('.js_push_guest').on('click',function (){
@@ -23,7 +22,6 @@ $(function () {
         $('.l-main__contact').toggleClass("none");
         $('.l-main__top--wrapper').toggleClass("none");
         $('.l-main__container').toggleClass("none");
-        // $('.p-board__sp--top').toggleClass("none");
     });
 
     $(function(){

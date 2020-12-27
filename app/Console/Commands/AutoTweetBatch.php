@@ -39,7 +39,7 @@ class AutoTweetBatch extends Command
         Log::Debug('=====================================================================');
 
         // 1分ごとにチェック
-        for($i = 0; $i < 9; $i++){
+        for($i = 0; $i < 10; $i++){
             Log::Debug("AutoTweet:".$i."分目実行");
             // auto_tweet_statusが稼動中のステータスになっているレコードを取得する
             $running_list = Management::where("auto_tweet_status", Management::RUNNING)->get();
@@ -92,16 +92,9 @@ class AutoTweetBatch extends Command
      */
     private function sendMail($management_id, $twitter_user_id, $auto_tweet)
     {
-        Log::Debug('## mail =================');
-        Log::Debug('#management_id : ', [$management_id]);
-        Log::Debug('#twitter_user_id : ' , [$twitter_user_id]);
-
         $system_manager = Management::where('id', $management_id)->with('user')->first();
         $twitter_user = TwitterUser::where('id', $twitter_user_id)->first();
         $user = $system_manager->user;
-        Log::Debug('## mail check=================');
-        Log::Debug('#twitter_user : ', [$twitter_user]);
-        Log::Debug('#user : ' , [$user]);
         Mail::to($user)->send(new CompleteAutoTweet($user, $twitter_user, $auto_tweet));
     }
 

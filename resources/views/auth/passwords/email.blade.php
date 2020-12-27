@@ -19,7 +19,7 @@
                     @csrf
                     <div style="display: block;">
                         <label for="email" class="p-send__text">{{ __('E-Mail Address') }}</label>
-                        <div class="p-login__inner">
+                        <div class="p-regist__inner">
                             <input id="email" type="email" class="p-send__form @error('email') is-invalid @enderror"
                                     name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
                             @error('email')

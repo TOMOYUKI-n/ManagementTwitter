@@ -60,12 +60,10 @@ class FollowTarget extends Model
     public function getStatusLabelAttribute()
     {
         $status = $this->attributes['status'];
-        Log::Debug($status);
 
         if (!isset(self::STATUS[$status])) {
             return '';
         }
-        Log::Debug(self::STATUS[$status]['label']);
         return self::STATUS[$status]['label'];
     }
 }

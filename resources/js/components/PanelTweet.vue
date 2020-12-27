@@ -68,7 +68,7 @@
         <div class="p-modal__wrapper">
             <section class="p-modal" v-show="newModal">
                 <div class="p-modal__contents">
-                    <div class="p-modal__cancel u-color__bg--white" @click="newModal = !newModal">
+                    <div class="p-modal__cancel u-color__bg--white" @click="closeModal">
                         <i class="c-icon--gray p-modal__icon fas fa-times"></i>
                     </div>
                     <form class="p-form" @submit.prevent="addTweet">
@@ -86,7 +86,7 @@
                             maxlength="140">
                         </textarea>
 
-                        <label class="p-form__label">予定日時 *必須(5分後から投稿可能です)</label>
+                        <label class="p-form__label">予定日時 *必須(5分後以降から投稿可能です)</label>
                         <div class="u-display__flex--left">
                             <input
                                 type="date"
@@ -97,6 +97,7 @@
                             <input
                                 type="time"
                                 class="p-form__date"
+                                :min="setAfterFiveTime()"
                                 v-model="addForm.time"
                                 required>
                         </div>
@@ -124,10 +125,11 @@
                             cols="40"
                             v-model="editForm.tweet"
                             required
-                            maxlength="140">
+                            maxlength="140"
+                        >
                         </textarea>
 
-                        <label class="p-form__label">予定日時 *必須(5分後から投稿可能です)</label>
+                        <label class="p-form__label">予定日時 *必須(5分後以降から投稿可能です)</label>
                         <div class="u-display__flex--left">
                             <input
                                 type="date"
@@ -135,12 +137,14 @@
                                 :min="getCurrentDays"
                                 value="getCurrentDays"
                                 v-model="editForm.date"
-                                required>
+                                required
+                            >
                             <input
                                 type="time"
                                 class="p-form__date"
                                 v-model="editForm.time"
-                                required>
+                                required
+                            >
                         </div>
                         <div class="p-form__button">
                             <button type="submit" class="c-button c-button--sp c-button--twitter c-button__form">変更</button>
@@ -195,7 +199,6 @@
 </template>
 
 <script>
-    import { filterWords, targetAccountList, manegementServiceStatus } from "../repository"
     import { message } from '../message';
     import axios from "axios";
     export default {
@@ -222,7 +225,7 @@
                 addForm: {
                     tweet: '',
                     date: this.formatter(new Date()),
-                    time: this.getHHMM(new Date()),
+                    time: this.setAfterFiveTime(),
                 },
                 editForm: {
                     tweet: '',
@@ -280,16 +283,13 @@
              * 5分後の時刻でないと入力できないように制限
              */
             async validateTime(args) {
-                // 選択した時刻をDate型へ変換
                 const timer = args.date + ' ' +args.time;
                 const info = Date.parse(timer);
 
                 // Date形式で5分後の時刻を取得
-                const afterFiveDate = new Date(+new Date() + (5 * 60 * 1000));
-                const options = {year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", second: "2-digit"};
-                afterFiveDate.toLocaleDateString("ja-JP", options);
-                const afterInfo = Date.parse(afterFiveDate);
-                
+                const afterFiveTime = new Date(+new Date() + (5 * 60 * 1000));
+                const afterInfo = Date.parse(afterFiveTime);
+
                 // 5分以上間を開けているか判定
                 return info > afterInfo ? true:false;
             },
@@ -323,16 +323,23 @@
              * APIを使用して自動ツイートを編集する
              */
             async editTweet() {
-                const response = await axios.post(`/api/tweet/edit/${this.twitter_id}`, this.editForm);
-                if (response.status !== 200 || response.data === 500) {
-                    this.errorFlg = true;
-                    this.messageText = message.notGetData;
-                    this.resetEditForm();
+                const checked = await this.validateTime(this.editForm);
+                if (checked) {
+                    const response = await axios.post(`/api/tweet/edit/${this.twitter_id}`, this.editForm);
+                    if (response.status !== 200 || response.data === 500) {
+                        this.errorFlg = true;
+                        this.messageText = message.notGetData;
+                        this.resetEditForm();
+                    }
+                    if (response.data === 200) {
+                        // 再描画
+                        this.resetEditForm();
+                        await this.fetchTweets();
+                    }
                 }
-                if (response.data === 200) {
-                    // 再描画
-                    this.resetEditForm();
-                    await this.fetchTweets();
+                else {
+                    this.modalErrorFlg = true;
+                    this.messageModalText = message.noFiveMinutesTimer;
                 }
             },
             /**
@@ -393,12 +400,21 @@
                 return [hours, minutes].join(":")
             },
             /**
+             * 初期値に5分後をセットする
+             */
+            setAfterFiveTime() {
+                const afterFiveTime = new Date(+new Date() + (6 * 60 * 1000));
+                const hours = ("00" + afterFiveTime.getHours()).slice(-2);
+                const minutes = ("00" + afterFiveTime.getMinutes()).slice(-2);
+                return [hours, minutes].join(":");
+            },
+            /**
              * 新規登録フォームのリセットを行う
              */
             resetAddForm() {
                 this.addForm.tweet = '';
                 this.addForm.date = this.formatter(new Date());
-                this.addForm.time = this.getHHMM(new Date());
+                this.addForm.time = this.setAfterFiveTime();
             },
             /**
              * 編集フォームのリセットを行う
@@ -486,6 +502,12 @@
                     this.nothingAccountFlg = true;
                     this.messageText = message.needSelectAccount;
                 }
+            },
+            closeModal() {
+                this.newModal = false;
+                this.editModal = false;
+                this.modalErrorFlg = false;
+                this.resetAddForm();
             }
         },
         async created() {
@@ -498,4 +520,10 @@
 
 </script>
 <style lang="scss" scoped>
+input[type=date]::-webkit-clear-button {
+  -webkit-appearance: none;
+}
+input[type=time]::-webkit-clear-button {
+  -webkit-appearance: none;
+}
 </style>

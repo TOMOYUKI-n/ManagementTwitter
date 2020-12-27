@@ -91,4 +91,10 @@
             cursor: pointer;
         }
     }
+    &__disabled {
+        background: #3333 !important;
+        &:hover{
+            cursor: inherit;
+        }
+    }
 }
