@@ -10591,10 +10591,74 @@ var render = function() {
                 }),
                 _vm._v(" "),
                 _c("label", { staticClass: "p-form__label" }, [
-                  _vm._v("予定日時 *必須(5分後以降から投稿可能です)")
+                  _vm._v("予定日時 *必須(5分後以降から可能)")
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "u-display__flex--left" }),
+                _c("div", { staticClass: "u-display__flex--left" }, [
+                  _c("div", { staticClass: "p-form__date--wrap" }, [
+                    _c(
+                      "div",
+                      { staticClass: "p-form__label p-form__datetime--label" },
+                      [_vm._v("投稿年月日")]
+                    ),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.addForm.date,
+                          expression: "addForm.date"
+                        }
+                      ],
+                      staticClass: "p-form__date",
+                      attrs: {
+                        type: "date",
+                        min: _vm.getCurrentDays,
+                        required: ""
+                      },
+                      domProps: { value: _vm.addForm.date },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.addForm, "date", $event.target.value)
+                        }
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "p-form__date--wrap" }, [
+                    _c(
+                      "div",
+                      { staticClass: "p-form__label p-form__datetime--label" },
+                      [_vm._v("投稿時間")]
+                    ),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.addForm.time,
+                          expression: "addForm.time"
+                        }
+                      ],
+                      staticClass: "p-form__time",
+                      attrs: { type: "time", required: "" },
+                      domProps: { value: _vm.addForm.time },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.addForm, "time", $event.target.value)
+                        }
+                      }
+                    })
+                  ])
+                ]),
                 _vm._v(" "),
                 _vm._m(2)
               ]
@@ -10707,7 +10771,7 @@ var render = function() {
                 }),
                 _vm._v(" "),
                 _c("label", { staticClass: "p-form__label" }, [
-                  _vm._v("予定日時 *必須(5分後以降から投稿可能です)")
+                  _vm._v("予定日時 *必須(5分後以降から可能)")
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "u-display__flex--left" }, [

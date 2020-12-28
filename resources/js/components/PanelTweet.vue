@@ -87,9 +87,9 @@
                             maxlength="140">
                         </textarea>
 
-                        <label class="p-form__label">予定日時 *必須(5分後以降から投稿可能です)</label>
+                        <label class="p-form__label">予定日時 *必須(5分後以降から可能)</label>
                         <div class="u-display__flex--left">
-                            <!-- <div class="p-form__date--wrap">
+                            <div class="p-form__date--wrap">
                                 <div
                                     class="p-form__label p-form__datetime--label"    
                                 >投稿年月日</div>
@@ -111,7 +111,7 @@
                                     v-model="addForm.time"
                                     required
                                 >
-                            </div> -->
+                            </div>
                         </div>
                         <div class="p-form__button p-form__btn--margin">
                             <button type="submit" class="c-button c-button--sp c-button--add--tweet c-button__form">追加</button>
@@ -142,7 +142,7 @@
                         >
                         </textarea>
 
-                        <label class="p-form__label">予定日時 *必須(5分後以降から投稿可能です)</label>
+                        <label class="p-form__label">予定日時 *必須(5分後以降から可能)</label>
                         <div class="u-display__flex--left">
 
                             <label class="p-form__label" for="edit-date">

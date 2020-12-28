@@ -26,7 +26,7 @@
         border: 1px solid $color_black5;
         border-radius: 4px;
         @include mq() {
-              font-size: $font-size_default;
+              font-size: $font-size_s;
               line-height: $space_5;
               margin-bottom: $space_4;
         }
