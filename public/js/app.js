@@ -4525,8 +4525,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
+                console.log('args ====');
+                console.log(args);
                 timer = args.date + ' ' + args.time;
-                info = Date.parse(timer); // Date形式で5分後の時刻を取得
+                console.log('timer ====');
+                console.log(timer);
+                info = Date.parse(timer);
+                console.log('info ====');
+                console.log(info); // Date形式で5分後の時刻を取得
 
                 afterFiveTime = new Date(+new Date() + 5 * 60 * 1000);
                 afterInfo = Date.parse(afterFiveTime);
@@ -4535,7 +4541,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 return _context2.abrupt("return", info > afterInfo ? true : false);
 
-              case 7:
+              case 13:
               case "end":
                 return _context2.stop();
             }
@@ -4564,17 +4570,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 4:
                 checked = _context3.sent;
+                console.log('checked 結果');
                 console.log(checked);
 
                 if (!checked) {
-                  _context3.next = 18;
+                  _context3.next = 19;
                   break;
                 }
 
-                _context3.next = 9;
+                _context3.next = 10;
                 return axios__WEBPACK_IMPORTED_MODULE_2___default.a.post("/api/tweet/".concat(_this3.twitter_id), _this3.addForm);
 
-              case 9:
+              case 10:
                 response = _context3.sent;
 
                 if (response.status !== 200 || response.data === 500) {
@@ -4584,7 +4591,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 }
 
                 if (!(response.data === 200)) {
-                  _context3.next = 16;
+                  _context3.next = 17;
                   break;
                 }
 
@@ -4592,18 +4599,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 _this3.resetAddForm();
 
-                _context3.next = 16;
+                _context3.next = 17;
                 return _this3.fetchTweets();
 
-              case 16:
-                _context3.next = 20;
+              case 17:
+                _context3.next = 21;
                 break;
 
-              case 18:
+              case 19:
                 _this3.modalErrorFlg = true;
                 _this3.messageModalText = _message__WEBPACK_IMPORTED_MODULE_1__["message"].noFiveMinutesTimer;
 
-              case 20:
+              case 21:
               case "end":
                 return _context3.stop();
             }

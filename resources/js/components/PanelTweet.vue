@@ -309,8 +309,14 @@
              * 5分後の時刻でないと入力できないように制限
              */
             async validateTime(args) {
+                console.log('args ====');
+                console.log(args);
                 const timer = args.date + ' ' +args.time;
+                console.log('timer ====');
+                console.log(timer);
                 const info = Date.parse(timer);
+                console.log('info ====');
+                console.log(info);
 
                 // Date形式で5分後の時刻を取得
                 const afterFiveTime = new Date(+new Date() + (5 * 60 * 1000));
@@ -329,6 +335,7 @@
                 this.messageModalText = '';
                 // 5分後の制限
                 const checked = await this.validateTime(this.addForm);
+                console.log('checked 結果');
                 console.log(checked);
                 if (checked) {
                     const response = await axios.post(`/api/tweet/${this.twitter_id}`, this.addForm);
