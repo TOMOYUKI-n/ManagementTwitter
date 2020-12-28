@@ -102,7 +102,7 @@
                                 v-model="addForm.time"
                                 required>
                         </div>
-                        <div class="p-form__button">
+                        <div class="p-form__button p-form__btn--margin">
                             <button type="submit" class="c-button c-button--sp c-button--twitter c-button__form">追加</button>
                         </div>
                     </form>
@@ -148,7 +148,7 @@
                                 required
                             >
                         </div>
-                        <div class="p-form__button">
+                        <div class="p-form__button p-form__btn--margin">
                             <button type="submit" class="c-button c-button--sp c-button--twitter c-button__form">変更</button>
                         </div>
                     </form>
@@ -285,6 +285,8 @@
              * 5分後の時刻でないと入力できないように制限
              */
             async validateTime(args) {
+                this.modalErrorFlg = false;
+                this.messageModalText = '';
                 const timer = args.date + ' ' +args.time;
                 const info = Date.parse(timer);
 
@@ -522,21 +524,4 @@
 
 </script>
 <style lang="scss" scoped>
-input[type=date]{
-    display: block;
-    padding: 0;
-    margin: 0;
-    width: 96%;
-    padding: 2%;
-    box-sizing: border-box;
-    margin-right: 12px;// dateのみ
-}
-input[type=time]{
-    display: block;
-    padding: 0;
-    margin: 0;
-    width: 96%;
-    padding: 2%;
-    box-sizing: border-box;
-}
 </style>
