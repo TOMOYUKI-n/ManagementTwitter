@@ -4406,6 +4406,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -4438,7 +4440,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         tweet: '',
         date: '',
         time: ''
-      }
+      },
+      textInfo: 0,
+      textAfterInfo: 0
     };
   },
   computed: {
@@ -4521,13 +4525,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                _this2.modalErrorFlg = false;
-                _this2.messageModalText = '';
                 timer = args.date + ' ' + args.time;
                 info = Date.parse(timer); // Date形式で5分後の時刻を取得
 
                 afterFiveTime = new Date(+new Date() + 5 * 60 * 1000);
-                afterInfo = Date.parse(afterFiveTime); // 5分以上間を開けているか判定
+                afterInfo = Date.parse(afterFiveTime);
+                _this2.textInfo = info;
+                _this2.textAfterInfo = afterInfo; // 5分以上間を開けているか判定
 
                 return _context2.abrupt("return", info > afterInfo ? true : false);
 
@@ -4552,21 +4556,25 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
-                _context3.next = 2;
+                _this3.modalErrorFlg = false;
+                _this3.messageModalText = ''; // 5分後の制限
+
+                _context3.next = 4;
                 return _this3.validateTime(_this3.addForm);
 
-              case 2:
+              case 4:
                 checked = _context3.sent;
+                console.log(checked);
 
                 if (!checked) {
-                  _context3.next = 15;
+                  _context3.next = 18;
                   break;
                 }
 
-                _context3.next = 6;
+                _context3.next = 9;
                 return axios__WEBPACK_IMPORTED_MODULE_2___default.a.post("/api/tweet/".concat(_this3.twitter_id), _this3.addForm);
 
-              case 6:
+              case 9:
                 response = _context3.sent;
 
                 if (response.status !== 200 || response.data === 500) {
@@ -4576,7 +4584,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 }
 
                 if (!(response.data === 200)) {
-                  _context3.next = 13;
+                  _context3.next = 16;
                   break;
                 }
 
@@ -4584,18 +4592,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 _this3.resetAddForm();
 
-                _context3.next = 13;
+                _context3.next = 16;
                 return _this3.fetchTweets();
 
-              case 13:
-                _context3.next = 17;
+              case 16:
+                _context3.next = 20;
                 break;
 
-              case 15:
+              case 18:
                 _this3.modalErrorFlg = true;
                 _this3.messageModalText = _message__WEBPACK_IMPORTED_MODULE_1__["message"].noFiveMinutesTimer;
 
-              case 17:
+              case 20:
               case "end":
                 return _context3.stop();
             }
@@ -4616,21 +4624,23 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context4.prev = _context4.next) {
               case 0:
-                _context4.next = 2;
+                _this4.modalErrorFlg = false;
+                _this4.messageModalText = '';
+                _context4.next = 4;
                 return _this4.validateTime(_this4.editForm);
 
-              case 2:
+              case 4:
                 checked = _context4.sent;
 
                 if (!checked) {
-                  _context4.next = 14;
+                  _context4.next = 16;
                   break;
                 }
 
-                _context4.next = 6;
+                _context4.next = 8;
                 return axios__WEBPACK_IMPORTED_MODULE_2___default.a.post("/api/tweet/edit/".concat(_this4.twitter_id), _this4.editForm);
 
-              case 6:
+              case 8:
                 response = _context4.sent;
 
                 if (response.status !== 200 || response.data === 500) {
@@ -4641,25 +4651,25 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 }
 
                 if (!(response.data === 200)) {
-                  _context4.next = 12;
+                  _context4.next = 14;
                   break;
                 }
 
                 // 再描画
                 _this4.resetEditForm();
 
-                _context4.next = 12;
+                _context4.next = 14;
                 return _this4.fetchTweets();
 
-              case 12:
-                _context4.next = 16;
+              case 14:
+                _context4.next = 18;
                 break;
 
-              case 14:
+              case 16:
                 _this4.modalErrorFlg = true;
                 _this4.messageModalText = _message__WEBPACK_IMPORTED_MODULE_1__["message"].noFiveMinutesTimer;
 
-              case 16:
+              case 18:
               case "end":
                 return _context4.stop();
             }
@@ -10641,6 +10651,10 @@ var render = function() {
                     })
                   ])
                 ]),
+                _vm._v(" "),
+                _c("div", [_vm._v(_vm._s(_vm.textInfo))]),
+                _vm._v(" "),
+                _c("div", [_vm._v(_vm._s(_vm.textAfterInfo))]),
                 _vm._v(" "),
                 _vm._m(2)
               ]
