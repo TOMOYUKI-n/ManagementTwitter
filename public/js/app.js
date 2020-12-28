@@ -4552,21 +4552,23 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
-                _context3.next = 2;
+                event.preventDefault(); // 5分後の制限
+
+                _context3.next = 3;
                 return _this3.validateTime(_this3.addForm);
 
-              case 2:
+              case 3:
                 checked = _context3.sent;
 
                 if (!checked) {
-                  _context3.next = 15;
+                  _context3.next = 16;
                   break;
                 }
 
-                _context3.next = 6;
+                _context3.next = 7;
                 return axios__WEBPACK_IMPORTED_MODULE_2___default.a.post("/api/tweet/".concat(_this3.twitter_id), _this3.addForm);
 
-              case 6:
+              case 7:
                 response = _context3.sent;
 
                 if (response.status !== 200 || response.data === 500) {
@@ -4576,7 +4578,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 }
 
                 if (!(response.data === 200)) {
-                  _context3.next = 13;
+                  _context3.next = 14;
                   break;
                 }
 
@@ -4584,18 +4586,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 _this3.resetAddForm();
 
-                _context3.next = 13;
+                _context3.next = 14;
                 return _this3.fetchTweets();
 
-              case 13:
-                _context3.next = 17;
+              case 14:
+                _context3.next = 18;
                 break;
 
-              case 15:
+              case 16:
                 _this3.modalErrorFlg = true;
                 _this3.messageModalText = _message__WEBPACK_IMPORTED_MODULE_1__["message"].noFiveMinutesTimer;
 
-              case 17:
+              case 18:
               case "end":
                 return _context3.stop();
             }
@@ -10540,15 +10542,7 @@ var render = function() {
             _vm._v(" "),
             _c(
               "form",
-              {
-                staticClass: "p-form",
-                on: {
-                  submit: function($event) {
-                    $event.preventDefault()
-                    return _vm.addTweet($event)
-                  }
-                }
-              },
+              { staticClass: "p-form", on: { submit: _vm.addTweet } },
               [
                 _c(
                   "label",
@@ -24614,7 +24608,7 @@ var message = {
   needSelectAccount: '「アカウント登録」からTwitterアカウントを選択してください。',
   noAtMark: '@は記入しなくても大丈夫です。',
   noTargetAccount: 'ターゲットアカウントを登録してください。',
-  noFiveMinutesTimer: 'ツイートは現在時刻の５分後以降から可能となります。'
+  noFiveMinutesTimer: '現在の５分後以降を指定してください。'
 };
 
 /***/ }),
