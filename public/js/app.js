@@ -4514,27 +4514,27 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
      */
     validateTime: function validateTime(args) {
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-        var timer, time, info, afterFiveTime, afterInfo;
+        var timer, test, time, info, afterFiveTime, afterInfo;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
                 timer = args.date + ' ' + args.time;
-                time = new Date(new Date(timer)); // const info = Date.parse(time);
-
+                console.log('argsJoinDateTime:'.argsJoinDateTime);
+                test = new Date(timer);
+                console.log('new Date(timer)'.test);
+                time = new Date(new Date(timer));
+                console.log('new Date(new Date(timer))');
+                console.log('argsJoinDateTime:'.time);
                 info = time.getTime();
-                console.log('info===');
-                console.log(info); // Date形式で5分後の時刻を取得
+                console.log('info==='.info); // Date形式で5分後の時刻を取得
 
-                afterFiveTime = new Date(+new Date() + 5 * 60 * 1000); // const afterInfo = Date.parse(afterFiveTime);
-
-                afterInfo = afterFiveTime.getTime();
-                console.log('afterInfo===');
-                console.log(afterInfo); // 5分以上間を開けているか判定
+                afterFiveTime = new Date(+new Date() + 5 * 60 * 1000);
+                afterInfo = afterFiveTime.getTime(); // 5分以上間を開けているか判定
 
                 return _context2.abrupt("return", info > afterInfo ? true : false);
 
-              case 10:
+              case 12:
               case "end":
                 return _context2.stop();
             }
