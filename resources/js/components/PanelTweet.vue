@@ -71,8 +71,9 @@
                     <div class="p-modal__cancel u-color__bg--white" @click="closeModal">
                         <i class="c-icon--gray p-modal__icon fas fa-times"></i>
                     </div>
+                    <p v-show="modalErrorFlg" class="p-panel__error">{{ messageModalText }}</p>
                     <form class="p-form" @submit.prevent="addTweet">
-                        <p v-show="modalErrorFlg" class="p-panel__error">{{ messageModalText }}</p>
+                        
                         <label class="p-form__label" for="add-tweet">
                             ツイート内容 {{addTextCount}}/140 *必須
                         </label>
@@ -96,7 +97,7 @@
                                 required>
                             <input
                                 type="time"
-                                class="p-form__date"
+                                class="p-form__time"
                                 :min="setAfterFiveTime()"
                                 v-model="addForm.time"
                                 required>
@@ -113,8 +114,9 @@
                     <div class="p-modal__cancel u-color__bg--white" @click="editModal = !editModal">
                         <i class="c-icon--gray p-modal__icon fas fa-times"></i>
                     </div>
+                    <p v-show="modalErrorFlg" class="p-panel__error">{{ messageModalText }}</p>
                     <form class="p-form" @submit.prevent="editTweet">
-                        <p v-show="modalErrorFlg" class="p-panel__error">{{ messageModalText }}</p>
+                        
                         <label class="p-form__label" for="edit-tweet">
                             ツイート内容 {{editTextCount}}/140 *必須
                         </label>
@@ -141,7 +143,7 @@
                             >
                             <input
                                 type="time"
-                                class="p-form__date"
+                                class="p-form__time"
                                 v-model="editForm.time"
                                 required
                             >
@@ -520,10 +522,21 @@
 
 </script>
 <style lang="scss" scoped>
-input[type=date]::-webkit-clear-button {
-  -webkit-appearance: none;
+input[type=date]{
+    display: block;
+    padding: 0;
+    margin: 0;
+    width: 96%;
+    padding: 2%;
+    box-sizing: border-box;
+    margin-right: 12px;// dateのみ
 }
-input[type=time]::-webkit-clear-button {
-  -webkit-appearance: none;
+input[type=time]{
+    display: block;
+    padding: 0;
+    margin: 0;
+    width: 96%;
+    padding: 2%;
+    box-sizing: border-box;
 }
 </style>
