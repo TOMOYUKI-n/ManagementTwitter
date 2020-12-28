@@ -113,6 +113,8 @@
                                 >
                             </div>
                         </div>
+                        <div>{{ textInfo }}</div>
+                        <div>{{ textAfterInfo }}</div>
                         <div class="p-form__button p-form__btn--margin">
                             <button type="submit" class="c-button c-button--sp c-button--add--tweet c-button__form">追加</button>
                         </div>
@@ -254,6 +256,8 @@
                     date: '',
                     time: '',
                 },
+                textInfo: 0,
+                textAfterInfo: 0,
             }
         },
         computed: {
@@ -305,14 +309,14 @@
              * 5分後の時刻でないと入力できないように制限
              */
             async validateTime(args) {
-                this.modalErrorFlg = false;
-                this.messageModalText = '';
                 const timer = args.date + ' ' +args.time;
                 const info = Date.parse(timer);
 
                 // Date形式で5分後の時刻を取得
                 const afterFiveTime = new Date(+new Date() + (5 * 60 * 1000));
                 const afterInfo = Date.parse(afterFiveTime);
+                this.textInfo = info;
+                this.textAfterInfo = afterInfo;
 
                 // 5分以上間を開けているか判定
                 return info > afterInfo ? true:false;
@@ -321,9 +325,11 @@
              * APIを使用して自動ツイートを新規登録する
              */
             async addTweet() {
-                // event.preventDefault();
+                this.modalErrorFlg = false;
+                this.messageModalText = '';
                 // 5分後の制限
                 const checked = await this.validateTime(this.addForm);
+                console.log(checked);
                 if (checked) {
                     const response = await axios.post(`/api/tweet/${this.twitter_id}`, this.addForm);
                     if (response.status !== 200 || response.data === 500) {
@@ -348,6 +354,8 @@
              * APIを使用して自動ツイートを編集する
              */
             async editTweet() {
+                this.modalErrorFlg = false;
+                this.messageModalText = '';
                 const checked = await this.validateTime(this.editForm);
                 if (checked) {
                     const response = await axios.post(`/api/tweet/edit/${this.twitter_id}`, this.editForm);
