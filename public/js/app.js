@@ -4520,13 +4520,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context2.prev = _context2.next) {
               case 0:
                 timer = args.date + ' ' + args.time;
-                time = new Date(new Date(timer));
-                info = Date.parse(time);
+                time = new Date(new Date(timer)); // const info = Date.parse(time);
+
+                info = time.getTime();
                 console.log('info===');
                 console.log(info); // Date形式で5分後の時刻を取得
 
-                afterFiveTime = new Date(+new Date() + 5 * 60 * 1000);
-                afterInfo = Date.parse(afterFiveTime);
+                afterFiveTime = new Date(+new Date() + 5 * 60 * 1000); // const afterInfo = Date.parse(afterFiveTime);
+
+                afterInfo = afterFiveTime.getTime();
                 console.log('afterInfo===');
                 console.log(afterInfo); // 5分以上間を開けているか判定
 
