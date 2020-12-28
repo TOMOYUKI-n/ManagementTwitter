@@ -4520,18 +4520,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context2.prev = _context2.next) {
               case 0:
                 timer = args.date + ' ' + args.time;
-                console.log(timer);
-                time = new Date(timer);
-                console.log(time);
+                time = new Date(new Date(timer));
                 info = Date.parse(time);
+                console.log('info===');
                 console.log(info); // Date形式で5分後の時刻を取得
 
                 afterFiveTime = new Date(+new Date() + 5 * 60 * 1000);
-                afterInfo = Date.parse(afterFiveTime); // 5分以上間を開けているか判定
+                afterInfo = Date.parse(afterFiveTime);
+                console.log('afterInfo===');
+                console.log(afterInfo); // 5分以上間を開けているか判定
 
                 return _context2.abrupt("return", info > afterInfo ? true : false);
 
-              case 9:
+              case 10:
               case "end":
                 return _context2.stop();
             }

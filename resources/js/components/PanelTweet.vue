@@ -306,15 +306,16 @@
              */
             async validateTime(args) {
                 const timer = args.date + ' ' + args.time;
-                console.log(timer);
-                const time = new Date(timer);
-                console.log(time);
+                const time = new Date(new Date(timer));
                 const info = Date.parse(time);
+                console.log('info===');
                 console.log(info);
 
                 // Date形式で5分後の時刻を取得
                 const afterFiveTime = new Date(+new Date() + (5 * 60 * 1000));
                 const afterInfo = Date.parse(afterFiveTime);
+                console.log('afterInfo===');
+                console.log(afterInfo);
 
                 // 5分以上間を開けているか判定
                 return info > afterInfo ? true:false;
