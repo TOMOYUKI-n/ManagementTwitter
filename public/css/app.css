@@ -1636,20 +1636,10 @@ img {
   border: 1px solid #3335;
   border-radius: 4px;
 }
-@media screen and (max-width: 960px) {
-  .p-form__date {
-    width: 100% !important;
-  }
-}
 .p-form__time {
   box-sizing: border-box;
   border: 1px solid #3335;
   border-radius: 4px;
-}
-@media screen and (max-width: 960px) {
-  .p-form__time {
-    width: 100% !important;
-  }
 }
 .p-form__button {
   text-align: right;
