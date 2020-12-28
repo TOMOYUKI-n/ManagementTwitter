@@ -12,6 +12,7 @@
     &__datetime--label {
         width: 30%;
         padding: 2% 0;
+        margin-bottom: 0px;
     }
   
     &__item {
@@ -66,6 +67,7 @@
     // }
     &__date--wrap {
         display: flex;
+        align-items: center;
         // justify-content: space-between;
     }
   
@@ -141,6 +143,7 @@ input[type=date]{
     width: 96%;
     // width: 60%;
     padding: 2%;
+    height: 32px;
     box-sizing: border-box;
     // margin-right: 12px;// dateのみ
     border: 1px solid $color_black5;
@@ -158,6 +161,7 @@ input[type=time]{
     width: 96%;
     // width: 60%;
     padding: 2%;
+    height: 32px;
     box-sizing: border-box;
     border: 1px solid $color_black5;
     border-radius: 4px;
