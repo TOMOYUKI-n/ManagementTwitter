@@ -4406,8 +4406,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -4440,9 +4438,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         tweet: '',
         date: '',
         time: ''
-      },
-      textInfo: 0,
-      textAfterInfo: 0
+      }
     };
   },
   computed: {
@@ -4517,16 +4513,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
      * 5分後の時刻でないと入力できないように制限
      */
     validateTime: function validateTime(args) {
-      var _this2 = this;
-
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
         var timer, info, afterFiveTime, afterInfo;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                console.log('args ====');
-                console.log(args);
                 timer = args.date + ' ' + args.time;
                 console.log('timer ====');
                 console.log(timer);
@@ -4535,9 +4527,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 console.log(info); // Date形式で5分後の時刻を取得
 
                 afterFiveTime = new Date(+new Date() + 5 * 60 * 1000);
+                console.log('afterFiveTime ====');
+                console.log(afterFiveTime);
                 afterInfo = Date.parse(afterFiveTime);
-                _this2.textInfo = info;
-                _this2.textAfterInfo = afterInfo; // 5分以上間を開けているか判定
+                console.log('afterInfo ====');
+                console.log(afterInfo); // 5分以上間を開けているか判定
 
                 return _context2.abrupt("return", info > afterInfo ? true : false);
 
@@ -4554,7 +4548,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
      * APIを使用して自動ツイートを新規登録する
      */
     addTweet: function addTweet() {
-      var _this3 = this;
+      var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
         var checked, response;
@@ -4562,11 +4556,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
-                _this3.modalErrorFlg = false;
-                _this3.messageModalText = ''; // 5分後の制限
+                _this2.modalErrorFlg = false;
+                _this2.messageModalText = ''; // 5分後の制限
 
                 _context3.next = 4;
-                return _this3.validateTime(_this3.addForm);
+                return _this2.validateTime(_this2.addForm);
 
               case 4:
                 checked = _context3.sent;
@@ -4579,15 +4573,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 }
 
                 _context3.next = 10;
-                return axios__WEBPACK_IMPORTED_MODULE_2___default.a.post("/api/tweet/".concat(_this3.twitter_id), _this3.addForm);
+                return axios__WEBPACK_IMPORTED_MODULE_2___default.a.post("/api/tweet/".concat(_this2.twitter_id), _this2.addForm);
 
               case 10:
                 response = _context3.sent;
 
                 if (response.status !== 200 || response.data === 500) {
-                  _this3.newModal = false;
-                  _this3.errorFlg = true;
-                  _this3.messageText = _message__WEBPACK_IMPORTED_MODULE_1__["message"].notUpdate;
+                  _this2.newModal = false;
+                  _this2.errorFlg = true;
+                  _this2.messageText = _message__WEBPACK_IMPORTED_MODULE_1__["message"].notUpdate;
                 }
 
                 if (!(response.data === 200)) {
@@ -4595,20 +4589,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   break;
                 }
 
-                _this3.newModal = false; // 再描画
+                _this2.newModal = false; // 再描画
 
-                _this3.resetAddForm();
+                _this2.resetAddForm();
 
                 _context3.next = 17;
-                return _this3.fetchTweets();
+                return _this2.fetchTweets();
 
               case 17:
                 _context3.next = 21;
                 break;
 
               case 19:
-                _this3.modalErrorFlg = true;
-                _this3.messageModalText = _message__WEBPACK_IMPORTED_MODULE_1__["message"].noFiveMinutesTimer;
+                _this2.modalErrorFlg = true;
+                _this2.messageModalText = _message__WEBPACK_IMPORTED_MODULE_1__["message"].noFiveMinutesTimer;
 
               case 21:
               case "end":
@@ -4623,7 +4617,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
      * APIを使用して自動ツイートを編集する
      */
     editTweet: function editTweet() {
-      var _this4 = this;
+      var _this3 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
         var checked, response;
@@ -4631,10 +4625,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context4.prev = _context4.next) {
               case 0:
-                _this4.modalErrorFlg = false;
-                _this4.messageModalText = '';
+                _this3.modalErrorFlg = false;
+                _this3.messageModalText = '';
                 _context4.next = 4;
-                return _this4.validateTime(_this4.editForm);
+                return _this3.validateTime(_this3.editForm);
 
               case 4:
                 checked = _context4.sent;
@@ -4645,16 +4639,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 }
 
                 _context4.next = 8;
-                return axios__WEBPACK_IMPORTED_MODULE_2___default.a.post("/api/tweet/edit/".concat(_this4.twitter_id), _this4.editForm);
+                return axios__WEBPACK_IMPORTED_MODULE_2___default.a.post("/api/tweet/edit/".concat(_this3.twitter_id), _this3.editForm);
 
               case 8:
                 response = _context4.sent;
 
                 if (response.status !== 200 || response.data === 500) {
-                  _this4.errorFlg = true;
-                  _this4.messageText = _message__WEBPACK_IMPORTED_MODULE_1__["message"].notGetData;
+                  _this3.errorFlg = true;
+                  _this3.messageText = _message__WEBPACK_IMPORTED_MODULE_1__["message"].notGetData;
 
-                  _this4.resetEditForm();
+                  _this3.resetEditForm();
                 }
 
                 if (!(response.data === 200)) {
@@ -4663,18 +4657,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 }
 
                 // 再描画
-                _this4.resetEditForm();
+                _this3.resetEditForm();
 
                 _context4.next = 14;
-                return _this4.fetchTweets();
+                return _this3.fetchTweets();
 
               case 14:
                 _context4.next = 18;
                 break;
 
               case 16:
-                _this4.modalErrorFlg = true;
-                _this4.messageModalText = _message__WEBPACK_IMPORTED_MODULE_1__["message"].noFiveMinutesTimer;
+                _this3.modalErrorFlg = true;
+                _this3.messageModalText = _message__WEBPACK_IMPORTED_MODULE_1__["message"].noFiveMinutesTimer;
 
               case 18:
               case "end":
@@ -4711,7 +4705,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
      * APIを使用して自動ツイートを削除する
      */
     removeTweet: function removeTweet() {
-      var _this5 = this;
+      var _this4 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
         var response;
@@ -4720,15 +4714,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context5.prev = _context5.next) {
               case 0:
                 _context5.next = 2;
-                return axios__WEBPACK_IMPORTED_MODULE_2___default.a["delete"]("/api/tweet/".concat(_this5.deleteItem.id));
+                return axios__WEBPACK_IMPORTED_MODULE_2___default.a["delete"]("/api/tweet/".concat(_this4.deleteItem.id));
 
               case 2:
                 response = _context5.sent;
 
                 if (response.status !== 200 || response.data === 500) {
-                  _this5.errorFlg = true;
-                  _this5.messageText = _message__WEBPACK_IMPORTED_MODULE_1__["message"].notGetData;
-                  _this5.deleteOn = false;
+                  _this4.errorFlg = true;
+                  _this4.messageText = _message__WEBPACK_IMPORTED_MODULE_1__["message"].notGetData;
+                  _this4.deleteOn = false;
                 }
 
                 if (!(response.data === 200)) {
@@ -4736,13 +4730,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   break;
                 }
 
-                _this5.deleteOn = false;
+                _this4.deleteOn = false;
 
-                _this5.tweets.splice(_this5.deleteIndex, 1); // 再描画
+                _this4.tweets.splice(_this4.deleteIndex, 1); // 再描画
 
 
                 _context5.next = 9;
-                return _this5.fetchTweets();
+                return _this4.fetchTweets();
 
               case 9:
               case "end":
@@ -4809,7 +4803,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
      * APIを使用して自動ツイートのサービスステータスを取得する
      */
     fetchServiceStatus: function fetchServiceStatus() {
-      var _this6 = this;
+      var _this5 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee6() {
         var response;
@@ -4818,18 +4812,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context6.prev = _context6.next) {
               case 0:
                 _context6.next = 2;
-                return axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("/api/system/status/".concat(_this6.twitter_id));
+                return axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("/api/system/status/".concat(_this5.twitter_id));
 
               case 2:
                 response = _context6.sent;
 
                 if (response.status !== 200) {
-                  _this6.errorFlg = true;
-                  _this6.messageText = _message__WEBPACK_IMPORTED_MODULE_1__["message"].notGetData;
+                  _this5.errorFlg = true;
+                  _this5.messageText = _message__WEBPACK_IMPORTED_MODULE_1__["message"].notGetData;
                 } else {
-                  _this6.serviceSwitch = false;
-                  _this6.serviceStatus = response.data.auto_tweet_status;
-                  _this6.serviceStatusLabel = response.data.status_labels.auto_tweet;
+                  _this5.serviceSwitch = false;
+                  _this5.serviceStatus = response.data.auto_tweet_status;
+                  _this5.serviceStatusLabel = response.data.status_labels.auto_tweet;
                 }
 
               case 4:
@@ -4845,7 +4839,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
      * 自動ツイートサービスを稼働状態に変更する
      */
     runTweetService: function runTweetService() {
-      var _this7 = this;
+      var _this6 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee7() {
         var serviceType, data, response;
@@ -4856,7 +4850,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 serviceType = 4;
                 data = {
                   type: serviceType,
-                  twitter_id: _this7.twitter_id
+                  twitter_id: _this6.twitter_id
                 };
                 _context7.next = 4;
                 return axios__WEBPACK_IMPORTED_MODULE_2___default.a.post('/api/system/running', data);
@@ -4869,15 +4863,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   break;
                 }
 
-                _this7.errorFlg = true;
-                _this7.messageText = _message__WEBPACK_IMPORTED_MODULE_1__["message"].notUpdate;
-                _this7.serviceSwitch = false;
+                _this6.errorFlg = true;
+                _this6.messageText = _message__WEBPACK_IMPORTED_MODULE_1__["message"].notUpdate;
+                _this6.serviceSwitch = false;
                 _context7.next = 13;
                 break;
 
               case 11:
                 _context7.next = 13;
-                return _this7.fetchServiceStatus();
+                return _this6.fetchServiceStatus();
 
               case 13:
               case "end":
@@ -4892,7 +4886,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
      * 自動ツイートサービスを停止状態にする
      */
     stopTweetService: function stopTweetService() {
-      var _this8 = this;
+      var _this7 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee8() {
         var serviceType, data, response;
@@ -4903,7 +4897,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 serviceType = 4;
                 data = {
                   type: serviceType,
-                  twitter_id: _this8.twitter_id
+                  twitter_id: _this7.twitter_id
                 };
                 _context8.next = 4;
                 return axios__WEBPACK_IMPORTED_MODULE_2___default.a.post('/api/system/stop', data);
@@ -4916,15 +4910,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   break;
                 }
 
-                _this8.errorFlg = true;
-                _this8.messageText = _message__WEBPACK_IMPORTED_MODULE_1__["message"].notUpdate;
-                _this8.serviceSwitch = false;
+                _this7.errorFlg = true;
+                _this7.messageText = _message__WEBPACK_IMPORTED_MODULE_1__["message"].notUpdate;
+                _this7.serviceSwitch = false;
                 _context8.next = 13;
                 break;
 
               case 11:
                 _context8.next = 13;
-                return _this8.fetchServiceStatus();
+                return _this7.fetchServiceStatus();
 
               case 13:
               case "end":
@@ -4954,7 +4948,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
      * localstorageから現在使用しているtwitter_userのidを取得する
      */
     getCurrentTwitterId: function getCurrentTwitterId() {
-      var _this9 = this;
+      var _this8 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee9() {
         var storage;
@@ -4965,11 +4959,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 storage = JSON.parse(localStorage.getItem('loginTwitterAccount'));
 
                 if (storage) {
-                  _this9.twitter_id = storage.id;
+                  _this8.twitter_id = storage.id;
                 } else {
-                  _this9.errorFlg = true;
-                  _this9.nothingAccountFlg = true;
-                  _this9.messageText = _message__WEBPACK_IMPORTED_MODULE_1__["message"].needSelectAccount;
+                  _this8.errorFlg = true;
+                  _this8.nothingAccountFlg = true;
+                  _this8.messageText = _message__WEBPACK_IMPORTED_MODULE_1__["message"].needSelectAccount;
                 }
 
               case 2:
@@ -4988,7 +4982,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }
   },
   created: function created() {
-    var _this10 = this;
+    var _this9 = this;
 
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee10() {
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee10$(_context10) {
@@ -4996,19 +4990,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           switch (_context10.prev = _context10.next) {
             case 0:
               _context10.next = 2;
-              return _this10.setCurrentPage();
+              return _this9.setCurrentPage();
 
             case 2:
               _context10.next = 4;
-              return _this10.getCurrentTwitterId();
+              return _this9.getCurrentTwitterId();
 
             case 4:
               _context10.next = 6;
-              return _this10.fetchServiceStatus();
+              return _this9.fetchServiceStatus();
 
             case 6:
               _context10.next = 8;
-              return _this10.fetchTweets();
+              return _this9.fetchTweets();
 
             case 8:
             case "end":
@@ -10658,10 +10652,6 @@ var render = function() {
                     })
                   ])
                 ]),
-                _vm._v(" "),
-                _c("div", [_vm._v(_vm._s(_vm.textInfo))]),
-                _vm._v(" "),
-                _c("div", [_vm._v(_vm._s(_vm.textAfterInfo))]),
                 _vm._v(" "),
                 _vm._m(2)
               ]
