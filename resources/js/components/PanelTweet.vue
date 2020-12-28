@@ -113,8 +113,8 @@
                                 >
                             </div>
                         </div>
-                        <div >
-                            <button type="submit" >追加</button>
+                        <div class="p-form__button p-form__btn--margin">
+                            <button type="submit" class="c-button c-button--sp c-button--add--tweet c-button__form">追加</button>
                         </div>
                     </form>
                 </div>
@@ -545,4 +545,7 @@
 
 </script>
 <style lang="scss" scoped>
+.input{
+	font-size:16px;
+}
 </style>

@@ -1640,7 +1640,7 @@ img {
   width: 30%;
 }
 .p-form__item--textarea {
-  height: 150px;
+  height: 130px;
   letter-spacing: 0.05em;
 }
 .p-form__date--wrap {
@@ -1714,7 +1714,6 @@ input[type=date] {
   margin: 0;
   width: 96%;
   padding: 2%;
-  height: 32px;
   box-sizing: border-box;
   border: 1px solid #3335;
   border-radius: 4px;
@@ -1732,7 +1731,6 @@ input[type=time] {
   margin: 0;
   width: 96%;
   padding: 2%;
-  height: 32px;
   box-sizing: border-box;
   border: 1px solid #3335;
   border-radius: 4px;
