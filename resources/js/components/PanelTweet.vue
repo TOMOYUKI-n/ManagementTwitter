@@ -72,7 +72,7 @@
                         <i class="c-icon--gray p-modal__icon fas fa-times"></i>
                     </div>
                     <p v-show="modalErrorFlg" class="p-panel__error">{{ messageModalText }}</p>
-                    <form class="p-form" @submit="addTweet">
+                    <form class="p-form" @submit.prevent="addTweet">
                         
                         <label class="p-form__label" for="add-tweet">
                             ツイート内容 {{addTextCount}}/140 *必須
@@ -321,7 +321,7 @@
              * APIを使用して自動ツイートを新規登録する
              */
             async addTweet() {
-                event.preventDefault();
+                // event.preventDefault();
                 // 5分後の制限
                 const checked = await this.validateTime(this.addForm);
                 if (checked) {
@@ -545,7 +545,4 @@
 
 </script>
 <style lang="scss" scoped>
-.input{
-	font-size:16px;
-}
 </style>

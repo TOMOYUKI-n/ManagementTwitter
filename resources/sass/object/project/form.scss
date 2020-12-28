@@ -16,7 +16,7 @@
     }
   
     &__item {
-        font-size: $font-size_s;
+        font-size: $font-size_m;
         width: 100%;
         height: $space_10;
         font-weight: 100;
@@ -27,7 +27,7 @@
         border: 1px solid $color_black5;
         border-radius: 4px;
         @include mq() {
-              font-size: $font-size_s;
+              font-size: $font-size_m;
               line-height: $space_5;
               margin-bottom: $space_4;
         }
@@ -148,6 +148,8 @@ input[type=date]{
     // margin-right: 12px;// dateのみ
     border: 1px solid $color_black5;
     border-radius: 4px;
+    height: 18px; 
+    line-height: 18px;
     @include mq() {
         margin-left: 12px;
         width: inherit;
@@ -165,6 +167,8 @@ input[type=time]{
     box-sizing: border-box;
     border: 1px solid $color_black5;
     border-radius: 4px;
+    height: 18px; 
+    line-height: 18px;
     @include mq() {
         margin-left: 12px;
         width: inherit;

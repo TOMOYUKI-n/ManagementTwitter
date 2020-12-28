@@ -25,7 +25,7 @@
         </p>
         <!-- 切り替え -->
         <div class="p-board__mp-4" v-if="Object.keys(this.loginTwitterUser).length === 0">
-            <div class="p-board__top">{{ authData }}様</div>
+            <div class="p-board__top">-------</div>
             <div class="p-board__plate">
                 <div class="p-board__inner">
                     <div class="p-board__mr-2 p-board__text-small">フォロー</div>
@@ -137,14 +137,8 @@
                             this.messageText = message.notGetData;
                         }
                     }
-                    else {
-                        const storage = await JSON.parse(localStorage.getItem('authData'));
-                        this.authData = storage.name;
-                    }
                 }else{
                     localStorage.removeItem('loginTwitterAccount');
-                    const storage = await JSON.parse(localStorage.getItem('authData'));
-                    this.authData = storage.name;
                 }
             },
         },

@@ -4552,23 +4552,21 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
-                event.preventDefault(); // 5分後の制限
-
-                _context3.next = 3;
+                _context3.next = 2;
                 return _this3.validateTime(_this3.addForm);
 
-              case 3:
+              case 2:
                 checked = _context3.sent;
 
                 if (!checked) {
-                  _context3.next = 16;
+                  _context3.next = 15;
                   break;
                 }
 
-                _context3.next = 7;
+                _context3.next = 6;
                 return axios__WEBPACK_IMPORTED_MODULE_2___default.a.post("/api/tweet/".concat(_this3.twitter_id), _this3.addForm);
 
-              case 7:
+              case 6:
                 response = _context3.sent;
 
                 if (response.status !== 200 || response.data === 500) {
@@ -4578,7 +4576,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 }
 
                 if (!(response.data === 200)) {
-                  _context3.next = 14;
+                  _context3.next = 13;
                   break;
                 }
 
@@ -4586,18 +4584,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 _this3.resetAddForm();
 
-                _context3.next = 14;
+                _context3.next = 13;
                 return _this3.fetchTweets();
 
-              case 14:
-                _context3.next = 18;
+              case 13:
+                _context3.next = 17;
                 break;
 
-              case 16:
+              case 15:
                 _this3.modalErrorFlg = true;
                 _this3.messageModalText = _message__WEBPACK_IMPORTED_MODULE_1__["message"].noFiveMinutesTimer;
 
-              case 18:
+              case 17:
               case "end":
                 return _context3.stop();
             }
@@ -5505,14 +5503,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this3 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
-        var storage, response, _storage, _storage2;
-
+        var storage, response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
                 if (!_this3.authLoginCheck) {
-                  _context3.next = 17;
+                  _context3.next = 11;
                   break;
                 }
 
@@ -5523,7 +5520,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 storage = _context3.sent;
 
                 if (!storage) {
-                  _context3.next = 11;
+                  _context3.next = 9;
                   break;
                 }
 
@@ -5540,31 +5537,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   _this3.messageText = _message__WEBPACK_IMPORTED_MODULE_2__["message"].notGetData;
                 }
 
-                _context3.next = 15;
+              case 9:
+                _context3.next = 12;
                 break;
 
               case 11:
-                _context3.next = 13;
-                return JSON.parse(localStorage.getItem('authData'));
-
-              case 13:
-                _storage = _context3.sent;
-                _this3.authData = _storage.name;
-
-              case 15:
-                _context3.next = 22;
-                break;
-
-              case 17:
                 localStorage.removeItem('loginTwitterAccount');
-                _context3.next = 20;
-                return JSON.parse(localStorage.getItem('authData'));
 
-              case 20:
-                _storage2 = _context3.sent;
-                _this3.authData = _storage2.name;
-
-              case 22:
+              case 12:
               case "end":
                 return _context3.stop();
             }
@@ -5901,25 +5881,6 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 // module
 exports.push([module.i, ".running[data-v-2381273a] {\n  border-color: #5cb85c;\n  background: #5cb85c;\n}\n.stopping[data-v-2381273a] {\n  border-color: #EF5350;\n  background: #EF5350;\n}", ""]);
-
-// exports
-
-
-/***/ }),
-
-/***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/PanelTweet.vue?vue&type=style&index=0&id=59b46cf8&lang=scss&scoped=true&":
-/*!**********************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/sass-loader/lib/loader.js??ref--7-3!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/PanelTweet.vue?vue&type=style&index=0&id=59b46cf8&lang=scss&scoped=true& ***!
-  \**********************************************************************************************************************************************************************************************************************************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
-// imports
-
-
-// module
-exports.push([module.i, ".input[data-v-59b46cf8] {\n  font-size: 16px;\n}", ""]);
 
 // exports
 
@@ -7204,36 +7165,6 @@ if(false) {}
 
 
 var content = __webpack_require__(/*! !../../../node_modules/css-loader!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--7-2!../../../node_modules/sass-loader/lib/loader.js??ref--7-3!../../../node_modules/vue-loader/lib??vue-loader-options!./PanelFollow.vue?vue&type=style&index=0&id=2381273a&lang=scss&scoped=true& */ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/PanelFollow.vue?vue&type=style&index=0&id=2381273a&lang=scss&scoped=true&");
-
-if(typeof content === 'string') content = [[module.i, content, '']];
-
-var transform;
-var insertInto;
-
-
-
-var options = {"hmr":true}
-
-options.transform = transform
-options.insertInto = undefined;
-
-var update = __webpack_require__(/*! ../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
-
-if(content.locals) module.exports = content.locals;
-
-if(false) {}
-
-/***/ }),
-
-/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/PanelTweet.vue?vue&type=style&index=0&id=59b46cf8&lang=scss&scoped=true&":
-/*!**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/style-loader!./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/sass-loader/lib/loader.js??ref--7-3!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/PanelTweet.vue?vue&type=style&index=0&id=59b46cf8&lang=scss&scoped=true& ***!
-  \**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-
-var content = __webpack_require__(/*! !../../../node_modules/css-loader!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--7-2!../../../node_modules/sass-loader/lib/loader.js??ref--7-3!../../../node_modules/vue-loader/lib??vue-loader-options!./PanelTweet.vue?vue&type=style&index=0&id=59b46cf8&lang=scss&scoped=true& */ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/PanelTweet.vue?vue&type=style&index=0&id=59b46cf8&lang=scss&scoped=true&");
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -10591,7 +10522,15 @@ var render = function() {
             _vm._v(" "),
             _c(
               "form",
-              { staticClass: "p-form", on: { submit: _vm.addTweet } },
+              {
+                staticClass: "p-form",
+                on: {
+                  submit: function($event) {
+                    $event.preventDefault()
+                    return _vm.addTweet($event)
+                  }
+                }
+              },
               [
                 _c(
                   "label",
@@ -11435,9 +11374,7 @@ var render = function() {
       _vm._v(" "),
       Object.keys(this.loginTwitterUser).length === 0
         ? _c("div", { staticClass: "p-board__mp-4" }, [
-            _c("div", { staticClass: "p-board__top" }, [
-              _vm._v(_vm._s(_vm.authData) + "様")
-            ]),
+            _c("div", { staticClass: "p-board__top" }, [_vm._v("-------")]),
             _vm._v(" "),
             _vm._m(0)
           ])
@@ -24373,9 +24310,7 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _PanelTweet_vue_vue_type_template_id_59b46cf8_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PanelTweet.vue?vue&type=template&id=59b46cf8&scoped=true& */ "./resources/js/components/PanelTweet.vue?vue&type=template&id=59b46cf8&scoped=true&");
 /* harmony import */ var _PanelTweet_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./PanelTweet.vue?vue&type=script&lang=js& */ "./resources/js/components/PanelTweet.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _PanelTweet_vue_vue_type_style_index_0_id_59b46cf8_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./PanelTweet.vue?vue&type=style&index=0&id=59b46cf8&lang=scss&scoped=true& */ "./resources/js/components/PanelTweet.vue?vue&type=style&index=0&id=59b46cf8&lang=scss&scoped=true&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -24383,7 +24318,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /* normalize component */
 
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
   _PanelTweet_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
   _PanelTweet_vue_vue_type_template_id_59b46cf8_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
   _PanelTweet_vue_vue_type_template_id_59b46cf8_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
@@ -24412,22 +24347,6 @@ component.options.__file = "resources/js/components/PanelTweet.vue"
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PanelTweet_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./PanelTweet.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/PanelTweet.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PanelTweet_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/js/components/PanelTweet.vue?vue&type=style&index=0&id=59b46cf8&lang=scss&scoped=true&":
-/*!**********************************************************************************************************!*\
-  !*** ./resources/js/components/PanelTweet.vue?vue&type=style&index=0&id=59b46cf8&lang=scss&scoped=true& ***!
-  \**********************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_lib_loader_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_PanelTweet_vue_vue_type_style_index_0_id_59b46cf8_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader!../../../node_modules/css-loader!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--7-2!../../../node_modules/sass-loader/lib/loader.js??ref--7-3!../../../node_modules/vue-loader/lib??vue-loader-options!./PanelTweet.vue?vue&type=style&index=0&id=59b46cf8&lang=scss&scoped=true& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/PanelTweet.vue?vue&type=style&index=0&id=59b46cf8&lang=scss&scoped=true&");
-/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_lib_loader_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_PanelTweet_vue_vue_type_style_index_0_id_59b46cf8_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_lib_loader_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_PanelTweet_vue_vue_type_style_index_0_id_59b46cf8_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_lib_loader_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_PanelTweet_vue_vue_type_style_index_0_id_59b46cf8_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_lib_loader_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_PanelTweet_vue_vue_type_style_index_0_id_59b46cf8_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-
 
 /***/ }),
 
