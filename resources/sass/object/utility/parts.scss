@@ -149,11 +149,11 @@
 
 // モーダルでのパーツなど
 .u-display__flex--left{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+
     @include mq() {
-        display: block;
+        // display: flex;
+        // justify-content: space-between;
+        // align-items: center;
     }
 }
 
