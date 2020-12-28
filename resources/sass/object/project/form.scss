@@ -49,7 +49,7 @@
         border: 1px solid $color_black5;
         border-radius: 4px;
         @include mq() {
-            // width: 100% !important;
+            width: 100% !important;
         }
     }
     &__time {
@@ -57,7 +57,7 @@
         border: 1px solid $color_black5;
         border-radius: 4px;
         @include mq() {
-            // width: 100% !important;
+            width: 100% !important;
         }
     }
   
@@ -68,6 +68,10 @@
             text-align: center;
             width: 100%;
         }
+    }
+
+    &__btn--margin {
+        margin-top: 12px;
     }
   
     &__select {
@@ -119,5 +123,29 @@
         border: 1px solid $color-danger;
         border-radius: 4px;
         list-style: none;
+    }
+}
+// 日付
+input[type=date]{
+    display: block;
+    padding: 0;
+    margin: 0;
+    width: 96%;
+    padding: 2%;
+    box-sizing: border-box;
+    margin-right: 12px;// dateのみ
+    @include mq() {
+        width: 100% !important;
+    }
+}
+input[type=time]{
+    display: block;
+    padding: 0;
+    margin: 0;
+    width: 96%;
+    padding: 2%;
+    box-sizing: border-box;
+    @include mq() {
+        width: 100% !important;
     }
 }
