@@ -66,7 +66,7 @@
     // }
     &__date--wrap {
         display: flex;
-        justify-content: space-between;
+        // justify-content: space-between;
     }
   
     &__button {
@@ -138,14 +138,16 @@ input[type=date]{
     display: block;
     padding: 0;
     margin: 0;
-    // width: 96%;
-    width: 60%;
+    width: 96%;
+    // width: 60%;
     padding: 2%;
     box-sizing: border-box;
     // margin-right: 12px;// dateのみ
     border: 1px solid $color_black5;
     border-radius: 4px;
     @include mq() {
+        margin-left: 12px;
+        width: inherit;
         // width: 100% !important;
     }
 }
@@ -153,13 +155,15 @@ input[type=time]{
     display: block;
     padding: 0;
     margin: 0;
-    // width: 96%;
-    width: 60%;
+    width: 96%;
+    // width: 60%;
     padding: 2%;
     box-sizing: border-box;
     border: 1px solid $color_black5;
     border-radius: 4px;
     @include mq() {
+        margin-left: 12px;
+        width: inherit;
         // width: 100% !important;
     }
 }

@@ -1637,7 +1637,6 @@ img {
 }
 .p-form__date--wrap {
   display: flex;
-  justify-content: space-between;
 }
 .p-form__button {
   text-align: right;
@@ -1704,22 +1703,36 @@ input[type=date] {
   display: block;
   padding: 0;
   margin: 0;
-  width: 60%;
+  width: 96%;
   padding: 2%;
   box-sizing: border-box;
   border: 1px solid #3335;
   border-radius: 4px;
 }
+@media screen and (max-width: 960px) {
+  input[type=date] {
+    margin-left: 12px;
+    width: inherit;
+  }
+}
+
 input[type=time] {
   display: block;
   padding: 0;
   margin: 0;
-  width: 60%;
+  width: 96%;
   padding: 2%;
   box-sizing: border-box;
   border: 1px solid #3335;
   border-radius: 4px;
 }
+@media screen and (max-width: 960px) {
+  input[type=time] {
+    margin-left: 12px;
+    width: inherit;
+  }
+}
+
 .p-send__button {
   background-color: #2196F3;
   box-shadow: 0 1px 4px #5a5b5e;
@@ -1895,17 +1908,6 @@ input[type=time] {
 }
 .u-color__icon {
   color: #1976D2;
-}
-
-.u-display__flex--left {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-@media screen and (max-width: 960px) {
-  .u-display__flex--left {
-    display: block;
-  }
 }
 
 .page-enter {
