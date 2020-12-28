@@ -89,18 +89,29 @@
 
                         <label class="p-form__label">予定日時 *必須(5分後以降から投稿可能です)</label>
                         <div class="u-display__flex--left">
-                            <input
-                                type="date"
-                                class="p-form__date"
-                                :min="getCurrentDays"
-                                v-model="addForm.date"
-                                required>
-                            <input
-                                type="time"
-                                class="p-form__time"
-                                :min="setAfterFiveTime()"
-                                v-model="addForm.time"
-                                required>
+                            <div class="p-form__date--wrap">
+                                <div
+                                    class="p-form__label p-form__datetime--label"    
+                                >投稿年月日</div>
+                                <input
+                                    type="date"
+                                    class="p-form__date"
+                                    :min="getCurrentDays"
+                                    v-model="addForm.date"
+                                    required
+                                >
+                            </div>
+                            <div class="p-form__date--wrap">
+                                <div
+                                    class="p-form__label p-form__datetime--label"
+                                >投稿時間</div>
+                                <input
+                                    type="time"
+                                    class="p-form__time"
+                                    v-model="addForm.time"
+                                    required
+                                >
+                            </div>
                         </div>
                         <div class="p-form__button p-form__btn--margin">
                             <button type="submit" class="c-button c-button--sp c-button--twitter c-button__form">追加</button>
@@ -133,7 +144,12 @@
 
                         <label class="p-form__label">予定日時 *必須(5分後以降から投稿可能です)</label>
                         <div class="u-display__flex--left">
+
+                            <label class="p-form__label" for="edit-date">
+                                投稿年月日
+                            </label>
                             <input
+                                id="edit-date"
                                 type="date"
                                 class="p-form__date"
                                 :min="getCurrentDays"
@@ -141,7 +157,11 @@
                                 v-model="editForm.date"
                                 required
                             >
+                            <label class="p-form__label" for="edit-time">
+                                投稿時間
+                            </label>
                             <input
+                                id="edit-time"
                                 type="time"
                                 class="p-form__time"
                                 v-model="editForm.time"

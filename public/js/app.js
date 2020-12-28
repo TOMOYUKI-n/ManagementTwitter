@@ -4386,6 +4386,26 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -10575,57 +10595,69 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "u-display__flex--left" }, [
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.addForm.date,
-                        expression: "addForm.date"
-                      }
-                    ],
-                    staticClass: "p-form__date",
-                    attrs: {
-                      type: "date",
-                      min: _vm.getCurrentDays,
-                      required: ""
-                    },
-                    domProps: { value: _vm.addForm.date },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
+                  _c("div", { staticClass: "p-form__date--wrap" }, [
+                    _c(
+                      "div",
+                      { staticClass: "p-form__label p-form__datetime--label" },
+                      [_vm._v("投稿年月日")]
+                    ),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.addForm.date,
+                          expression: "addForm.date"
                         }
-                        _vm.$set(_vm.addForm, "date", $event.target.value)
+                      ],
+                      staticClass: "p-form__date",
+                      attrs: {
+                        type: "date",
+                        min: _vm.getCurrentDays,
+                        required: ""
+                      },
+                      domProps: { value: _vm.addForm.date },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.addForm, "date", $event.target.value)
+                        }
                       }
-                    }
-                  }),
+                    })
+                  ]),
                   _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.addForm.time,
-                        expression: "addForm.time"
-                      }
-                    ],
-                    staticClass: "p-form__time",
-                    attrs: {
-                      type: "time",
-                      min: _vm.setAfterFiveTime(),
-                      required: ""
-                    },
-                    domProps: { value: _vm.addForm.time },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
+                  _c("div", { staticClass: "p-form__date--wrap" }, [
+                    _c(
+                      "div",
+                      { staticClass: "p-form__label p-form__datetime--label" },
+                      [_vm._v("投稿時間")]
+                    ),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.addForm.time,
+                          expression: "addForm.time"
                         }
-                        _vm.$set(_vm.addForm, "time", $event.target.value)
+                      ],
+                      staticClass: "p-form__time",
+                      attrs: { type: "time", required: "" },
+                      domProps: { value: _vm.addForm.time },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.addForm, "time", $event.target.value)
+                        }
                       }
-                    }
-                  })
+                    })
+                  ])
                 ]),
                 _vm._v(" "),
                 _vm._m(2)
@@ -10743,6 +10775,19 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "u-display__flex--left" }, [
+                  _c(
+                    "label",
+                    {
+                      staticClass: "p-form__label",
+                      attrs: { for: "edit-date" }
+                    },
+                    [
+                      _vm._v(
+                        "\n                            投稿年月日\n                        "
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
                   _c("input", {
                     directives: [
                       {
@@ -10754,6 +10799,7 @@ var render = function() {
                     ],
                     staticClass: "p-form__date",
                     attrs: {
+                      id: "edit-date",
                       type: "date",
                       min: _vm.getCurrentDays,
                       value: "getCurrentDays",
@@ -10770,6 +10816,19 @@ var render = function() {
                     }
                   }),
                   _vm._v(" "),
+                  _c(
+                    "label",
+                    {
+                      staticClass: "p-form__label",
+                      attrs: { for: "edit-time" }
+                    },
+                    [
+                      _vm._v(
+                        "\n                            投稿時間\n                        "
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
                   _c("input", {
                     directives: [
                       {
@@ -10780,7 +10839,7 @@ var render = function() {
                       }
                     ],
                     staticClass: "p-form__time",
-                    attrs: { type: "time", required: "" },
+                    attrs: { id: "edit-time", type: "time", required: "" },
                     domProps: { value: _vm.editForm.time },
                     on: {
                       input: function($event) {
