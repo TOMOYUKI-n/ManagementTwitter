@@ -1632,19 +1632,22 @@ img {
   letter-spacing: 0.05em;
 }
 .p-form__date {
-  font-size: 14px;
-  width: 45%;
-  height: 40px;
-  font-weight: 100;
-  padding: 8px;
   box-sizing: border-box;
-  margin-bottom: 28px;
-  line-height: 24px;
   border: 1px solid #3335;
   border-radius: 4px;
 }
 @media screen and (max-width: 960px) {
   .p-form__date {
+    width: 100% !important;
+  }
+}
+.p-form__time {
+  box-sizing: border-box;
+  border: 1px solid #3335;
+  border-radius: 4px;
+}
+@media screen and (max-width: 960px) {
+  .p-form__time {
     width: 100% !important;
   }
 }
@@ -1739,6 +1742,7 @@ img {
 .p-send__form {
   display: block;
   width: 100%;
+  box-sizing: border-box;
   font-size: 14px;
   line-height: 2;
   color: #495057;
@@ -1774,7 +1778,7 @@ img {
   width: 50% !important;
 }
 .width__three {
-  width: 30% !important;
+  width: 40% !important;
 }
 
 .m__r2 {

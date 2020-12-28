@@ -35,9 +35,8 @@
     &__form{
         display: block;
         width: 100%;
-        // padding: $space_1 $space_3;
+        box-sizing: border-box;
         font-size: $font-size_s;
-        // line-height: 1.6;
         line-height: 2;
         color: $color_black3;
         border: 1px solid $color-white4;
@@ -49,7 +48,6 @@
         margin-top: $space_3;
     }
     &__inner{
-        // display: flex;
         align-items: baseline;
     }
     &__margin{

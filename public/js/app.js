@@ -4384,6 +4384,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -5891,7 +5893,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "input[type=date][data-v-59b46cf8]::-webkit-clear-button {\n  -webkit-appearance: none;\n}\ninput[type=time][data-v-59b46cf8]::-webkit-clear-button {\n  -webkit-appearance: none;\n}", ""]);
+exports.push([module.i, "input[type=date][data-v-59b46cf8] {\n  display: block;\n  padding: 0;\n  margin: 0;\n  width: 96%;\n  padding: 2%;\n  box-sizing: border-box;\n  margin-right: 12px;\n}\ninput[type=time][data-v-59b46cf8] {\n  display: block;\n  padding: 0;\n  margin: 0;\n  width: 96%;\n  padding: 2%;\n  box-sizing: border-box;\n}", ""]);
 
 // exports
 
@@ -10546,6 +10548,22 @@ var render = function() {
             ),
             _vm._v(" "),
             _c(
+              "p",
+              {
+                directives: [
+                  {
+                    name: "show",
+                    rawName: "v-show",
+                    value: _vm.modalErrorFlg,
+                    expression: "modalErrorFlg"
+                  }
+                ],
+                staticClass: "p-panel__error"
+              },
+              [_vm._v(_vm._s(_vm.messageModalText))]
+            ),
+            _vm._v(" "),
+            _c(
               "form",
               {
                 staticClass: "p-form",
@@ -10557,22 +10575,6 @@ var render = function() {
                 }
               },
               [
-                _c(
-                  "p",
-                  {
-                    directives: [
-                      {
-                        name: "show",
-                        rawName: "v-show",
-                        value: _vm.modalErrorFlg,
-                        expression: "modalErrorFlg"
-                      }
-                    ],
-                    staticClass: "p-panel__error"
-                  },
-                  [_vm._v(_vm._s(_vm.messageModalText))]
-                ),
-                _vm._v(" "),
                 _c(
                   "label",
                   { staticClass: "p-form__label", attrs: { for: "add-tweet" } },
@@ -10653,7 +10655,7 @@ var render = function() {
                         expression: "addForm.time"
                       }
                     ],
-                    staticClass: "p-form__date",
+                    staticClass: "p-form__time",
                     attrs: {
                       type: "time",
                       min: _vm.setAfterFiveTime(),
@@ -10711,6 +10713,22 @@ var render = function() {
             ),
             _vm._v(" "),
             _c(
+              "p",
+              {
+                directives: [
+                  {
+                    name: "show",
+                    rawName: "v-show",
+                    value: _vm.modalErrorFlg,
+                    expression: "modalErrorFlg"
+                  }
+                ],
+                staticClass: "p-panel__error"
+              },
+              [_vm._v(_vm._s(_vm.messageModalText))]
+            ),
+            _vm._v(" "),
+            _c(
               "form",
               {
                 staticClass: "p-form",
@@ -10722,22 +10740,6 @@ var render = function() {
                 }
               },
               [
-                _c(
-                  "p",
-                  {
-                    directives: [
-                      {
-                        name: "show",
-                        rawName: "v-show",
-                        value: _vm.modalErrorFlg,
-                        expression: "modalErrorFlg"
-                      }
-                    ],
-                    staticClass: "p-panel__error"
-                  },
-                  [_vm._v(_vm._s(_vm.messageModalText))]
-                ),
-                _vm._v(" "),
                 _c(
                   "label",
                   {
@@ -10822,7 +10824,7 @@ var render = function() {
                         expression: "editForm.time"
                       }
                     ],
-                    staticClass: "p-form__date",
+                    staticClass: "p-form__time",
                     attrs: { type: "time", required: "" },
                     domProps: { value: _vm.editForm.time },
                     on: {
