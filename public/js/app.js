@@ -4514,28 +4514,24 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
      */
     validateTime: function validateTime(args) {
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-        var timer, info, afterFiveTime, afterInfo;
+        var timer, time, info, afterFiveTime, afterInfo;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
                 timer = args.date + ' ' + args.time;
-                console.log('timer ====');
                 console.log(timer);
-                info = Date.parse(timer);
-                console.log('info ====');
+                time = new Date(timer);
+                console.log(time);
+                info = Date.parse(time);
                 console.log(info); // Date形式で5分後の時刻を取得
 
                 afterFiveTime = new Date(+new Date() + 5 * 60 * 1000);
-                console.log('afterFiveTime ====');
-                console.log(afterFiveTime);
-                afterInfo = Date.parse(afterFiveTime);
-                console.log('afterInfo ====');
-                console.log(afterInfo); // 5分以上間を開けているか判定
+                afterInfo = Date.parse(afterFiveTime); // 5分以上間を開けているか判定
 
                 return _context2.abrupt("return", info > afterInfo ? true : false);
 
-              case 13:
+              case 9:
               case "end":
                 return _context2.stop();
             }
@@ -4564,18 +4560,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 4:
                 checked = _context3.sent;
-                console.log('checked 結果');
-                console.log(checked);
 
                 if (!checked) {
-                  _context3.next = 19;
+                  _context3.next = 17;
                   break;
                 }
 
-                _context3.next = 10;
+                _context3.next = 8;
                 return axios__WEBPACK_IMPORTED_MODULE_2___default.a.post("/api/tweet/".concat(_this2.twitter_id), _this2.addForm);
 
-              case 10:
+              case 8:
                 response = _context3.sent;
 
                 if (response.status !== 200 || response.data === 500) {
@@ -4585,7 +4579,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 }
 
                 if (!(response.data === 200)) {
-                  _context3.next = 17;
+                  _context3.next = 15;
                   break;
                 }
 
@@ -4593,18 +4587,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 _this2.resetAddForm();
 
-                _context3.next = 17;
+                _context3.next = 15;
                 return _this2.fetchTweets();
 
-              case 17:
-                _context3.next = 21;
+              case 15:
+                _context3.next = 19;
                 break;
 
-              case 19:
+              case 17:
                 _this2.modalErrorFlg = true;
                 _this2.messageModalText = _message__WEBPACK_IMPORTED_MODULE_1__["message"].noFiveMinutesTimer;
 
-              case 21:
+              case 19:
               case "end":
                 return _context3.stop();
             }
