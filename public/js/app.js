@@ -11053,16 +11053,8 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "p-form__button p-form__btn--margin" }, [
-      _c(
-        "button",
-        {
-          staticClass:
-            "c-button c-button--sp c-button--add--tweet c-button__form",
-          attrs: { type: "submit" }
-        },
-        [_vm._v("追加")]
-      )
+    return _c("div", [
+      _c("button", { attrs: { type: "submit" } }, [_vm._v("追加")])
     ])
   },
   function() {
