@@ -1605,6 +1605,10 @@ img {
   display: block;
   margin-bottom: 4px;
 }
+.p-form__datetime--label {
+  width: 30%;
+  padding: 2% 0;
+}
 .p-form__item {
   font-size: 14px;
   width: 100%;
@@ -1631,25 +1635,9 @@ img {
   height: 150px;
   letter-spacing: 0.05em;
 }
-.p-form__date {
-  box-sizing: border-box;
-  border: 1px solid #3335;
-  border-radius: 4px;
-}
-@media screen and (max-width: 960px) {
-  .p-form__date {
-    width: 100% !important;
-  }
-}
-.p-form__time {
-  box-sizing: border-box;
-  border: 1px solid #3335;
-  border-radius: 4px;
-}
-@media screen and (max-width: 960px) {
-  .p-form__time {
-    width: 100% !important;
-  }
+.p-form__date--wrap {
+  display: flex;
+  justify-content: space-between;
 }
 .p-form__button {
   text-align: right;
@@ -1716,31 +1704,22 @@ input[type=date] {
   display: block;
   padding: 0;
   margin: 0;
-  width: 96%;
+  width: 60%;
   padding: 2%;
   box-sizing: border-box;
-  margin-right: 12px;
+  border: 1px solid #3335;
+  border-radius: 4px;
 }
-@media screen and (max-width: 960px) {
-  input[type=date] {
-    width: 100% !important;
-  }
-}
-
 input[type=time] {
   display: block;
   padding: 0;
   margin: 0;
-  width: 96%;
+  width: 60%;
   padding: 2%;
   box-sizing: border-box;
+  border: 1px solid #3335;
+  border-radius: 4px;
 }
-@media screen and (max-width: 960px) {
-  input[type=time] {
-    width: 100% !important;
-  }
-}
-
 .p-send__button {
   background-color: #2196F3;
   box-shadow: 0 1px 4px #5a5b5e;
@@ -1842,20 +1821,38 @@ input[type=time] {
 }
 
 .flash_message {
-  padding: 16px;
+  padding: 16px 24%;
   background-color: #386cfa9c;
   color: #fff;
-  text-align: center;
+  text-align: left;
   display: block;
+  position: relative;
+  top: 48px;
+  z-index: 3;
+}
+@media screen and (max-width: 960px) {
+  .flash_message {
+    position: relative;
+    top: 0;
+  }
 }
 
 .error_message {
-  padding: 16px;
+  padding: 16px 24%;
   background-color: #fa38389c;
   color: #333;
-  text-align: center;
+  text-align: left;
   display: block;
   font-size: 13px;
+  position: relative;
+  top: 48px;
+  z-index: 3;
+}
+@media screen and (max-width: 960px) {
+  .error_message {
+    position: relative;
+    top: 0;
+  }
 }
 
 .isFollowedColor {
@@ -1905,6 +1902,12 @@ input[type=time] {
   justify-content: space-between;
   align-items: center;
 }
+@media screen and (max-width: 960px) {
+  .u-display__flex--left {
+    display: block;
+  }
+}
+
 .page-enter {
   transform: translate(10%, 0);
   opacity: 0;
