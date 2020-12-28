@@ -9,12 +9,12 @@
         padding: $space_3;
     }
     &__nodata{
-        font-size: $font-size_default;
+        font-size: $font-size_s;
         margin-top: $space_2;
     }
     &__error{
         color: red;
-        font-size: $font-size_default;
+        font-size: $font-size_s;
         margin-top: $space_2;
     }
     &__back{
