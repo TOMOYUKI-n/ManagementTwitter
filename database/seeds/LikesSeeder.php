@@ -15,7 +15,6 @@ class LikesSeeder extends Seeder
     public function run()
     {
         $now = Carbon::now();
-        // $twitter_users_num = DB::table('twitter_users')->select('id')->count();
         $ids = DB::table('twitter_users')->select('id')->where('user_id', '=', 1)->get();
 
         // 最低1つだけセット

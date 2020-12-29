@@ -4519,7 +4519,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                timer = args.date + ' ' + args.time;
+                timer = args.date + ' ' + args.time + ':00';
                 console.log('argsJoinDateTime:'.argsJoinDateTime);
                 test = new Date(timer);
                 console.log('new Date(timer)'.test);
@@ -10584,7 +10584,7 @@ var render = function() {
                   _vm._v("予定日時 *必須(5分後以降から可能)")
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "u-display__flex--left" }, [
+                _c("div", [
                   _c("div", { staticClass: "p-form__date--wrap" }, [
                     _c(
                       "div",
@@ -10764,7 +10764,7 @@ var render = function() {
                   _vm._v("予定日時 *必須(5分後以降から可能)")
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "u-display__flex--left" }, [
+                _c("div", [
                   _c(
                     "label",
                     {

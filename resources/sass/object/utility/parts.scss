@@ -147,16 +147,6 @@
     }
 }
 
-// モーダルでのパーツなど
-.u-display__flex--left{
-
-    @include mq() {
-        // display: flex;
-        // justify-content: space-between;
-        // align-items: center;
-    }
-}
-
 // アニメーション
 //page
 .page-enter {
