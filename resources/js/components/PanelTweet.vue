@@ -305,16 +305,30 @@
              * 5分後の時刻でないと入力できないように制限
              */
             async validateTime(args) {
-                const timer = args.date + ' ' + args.time;
+                const timer = new Date();
+                console.log('argsJoinDateTime=====');
+                console.log(timer);
+
+                const info = timer.getTime();
+                console.log('info=====');
+                console.log(info);
 
                 // Date形式で5分後の時刻を取得
                 const afterFiveTime = new Date(+new Date() + (5 * 60 * 1000));
+                const afterInfo = afterFiveTime.getTime();
 
-                const result = await this.getDateDiff(timer, afterFiveTime);
-                console.log(result);
                 // 5分以上間を開けているか判定
-                // return info > afterInfo ? true:false;
-                return result !== -0? true:false;
+                return info > afterInfo ? true:false;
+
+                // return time > afterFiveTime ? true:false;
+                // const timer = args.date + ' ' + args.time;
+                // // Date形式で5分後の時刻を取得
+                // const afterFiveTime = new Date(+new Date() + (5 * 60 * 1000));
+                // const result = await this.getDateDiff(timer, afterFiveTime);
+                // console.log(result);
+                // // 5分以上間を開けているか判定
+                // // return info > afterInfo ? true:false;
+                // return result !== -0? true:false;
             },
             async getDateDiff(dateString1, dateString2) {
                 // 日付を表す文字列から日付オブジェクトを生成
