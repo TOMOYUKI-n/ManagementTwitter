@@ -62,7 +62,7 @@
   
     &__select {
         width: 100%;
-        font-size: $font-size_s;
+        font-size: $font-size_m;
         height: $space_10;
         font-weight: 100;
         padding: $space_2;
@@ -72,7 +72,7 @@
         border: 1px solid $color_black5;
         border-radius: 4px;
         @include mq(){
-            font-size: $font-size_s;
+            font-size: $font-size_m;
             line-height: $space_5;
         }
     }
@@ -134,8 +134,6 @@ input[type=time]{
     box-sizing: border-box;
     border: 1px solid $color_black5;
     border-radius: 4px;
-    // height: 18px; 
-    // line-height: 18px;
     height: 32px; 
     line-height: 32px;
     @include mq() {

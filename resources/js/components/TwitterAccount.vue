@@ -10,10 +10,10 @@
                     </p>
                 </a>
             </div>
-            <p v-show="errorFlg" style="color: red; font-size: 14px; margin-top: 8px;">
+            <p v-show="errorFlg" class="p-table__error--message">
                 {{ messageText }}
             </p>
-            <p v-show="selectAccountFlg" style="color: red; font-size: 14px; margin-top: 8px;">
+            <p v-show="selectAccountFlg" class="p-table__error--message">
                 {{ selectAccountNoticeText }}
             </p>
             <ul class="p-twitter">

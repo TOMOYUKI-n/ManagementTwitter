@@ -42,10 +42,8 @@
     }
     // 問い合わせ用
     &__contact{
-        // height: 100%;
         height: calc(100vh - 60px);
         @include mq(){
-            // height: 100vh;
             height: calc(100vh - 48px);
             &.none {
                 display: none;

@@ -58,10 +58,10 @@
                 </td>
             </tr>
         </table>
-        <p v-show="followTargets.length === 0" style="font-size: 14px; margin-top: 8px;">
+        <p v-show="followTargets.length === 0" class="p-table__no-data">
             データがありません
         </p>
-        <p v-show="errorFlg" style="color: red; font-size: 14px; margin-top: 8px;">
+        <p v-show="errorFlg" class="p-table__error--message">
             {{ messageText }}
         </p>
 
