@@ -144,29 +144,28 @@
 
                         <label class="p-form__label">予定日時 *必須(5分後以降から可能)</label>
                         <div>
-
-                            <label class="p-form__label" for="edit-date">
-                                投稿年月日
-                            </label>
-                            <input
-                                id="edit-date"
-                                type="date"
-                                class="p-form__date"
-                                :min="getCurrentDays"
-                                value="getCurrentDays"
-                                v-model="editForm.date"
-                                required
-                            >
-                            <label class="p-form__label" for="edit-time">
-                                投稿時間
-                            </label>
-                            <input
-                                id="edit-time"
-                                type="time"
-                                class="p-form__time"
-                                v-model="editForm.time"
-                                required
-                            >
+                            <div class="p-form__date--wrap">
+                                <label class="p-form__label p-form__datetime--label" for="edit-date">投稿年月日</label>
+                                <input
+                                    id="edit-date"
+                                    type="date"
+                                    class="p-form__date"
+                                    :min="getCurrentDays"
+                                    value="getCurrentDays"
+                                    v-model="editForm.date"
+                                    required
+                                >
+                            </div>
+                            <div class="p-form__date--wrap">
+                                <label class="p-form__label p-form__datetime--label" for="edit-time">投稿時間</label>
+                                <input
+                                    id="edit-time"
+                                    type="time"
+                                    class="p-form__time"
+                                    v-model="editForm.time"
+                                    required
+                                >
+                            </div>
                         </div>
                         <div class="p-form__button p-form__btn--margin">
                             <button type="submit" class="c-button c-button--sp c-button--add--tweet c-button__form">変更</button>

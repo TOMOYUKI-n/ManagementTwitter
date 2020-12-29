@@ -1710,15 +1710,14 @@ img {
 
 input[type=date] {
   display: block;
-  padding: 0;
   margin: 0;
   width: 96%;
-  padding: 2%;
+  padding: 8px;
   box-sizing: border-box;
   border: 1px solid #3335;
   border-radius: 4px;
-  height: 18px;
-  line-height: 18px;
+  height: 32px;
+  line-height: 32px;
 }
 @media screen and (max-width: 960px) {
   input[type=date] {
@@ -1729,15 +1728,14 @@ input[type=date] {
 
 input[type=time] {
   display: block;
-  padding: 0;
   margin: 0;
   width: 96%;
-  padding: 2%;
+  padding: 8px;
   box-sizing: border-box;
   border: 1px solid #3335;
   border-radius: 4px;
-  height: 18px;
-  line-height: 18px;
+  height: 32px;
+  line-height: 32px;
 }
 @media screen and (max-width: 960px) {
   input[type=time] {
