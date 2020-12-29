@@ -2028,9 +2028,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return localStorage.setItem('loginTwitterAccount', JSON.stringify(_this2.item));
 
               case 2:
+                _this2.$emit('selectAccount');
+
                 location.href = "/dashboard";
 
-              case 3:
+              case 4:
               case "end":
                 return _context2.stop();
             }
@@ -2263,6 +2265,8 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     login: function login() {
       var _this = this;
+
+      console.log('click');
 
       if (!this.emailError) {
         // データの保存
@@ -2933,7 +2937,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 }
 
                 _this7.errorFlg = true;
-                _this7.messageText = _message__WEBPACK_IMPORTED_MODULE_1__["message"].notUpdate;
+                _this7.messageStatusText = _message__WEBPACK_IMPORTED_MODULE_1__["message"].notUpdate;
                 _this7.serviceSwitch = false;
                 _context7.next = 18;
                 break;
@@ -2980,7 +2984,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 }
 
                 _this8.errorFlg = true;
-                _this8.messageText = _message__WEBPACK_IMPORTED_MODULE_1__["message"].notUpdate;
+                _this8.messageStatusText = _message__WEBPACK_IMPORTED_MODULE_1__["message"].notUpdate;
                 _this8.serviceSwitch = false;
                 _context8.next = 13;
                 break;
@@ -5659,6 +5663,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -5672,7 +5680,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       accountNum: 0,
       deleteOn: false,
       errorFlg: false,
+      selectAccountFlg: false,
       messageText: '',
+      selectAccountNoticeText: '',
       deleteTarget: 0,
       deleteTargetTwitterId: 0
     };
@@ -5740,7 +5750,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 res = _context2.sent;
 
                 if (!res) {
-                  _context2.next = 11;
+                  _context2.next = 13;
                   break;
                 }
 
@@ -5755,14 +5765,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _this2.fetchTwitterUsers();
 
               case 9:
-                _context2.next = 13;
+                // アカウントを選択するように促す
+                _this2.selectAccountFlg = true;
+                _this2.selectAccountNoticeText = _message__WEBPACK_IMPORTED_MODULE_1__["message"].needSelectAccount;
+                _context2.next = 15;
                 break;
 
-              case 11:
+              case 13:
                 _this2.errorFlg = true;
                 _this2.messageText = _message__WEBPACK_IMPORTED_MODULE_1__["message"].notDelete;
 
-              case 13:
+              case 15:
               case "end":
                 return _context2.stop();
             }
@@ -7991,10 +8004,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Login.vue?vue&type=template&id=6bdc8b8e&scoped=true&":
-/*!********************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Login.vue?vue&type=template&id=6bdc8b8e&scoped=true& ***!
-  \********************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Login.vue?vue&type=template&id=6bdc8b8e&":
+/*!********************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Login.vue?vue&type=template&id=6bdc8b8e& ***!
+  \********************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -8084,7 +8097,7 @@ var render = function() {
         _vm._v(" "),
         _c("div", { staticClass: "p-login__button__wrap" }, [
           _c(
-            "a",
+            "button",
             {
               staticClass: "p-button__login",
               class: _vm.emailError ? "p-login__disabled" : "",
@@ -11524,6 +11537,32 @@ var render = function() {
       ),
       _vm._v(" "),
       _c(
+        "p",
+        {
+          directives: [
+            {
+              name: "show",
+              rawName: "v-show",
+              value: _vm.selectAccountFlg,
+              expression: "selectAccountFlg"
+            }
+          ],
+          staticStyle: {
+            color: "red",
+            "font-size": "14px",
+            "margin-top": "8px"
+          }
+        },
+        [
+          _vm._v(
+            "\n            " +
+              _vm._s(_vm.selectAccountNoticeText) +
+              "\n        "
+          )
+        ]
+      ),
+      _vm._v(" "),
+      _c(
         "ul",
         { staticClass: "p-twitter" },
         [
@@ -11538,7 +11577,12 @@ var render = function() {
                   index: index,
                   selectId: _vm.twitterAccountId
                 },
-                on: { delUser: _vm.deleteModal }
+                on: {
+                  delUser: _vm.deleteModal,
+                  selectAccount: function($event) {
+                    _vm.selectAccountFlg = false
+                  }
+                }
               })
             }),
             1
@@ -24022,7 +24066,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Login_vue_vue_type_template_id_6bdc8b8e_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Login.vue?vue&type=template&id=6bdc8b8e&scoped=true& */ "./resources/js/components/Login.vue?vue&type=template&id=6bdc8b8e&scoped=true&");
+/* harmony import */ var _Login_vue_vue_type_template_id_6bdc8b8e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Login.vue?vue&type=template&id=6bdc8b8e& */ "./resources/js/components/Login.vue?vue&type=template&id=6bdc8b8e&");
 /* harmony import */ var _Login_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Login.vue?vue&type=script&lang=js& */ "./resources/js/components/Login.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
@@ -24034,11 +24078,11 @@ __webpack_require__.r(__webpack_exports__);
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
   _Login_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _Login_vue_vue_type_template_id_6bdc8b8e_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _Login_vue_vue_type_template_id_6bdc8b8e_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _Login_vue_vue_type_template_id_6bdc8b8e___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Login_vue_vue_type_template_id_6bdc8b8e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
-  "6bdc8b8e",
+  null,
   null
   
 )
@@ -24064,19 +24108,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/Login.vue?vue&type=template&id=6bdc8b8e&scoped=true&":
-/*!**************************************************************************************!*\
-  !*** ./resources/js/components/Login.vue?vue&type=template&id=6bdc8b8e&scoped=true& ***!
-  \**************************************************************************************/
+/***/ "./resources/js/components/Login.vue?vue&type=template&id=6bdc8b8e&":
+/*!**************************************************************************!*\
+  !*** ./resources/js/components/Login.vue?vue&type=template&id=6bdc8b8e& ***!
+  \**************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Login_vue_vue_type_template_id_6bdc8b8e_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./Login.vue?vue&type=template&id=6bdc8b8e&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Login.vue?vue&type=template&id=6bdc8b8e&scoped=true&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Login_vue_vue_type_template_id_6bdc8b8e_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Login_vue_vue_type_template_id_6bdc8b8e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./Login.vue?vue&type=template&id=6bdc8b8e& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Login.vue?vue&type=template&id=6bdc8b8e&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Login_vue_vue_type_template_id_6bdc8b8e___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Login_vue_vue_type_template_id_6bdc8b8e_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Login_vue_vue_type_template_id_6bdc8b8e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
@@ -24599,7 +24643,7 @@ var message = {
   notDelete: '正常に通信することができませんでした。画面を再度更新してください。',
   notUpdate: '更新できませんでした。時間を置いて再度更新してください。',
   notAllowedToChangeKeyword: '既に自動フォロー機能にてご利用されておりますので、変更はできません。',
-  needSelectAccount: '「アカウント登録」からTwitterアカウントを選択してください。',
+  needSelectAccount: 'Twitterアカウントを選択するか、追加してください。',
   noAtMark: '@は記入しなくても大丈夫です。',
   noTargetAccount: 'ターゲットアカウントを登録してください。',
   noFiveMinutesTimer: '現在の５分後以降を指定してください。'

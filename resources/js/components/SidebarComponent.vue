@@ -103,6 +103,7 @@
                     this.messageText = message.notGetData;
                 }
                 else {
+                    // 取得できた場合
                     const pastAuthData = await JSON.parse(localStorage.getItem('authData'));
                     if(pastAuthData){
                         const authEmail = pastAuthData.email;

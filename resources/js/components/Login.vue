@@ -29,12 +29,12 @@
 
                 <!--ボタンエリア-->
                 <div class="p-login__button__wrap">
-                    <a
+                    <button
                         @click="login"
                         class="p-button__login"
                         :class="emailError? 'p-login__disabled':''"
                     >
-                        ログイン</a>
+                        ログイン</button>
                 </div>
 
                 <p class="p-login__text--center">アカウントをお持ちで無い方はこちらから</p>
@@ -69,6 +69,7 @@ export default {
     },
     methods: {
         login() {
+            console.log('click');
             if (!this.emailError) {
                 // データの保存
                 this.saveLoginData();
@@ -130,6 +131,3 @@ export default {
     },
 };
 </script>
-<style lang="scss" scoped>
-
-</style>
