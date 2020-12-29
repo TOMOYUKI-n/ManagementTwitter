@@ -13,6 +13,9 @@
             <p v-show="errorFlg" style="color: red; font-size: 14px; margin-top: 8px;">
                 {{ messageText }}
             </p>
+            <p v-show="selectAccountFlg" style="color: red; font-size: 14px; margin-top: 8px;">
+                {{ selectAccountNoticeText }}
+            </p>
             <ul class="p-twitter">
                 <transition-group name="t-twitter_card">
                     <account-card
@@ -21,6 +24,7 @@
                             :item="user"
                             :index="index"
                             @delUser="deleteModal"
+                            @selectAccount="selectAccountFlg = false"
                             :selectId="twitterAccountId"
                     />
                 </transition-group>
@@ -59,7 +63,9 @@
                 accountNum: 0,
                 deleteOn: false,
                 errorFlg: false,
+                selectAccountFlg: false,
                 messageText: '',
+                selectAccountNoticeText: '',
                 deleteTarget: 0,
                 deleteTargetTwitterId: 0
             }
@@ -95,6 +101,9 @@
                     // 再描画
                     this.$emit('user-delete',this.deleteTarget);
                     await this.fetchTwitterUsers();
+                    // アカウントを選択するように促す
+                    this.selectAccountFlg = true;
+                    this.selectAccountNoticeText = message.needSelectAccount;
                 }
                 else{
                     this.errorFlg = true;

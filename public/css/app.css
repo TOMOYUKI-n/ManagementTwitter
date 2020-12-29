@@ -850,6 +850,7 @@ img {
   display: inline-block;
   text-align: center;
   box-sizing: border-box;
+  border: none;
 }
 .p-button__login:hover {
   cursor: pointer;
@@ -1879,6 +1880,13 @@ input[type=time] {
     position: relative;
     top: 0;
   }
+}
+
+.error_mail_message {
+  color: red;
+  text-align: left;
+  display: block;
+  font-size: 13px;
 }
 
 .isFollowedColor {

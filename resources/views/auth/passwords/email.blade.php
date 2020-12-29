@@ -23,7 +23,7 @@
                             <input id="email" type="email" class="p-send__form @error('email') is-invalid @enderror"
                                     name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
                             @error('email')
-                                <span class="error_message">
+                                <span class="error_mail_message">
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror

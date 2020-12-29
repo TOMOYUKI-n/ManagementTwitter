@@ -386,7 +386,7 @@
                     const response = await axios.post('/api/system/running', data);
                     if (response.data === 500 || response.status !== 200) {
                         this.errorFlg = true;
-                        this.messageText = message.notUpdate;
+                        this.messageStatusText = message.notUpdate;
                         this.serviceSwitch = false;
                     }
                     else{
@@ -403,7 +403,7 @@
                 const response = await axios.post('/api/system/stop', data);
                 if (response.data === 500 || response.status !== 200) {
                     this.errorFlg = true;
-                    this.messageText = message.notUpdate;
+                    this.messageStatusText = message.notUpdate;
                     this.serviceSwitch = false;
                 }
                 else{

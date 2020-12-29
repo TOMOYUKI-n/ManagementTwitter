@@ -65,6 +65,7 @@
              */
             async setTwitterId() {
                 await localStorage.setItem('loginTwitterAccount',JSON.stringify(this.item));
+                this.$emit('selectAccount');
                 location.href = "/dashboard";
             },
             /**
