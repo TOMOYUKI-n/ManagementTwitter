@@ -4538,8 +4538,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 afterFiveTime = new Date(+new Date() + 5 * 60 * 1000);
                 afterInfo = afterFiveTime.getTime(); // 5分以上間を開けているか判定
+                // return info > afterInfo ? true:false;
 
-                return _context2.abrupt("return", info > afterInfo ? true : false);
+                return _context2.abrupt("return", time > afterFiveTime ? true : false);
 
               case 15:
               case "end":

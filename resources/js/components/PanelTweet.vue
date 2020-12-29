@@ -325,7 +325,8 @@
                 const afterInfo = afterFiveTime.getTime();
 
                 // 5分以上間を開けているか判定
-                return info > afterInfo ? true:false;
+                // return info > afterInfo ? true:false;
+                return time > afterFiveTime ? true:false;
             },
             /**
              * APIを使用して自動ツイートを新規登録する
