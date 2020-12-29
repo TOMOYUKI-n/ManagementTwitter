@@ -302,74 +302,27 @@
                 }
             },
             /**
-             * 5分後の時刻でないと入力できないように制限
-             */
-            async validateTime(args) {
-                const timer = new Date(new Date(args.date + ' ' + args.time));
-                console.log('argsJoinDateTime=====');
-                console.log(timer);
-
-                const info = timer.getTime();
-                console.log('info=====');
-                console.log(info);
-
-                // Date形式で5分後の時刻を取得
-                const afterFiveTime = new Date(new Date() + (5 * 60 * 1000));
-                console.log('afterFiveTime=====');
-                console.log(afterFiveTime);
-
-                const afterInfo = afterFiveTime.getTime();
-                console.log('afterInfo=====');
-                console.log(afterInfo);
-
-                // 5分以上間を開けているか判定
-                return info > afterInfo ? true:false;
-
-                // return time > afterFiveTime ? true:false;
-                // const timer = args.date + ' ' + args.time;
-                // // Date形式で5分後の時刻を取得
-                // const afterFiveTime = new Date(+new Date() + (5 * 60 * 1000));
-                // const result = await this.getDateDiff(timer, afterFiveTime);
-                // console.log(result);
-                // // 5分以上間を開けているか判定
-                // // return info > afterInfo ? true:false;
-                // return result !== -0? true:false;
-            },
-            async getDateDiff(dateString1, dateString2) {
-                // 日付を表す文字列から日付オブジェクトを生成
-                var date1 = new Date(dateString1);
-                var date2 = new Date(dateString2);
-                // 2つの日付の差分（ミリ秒）を計算
-                var msDiff  = date1.getTime() - date2.getTime();
-                // 求めた差分（ミリ秒）を日付に変換
-                // 差分÷(1000ミリ秒×60秒×60分)
-                return Math.ceil(msDiff / (1000 * 60 * 60));
-            },
-            /**
              * APIを使用して自動ツイートを新規登録する
              */
             async addTweet() {
                 this.modalErrorFlg = false;
                 this.messageModalText = '';
-                // 5分後の制限
-                const checked = await this.validateTime(this.addForm);
-                if (checked) {
-                    const response = await axios.post(`/api/tweet/${this.twitter_id}`, this.addForm);
-                    if (response.status !== 200 || response.data === 500) {
-                        this.newModal = false;
-                        this.errorFlg = true;
-                        this.messageText = message.notUpdate;
-                    }
-                    if (response.data === 200) {
-                        this.newModal = false;
-                        // 再描画
-                        this.resetAddForm();
-                        await this.fetchTweets();
-                    }
+                const response = await axios.post(`/api/tweet/${this.twitter_id}`, this.addForm);
+                if (response.status !== 200 || response.data === 500) {
+                    this.newModal = false;
+                    this.errorFlg = true;
+                    this.messageText = message.notUpdate;
                 }
-                else {
+                // 5分後以降でない場合
+                if (response.data === 400) {
                     this.modalErrorFlg = true;
                     this.messageModalText = message.noFiveMinutesTimer;
+                }
+                if (response.data === 200) {
+                    this.newModal = false;
+                    // 再描画
+                    this.resetAddForm();
+                    await this.fetchTweets();
                 }
             },
 
@@ -379,23 +332,21 @@
             async editTweet() {
                 this.modalErrorFlg = false;
                 this.messageModalText = '';
-                const checked = await this.validateTime(this.editForm);
-                if (checked) {
-                    const response = await axios.post(`/api/tweet/edit/${this.twitter_id}`, this.editForm);
-                    if (response.status !== 200 || response.data === 500) {
-                        this.errorFlg = true;
-                        this.messageText = message.notGetData;
-                        this.resetEditForm();
-                    }
-                    if (response.data === 200) {
-                        // 再描画
-                        this.resetEditForm();
-                        await this.fetchTweets();
-                    }
+                const response = await axios.post(`/api/tweet/edit/${this.twitter_id}`, this.editForm);
+                if (response.status !== 200 || response.data === 500) {
+                    this.errorFlg = true;
+                    this.messageText = message.notGetData;
+                    this.resetEditForm();
                 }
-                else {
+                // 5分後以降でない場合
+                if (response.data === 400) {
                     this.modalErrorFlg = true;
                     this.messageModalText = message.noFiveMinutesTimer;
+                }
+                if (response.data === 200) {
+                    // 再描画
+                    this.resetEditForm();
+                    await this.fetchTweets();
                 }
             },
             /**

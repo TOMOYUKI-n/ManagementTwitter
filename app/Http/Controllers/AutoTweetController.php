@@ -20,7 +20,8 @@ class AutoTweetController extends Controller
      */
     const CODE = [
         0 => ["status" => 200],
-        1 => ["status" => 500]
+        1 => ["status" => 500],
+        2 => ["status" => 400],
     ];
 
     /**
@@ -61,19 +62,26 @@ class AutoTweetController extends Controller
         $date_time = $d.$s.$t;
         $user_id = Auth::id();
 
-        try {
-            $tweet = new Tweet();
-            $tweet->user_id = $user_id;
-            $tweet->twitter_user_id = $twitter_user_id;
-            $tweet->tweet = $request->tweet;
-            $tweet->date = $date_time;
-            $tweet->save();
+        // 5分後かどうかチェック
+        $resultTime = self::checkTime($date_time);
+        if ($resultTime) {
+            try {
+                $tweet = new Tweet();
+                $tweet->user_id = $user_id;
+                $tweet->twitter_user_id = $twitter_user_id;
+                $tweet->tweet = $request->tweet;
+                $tweet->date = $date_time;
+                $tweet->save();
+    
+                return self::CODE[0]['status'];
+            }
+            catch (\Exception $e) {
+                return self::CODE[1]['status'];
+            }
+        } else {
+            return self::CODE[2]['status'];
+        }
 
-            return self::CODE[0]['status'];
-        }
-        catch (\Exception $e) {
-            return self::CODE[1]['status'];
-        }
     }
 
     /**
@@ -88,17 +96,23 @@ class AutoTweetController extends Controller
         $s = ' ';
         $date_time = $d.$s.$t;
 
-        try{
-            $tweet = Tweet::where('id', $request->id)->first();
-            $tweet->tweet = $request->tweet;
-            $tweet->date = $date_time;
-            $tweet->save();
+        $resultTime = self::checkTime($date_time);
+        if ($resultTime) {
+            try{
+                $tweet = Tweet::where('id', $request->id)->first();
+                $tweet->tweet = $request->tweet;
+                $tweet->date = $date_time;
+                $tweet->save();
+    
+                return self::CODE[0]['status'];
+            }
+            catch (\Exception $e) {
+                return self::CODE[1]['status'];
+            }
+        } else {
+            return self::CODE[2]['status'];
+        }
 
-            return self::CODE[0]['status'];
-        }
-        catch (\Exception $e) {
-            return self::CODE[1]['status'];
-        }
     }
 
     /**
@@ -115,6 +129,15 @@ class AutoTweetController extends Controller
         catch (\Exception $e) {
             return self::CODE[1]['status'];
         }
+    }
+
+    /**
+     * 5分後チェック
+     */
+    public function checkTime(string $date) {
+        $inputValue = new Carbon($date);
+        $afterFiveTime = Carbon::now()->addMinute(5);
+        return $inputValue->gt($afterFiveTime)? true:false;
     }
 
 }
