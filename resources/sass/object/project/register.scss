@@ -5,15 +5,9 @@
 .p-regist{
     &__caution{
         font-size: $font-size_xs;
-        // margin-right: $space_3;
-        // margin-left: $space_3;
         position: relative;
         top: $space_3;
     }
-    // &__setting--margin{
-    //     margin-right: $space_3;
-    //     margin-left: $space_3;
-    // }
     &__form{
         display: block;
         width: 100%;

@@ -58,10 +58,10 @@
                 </td>
             </tr>
         </table>
-        <p v-show="tweetsNum === 0" class="p-panel__nodata">
+        <p v-show="tweetsNum === 0" class="p-table__no-data">
             データがありません
         </p>
-        <p v-show="errorFlg" class="p-panel__error">
+        <p v-show="errorFlg" class="p-table__error--message">
             {{ messageText }}
         </p>
 
@@ -71,7 +71,7 @@
                     <div class="p-modal__cancel u-color__bg--white" @click="closeModal">
                         <i class="c-icon--gray p-modal__icon fas fa-times"></i>
                     </div>
-                    <p v-show="modalErrorFlg" class="p-panel__error">{{ messageModalText }}</p>
+                    <p v-show="modalErrorFlg" class="p-table__error--message">{{ messageModalText }}</p>
                     <form class="p-form" @submit.prevent="addTweet">
                         
                         <label class="p-form__label" for="add-tweet">
@@ -125,7 +125,7 @@
                     <div class="p-modal__cancel u-color__bg--white" @click="editModal = !editModal">
                         <i class="c-icon--gray p-modal__icon fas fa-times"></i>
                     </div>
-                    <p v-show="modalErrorFlg" class="p-panel__error">{{ messageModalText }}</p>
+                    <p v-show="modalErrorFlg" class="p-table__error--message">{{ messageModalText }}</p>
                     <form class="p-form" @submit.prevent="editTweet">
                         
                         <label class="p-form__label" for="edit-tweet">

@@ -717,15 +717,6 @@ img {
     padding: 12px;
   }
 }
-.p-panel__nodata {
-  font-size: 14px;
-  margin-top: 8px;
-}
-.p-panel__error {
-  color: red;
-  font-size: 14px;
-  margin-top: 8px;
-}
 @media screen and (max-width: 960px) {
   .p-panel__back {
     height: calc(100vh - 48px);
@@ -1173,6 +1164,20 @@ img {
 }
 .p-table__action {
   text-align: end;
+}
+.p-table__no-data {
+  margin-top: 8px;
+}
+@media screen and (max-width: 960px) {
+  .p-table__no-data {
+    position: relative;
+    top: -72px;
+    left: 4px;
+  }
+}
+.p-table__error--message {
+  color: red;
+  margin-top: 8px;
 }
 
 .p-policy {
@@ -1662,7 +1667,7 @@ img {
 }
 .p-form__select {
   width: 100%;
-  font-size: 14px;
+  font-size: 16px;
   height: 40px;
   font-weight: 100;
   padding: 8px;
@@ -1674,7 +1679,7 @@ img {
 }
 @media screen and (max-width: 960px) {
   .p-form__select {
-    font-size: 14px;
+    font-size: 16px;
     line-height: 20px;
   }
 }

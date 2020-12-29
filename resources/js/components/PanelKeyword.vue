@@ -11,9 +11,7 @@
                 キーワードを追加
             </button>
         </div>
-        <p v-show="errorFlg" style="color: red; font-size: 14px; margin-top: 8px;">
-            {{ messageText }}
-        </p>
+
         <table class="p-table">
             <tr class="p-table__head">
                 <th class="p-table__th p-table__th--keyword">条件タイプ</th>
@@ -42,8 +40,13 @@
                     </div>
                 </td>
             </tr>
-
         </table>
+        <p v-show="keywords.length === 0" class="p-table__no-data">
+            データがありません
+        </p>
+        <p v-show="errorFlg" class="p-table__error--message">
+            {{ messageText }}
+        </p>
 
         <div class="p-modal__wrapper">
             <section class="p-modal" v-show="newModal">

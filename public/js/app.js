@@ -3228,6 +3228,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -8287,7 +8290,7 @@ var render = function() {
             expression: "followTargets.length === 0"
           }
         ],
-        staticStyle: { "font-size": "14px", "margin-top": "8px" }
+        staticClass: "p-table__no-data"
       },
       [_vm._v("\n        データがありません\n    ")]
     ),
@@ -8303,7 +8306,7 @@ var render = function() {
             expression: "errorFlg"
           }
         ],
-        staticStyle: { color: "red", "font-size": "14px", "margin-top": "8px" }
+        staticClass: "p-table__error--message"
       },
       [_vm._v("\n        " + _vm._s(_vm.messageText) + "\n    ")]
     ),
@@ -8953,22 +8956,6 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c(
-      "p",
-      {
-        directives: [
-          {
-            name: "show",
-            rawName: "v-show",
-            value: _vm.errorFlg,
-            expression: "errorFlg"
-          }
-        ],
-        staticStyle: { color: "red", "font-size": "14px", "margin-top": "8px" }
-      },
-      [_vm._v("\n        " + _vm._s(_vm.messageText) + "\n    ")]
-    ),
-    _vm._v(" "),
-    _c(
       "table",
       { staticClass: "p-table" },
       [
@@ -9033,6 +9020,38 @@ var render = function() {
         })
       ],
       2
+    ),
+    _vm._v(" "),
+    _c(
+      "p",
+      {
+        directives: [
+          {
+            name: "show",
+            rawName: "v-show",
+            value: _vm.keywords.length === 0,
+            expression: "keywords.length === 0"
+          }
+        ],
+        staticClass: "p-table__no-data"
+      },
+      [_vm._v("\n        データがありません\n    ")]
+    ),
+    _vm._v(" "),
+    _c(
+      "p",
+      {
+        directives: [
+          {
+            name: "show",
+            rawName: "v-show",
+            value: _vm.errorFlg,
+            expression: "errorFlg"
+          }
+        ],
+        staticClass: "p-table__error--message"
+      },
+      [_vm._v("\n        " + _vm._s(_vm.messageText) + "\n    ")]
     ),
     _vm._v(" "),
     _c("div", { staticClass: "p-modal__wrapper" }, [
@@ -9736,7 +9755,7 @@ var render = function() {
             expression: "likes.length === 0"
           }
         ],
-        staticStyle: { "font-size": "14px", "margin-top": "8px" }
+        staticClass: "p-table__no-data"
       },
       [_vm._v("\n        データがありません\n    ")]
     ),
@@ -9752,7 +9771,7 @@ var render = function() {
             expression: "errorFlg"
           }
         ],
-        staticStyle: { color: "red", "font-size": "14px", "margin-top": "8px" }
+        staticClass: "p-table__error--message"
       },
       [_vm._v("\n        " + _vm._s(_vm.messageText) + "\n    ")]
     ),
@@ -10411,7 +10430,7 @@ var render = function() {
             expression: "tweetsNum === 0"
           }
         ],
-        staticClass: "p-panel__nodata"
+        staticClass: "p-table__no-data"
       },
       [_vm._v("\n        データがありません\n    ")]
     ),
@@ -10427,7 +10446,7 @@ var render = function() {
             expression: "errorFlg"
           }
         ],
-        staticClass: "p-panel__error"
+        staticClass: "p-table__error--message"
       },
       [_vm._v("\n        " + _vm._s(_vm.messageText) + "\n    ")]
     ),
@@ -10472,7 +10491,7 @@ var render = function() {
                     expression: "modalErrorFlg"
                   }
                 ],
-                staticClass: "p-panel__error"
+                staticClass: "p-table__error--message"
               },
               [_vm._v(_vm._s(_vm.messageModalText))]
             ),
@@ -10649,7 +10668,7 @@ var render = function() {
                     expression: "modalErrorFlg"
                   }
                 ],
-                staticClass: "p-panel__error"
+                staticClass: "p-table__error--message"
               },
               [_vm._v(_vm._s(_vm.messageModalText))]
             ),
@@ -11459,11 +11478,7 @@ var render = function() {
               expression: "errorFlg"
             }
           ],
-          staticStyle: {
-            color: "red",
-            "font-size": "14px",
-            "margin-top": "8px"
-          }
+          staticClass: "p-table__error--message"
         },
         [_vm._v("\n            " + _vm._s(_vm.messageText) + "\n        ")]
       ),
@@ -11479,11 +11494,7 @@ var render = function() {
               expression: "selectAccountFlg"
             }
           ],
-          staticStyle: {
-            color: "red",
-            "font-size": "14px",
-            "margin-top": "8px"
-          }
+          staticClass: "p-table__error--message"
         },
         [
           _vm._v(

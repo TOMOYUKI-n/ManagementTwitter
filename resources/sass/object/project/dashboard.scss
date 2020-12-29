@@ -12,7 +12,6 @@
             display: block;
         }
     }
-    // sidebar index順序 navbar > open-sidebar > open-navi > modal
     &__sidebar-sp{
         display: none;
         @include mq(){
@@ -21,13 +20,10 @@
                 width:100%;
                 color: $color-white;
                 background-color: $color_black;
-                // height: 100vh;
                 height: calc(100vh - 48px);;
                 display: block;
                 transform: translateX(0px);
                 transition: all 0.5s ease-in-out;
-                //
-                // position: fixed;
                 position: absolute;
                 top: $space_12;
             }
@@ -42,7 +38,6 @@
                 width:100%;
                 color: $color-white;
                 background-color: $color_black;
-                // height: 100%;
                 height: calc(100vh - 48px);
                 display: block;
                 transform: translateX(0px);
@@ -60,7 +55,6 @@
         height: calc(100vh);
         @include mq(){
             display: none;
-            // 追加
             position: static;
             top: 0;
             height: 100%;
