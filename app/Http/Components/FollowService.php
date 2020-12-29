@@ -53,7 +53,6 @@ class FollowService
 
         $keyword = $follow_target->keyword;
         $target_screen = $follow_target->account_user_name;
-        Log::debug("keywordとtarget_screenを表示");
 
         //API認証用のツイッターユーザー情報を取得
         $twitter_user = TwitterUser::where('id', $twitter_user_id)->first();

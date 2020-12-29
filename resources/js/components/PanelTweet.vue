@@ -88,7 +88,7 @@
                         </textarea>
 
                         <label class="p-form__label">予定日時 *必須(5分後以降から可能)</label>
-                        <div class="u-display__flex--left">
+                        <div>
                             <div class="p-form__date--wrap">
                                 <div
                                     class="p-form__label p-form__datetime--label"    
@@ -143,7 +143,7 @@
                         </textarea>
 
                         <label class="p-form__label">予定日時 *必須(5分後以降から可能)</label>
-                        <div class="u-display__flex--left">
+                        <div>
 
                             <label class="p-form__label" for="edit-date">
                                 投稿年月日
@@ -305,7 +305,7 @@
              * 5分後の時刻でないと入力できないように制限
              */
             async validateTime(args) {
-                const timer = args.date + ' ' + args.time;
+                const timer = args.date + ' ' + args.time + ':00';
                 console.log('argsJoinDateTime:'.argsJoinDateTime);
 
                 const test = new Date(timer);
