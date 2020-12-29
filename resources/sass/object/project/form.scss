@@ -42,33 +42,9 @@
         }
     }
   
-    // &__date {
-    //     // font-size: $font-size_s;
-    //     // width: 45%;
-    //     // height: $space_10;
-    //     // font-weight: 100;
-    //     // padding: $space_2;
-    //     box-sizing: border-box;
-    //     // margin-bottom: $space_7;
-    //     // line-height: $space_6;
-    //     border: 1px solid $color_black5;
-    //     border-radius: 4px;
-    //     @include mq() {
-    //         width: 100% !important;
-    //     }
-    // }
-    // &__time {
-    //     box-sizing: border-box;
-    //     border: 1px solid $color_black5;
-    //     border-radius: 4px;
-    //     @include mq() {
-    //         width: 100% !important;
-    //     }
-    // }
     &__date--wrap {
         display: flex;
         align-items: center;
-        // justify-content: space-between;
     }
   
     &__button {
@@ -113,7 +89,6 @@
             box-sizing: border-box;
             margin-top: $space_7;
             display: flex;
-            // justify-content: center;
             justify-content: space-around;
         }
     }
@@ -138,40 +113,33 @@
 // 日付
 input[type=date]{
     display: block;
-    padding: 0;
     margin: 0;
     width: 96%;
-    // width: 60%;
-    padding: 2%;
-    // height: 32px;
+    padding: $space_2;
     box-sizing: border-box;
-    // margin-right: 12px;// dateのみ
     border: 1px solid $color_black5;
     border-radius: 4px;
-    height: 18px; 
-    line-height: 18px;
+    height: 32px; 
+    line-height: 32px;
     @include mq() {
         margin-left: 12px;
         width: inherit;
-        // width: 100% !important;
     }
 }
 input[type=time]{
     display: block;
-    padding: 0;
     margin: 0;
     width: 96%;
-    // width: 60%;
-    padding: 2%;
-    // height: 32px;
+    padding: $space_2;
     box-sizing: border-box;
     border: 1px solid $color_black5;
     border-radius: 4px;
-    height: 18px; 
-    line-height: 18px;
+    // height: 18px; 
+    // line-height: 18px;
+    height: 32px; 
+    line-height: 32px;
     @include mq() {
         margin-left: 12px;
         width: inherit;
-        // width: 100% !important;
     }
 }
