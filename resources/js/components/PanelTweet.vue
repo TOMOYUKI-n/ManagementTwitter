@@ -305,7 +305,7 @@
              * 5分後の時刻でないと入力できないように制限
              */
             async validateTime(args) {
-                const timer = new Date();
+                const timer = new Date(args.date + ' ' + args.time);
                 console.log('argsJoinDateTime=====');
                 console.log(timer);
 
