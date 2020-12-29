@@ -4524,21 +4524,24 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context2.prev = _context2.next) {
               case 0:
                 timer = args.date + ' ' + args.time + ':00';
-                console.log('argsJoinDateTime:'.argsJoinDateTime);
+                console.log('argsJoinDateTime=====');
+                console.log(timer);
                 test = new Date(timer);
-                console.log('new Date(timer)'.test);
+                console.log('new Date(timer)=====');
+                console.log(test);
                 time = new Date(new Date(timer));
                 console.log('new Date(new Date(timer))');
-                console.log('argsJoinDateTime:'.time);
+                console.log(time);
                 info = time.getTime();
-                console.log('info==='.info); // Date形式で5分後の時刻を取得
+                console.log('info=====');
+                console.log(info); // Date形式で5分後の時刻を取得
 
                 afterFiveTime = new Date(+new Date() + 5 * 60 * 1000);
                 afterInfo = afterFiveTime.getTime(); // 5分以上間を開けているか判定
 
                 return _context2.abrupt("return", info > afterInfo ? true : false);
 
-              case 12:
+              case 15:
               case "end":
                 return _context2.stop();
             }

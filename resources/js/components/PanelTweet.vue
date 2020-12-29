@@ -306,16 +306,19 @@
              */
             async validateTime(args) {
                 const timer = args.date + ' ' + args.time + ':00';
-                console.log('argsJoinDateTime:'.argsJoinDateTime);
+                console.log('argsJoinDateTime=====');
+                console.log(timer);
 
                 const test = new Date(timer);
-                console.log('new Date(timer)'.test);
+                console.log('new Date(timer)=====');
+                console.log(test);
 
                 const time = new Date(new Date(timer));
                 console.log('new Date(new Date(timer))');
-                console.log('argsJoinDateTime:'.time);
+                console.log(time);
                 const info = time.getTime();
-                console.log('info==='.info);
+                console.log('info=====');
+                console.log(info);
 
                 // Date形式で5分後の時刻を取得
                 const afterFiveTime = new Date(+new Date() + (5 * 60 * 1000));
