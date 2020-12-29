@@ -305,7 +305,7 @@
              * 5分後の時刻でないと入力できないように制限
              */
             async validateTime(args) {
-                const timer = new Date(args.date + ' ' + args.time);
+                const timer = new Date(new Date(args.date + ' ' + args.time));
                 console.log('argsJoinDateTime=====');
                 console.log(timer);
 
@@ -314,8 +314,13 @@
                 console.log(info);
 
                 // Date形式で5分後の時刻を取得
-                const afterFiveTime = new Date(+new Date() + (5 * 60 * 1000));
+                const afterFiveTime = new Date(new Date() + (5 * 60 * 1000));
+                console.log('afterFiveTime=====');
+                console.log(afterFiveTime);
+
                 const afterInfo = afterFiveTime.getTime();
+                console.log('afterInfo=====');
+                console.log(afterInfo);
 
                 // 5分以上間を開けているか判定
                 return info > afterInfo ? true:false;
