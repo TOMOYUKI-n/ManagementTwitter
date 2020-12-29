@@ -31,7 +31,7 @@
         }
     }
     &__login{
-        // btnタグ
+        // aタグ
         background-color: $color_sky;
         box-shadow: 0 1px 4px $color_shadow;
         border-radius: 4px;
@@ -40,7 +40,6 @@
         display: inline-block;
         text-align: center;
         box-sizing: border-box;
-        border: none;
         &:hover{
             cursor: pointer;
         }
