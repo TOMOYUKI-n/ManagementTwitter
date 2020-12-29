@@ -850,7 +850,6 @@ img {
   display: inline-block;
   text-align: center;
   box-sizing: border-box;
-  border: none;
 }
 .p-button__login:hover {
   cursor: pointer;

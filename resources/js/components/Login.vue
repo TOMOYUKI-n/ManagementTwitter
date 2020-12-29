@@ -29,12 +29,12 @@
 
                 <!--ボタンエリア-->
                 <div class="p-login__button__wrap">
-                    <button
+                    <a
                         @click="login"
                         class="p-button__login"
                         :class="emailError? 'p-login__disabled':''"
                     >
-                        ログイン</button>
+                        ログイン</a>
                 </div>
 
                 <p class="p-login__text--center">アカウントをお持ちで無い方はこちらから</p>
@@ -69,12 +69,11 @@ export default {
     },
     methods: {
         login() {
-            console.log('click');
             if (!this.emailError) {
                 // データの保存
                 this.saveLoginData();
                 // 送信
-                const url = "/login";
+                const url = "/login?";
                 const params = {
                     email: this.email,
                     password: this.password,

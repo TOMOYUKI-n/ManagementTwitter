@@ -305,28 +305,26 @@
              * 5分後の時刻でないと入力できないように制限
              */
             async validateTime(args) {
-                const timer = args.date + ' ' + args.time + ':00';
-                console.log('argsJoinDateTime=====');
-                console.log(timer);
-
-                const test = new Date(timer);
-                console.log('new Date(timer)=====');
-                console.log(test);
-
-                const time = new Date(new Date(timer));
-                console.log('new Date(new Date(timer))');
-                console.log(time);
-                const info = time.getTime();
-                console.log('info=====');
-                console.log(info);
+                const timer = args.date + ' ' + args.time;
 
                 // Date形式で5分後の時刻を取得
                 const afterFiveTime = new Date(+new Date() + (5 * 60 * 1000));
-                const afterInfo = afterFiveTime.getTime();
 
+                const result = await this.getDateDiff(timer, afterFiveTime);
+                console.log(result);
                 // 5分以上間を開けているか判定
                 // return info > afterInfo ? true:false;
-                return time > afterFiveTime ? true:false;
+                return result !== -0? true:false;
+            },
+            async getDateDiff(dateString1, dateString2) {
+                // 日付を表す文字列から日付オブジェクトを生成
+                var date1 = new Date(dateString1);
+                var date2 = new Date(dateString2);
+                // 2つの日付の差分（ミリ秒）を計算
+                var msDiff  = date1.getTime() - date2.getTime();
+                // 求めた差分（ミリ秒）を日付に変換
+                // 差分÷(1000ミリ秒×60秒×60分)
+                return Math.ceil(msDiff / (1000 * 60 * 60));
             },
             /**
              * APIを使用して自動ツイートを新規登録する
