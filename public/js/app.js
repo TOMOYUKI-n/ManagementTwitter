@@ -4521,7 +4521,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                timer = new Date();
+                timer = new Date(args.date + ' ' + args.time);
                 console.log('argsJoinDateTime=====');
                 console.log(timer);
                 info = timer.getTime();
