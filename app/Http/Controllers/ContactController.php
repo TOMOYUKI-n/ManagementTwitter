@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Mail\ContactSendmail;
+
+use App\User;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 class ContactController extends Controller
 {
     public function index()
@@ -19,19 +23,26 @@ class ContactController extends Controller
             'body' => 'required',
         ]);
 
-        //フォームから受け取ったすべてのinputの値を取得
-        $inputs = $request->all();
+        // メールアドレス存在チェック
+        $checkRecord = User::where('email', $request->email)->first();
 
-        //入力内容確認ページのviewに変数を渡して表示
-        return view('contact.confirm', [
-            'inputs' => $inputs,
-        ]);
+        if (is_null($checkRecord)) {
+            return back()->with('status', '入力されたメールアドレスは存在していません');
+        } else {
+            //フォームから受け取ったすべてのinputの値を取得
+            $inputs = $request->all();
+
+            //入力内容確認ページのviewに変数を渡して表示
+            return view('contact.confirm', [
+                'inputs' => $inputs,
+            ]);
+        }
     }
     public function send(Request $request)
     {
         //バリデーションを実行（結果に問題があれば処理を中断してエラーを返す）
         $request->validate([
-            'email' => 'required|email',
+            'email' => ['required','email'],
             'title' => 'required',
             'body' => 'required',
         ]);

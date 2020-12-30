@@ -2,10 +2,10 @@
     <div class="l-contents">
 
         <div class="p-contents__area--narrow">
-            <h2 class="p-contents__head"><i class="c-icon--twitter fab fa-twitter"></i>利用するTwitterアカウントを選択する</h2>
-            <div v-show="isMaximumAccount" class="">
+            <h2 class="p-contents__head"><i class="c-icon--twitter fab fa-twitter"></i>利用するTwitterアカウントを選択</h2>
+            <div v-show="isMaximumAccount">
                 <a class="p-button__account__add" @click="twitterLogin">
-                    <p class="">
+                    <p>
                         <i class="c-icon__twitter far fa-plus-square c-icon__mr-2"></i>Twitterアカウントの追加
                     </p>
                 </a>

@@ -3,7 +3,11 @@
 @section('content')
 <div class="l-main__contact">
     <div id="login" class="p-login__container">
-
+        @if (session('status'))
+            <div class="error_mail_message">
+                {{ session('status') }}
+            </div>
+        @endif
         <form method="POST" action="{{ route('contact.confirm') }}">
             @csrf
             <div class="p-send__inner">

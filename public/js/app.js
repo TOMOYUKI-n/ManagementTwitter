@@ -8829,20 +8829,34 @@ var render = function() {
       )
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "c-button--add--wrap" }, [
-      _c(
-        "button",
-        {
-          staticClass: "c-button--add--sp",
-          on: {
-            click: function($event) {
-              _vm.newModal = !_vm.newModal
-            }
+    _c(
+      "div",
+      {
+        directives: [
+          {
+            name: "show",
+            rawName: "v-show",
+            value: !_vm.nothingAccountFlg,
+            expression: "!nothingAccountFlg"
           }
-        },
-        [_c("i", { staticClass: "fas fa-plus" })]
-      )
-    ])
+        ],
+        staticClass: "c-button--add--wrap"
+      },
+      [
+        _c(
+          "button",
+          {
+            staticClass: "c-button--add--sp",
+            on: {
+              click: function($event) {
+                _vm.newModal = !_vm.newModal
+              }
+            }
+          },
+          [_c("i", { staticClass: "fas fa-plus" })]
+        )
+      ]
+    )
   ])
 }
 var staticRenderFns = [
@@ -10141,20 +10155,34 @@ var render = function() {
       )
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "c-button--add--wrap" }, [
-      _c(
-        "button",
-        {
-          staticClass: "c-button--add--sp",
-          on: {
-            click: function($event) {
-              _vm.newModal = !_vm.newModal
-            }
+    _c(
+      "div",
+      {
+        directives: [
+          {
+            name: "show",
+            rawName: "v-show",
+            value: !_vm.nothingAccountFlg,
+            expression: "!nothingAccountFlg"
           }
-        },
-        [_c("i", { staticClass: "fas fa-plus" })]
-      )
-    ])
+        ],
+        staticClass: "c-button--add--wrap"
+      },
+      [
+        _c(
+          "button",
+          {
+            staticClass: "c-button--add--sp",
+            on: {
+              click: function($event) {
+                _vm.newModal = !_vm.newModal
+              }
+            }
+          },
+          [_c("i", { staticClass: "fas fa-plus" })]
+        )
+      ]
+    )
   ])
 }
 var staticRenderFns = [
@@ -10958,20 +10986,34 @@ var render = function() {
       ]
     ),
     _vm._v(" "),
-    _c("div", { staticClass: "c-button--add--wrap" }, [
-      _c(
-        "button",
-        {
-          staticClass: "c-button--add--sp",
-          on: {
-            click: function($event) {
-              _vm.newModal = !_vm.newModal
-            }
+    _c(
+      "div",
+      {
+        directives: [
+          {
+            name: "show",
+            rawName: "v-show",
+            value: !_vm.nothingAccountFlg,
+            expression: "!nothingAccountFlg"
           }
-        },
-        [_c("i", { staticClass: "fas fa-plus" })]
-      )
-    ])
+        ],
+        staticClass: "c-button--add--wrap"
+      },
+      [
+        _c(
+          "button",
+          {
+            staticClass: "c-button--add--sp",
+            on: {
+              click: function($event) {
+                _vm.newModal = !_vm.newModal
+              }
+            }
+          },
+          [_c("i", { staticClass: "fas fa-plus" })]
+        )
+      ]
+    )
   ])
 }
 var staticRenderFns = [
@@ -11600,14 +11642,14 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("h2", { staticClass: "p-contents__head" }, [
       _c("i", { staticClass: "c-icon--twitter fab fa-twitter" }),
-      _vm._v("利用するTwitterアカウントを選択する")
+      _vm._v("利用するTwitterアカウントを選択")
     ])
   },
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("p", {}, [
+    return _c("p", [
       _c("i", {
         staticClass: "c-icon__twitter far fa-plus-square c-icon__mr-2"
       }),
@@ -24586,7 +24628,7 @@ var message = {
   notDelete: '正常に通信することができませんでした。画面を再度更新してください。',
   notUpdate: '更新できませんでした。時間を置いて再度更新してください。',
   notAllowedToChangeKeyword: '既に自動フォロー機能にてご利用されておりますので、変更はできません。',
-  needSelectAccount: 'Twitterアカウントを選択するか、追加してください。',
+  needSelectAccount: 'Twitterアカウントを選択または追加してください。',
   noAtMark: '@は記入しなくても大丈夫です。',
   noTargetAccount: 'ターゲットアカウントを登録してください。',
   noFiveMinutesTimer: '現在の５分後以降を指定してください。'
