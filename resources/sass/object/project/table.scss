@@ -180,5 +180,10 @@
     &__error--message {
         color: $color-error;
         margin-top: $space_2;
+        @include mq() {
+            position: relative;
+            top: -72px;
+            left: 4px;
+        }
     }
 }

@@ -1179,6 +1179,13 @@ img {
   color: red;
   margin-top: 8px;
 }
+@media screen and (max-width: 960px) {
+  .p-table__error--message {
+    position: relative;
+    top: -72px;
+    left: 4px;
+  }
+}
 
 .p-policy {
   display: block;

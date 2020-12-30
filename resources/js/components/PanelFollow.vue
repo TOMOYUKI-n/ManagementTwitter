@@ -169,7 +169,7 @@
 
         </div>
 
-        <div class="c-button--add--wrap">
+        <div v-show="!nothingAccountFlg" class="c-button--add--wrap">
             <button class="c-button--add--sp" @click="newModal = !newModal">
                 <i class="fas fa-plus"></i>
             </button>

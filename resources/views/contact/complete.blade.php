@@ -9,8 +9,8 @@
         <p class="p-login__text">
           <h1>{{ __('送信完了') }}</h1>
         </p>
-        <div class="p-top__login">
-            <a class="p-top__text p-btn__login" href="{{ route('top') }}">
+        <div class="p-login__button__wrap">
+            <a class="p-button__login" href="{{ route('top') }}">
               トップページへ戻る
             </a>
         </div>
